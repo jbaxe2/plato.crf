@@ -13,10 +13,7 @@ import 'term.dart';
   selector: 'terms',
   styleUrls: const ['terms_component.css'],
   templateUrl: 'terms_component.html',
-  directives: const [
-    CORE_DIRECTIVES,
-    materialDirectives,
-  ],
+  directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [TermsService],
 )
 class TermsComponent implements OnInit {

@@ -13,11 +13,8 @@ import 'department.dart';
   selector: 'departments',
   styleUrls: const ['departments_component.css'],
   templateUrl: 'departments_component.html',
-  directives: const [
-    CORE_DIRECTIVES,
-    materialDirectives,
-  ],
-  providers: const [DepartmentsService],
+  directives: const [CORE_DIRECTIVES, materialDirectives],
+  providers: const [materialProviders, DepartmentsService],
 )
 class DepartmentsComponent implements OnInit {
   final DepartmentsService deptsService;

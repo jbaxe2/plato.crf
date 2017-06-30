@@ -31,8 +31,8 @@ class TermsService {
       List<Map<String, String>> rawTerms =
         (JSON.decode (termsResponse.body) as Map)['terms'];
 
-      rawTerms.forEach ((Map<String, String> rawDept) {
-        terms.add (new Term (rawDept['id'], rawDept['description']));
+      rawTerms.forEach ((Map<String, String> rawTerm) {
+        terms.add (new Term (rawTerm['id'], rawTerm['description']));
       });
     } catch (_) {}
 
