@@ -21,6 +21,8 @@ class DepartmentsComponent implements OnInit {
 
   List<Department> departments;
 
+  Department selectedDepartment;
+
   /// The [DepartmentsComponent] constructor...
   DepartmentsComponent (this.deptsService);
 

@@ -21,6 +21,8 @@ class TermsComponent implements OnInit {
 
   List<Term> terms;
 
+  Term selectedTerm;
+
   /// The [TermsComponent] constructor...
   TermsComponent (this.termsService);
 

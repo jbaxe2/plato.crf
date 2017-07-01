@@ -1,7 +1,7 @@
 <material-dropdown-select>
   <material-select-item
       *ngFor="let term of terms"
-      (trigger)="onTermSelected"
+      (trigger)="onTermSelected()"
       value="{{term.id}}">
     {{term.description}}
   </material-select-item>
