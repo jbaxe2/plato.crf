@@ -34,7 +34,9 @@ class DepartmentsService {
       rawDepts.forEach ((Map<String, String> rawDept) {
         departments.add (new Department (rawDept['code'], rawDept['description']));
       });
-    } catch (_) {}
+    } catch (_) {
+      print (_.toString());
+    }
 
     return departments;
   }

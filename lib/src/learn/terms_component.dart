@@ -8,10 +8,10 @@ import 'package:angular_components/angular_components.dart';
 import 'terms_service.dart';
 import 'term.dart';
 
-/// The [TermsComponent] class...
+/// The [TermsComponent] component class...
 @Component(
   selector: 'terms',
-  styleUrls: const ['terms_component.css'],
+  //styleUrls: const ['terms_component.css'],
   templateUrl: 'terms_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [TermsService],
@@ -21,10 +21,15 @@ class TermsComponent implements OnInit {
 
   List<Term> terms;
 
+  /// The [TermsComponent] constructor...
   TermsComponent (this.termsService);
 
+  /// The [ngOnInit] method...
   @override
   Future ngOnInit() async {
     terms = await termsService.loadTerms();
   }
+
+  /// The [onTermSelected] method...
+  Future<Null> onTermSelected() async {}
 }

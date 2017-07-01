@@ -34,7 +34,9 @@ class TermsService {
       rawTerms.forEach ((Map<String, String> rawTerm) {
         terms.add (new Term (rawTerm['id'], rawTerm['description']));
       });
-    } catch (_) {}
+    } catch (_) {
+      print (_.toString());
+    }
 
     return terms;
   }
