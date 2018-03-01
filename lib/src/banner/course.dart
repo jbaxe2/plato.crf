@@ -1,20 +1,20 @@
-library plato.angular.models.learn.term;
+library plato.angular.models.banner.course;
 
-/// The [Term] class...
-class Term {
+/// The [Course] class...
+class Course {
   String id;
 
-  String description;
+  String title;
 
-  /// The [Term] constructor...
-  Term (this.id, this.description);
+  /// The [Course] constructor...
+  Course (this.id, this.title);
 
   /// The [==] operator...
   @override
   bool operator ==(dynamic other) {
-    if (other is Term) {
+    if (other is Course) {
       if ((other.id == id) &&
-          (other.description == description)) {
+          (other.title == title)) {
         return true;
       }
     }
@@ -28,7 +28,7 @@ class Term {
     int result = 3;
 
     result = 7 * result + ((null == id) ? 0 : id.hashCode);
-    result = 7 * result + ((null == description) ? 0 : description.hashCode);
+    result = 7 * result + ((null == title) ? 0 : title.hashCode);
 
     return result;
   }

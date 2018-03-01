@@ -1,0 +1,1 @@
+library plato.angular.components.banner.courses;
