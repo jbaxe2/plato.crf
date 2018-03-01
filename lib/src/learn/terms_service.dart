@@ -3,7 +3,7 @@ library plato.angular.services.banner.terms;
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;
 
-import 'package:angular2/core.dart';
+import 'package:angular/core.dart';
 
 import 'package:http/http.dart';
 
@@ -23,8 +23,8 @@ class TermsService {
     terms = new List<Term>();
   }
 
-  /// The [loadTerms] method...
-  Future<List<Term>> loadTerms() async {
+  /// The [retrieveTerms] method...
+  Future<List<Term>> retrieveTerms() async {
     try {
       final Response termsResponse = await _http.get (_TERMS_URI);
 

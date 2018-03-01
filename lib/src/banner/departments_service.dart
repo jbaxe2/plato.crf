@@ -3,7 +3,7 @@ library plato.angular.services.banner.departments;
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;
 
-import 'package:angular2/core.dart';
+import 'package:angular/core.dart';
 
 import 'package:http/http.dart';
 
@@ -11,20 +11,20 @@ import 'department.dart';
 
 const String _DEPTS_URI = '/plato/retrieve/departments';
 
-/// The [DepartmentsService] class...
+/// The [CoursesService] class...
 @Injectable()
-class DepartmentsService {
+class CoursesService {
   List<Department> departments;
 
   final Client _http;
 
-  /// The [DepartmentsService] constructor...
-  DepartmentsService (this._http) {
+  /// The [CoursesService] constructor...
+  CoursesService (this._http) {
     departments = new List<Department>();
   }
 
-  /// The [loadDepartments] method...
-  Future<List<Department>> loadDepartments() async {
+  /// The [retrieveDepartments] method...
+  Future<List<Department>> retrieveDepartments() async {
     try {
       final Response deptsResponse = await _http.get (_DEPTS_URI);
 

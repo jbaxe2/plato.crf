@@ -2,22 +2,22 @@ library plato.angular.components.banner.departments;
 
 import 'dart:async';
 
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'departments_service.dart';
 import 'department.dart';
+
+import 'departments_service.dart';
 
 /// The [DepartmentsComponent] component class...
 @Component(
   selector: 'departments',
-  //styleUrls: const ['departments_component.css'],
   templateUrl: 'departments_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [DepartmentsService],
+  providers: const [CoursesService],
 )
 class DepartmentsComponent implements OnInit {
-  final DepartmentsService deptsService;
+  final CoursesService deptsService;
 
   List<Department> departments;
 
@@ -29,7 +29,7 @@ class DepartmentsComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   Future ngOnInit() async {
-    departments = await deptsService.loadDepartments();
+    departments = await deptsService.retrieveDepartments();
   }
 
   /// The [onDepartmentSelected] method...
