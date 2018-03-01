@@ -23,8 +23,8 @@ class SectionsService {
     sections = new List<Section>();
   }
 
-  /// The [retrieveCourses] method...
-  Future<List<Section>> retrieveCourses (String courseId, String termId) async {
+  /// The [retrieveSections] method...
+  Future<List<Section>> retrieveSections (String courseId, String termId) async {
     try {
       final Response sectionsResponse = await _http.get (
         '$_SECTIONS_URI?courseId=$courseId&termId=$termId'
