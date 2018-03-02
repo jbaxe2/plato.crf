@@ -24,7 +24,7 @@ class TermsService {
   }
 
   /// The [retrieveTerms] method...
-  Future<List<Term>> retrieveTerms() async {
+  Future retrieveTerms() async {
     try {
       final Response termsResponse = await _http.get (_TERMS_URI);
 
@@ -37,7 +37,5 @@ class TermsService {
     } catch (_) {
       print (_.toString());
     }
-
-    return terms;
   }
 }

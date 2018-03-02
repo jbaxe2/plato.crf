@@ -5,8 +5,9 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'terms_service.dart';
 import 'term.dart';
+
+import 'terms_service.dart';
 
 /// The [TermsComponent] component class...
 @Component(
@@ -16,21 +17,27 @@ import 'term.dart';
   providers: const [TermsService],
 )
 class TermsComponent implements OnInit {
-  final TermsService termsService;
-
   List<Term> terms;
 
   Term selectedTerm;
 
+  final TermsService termsService;
+
   /// The [TermsComponent] constructor...
-  TermsComponent (this.termsService);
+  TermsComponent (this.termsService) {
+    terms = new List<Term>();
+  }
 
   /// The [ngOnInit] method...
   @override
   Future ngOnInit() async {
-    terms = await termsService.retrieveTerms();
+    await termsService.retrieveTerms();
+
+    terms = termsService.terms;
   }
 
   /// The [onTermSelected] method...
-  Future<Null> onTermSelected() async {}
+  void onTermSelected (Term aTerm) {
+    selectedTerm = aTerm;
+  }
 }

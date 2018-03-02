@@ -1,0 +1,15 @@
+library plato.angular.models.crf.previous_content;
+
+import '../banner/section.dart';
+
+import '../learn/enrollment.dart';
+
+/// The [PreviousContentMapping] class...
+class PreviousContentMapping {
+  final Section section;
+
+  Enrollment enrollment;
+
+  /// The [PreviousContentMapping] constructor...
+  PreviousContentMapping (this.section, this.enrollment);
+}

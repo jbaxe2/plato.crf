@@ -1,7 +1,7 @@
 <material-dropdown-select>
   <material-select-item
     *ngFor="let department of departments"
-    (trigger)="onDepartmentSelected()"
+    (trigger)="onDepartmentSelected(department)"
     value="{{department.code}}"
     [(ngModel)]="model.selectedDepartment">
     {{department.description}}

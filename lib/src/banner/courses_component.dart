@@ -1,6 +1,6 @@
 library plato.angular.components.banner.courses;
 
-import 'dart:async';
+//import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
@@ -16,7 +16,7 @@ import 'courses_service.dart';
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [CoursesService],
 )
-class CoursesComponent implements OnInit {
+class CoursesComponent {
   final CoursesService coursesService;
 
   List<Course> courses;
@@ -24,14 +24,12 @@ class CoursesComponent implements OnInit {
   Course selectedCourse;
 
   /// The [CoursesComponent] constructor...
-  CoursesComponent (this.coursesService);
-
-  /// The [ngOnInit] method...
-  @override
-  Future ngOnInit() async {
+  CoursesComponent (this.coursesService) {
     courses = new List<Course>();
   }
 
   /// The [onCourseSelected] method...
-  Future<Null> onCourseSelected() async {}
+  void onCourseSelected (Course aCourse) {
+    selectedCourse = aCourse;
+  }
 }

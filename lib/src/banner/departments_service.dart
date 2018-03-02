@@ -7,24 +7,26 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart';
 
+import '../error/banner_exception.dart';
+
 import 'department.dart';
 
 const String _DEPTS_URI = '/plato/retrieve/departments';
 
-/// The [CoursesService] class...
+/// The [DepartmentsService] class...
 @Injectable()
-class CoursesService {
+class DepartmentsService {
   List<Department> departments;
 
   final Client _http;
 
-  /// The [CoursesService] constructor...
-  CoursesService (this._http) {
+  /// The [DepartmentsService] constructor...
+  DepartmentsService (this._http) {
     departments = new List<Department>();
   }
 
   /// The [retrieveDepartments] method...
-  Future<List<Department>> retrieveDepartments() async {
+  Future retrieveDepartments() async {
     try {
       final Response deptsResponse = await _http.get (_DEPTS_URI);
 
@@ -35,9 +37,7 @@ class CoursesService {
         departments.add (new Department (rawDept['code'], rawDept['description']));
       });
     } catch (_) {
-      print (_.toString());
+      throw new BannerException ('Unable to retrieve the departments list.');
     }
-
-    return departments;
   }
 }

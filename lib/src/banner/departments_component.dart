@@ -14,24 +14,30 @@ import 'departments_service.dart';
   selector: 'departments',
   templateUrl: 'departments_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [CoursesService],
+  providers: const [DepartmentsService],
 )
 class DepartmentsComponent implements OnInit {
-  final CoursesService deptsService;
-
   List<Department> departments;
 
   Department selectedDepartment;
 
+  final DepartmentsService deptsService;
+
   /// The [DepartmentsComponent] constructor...
-  DepartmentsComponent (this.deptsService);
+  DepartmentsComponent (this.deptsService) {
+    departments = new List<Department>();
+  }
 
   /// The [ngOnInit] method...
   @override
   Future ngOnInit() async {
-    departments = await deptsService.retrieveDepartments();
+    await deptsService.retrieveDepartments();
+
+    departments = deptsService.departments;
   }
 
   /// The [onDepartmentSelected] method...
-  Future<Null> onDepartmentSelected() async {}
+  void onDepartmentSelected (Department aDepartment) {
+    selectedDepartment = aDepartment;
+  }
 }

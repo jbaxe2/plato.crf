@@ -7,6 +7,8 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart';
 
+import '../error/banner_exception.dart';
+
 import 'course.dart';
 
 const String _COURSES_URI = '/plato/retrieve/courses';
@@ -14,6 +16,10 @@ const String _COURSES_URI = '/plato/retrieve/courses';
 /// The [CoursesService] class...
 @Injectable()
 class CoursesService {
+  String departmentId;
+
+  String termId;
+
   List<Course> courses;
 
   final Client _http;
@@ -24,10 +30,10 @@ class CoursesService {
   }
 
   /// The [retrieveCourses] method...
-  Future<List<Course>> retrieveCourses (String deptId, String termId) async {
+  Future retrieveCourses() async {
     try {
       final Response coursesResponse = await _http.get (
-        '$_COURSES_URI?dept=$deptId&term=$termId'
+        '$_COURSES_URI?dept=$departmentId&term=$termId'
       );
 
       List<Map<String, String>> rawCourses =
@@ -37,9 +43,7 @@ class CoursesService {
         courses.add (new Course (rawCourse['courseId'], rawCourse['title']));
       });
     } catch (_) {
-      print (_.toString());
+      throw new BannerException ('Unable to retrieve the courses list.');
     }
-
-    return courses;
   }
 }
