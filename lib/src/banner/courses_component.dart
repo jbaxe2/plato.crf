@@ -17,8 +17,6 @@ import 'courses_service.dart';
   providers: const [CoursesService],
 )
 class CoursesComponent {
-  final CoursesService coursesService;
-
   List<Course> courses;
 
   Course selectedCourse;
@@ -28,6 +26,8 @@ class CoursesComponent {
 
   @Input()
   String termId;
+
+  final CoursesService coursesService;
 
   /// The [CoursesComponent] constructor...
   CoursesComponent (this.coursesService) {
