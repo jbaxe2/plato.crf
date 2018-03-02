@@ -7,6 +7,8 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart';
 
+import '../error/banner_exception.dart';
+
 import 'section.dart';
 
 const String _SECTIONS_URI = '/plato/retrieve/sections';
@@ -28,7 +30,7 @@ class SectionsService {
   }
 
   /// The [retrieveSections] method...
-  Future<List<Section>> retrieveSections() async {
+  Future retrieveSections() async {
     try {
       final Response sectionsResponse = await _http.get (
         '$_SECTIONS_URI?courseId=$courseId&termId=$termId'
@@ -46,9 +48,9 @@ class SectionsService {
         );
       });
     } catch (_) {
-      print (_.toString());
+      throw new BannerException (
+        'Retrieving the sections information resulted in an error.'
+      );
     }
-
-    return sections;
   }
 }

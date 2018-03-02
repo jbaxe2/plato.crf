@@ -10,18 +10,32 @@ import 'previous_content_mapping.dart';
 class RequestedSection {
   final Section section;
 
-  CrossListing crossListing;
+  CrossListing _crossListing;
 
-  PreviousContentMapping previousContent;
+  CrossListing get crossListing => _crossListing;
 
-  bool get hasCrossListing => (null == crossListing);
+  PreviousContentMapping _previousContent;
 
-  bool get hasPreviousContent => (null == previousContent);
+  PreviousContentMapping get previousContent => _previousContent;
+
+  bool get hasCrossListing => (null != _crossListing);
+
+  bool get hasPreviousContent => (null != _previousContent);
 
   /// The [RequestedSection] constructor...
   RequestedSection (this.section);
 
+  /// The [setCrossListing] method...
   void setCrossListing (CrossListing aCrossListing) {
-    ;
+    if (aCrossListing.contains (section)) {
+      _crossListing = aCrossListing;
+    }
+  }
+
+  /// The [setPreviousContent] method...
+  void setPreviousContent (PreviousContentMapping aPreviousContent) {
+    if (aPreviousContent.section == section) {
+      _previousContent = aPreviousContent;
+    }
   }
 }

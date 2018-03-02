@@ -23,6 +23,12 @@ class CoursesComponent {
 
   Course selectedCourse;
 
+  @Input()
+  String departmentId;
+
+  @Input()
+  String termId;
+
   /// The [CoursesComponent] constructor...
   CoursesComponent (this.coursesService) {
     courses = new List<Course>();

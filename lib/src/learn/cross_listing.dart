@@ -45,4 +45,7 @@ class CrossListing {
 
     return false;
   }
+
+  /// The [contains] method...
+  bool contains (Section section) => sections.contains (section);
 }
