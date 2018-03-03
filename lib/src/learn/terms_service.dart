@@ -7,6 +7,8 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart';
 
+import '../error/learn_exception.dart';
+
 import 'term.dart';
 
 const String _TERMS_URI = '/plato/retrieve/terms';
@@ -35,7 +37,7 @@ class TermsService {
         terms.add (new Term (rawTerm['id'], rawTerm['description']));
       });
     } catch (_) {
-      print (_.toString());
+      throw new LearnException ('Unable to retrieve the list of terms.');
     }
   }
 }
