@@ -16,9 +16,9 @@ const String _SECTIONS_URI = '/plato/retrieve/sections';
 /// The [SectionsService] class...
 @Injectable()
 class SectionsService {
-  String courseId;
+  String _courseId;
 
-  String termId;
+  String _termId;
 
   List<Section> sections;
 
@@ -29,11 +29,29 @@ class SectionsService {
     sections = new List<Section>();
   }
 
+  /// The [setCourseId] method...
+  Future setCourseId (String courseId) async {
+    _courseId = courseId;
+
+    if (null != _termId) {
+      retrieveSections();
+    }
+  }
+
+  /// THe [setTermId] method...
+  Future setTermId (String termId) async {
+    _termId = termId;
+
+    if (null != _courseId) {
+      retrieveSections();
+    }
+  }
+
   /// The [retrieveSections] method...
   Future retrieveSections() async {
     try {
       final Response sectionsResponse = await _http.get (
-        '$_SECTIONS_URI?courseId=$courseId&termId=$termId'
+        '$_SECTIONS_URI?courseId=$_courseId&termId=$_termId'
       );
 
       List<Map<String, String>> rawSections =

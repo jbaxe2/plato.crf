@@ -5,6 +5,9 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
+import '../banner/courses_service.dart';
+import '../banner/sections_service.dart';
+
 import 'term.dart';
 
 import 'terms_service.dart';
@@ -14,7 +17,7 @@ import 'terms_service.dart';
   selector: 'terms',
   templateUrl: 'terms_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [TermsService],
+  providers: const [TermsService, CoursesService, SectionsService],
 )
 class TermsComponent implements OnInit {
   List<Term> terms;
@@ -23,8 +26,12 @@ class TermsComponent implements OnInit {
 
   final TermsService termsService;
 
+  final CoursesService coursesService;
+
+  final SectionsService sectionsService;
+
   /// The [TermsComponent] constructor...
-  TermsComponent (this.termsService) {
+  TermsComponent (this.termsService, this.coursesService, this.sectionsService) {
     terms = new List<Term>();
   }
 
@@ -39,5 +46,8 @@ class TermsComponent implements OnInit {
   /// The [onTermSelected] method...
   void onTermSelected (Term aTerm) {
     selectedTerm = aTerm;
+
+    coursesService.setTermId (selectedTerm.id);
+    sectionsService.setTermId (selectedTerm.id);
   }
 }

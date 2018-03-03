@@ -1,6 +1,6 @@
 library plato.angular.components.banner.sections.selection;
 
-import 'dart:async' show Future;
+//import 'dart:async' show Future;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
@@ -16,7 +16,7 @@ import 'sections_service.dart';
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [SectionsService]
 )
-class SectionsSelectionComponent {
+class SectionsSelectionComponent implements OnInit {
   List<Section> sections;
 
   List<Section> selectedSections;
@@ -29,8 +29,7 @@ class SectionsSelectionComponent {
     selectedSections = new List<Section>();
   }
 
-  /// The [retrieveSections] method...
-  Future retrieveSections() async {
-    ;
-  }
+  /// The [ngOnInit] method...
+  @override
+  void ngOnInit() => (sections = sectionsService.sections);
 }

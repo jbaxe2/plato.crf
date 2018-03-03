@@ -7,6 +7,7 @@ import 'package:angular_components/angular_components.dart';
 
 import 'department.dart';
 
+import 'courses_service.dart';
 import 'departments_service.dart';
 
 /// The [DepartmentsComponent] component class...
@@ -14,7 +15,7 @@ import 'departments_service.dart';
   selector: 'departments',
   templateUrl: 'departments_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [DepartmentsService],
+  providers: const [DepartmentsService, CoursesService],
 )
 class DepartmentsComponent implements OnInit {
   List<Department> departments;
@@ -23,8 +24,10 @@ class DepartmentsComponent implements OnInit {
 
   final DepartmentsService deptsService;
 
+  final CoursesService coursesService;
+
   /// The [DepartmentsComponent] constructor...
-  DepartmentsComponent (this.deptsService) {
+  DepartmentsComponent (this.deptsService, this.coursesService) {
     departments = new List<Department>();
   }
 
@@ -39,5 +42,7 @@ class DepartmentsComponent implements OnInit {
   /// The [onDepartmentSelected] method...
   void onDepartmentSelected (Department aDepartment) {
     selectedDepartment = aDepartment;
+
+    coursesService.setDepartmentId (selectedDepartment.code);
   }
 }

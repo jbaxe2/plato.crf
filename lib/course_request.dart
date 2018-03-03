@@ -5,7 +5,7 @@ import 'package:angular_components/angular_components.dart';
 
 import 'src/banner/departments_component.dart';
 import 'src/banner/courses_component.dart';
-//import 'src/banner/sections_component.dart';
+import 'src/banner/sections_selection_component.dart';
 
 import 'src/learn/terms_component.dart';
 
@@ -15,7 +15,8 @@ import 'src/learn/terms_component.dart';
   templateUrl: 'course_request.html',
   directives: const [
     COMMON_DIRECTIVES, materialDirectives,
-    DepartmentsComponent, TermsComponent, CoursesComponent
+    DepartmentsComponent, TermsComponent, CoursesComponent,
+    SectionsSelectionComponent
   ],
   providers: const [materialProviders],
 )
