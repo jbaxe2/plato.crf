@@ -24,8 +24,14 @@ class SectionsService {
 
   final Client _http;
 
-  /// The [SectionsService] constructor...
-  SectionsService (this._http) {
+  static SectionsService _instance;
+
+  /// The [SectionsService] factory constructor...
+  factory SectionsService (Client http) =>
+    _instance ?? (_instance = new SectionsService._ (http));
+
+  /// The [SectionsService] private constructor...
+  SectionsService._ (this._http) {
     sections = new List<Section>();
   }
 
@@ -38,7 +44,7 @@ class SectionsService {
     }
   }
 
-  /// THe [setTermId] method...
+  /// The [setTermId] method...
   Future setTermId (String termId) async {
     _termId = termId;
 
@@ -56,6 +62,8 @@ class SectionsService {
 
       List<Map<String, String>> rawSections =
         (JSON.decode (sectionsResponse.body) as Map)['sections'];
+
+      sections = new List<Section>();
 
       rawSections.forEach ((Map<String, String> rawSection) {
         sections.add (

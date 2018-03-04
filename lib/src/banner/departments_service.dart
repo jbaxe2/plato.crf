@@ -20,8 +20,14 @@ class DepartmentsService {
 
   final Client _http;
 
-  /// The [DepartmentsService] constructor...
-  DepartmentsService (this._http) {
+  static DepartmentsService _instance;
+
+  /// The [DepartmentsService] factory constructor...
+  factory DepartmentsService (Client http) =>
+    _instance ?? (_instance = new DepartmentsService._ (http));
+
+  /// The [DepartmentsService] private constructor...
+  DepartmentsService._ (this._http) {
     departments = new List<Department>();
   }
 
@@ -32,6 +38,8 @@ class DepartmentsService {
 
       List<Map<String, String>> rawDepts =
         (JSON.decode (deptsResponse.body) as Map)['departments'];
+
+      departments = new List<Department>();
 
       rawDepts.forEach ((Map<String, String> rawDept) {
         departments.add (new Department (rawDept['code'], rawDept['description']));

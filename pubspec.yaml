@@ -1,6 +1,6 @@
 name: plato_angular
 description: A web app that uses AngularDart Components
-version: 0.14.20180303
+version: 0.15.20180304
 
 author: Joseph B. Axenroth
 
@@ -20,6 +20,7 @@ transformers:
 - angular:
     entry_points: web/main.dart
 - $dart2js:
+    #minify: true
     commandLineOptions: [--trust-type-annotations, --trust-primitives]
 - dart_to_js_script_rewriter
 

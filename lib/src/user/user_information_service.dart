@@ -34,8 +34,14 @@ class UserInformationService {
 
   final Client _http;
 
-  /// The [UserInformationService] constructor...
-  UserInformationService (this._http) {
+  static UserInformationService _instance;
+
+  /// The [UserInformationService] factory constructor...
+  factory UserInformationService (Client http) =>
+    _instance ?? (_instance = new UserInformationService._ (http));
+
+  /// The [UserInformationService] private constructor...
+  UserInformationService._ (this._http) {
     _isLtiSession = false;
     _isAuthenticated = false;
   }

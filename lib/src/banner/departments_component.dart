@@ -26,9 +26,12 @@ class DepartmentsComponent implements OnInit {
 
   final CoursesService coursesService;
 
+  String selectorText;
+
   /// The [DepartmentsComponent] constructor...
   DepartmentsComponent (this.deptsService, this.coursesService) {
     departments = new List<Department>();
+    selectorText = 'Select a department...';
   }
 
   /// The [ngOnInit] method...
@@ -42,6 +45,7 @@ class DepartmentsComponent implements OnInit {
   /// The [onDepartmentSelected] method...
   void onDepartmentSelected (Department aDepartment) {
     selectedDepartment = aDepartment;
+    selectorText = selectedDepartment.description;
 
     coursesService.setDepartmentId (selectedDepartment.code);
   }

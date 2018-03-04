@@ -30,9 +30,12 @@ class TermsComponent implements OnInit {
 
   final SectionsService sectionsService;
 
+  String selectorText;
+
   /// The [TermsComponent] constructor...
   TermsComponent (this.termsService, this.coursesService, this.sectionsService) {
     terms = new List<Term>();
+    selectorText = 'Select a term...';
   }
 
   /// The [ngOnInit] method...
@@ -46,6 +49,7 @@ class TermsComponent implements OnInit {
   /// The [onTermSelected] method...
   void onTermSelected (Term aTerm) {
     selectedTerm = aTerm;
+    selectorText = selectedTerm.description;
 
     coursesService.setTermId (selectedTerm.id);
     sectionsService.setTermId (selectedTerm.id);

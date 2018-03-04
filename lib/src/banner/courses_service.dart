@@ -24,8 +24,14 @@ class CoursesService {
 
   final Client _http;
 
-  /// The [CoursesService] constructor...
-  CoursesService (this._http) {
+  static CoursesService _instance;
+
+  /// The [CoursesService] factory constructor...
+  factory CoursesService (Client http) =>
+    _instance ?? (_instance = new CoursesService._ (http));
+
+  /// The [CoursesService] private constructor...
+  CoursesService._ (this._http) {
     courses = new List<Course>();
   }
 
@@ -56,6 +62,8 @@ class CoursesService {
 
       List<Map<String, String>> rawCourses =
         (JSON.decode (coursesResponse.body) as Map)['courses'];
+
+      courses = new List<Course>();
 
       rawCourses.forEach ((Map<String, String> rawCourse) {
         courses.add (new Course (rawCourse['courseId'], rawCourse['title']));

@@ -20,8 +20,14 @@ class TermsService {
 
   final Client _http;
 
-  /// The [TermsService] constructor...
-  TermsService (this._http) {
+  static TermsService _instance;
+
+  /// The [TermsService] factory constructor...
+  factory TermsService (Client http) =>
+    _instance ?? (_instance = new TermsService._ (http));
+
+  /// The [TermsService] private constructor...
+  TermsService._ (this._http) {
     terms = new List<Term>();
   }
 
@@ -32,6 +38,8 @@ class TermsService {
 
       List<Map<String, String>> rawTerms =
         (JSON.decode (termsResponse.body) as Map)['terms'];
+
+      terms = new List<Term>();
 
       rawTerms.forEach ((Map<String, String> rawTerm) {
         terms.add (new Term (rawTerm['id'], rawTerm['description']));

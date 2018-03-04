@@ -1,7 +1,5 @@
 library plato.angular.components.banner.courses;
 
-//import 'dart:async';
-
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -26,9 +24,12 @@ class CoursesComponent implements OnInit {
 
   final SectionsService sectionsService;
 
+  String selectorText;
+
   /// The [CoursesComponent] constructor...
   CoursesComponent (this.coursesService, this.sectionsService) {
     courses = new List<Course>();
+    selectorText = 'Select a course...';
   }
 
   /// The [ngOnInit] method...
@@ -38,6 +39,7 @@ class CoursesComponent implements OnInit {
   /// The [onCourseSelected] method...
   void onCourseSelected (Course aCourse) {
     selectedCourse = aCourse;
+    selectorText = selectedCourse.title;
 
     sectionsService.setCourseId (selectedCourse.id);
   }
