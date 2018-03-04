@@ -2,8 +2,8 @@
   <material-select-item
       *ngFor="let term of terms"
       (trigger)="onTermSelected(term)"
-      value="{{term.id}}"
-      [(ngModel)]="model.selectedTerm">
+      value="{{term.id}}">
+      <!--[(ngModel)]="model.selectedTerm">-->
     {{term.description}}
   </material-select-item>
 </material-dropdown-select>

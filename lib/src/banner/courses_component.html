@@ -2,8 +2,8 @@
   <material-select-item
     *ngFor="let course of courses"
     (trigger)="onCourseSelected(course)"
-    value="{{course.id}}"
-    [(ngModel)]="model.selectedCourse">
+    value="{{course.id}}">
+    <!--[(ngModel)]="model.selectedCourse">-->
     {{course.title}}
   </material-select-item>
 </material-dropdown-select>
