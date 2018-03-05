@@ -57,13 +57,13 @@ class SectionsService {
   Future retrieveSections() async {
     try {
       final Response sectionsResponse = await _http.get (
-        '$_SECTIONS_URI?courseId=$_courseId&termId=$_termId'
+        '$_SECTIONS_URI?course=$_courseId&term=$_termId'
       );
 
       List<Map<String, String>> rawSections =
         (JSON.decode (sectionsResponse.body) as Map)['sections'];
 
-      sections = new List<Section>();
+      sections.clear();
 
       rawSections.forEach ((Map<String, String> rawSection) {
         sections.add (

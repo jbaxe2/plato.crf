@@ -39,7 +39,7 @@ class DepartmentsService {
       List<Map<String, String>> rawDepts =
         (JSON.decode (deptsResponse.body) as Map)['departments'];
 
-      departments = new List<Department>();
+      departments.clear();
 
       rawDepts.forEach ((Map<String, String> rawDept) {
         departments.add (new Department (rawDept['code'], rawDept['description']));

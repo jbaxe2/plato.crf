@@ -63,7 +63,7 @@ class CoursesService {
       List<Map<String, String>> rawCourses =
         (JSON.decode (coursesResponse.body) as Map)['courses'];
 
-      courses = new List<Course>();
+      courses.clear();
 
       rawCourses.forEach ((Map<String, String> rawCourse) {
         courses.add (new Course (rawCourse['courseId'], rawCourse['title']));
