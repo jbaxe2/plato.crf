@@ -43,7 +43,13 @@ class RequestInformation {
   }
 
   /// The [removeSection] method...
-  bool removeSection (Section aSection) => sections.remove (aSection);
+  bool removeSection (Section aSection) {
+    crossListings.forEach ((CrossListing crossListing) {
+      crossListing.sections.removeWhere ((Section section) => aSection == section);
+    });
+
+    return sections.remove (aSection);
+  }
 
   /// The [addCrossListings] method...
   void addCrossListings (List<CrossListing> someCrossListings) {
@@ -55,6 +61,10 @@ class RequestInformation {
   /// The [addCrossListing] method...
   void addCrossListing (CrossListing aCrossListing) {
     if (!crossListings.contains (aCrossListing)) {
+      aCrossListing.sections.any ((Section section) {
+        ;
+      });
+
       crossListings.add (aCrossListing);
     }
   }
