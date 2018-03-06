@@ -8,10 +8,11 @@
   <material-input
       floatingLabel
       label="Plato Password"
+      type="password"
       [(ngModel)]="password"
       [disabled]="isAuthenticated"></material-input>
 
-  <material-button raised icon (trigger)="authenticateLearn">
+  <material-button raised [disabled]="isAuthenticated" (trigger)="authenticateLearn()">
     <material-icon icon="vpn_key"></material-icon> Authenticate
   </material-button>
 </div>
