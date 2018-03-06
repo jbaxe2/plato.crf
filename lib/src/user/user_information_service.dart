@@ -3,11 +3,11 @@ library plato.angular.services.user.information;
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;
 
-import 'package:http/http.dart';
+import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
-import '../error/user_exception.dart';
+import 'package:plato_angular/src/user/user_exception.dart';
 
 import 'user_information.dart';
 

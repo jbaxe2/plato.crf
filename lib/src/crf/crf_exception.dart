@@ -1,6 +1,6 @@
 library plato.angular.exceptions.crf;
 
-import 'plato_exception.dart';
+import '../plato/plato_exception.dart';
 
 /// The [CrfException] class...
 class CrfException extends PlatoException {

@@ -1,6 +1,6 @@
 library plato.angular.exceptions.learn;
 
-import 'plato_exception.dart';
+import '../plato/plato_exception.dart';
 
 /// The [LearnException] class...
 class LearnException extends PlatoException {

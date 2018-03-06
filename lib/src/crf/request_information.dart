@@ -5,6 +5,7 @@ import '../banner/section.dart';
 import '../crf/previous_content_mapping.dart';
 
 import '../learn/cross_listing.dart';
+import '../learn/cross_listing_exception.dart';
 
 import '../user/user_information.dart';
 
@@ -18,8 +19,15 @@ class RequestInformation {
 
   List<PreviousContentMapping> previousContents;
 
-  /// The [RequestInformation] constructor...
-  RequestInformation (this.userInformation) {
+  static RequestInformation _instance;
+
+  /// The [RequestInformation] factory constructor...
+  factory RequestInformation (UserInformation userInfo) {
+    return _instance ?? (_instance = new RequestInformation._ (userInfo));
+  }
+
+  /// The [RequestInformation] private constructor...
+  RequestInformation._ (this.userInformation) {
     sections = new List<Section>();
     crossListings = new List<CrossListing>();
     previousContents = new List<PreviousContentMapping>();
@@ -48,22 +56,35 @@ class RequestInformation {
       crossListing.sections.removeWhere ((Section section) => aSection == section);
     });
 
+    previousContents.removeWhere (
+      (PreviousContentMapping previousContent) => aSection == previousContent.section
+    );
+
     return sections.remove (aSection);
   }
 
   /// The [addCrossListings] method...
   void addCrossListings (List<CrossListing> someCrossListings) {
-    someCrossListings.forEach (
-      (CrossListing aCrossListing) => addCrossListing (aCrossListing)
-    );
+    try {
+      someCrossListings.forEach (
+        (CrossListing aCrossListing) => addCrossListing (aCrossListing)
+      );
+    } catch (_) {
+      rethrow;
+    }
   }
 
   /// The [addCrossListing] method...
   void addCrossListing (CrossListing aCrossListing) {
     if (!crossListings.contains (aCrossListing)) {
-      aCrossListing.sections.any ((Section section) {
+      if (aCrossListing.sections.any ((Section section) {
         ;
-      });
+      })) {
+        throw new CrossListingException (
+          'The provided cross-listing set contains a section that is already '
+          'part of another cross-listing set.'
+        );
+      };
 
       crossListings.add (aCrossListing);
     }
@@ -79,4 +100,56 @@ class RequestInformation {
   /// The [removeCrossListing] method...
   bool removeCrossListing (CrossListing aCrossListing) =>
     crossListings.remove (aCrossListing);
+
+  /// The [addSectionToCrossListing] method...
+  void addSectionToCrossListing (Section aSection, CrossListing aCrossListing) {
+    try {
+      _checkCrossListingConditions (aSection, aCrossListing);
+    } catch (_) {
+      rethrow;
+    }
+
+    aCrossListing.addSection (aSection);
+  }
+
+  /// The [removeSectionFromCrossListing] method...
+  bool removeSectionFromCrossListing (Section aSection, CrossListing aCrossListing) {
+    return aCrossListing.removeSection (aSection);
+  }
+
+  /// The [_checkCrossListingConditions] method...
+  bool _checkCrossListingConditions (Section aSection, CrossListing aCrossListing) {
+    if (!crossListings.contains (aCrossListing)) {
+      throw new CrossListingException (
+        'The specified cross-listing is not part of the request information.'
+      );
+    }
+
+    crossListings.forEach ((CrossListing crossListing) {
+      if (crossListing.contains (aSection) && (aCrossListing != crossListing)) {
+        throw new CrossListingException (
+          'The specified section is part of a different cross-listing set.'
+        );
+      }
+    });
+
+    return true;
+  }
+
+  /// The [addPreviousContentMappings] method...
+  void addPreviousContentMappings (List<PreviousContentMapping> somePreviousContents) {
+    somePreviousContents.forEach (
+      (PreviousContentMapping previousContent) => addPreviousContentMapping (previousContent)
+    );
+  }
+
+  /// The [addPreviousContentMapping] method...
+  void addPreviousContentMapping (PreviousContentMapping aPreviousContent) {
+    if (
+      previousContents.every ((PreviousContentMapping previousContent) =>
+        (previousContent.section != aPreviousContent.section))
+    ) {
+      previousContents.add (aPreviousContent);
+    }
+  }
 }

@@ -5,9 +5,9 @@ import 'dart:convert' show JSON;
 
 import 'package:angular/core.dart';
 
-import 'package:http/http.dart';
+import 'package:http/http.dart' show Client, Response;
 
-import '../error/learn_exception.dart';
+import 'package:plato_angular/src/learn/learn_exception.dart';
 
 import 'term.dart';
 
