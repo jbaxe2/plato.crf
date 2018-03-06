@@ -1,0 +1,17 @@
+<div>
+  <material-input
+      floatingLabel
+      label="Plato Username"
+      [(ngModel)]="username"
+      [disabled]="isAuthenticated"></material-input>
+
+  <material-input
+      floatingLabel
+      label="Plato Password"
+      [(ngModel)]="password"
+      [disabled]="isAuthenticated"></material-input>
+
+  <material-button raised icon (trigger)="authenticateLearn">
+    <material-icon icon="vpn_key"></material-icon> Authenticate
+  </material-button>
+</div>

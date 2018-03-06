@@ -7,7 +7,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
-import 'package:plato_angular/src/user/user_exception.dart';
+import '../user/user_exception.dart';
 
 import 'user_information.dart';
 

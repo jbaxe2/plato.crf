@@ -1,7 +1,5 @@
 library plato.angular.components.user.information;
 
-import 'dart:async' show Future;
-
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -16,16 +14,11 @@ import 'user_information_service.dart';
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [UserInformationService]
 )
-class UserInformationComponent implements OnInit {
+class UserInformationComponent  {
   UserInformation userInformation;
 
   final UserInformationService userInfoService;
 
   /// The [UserInformationComponent] constructor...
   UserInformationComponent (this.userInfoService);
-
-  /// The [ngOnInit] method...
-  Future ngOnInit() async {
-    await userInfoService.retrieveSession();
-  }
 }

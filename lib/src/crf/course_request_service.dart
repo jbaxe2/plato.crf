@@ -4,6 +4,8 @@ import 'dart:async' show Future;
 
 import 'package:http/http.dart' show Client, Response;
 
+import 'package:angular/core.dart';
+
 import '../user/user_information.dart';
 
 import 'crf_exception.dart';
@@ -11,6 +13,7 @@ import 'request_information.dart';
 
 const String _SUBMISSION_URI = '/plato/submit/crf';
 
+@Injectable()
 /// The [CourseRequestService] class...
 class CourseRequestService {
   RequestInformation requestInformation;

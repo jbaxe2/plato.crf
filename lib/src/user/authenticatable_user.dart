@@ -8,9 +8,16 @@ class AuthenticatableUser {
 
   final bool isLtiAuthenticated;
 
-  /// The [AuthenticatableUser] constructor...
-  AuthenticatableUser (
-    this.username, this.password,
-    [this.isLtiAuthenticated = false]
-  );
+  static AuthenticatableUser _instance;
+
+  /// The [AuthenticatableUser] factory constructor...
+  factory AuthenticatableUser (
+    String username, String password, [bool isLtiAuthenticated = false]
+  ) {
+    return _instance ??
+      (_instance = new AuthenticatableUser._ (username, password, isLtiAuthenticated));
+  }
+
+  /// The [AuthenticatableUser] private constructor...
+  AuthenticatableUser._ (this.username, this.password, this.isLtiAuthenticated);
 }
