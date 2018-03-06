@@ -9,7 +9,6 @@ import '../banner/courses_service.dart';
 import '../banner/sections_service.dart';
 
 import 'term.dart';
-
 import 'terms_service.dart';
 
 /// The [TermsComponent] component class...

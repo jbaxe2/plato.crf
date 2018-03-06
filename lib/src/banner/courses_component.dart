@@ -4,7 +4,6 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
 import 'course.dart';
-
 import 'courses_service.dart';
 import 'sections_service.dart';
 

@@ -4,7 +4,6 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
 import 'user_information.dart';
-
 import 'user_information_service.dart';
 
 /// The [UserInformationComponent] class...

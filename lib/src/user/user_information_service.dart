@@ -50,7 +50,7 @@ class UserInformationService {
   Future retrieveSession() async {
     final Response sessionResponse = await _http.get (_SESSION_URI);
 
-    Map<String, String> rawSession =
+    Map<String, dynamic> rawSession =
       (JSON.decode (sessionResponse.body) as Map)['session'];
 
     if ((rawSession.containsKey ('plato.session.exists')) &&
@@ -71,9 +71,9 @@ class UserInformationService {
         body: {'username': theUsername, 'password': thePassword}
       );
 
-      Map<String, String> rawAuth = JSON.decode (authResponse.body) as Map;
+      Map<String, dynamic> rawAuth = JSON.decode (authResponse.body) as Map;
 
-      if ('true' == rawAuth['learn.user.authenticated']) {
+      if (true == rawAuth['learn.user.authenticated']) {
         _isAuthenticated = true;
 
         _username = theUsername;

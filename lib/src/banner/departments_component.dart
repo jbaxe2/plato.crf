@@ -6,7 +6,6 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
 import 'department.dart';
-
 import 'courses_service.dart';
 import 'departments_service.dart';
 

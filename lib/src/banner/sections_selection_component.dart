@@ -6,7 +6,6 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
 import 'section.dart';
-
 import 'sections_service.dart';
 
 /// The [SectionsSelectionComponent] class...

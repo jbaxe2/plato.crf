@@ -16,6 +16,11 @@ import 'src/user/user_component.dart';
     COMMON_DIRECTIVES, materialDirectives,
     UserComponent, RequestingSectionsComponent
   ],
-  providers: const [materialProviders],
+  providers: const [materialProviders, CourseRequestService],
 )
-class CourseRequestComponent {}
+class CourseRequestComponent {
+  final CourseRequestService crfService;
+
+  /// The [CourseRequestComponent] constructor...
+  CourseRequestComponent (this.crfService);
+}
