@@ -17,7 +17,6 @@ import 'sections_service.dart';
 class CoursesComponent implements OnInit {
   List<Course> courses;
 
-  @Input()
   Course selectedCourse;
 
   final CoursesService coursesService;

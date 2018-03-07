@@ -1,6 +1,7 @@
 library plato.angular.components.banner.sections.selection;
 
 //import 'dart:async' show Future;
+import 'dart:html' show window;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
@@ -31,4 +32,24 @@ class SectionsSelectionComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   void ngOnInit() => (sections = sectionsService.sections);
+
+  /// The [handleSectionSelection] method...
+  void handleSectionSelection (bool checked, Section section) {
+    if (checked && !selectedSections.contains (section)) {
+      selectedSections.add (section);
+    }
+
+    if (!checked && selectedSections.contains (section)) {
+      selectedSections.removeWhere ((Section aSection) => (section == aSection));
+    }
+  }
+
+  /// The [addSelectedSections] method...
+  void addSelectedSections() {
+    window.console.log ('There are ${selectedSections.length} selected sections.');
+
+    selectedSections.forEach ((Section section) {
+      window.console.log ('Section: ${section.courseId}');
+    });
+  }
 }

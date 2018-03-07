@@ -69,7 +69,8 @@ class SectionsService {
         sections.add (
           new Section (
             rawSection['_id'], rawSection['term'], rawSection['crsno'],
-            rawSection['facname'], rawSection['mplace'], rawSection['mtime']
+            rawSection['title'], rawSection['facname'], rawSection['mplace'],
+            rawSection['mtime']
           )
         );
       });

@@ -8,6 +8,8 @@ class Section {
 
   String crn;
 
+  String title;
+
   String faculty;
 
   String place;
@@ -15,7 +17,7 @@ class Section {
   String time;
 
   /// The [Section] constructor...
-  Section (this.courseId, this.termId, this.crn, this.faculty, this.place, this.time);
+  Section (this.courseId, this.termId, this.crn, this.title, this.faculty, this.place, this.time);
 
   /// The [isDay] method...
   bool isDay() {
@@ -43,6 +45,7 @@ class Section {
       if ((other.courseId == courseId) &&
           (other.termId == termId) &&
           (other.crn == crn) &&
+          (other.title == title) &&
           (other.faculty == faculty) &&
           (other.place == place) &&
           (other.time == time)) {
@@ -61,6 +64,7 @@ class Section {
     result = 7 * result + ((null == courseId) ? 0 : courseId.hashCode);
     result = 7 * result + ((null == termId) ? 0 : termId.hashCode);
     result = 7 * result + ((null == crn) ? 0 : crn.hashCode);
+    result = 7 * result + ((null == title) ? 0 : title.hashCode);
     result = 7 * result + ((null == faculty) ? 0 : faculty.hashCode);
     result = 7 * result + ((null == place) ? 0 : place.hashCode);
     result = 7 * result + ((null == time) ? 0 : time.hashCode);

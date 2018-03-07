@@ -1,3 +1,14 @@
-<div>
-  <span>Here will be some sections to select from...</span>
+<div *ngif="sections.isNotEmpty">
+  <span>Please select one or more sections.</span><br>
+
+  <material-checkbox
+      *ngFor="let section of sections"
+      (checked)="handleSectionSelection(checked, section)"
+      themeColor="#062c43">
+    {{section.title}} ({{section.faculty}})
+  </material-checkbox>
+
+  <material-button raised (trigger)="addSelectedSections()">
+    Add the selected sections
+  </material-button>
 </div>
