@@ -8,11 +8,12 @@ import '../crf/previous_content_exception.dart';
 import '../learn/cross_listing.dart';
 import '../learn/cross_listing_exception.dart';
 
+import '../user/user_exception.dart';
 import '../user/user_information.dart';
 
 /// The [RequestInformation] class...
 class RequestInformation {
-  final UserInformation userInformation;
+  UserInformation userInformation;
 
   List<Section> sections;
 
@@ -23,15 +24,23 @@ class RequestInformation {
   static RequestInformation _instance;
 
   /// The [RequestInformation] factory constructor...
-  factory RequestInformation (UserInformation userInfo) {
-    return _instance ?? (_instance = new RequestInformation._ (userInfo));
-  }
+  factory RequestInformation() =>
+    _instance ?? (_instance = new RequestInformation._());
 
   /// The [RequestInformation] private constructor...
-  RequestInformation._ (this.userInformation) {
+  RequestInformation._() {
     sections = new List<Section>();
     crossListings = new List<CrossListing>();
     previousContents = new List<PreviousContentMapping>();
+  }
+
+  /// The [setUserInformation] method...
+  void setUserInformation (UserInformation theUserInformation) {
+    if (null != userInformation) {
+      throw new UserException ('Cannot add the user information more than once.');
+    }
+
+    userInformation = theUserInformation;
   }
 
   /// The [addSections] method...
@@ -116,9 +125,8 @@ class RequestInformation {
   }
 
   /// The [removeSectionFromCrossListing] method...
-  bool removeSectionFromCrossListing (Section aSection, CrossListing aCrossListing) {
-    return aCrossListing.removeSection (aSection);
-  }
+  bool removeSectionFromCrossListing (Section aSection, CrossListing aCrossListing) =>
+    aCrossListing.removeSection (aSection);
 
   /// The [_checkCrossListingConditions] method...
   bool _checkCrossListingConditions (Section aSection, CrossListing aCrossListing) {
@@ -159,5 +167,12 @@ class RequestInformation {
     }
 
     previousContents.add (aPreviousContent);
+  }
+
+  /// The [removePreviousContent] method...
+  void removePreviousContent (PreviousContentMapping aPreviousContent) {
+    previousContents.removeWhere (
+      (PreviousContentMapping previousContent) => (previousContent == aPreviousContent)
+    );
   }
 }

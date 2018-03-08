@@ -7,12 +7,8 @@ import 'package:http/http.dart' show Client, Response;
 import 'package:angular/core.dart';
 
 import '../banner/section.dart';
-
 import '../crf/previous_content_mapping.dart';
-
 import '../learn/cross_listing.dart';
-import '../learn/enrollment.dart';
-
 import '../user/user_information.dart';
 
 import 'crf_exception.dart';
@@ -20,10 +16,10 @@ import 'request_information.dart';
 
 const String _SUBMISSION_URI = '/plato/submit/crf';
 
-@Injectable()
 /// The [CourseRequestService] class...
+@Injectable()
 class CourseRequestService {
-  RequestInformation requestInformation;
+  RequestInformation _requestInformation;
 
   final Client _http;
 
@@ -34,64 +30,46 @@ class CourseRequestService {
     _instance ?? (_instance = new CourseRequestService._ (http));
 
   /// The [CourseRequestService] private constructor...
-  CourseRequestService._ (this._http);
+  CourseRequestService._ (this._http) {
+    _requestInformation = new RequestInformation();
+  }
 
-  /// The [createRequestInformation] method...
-  void createRequestInformation (UserInformation userInfo) {
-    requestInformation = new RequestInformation (userInfo);
+  /// The [setUserInformation] method...
+  void setUserInformation (UserInformation userInformation) {
+    try {
+      _requestInformation.setUserInformation (userInformation);
+    } catch (_) { rethrow; }
   }
 
   /// The [addSections] method...
-  void addSections (List<Section> sections) => requestInformation.addSections (sections);
+  void addSections (List<Section> sections) => _requestInformation.addSections (sections);
 
   /// The [removeSection] method...
-  void removeSection (Section section) => requestInformation.removeSection (section);
-
-  /// The [createCrossListingSet] method...
-  CrossListing createCrossListingSet() {
-    var crossListing = new CrossListing();
-
-    try {
-      requestInformation.addCrossListing (crossListing);
-    } catch (_) { rethrow; }
-
-    return crossListing;
-  }
-
-  /// The [createPreviousContent] method...
-  PreviousContentMapping createPreviousContent (Section section, Enrollment enrollment) {
-    var previousContent = new PreviousContentMapping (section, enrollment);
-
-    try {
-      requestInformation.addPreviousContentMapping (previousContent);
-    } catch (_) { rethrow; }
-
-    return previousContent;
-  }
+  bool removeSection (Section section) => _requestInformation.removeSection (section);
 
   /// The [validateCrf] method...
   void validateCrf() {
-    if (null == requestInformation) {
+    if (null == _requestInformation) {
       throw new CrfException ('Cannot submit a course request that does not exist.');
     }
 
-    if (null == requestInformation.userInformation) {
+    if (null == _requestInformation.userInformation) {
       throw new CrfException (
         'No user information has been provided to submit the course request.'
       );
     }
 
-    if (requestInformation.sections.isEmpty) {
+    if (_requestInformation.sections.isEmpty) {
       throw new CrfException ('No sections have been selected for this course request.');
     }
 
-    requestInformation.crossListings.forEach ((CrossListing crossListing) {
+    _requestInformation.crossListings.forEach ((CrossListing crossListing) {
       if (crossListing.sections.length < 2) {
         throw new CrfException ('Cannot have a cross-listing set with only one section.');
       }
 
       if (!crossListing.sections.every (
-        (Section section) => (requestInformation.sections.contains (section))
+        (Section section) => (_requestInformation.sections.contains (section))
       )) {
         throw new CrfException (
           'Cannot have a cross-listing set containing a section which is not '
@@ -100,8 +78,8 @@ class CourseRequestService {
       }
     });
 
-    requestInformation.previousContents.forEach ((PreviousContentMapping previousContent) {
-      if (!requestInformation.sections.contains (previousContent.section)) {
+    _requestInformation.previousContents.forEach ((PreviousContentMapping previousContent) {
+      if (!_requestInformation.sections.contains (previousContent.section)) {
         throw new CrfException (
           'Cannot have previous content specified for a section that is not part '
           'of the course request.'

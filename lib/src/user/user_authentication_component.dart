@@ -22,23 +22,23 @@ class UserAuthenticationComponent implements OnInit {
 
   String password;
 
-  bool get isAuthenticated => userInfoService.isAuthenticated;
+  bool get isAuthenticated => _userInfoService.isAuthenticated;
 
-  final UserInformationService userInfoService;
+  final UserInformationService _userInfoService;
 
-  final CourseRequestService crfService;
+  final CourseRequestService _crfService;
 
   /// The [UserAuthenticationComponent] constructor...
-  UserAuthenticationComponent (this.userInfoService, this.crfService);
+  UserAuthenticationComponent (this._userInfoService, this._crfService);
 
   /// The [ngOnInit] method...
   @override
   Future ngOnInit() async {
     try {
-      await userInfoService.retrieveSession();
+      await _userInfoService.retrieveSession();
 
-      if (userInfoService.isAuthenticated && userInfoService.isLtiSession) {
-        await userInfoService.retrieveUser();
+      if (_userInfoService.isAuthenticated && _userInfoService.isLtiSession) {
+        await _userInfoService.retrieveUser();
       }
     } catch (_) {}
   }
@@ -52,10 +52,10 @@ class UserAuthenticationComponent implements OnInit {
     }
 
     try {
-      await userInfoService.authenticateLearn (username, password);
-      await userInfoService.retrieveUser();
+      await _userInfoService.authenticateLearn (username, password);
+      await _userInfoService.retrieveUser();
 
-      crfService.createRequestInformation (userInfoService.userInformation);
+      _crfService.setUserInformation (_userInfoService.userInformation);
     } catch (_) {}
   }
 }

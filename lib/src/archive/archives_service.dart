@@ -2,6 +2,8 @@ library plato.angular.services.archives;
 
 import 'dart:async' show Future;
 
+import 'package:angular/core.dart';
+
 import 'package:http/http.dart' show Client;
 
 const String _PULL_URI = '/plato/pull/archive';
@@ -9,6 +11,7 @@ const String _RETRIEVE_URI = '/plato/retrieve/archives';
 const String _CONTENT_URI = '/plato/retrieve/content';
 
 /// The [ArchivesService] class...
+@Injectable()
 class ArchivesService {
   final Client _http;
 
