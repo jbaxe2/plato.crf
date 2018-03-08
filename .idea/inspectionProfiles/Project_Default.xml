@@ -4,11 +4,12 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="4">
+          <list size="5">
             <item index="0" class="java.lang.String" itemvalue="[class.done]" />
             <item index="1" class="java.lang.String" itemvalue="*ngfor" />
             <item index="2" class="java.lang.String" itemvalue="*ngif" />
             <item index="3" class="java.lang.String" itemvalue="(trigger)" />
+            <item index="4" class="java.lang.String" itemvalue="*deferredcontent" />
           </list>
         </value>
       </option>
@@ -17,7 +18,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="23">
+          <list size="24">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -41,6 +42,7 @@
             <item index="20" class="java.lang.String" itemvalue="user-authentication" />
             <item index="21" class="java.lang.String" itemvalue="user-information" />
             <item index="22" class="java.lang.String" itemvalue="user" />
+            <item index="23" class="java.lang.String" itemvalue="material-expansion-panel" />
           </list>
         </value>
       </option>

@@ -2,7 +2,7 @@ library plato.angular.models.banner.section;
 
 /// The [Section] class...
 class Section {
-  String courseId;
+  String sectionId;
 
   String termId;
 
@@ -17,12 +17,12 @@ class Section {
   String time;
 
   /// The [Section] constructor...
-  Section (this.courseId, this.termId, this.crn, this.title, this.faculty, this.place, this.time);
+  Section (this.sectionId, this.termId, this.crn, this.title, this.faculty, this.place, this.time);
 
   /// The [isDay] method...
   bool isDay() {
-    String digitStr = courseId.substring (
-      (courseId.length - 3), (courseId.length - 2)
+    String digitStr = sectionId.substring (
+      (sectionId.length - 3), (sectionId.length - 2)
     );
 
     // Dual enrollment, and CGCE sections for Day division cross-registration.
@@ -42,7 +42,7 @@ class Section {
   @override
   bool operator ==(dynamic other) {
     if (other is Section) {
-      if ((other.courseId == courseId) &&
+      if ((other.sectionId == sectionId) &&
           (other.termId == termId) &&
           (other.crn == crn) &&
           (other.title == title) &&
@@ -61,7 +61,7 @@ class Section {
   int get hashCode {
     int result = 3;
 
-    result = 7 * result + ((null == courseId) ? 0 : courseId.hashCode);
+    result = 7 * result + ((null == sectionId) ? 0 : sectionId.hashCode);
     result = 7 * result + ((null == termId) ? 0 : termId.hashCode);
     result = 7 * result + ((null == crn) ? 0 : crn.hashCode);
     result = 7 * result + ((null == title) ? 0 : title.hashCode);

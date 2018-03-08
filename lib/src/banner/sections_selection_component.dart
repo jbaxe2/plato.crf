@@ -49,7 +49,7 @@ class SectionsSelectionComponent implements OnInit {
     window.console.log ('There are ${selectedSections.length} selected sections.');
 
     selectedSections.forEach ((Section section) {
-      window.console.log ('Section: ${section.courseId}');
+      window.console.log ('Section: ${section.sectionId}');
     });
   }
 }

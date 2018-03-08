@@ -1,1 +1,16 @@
-<div></div>
+<material-expansion-panel
+    name="{{section.courseId}}"
+    showSaveCancel="false">
+  <div *deferredContent>
+    <p><strong>Title:</strong> <span>{{section.title}}</span></p>
+    <p><strong>CRN:</strong> <span>{{section.crn}}</span></p>
+    <p><strong>Faculty:</strong> <span>{{section.faculty}}</span></p>
+    <p><strong>Place:</strong> <span>{{section.mplace}}</span></p>
+    <p><strong>Time:</strong> <span>{{section.mtime}}</span></p>
+    <p><strong>Term:</strong> <span>{{section.termId}}</span></p>
+  </div>
+
+  <div *ngIf="hasExtraInfo">
+
+  </div>
+</material-expansion-panel>

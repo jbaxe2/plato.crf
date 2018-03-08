@@ -3,6 +3,7 @@ library plato.angular.models.crf.request_information;
 import '../banner/section.dart';
 
 import '../crf/previous_content_mapping.dart';
+import '../crf/previous_content_exception.dart';
 
 import '../learn/cross_listing.dart';
 import '../learn/cross_listing_exception.dart';
@@ -77,14 +78,16 @@ class RequestInformation {
   /// The [addCrossListing] method...
   void addCrossListing (CrossListing aCrossListing) {
     if (!crossListings.contains (aCrossListing)) {
-      if (aCrossListing.sections.any ((Section section) {
-        ;
-      })) {
-        throw new CrossListingException (
-          'The provided cross-listing set contains a section that is already '
-          'part of another cross-listing set.'
-        );
-      };
+      crossListings.forEach ((CrossListing crossListing) {
+        aCrossListing.sections.forEach ((Section section) {
+          if (crossListing.contains (section)) {
+            throw new CrossListingException (
+              'The provided cross-listing set contains a section that is '
+              'already part of another cross-listing set.'
+            );
+          }
+        });
+      });
 
       crossListings.add (aCrossListing);
     }
@@ -145,11 +148,16 @@ class RequestInformation {
 
   /// The [addPreviousContentMapping] method...
   void addPreviousContentMapping (PreviousContentMapping aPreviousContent) {
-    if (
-      previousContents.every ((PreviousContentMapping previousContent) =>
-        (previousContent.section != aPreviousContent.section))
-    ) {
-      previousContents.add (aPreviousContent);
+    if (!previousContents.every (
+      (PreviousContentMapping previousContent) =>
+        (previousContent.section != aPreviousContent.section)
+    )) {
+      throw new PreviousContentException (
+        'Cannot add a previous content mapping for a section that is not part '
+        'of the course request.'
+      );
     }
+
+    previousContents.add (aPreviousContent);
   }
 }

@@ -10,14 +10,31 @@ import 'sections_service.dart';
 @Component(
   selector: 'section-info',
   templateUrl: 'section_info_component.html',
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [CORE_DIRECTIVES, materialDirectives, DeferredContentDirective],
   providers: const [SectionsService]
 )
-class SectionInfoComponent {
+class SectionInfoComponent implements OnInit {
   Section section;
+
+  bool _hasCrossListing;
+
+  bool get hasCrossListing => _hasCrossListing;
+
+  bool _hasPreviousContent;
+
+  bool get hasPreviousContent => _hasPreviousContent;
+
+  bool get hasExtraInfo => (hasCrossListing || hasPreviousContent);
 
   final SectionsService sectionsService;
 
   /// The [SectionInfoComponent] constructor...
   SectionInfoComponent (this.sectionsService);
+
+  /// The [ngOnInit] method...
+  @override
+  void ngOnInit() {
+    _hasCrossListing = false;
+    _hasPreviousContent = false;
+  }
 }
