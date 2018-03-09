@@ -1,4 +1,4 @@
-library plato.angular.components.section.info;
+library plato.angular.components.banner.section.info;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
@@ -10,10 +10,11 @@ import 'sections_service.dart';
 @Component(
   selector: 'section-info',
   templateUrl: 'section_info_component.html',
-  directives: const [CORE_DIRECTIVES, materialDirectives, DeferredContentDirective],
+  directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [SectionsService]
 )
 class SectionInfoComponent implements OnInit {
+  @Input()
   Section section;
 
   bool _hasCrossListing;

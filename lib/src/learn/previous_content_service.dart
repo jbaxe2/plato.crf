@@ -1,4 +1,4 @@
-library plato.angular.services.crf.previous_content;
+library plato.angular.services.learn.previous_content;
 
 import 'package:angular/core.dart';
 

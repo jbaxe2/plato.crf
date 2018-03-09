@@ -1,4 +1,4 @@
-library plato.angular.models.crf.previous_content;
+library plato.angular.models.learn.previous_content;
 
 import '../banner/section.dart';
 

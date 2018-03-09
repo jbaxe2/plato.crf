@@ -21,6 +21,8 @@ class SectionsSelectionComponent implements OnInit {
 
   List<Section> selectedSections;
 
+  bool get haveSections => sections.isNotEmpty;
+
   final SectionsService sectionsService;
 
   /// The [SectionsSelectionComponent] constructor...
