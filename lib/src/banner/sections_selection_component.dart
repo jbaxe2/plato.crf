@@ -1,10 +1,9 @@
 library plato.angular.components.banner.sections.selection;
 
-//import 'dart:async' show Future;
-import 'dart:html' show window;
-
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
+
+import '../crf/requested_sections_service.dart';
 
 import 'section.dart';
 import 'sections_service.dart';
@@ -14,7 +13,7 @@ import 'sections_service.dart';
   selector: 'sections-selection',
   templateUrl: 'sections_selection_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [SectionsService]
+  providers: const [SectionsService, RequestedSectionsService]
 )
 class SectionsSelectionComponent implements OnInit {
   List<Section> sections;
@@ -23,20 +22,22 @@ class SectionsSelectionComponent implements OnInit {
 
   bool get haveSections => sections.isNotEmpty;
 
-  final SectionsService sectionsService;
+  final SectionsService _sectionsService;
+
+  final RequestedSectionsService _reqSectionsService;
 
   /// The [SectionsSelectionComponent] constructor...
-  SectionsSelectionComponent (this.sectionsService) {
+  SectionsSelectionComponent (this._sectionsService, this._reqSectionsService) {
     sections = new List<Section>();
     selectedSections = new List<Section>();
   }
 
   /// The [ngOnInit] method...
   @override
-  void ngOnInit() => (sections = sectionsService.sections);
+  void ngOnInit() => (sections = _sectionsService.sections);
 
   /// The [handleSectionSelection] method...
-  void handleSectionSelection (bool checked, Section section) {
+  void handleSectionSelection (Section section, bool checked) {
     if (checked && !selectedSections.contains (section)) {
       selectedSections.add (section);
     }
@@ -47,11 +48,5 @@ class SectionsSelectionComponent implements OnInit {
   }
 
   /// The [addSelectedSections] method...
-  void addSelectedSections() {
-    window.console.log ('There are ${selectedSections.length} selected sections.');
-
-    selectedSections.forEach ((Section section) {
-      window.console.log ('Section: ${section.sectionId}');
-    });
-  }
+  void addSelectedSections() => _reqSectionsService.addSections (selectedSections);
 }

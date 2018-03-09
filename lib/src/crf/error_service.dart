@@ -1,8 +1,11 @@
 library plato.angular.services.crf.error;
 
-import 'package:plato_angular/src/crf/plato_exception.dart';
+import 'package:angular/core.dart';
+
+import 'plato_exception.dart';
 
 /// The [ErrorService] class...
+@Injectable()
 class ErrorService {
   PlatoException _exception;
 

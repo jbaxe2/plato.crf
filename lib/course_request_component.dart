@@ -3,8 +3,10 @@ library plato.angular.course_request;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'src/crf/course_request_service.dart';
 import 'src/banner/requesting_sections_component.dart';
+
+import 'src/crf/course_request_service.dart';
+import 'src/crf/requested_sections_component.dart';
 
 import 'src/user/user_component.dart';
 
@@ -14,7 +16,7 @@ import 'src/user/user_component.dart';
   templateUrl: 'course_request_component.html',
   directives: const [
     COMMON_DIRECTIVES, materialDirectives,
-    UserComponent, RequestingSectionsComponent
+    UserComponent, RequestingSectionsComponent, RequestedSectionsComponent
   ],
   providers: const [materialProviders, CourseRequestService],
 )
