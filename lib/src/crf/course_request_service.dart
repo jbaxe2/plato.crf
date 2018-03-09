@@ -7,7 +7,7 @@ import 'package:http/http.dart' show Client, Response;
 import 'package:angular/core.dart';
 
 import '../banner/section.dart';
-import '../crf/previous_content_mapping.dart';
+import 'package:plato_angular/src/learn/previous_content_mapping.dart';
 import '../learn/cross_listing.dart';
 import '../user/user_information.dart';
 
@@ -41,14 +41,25 @@ class CourseRequestService {
     } catch (_) { rethrow; }
   }
 
-  /// The [addSections] method...
-  void addSections (List<Section> sections) => _requestInformation.addSections (sections);
+  /// The [submitCrf] method...
+  Future submitCrf() async {
+    try {
+      _validateCrf();
+    } catch (_) { rethrow; }
 
-  /// The [removeSection] method...
-  bool removeSection (Section section) => _requestInformation.removeSection (section);
+    try {
+      final Response crfResponse = await _http.post (_SUBMISSION_URI);
 
-  /// The [validateCrf] method...
-  void validateCrf() {
+      crfResponse.body;
+    } catch (_) {
+      throw new CrfException (
+        'An error has occurred while attempting to submit the course request.'
+      );
+    }
+  }
+
+  /// The [_validateCrf] method...
+  void _validateCrf() {
     if (null == _requestInformation) {
       throw new CrfException ('Cannot submit a course request that does not exist.');
     }
@@ -69,11 +80,11 @@ class CourseRequestService {
       }
 
       if (!crossListing.sections.every (
-        (Section section) => (_requestInformation.sections.contains (section))
+          (Section section) => (_requestInformation.sections.contains (section))
       )) {
         throw new CrfException (
           'Cannot have a cross-listing set containing a section which is not '
-          'part of the course request.'
+            'part of the course request.'
         );
       }
     });
@@ -82,26 +93,9 @@ class CourseRequestService {
       if (!_requestInformation.sections.contains (previousContent.section)) {
         throw new CrfException (
           'Cannot have previous content specified for a section that is not part '
-          'of the course request.'
+            'of the course request.'
         );
       };
     });
-  }
-
-  /// The [submitCrf] method...
-  Future submitCrf() async {
-    try {
-      validateCrf();
-    } catch (_) { rethrow; }
-
-    try {
-      final Response crfResponse = await _http.post (_SUBMISSION_URI);
-
-      crfResponse.body;
-    } catch (_) {
-      throw new CrfException (
-        'An error has occurred while attempting to submit the course request.'
-      );
-    }
   }
 }

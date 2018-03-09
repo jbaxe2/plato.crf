@@ -4,7 +4,7 @@ import '../banner/section.dart';
 
 import '../learn/cross_listing.dart';
 
-import 'previous_content_mapping.dart';
+import 'package:plato_angular/src/learn/previous_content_mapping.dart';
 
 /// The [RequestedSection] class...
 class RequestedSection {

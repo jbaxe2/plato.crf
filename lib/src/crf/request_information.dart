@@ -2,8 +2,8 @@ library plato.angular.models.crf.request_information;
 
 import '../banner/section.dart';
 
-import '../crf/previous_content_mapping.dart';
-import '../crf/previous_content_exception.dart';
+import 'package:plato_angular/src/learn/previous_content_mapping.dart';
+import 'package:plato_angular/src/learn/previous_content_exception.dart';
 
 import '../learn/cross_listing.dart';
 import '../learn/cross_listing_exception.dart';
@@ -13,7 +13,9 @@ import '../user/user_information.dart';
 
 /// The [RequestInformation] class...
 class RequestInformation {
-  UserInformation userInformation;
+  UserInformation _userInformation;
+
+  UserInformation get userInformation => _userInformation;
 
   List<Section> sections;
 
@@ -40,7 +42,7 @@ class RequestInformation {
       throw new UserException ('Cannot add the user information more than once.');
     }
 
-    userInformation = theUserInformation;
+    _userInformation = theUserInformation;
   }
 
   /// The [addSections] method...

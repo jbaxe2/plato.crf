@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
 import 'src/crf/course_request_service.dart';
-import 'src/crf/requesting_sections_component.dart';
+import 'src/banner/requesting_sections_component.dart';
 
 import 'src/user/user_component.dart';
 

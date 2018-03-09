@@ -1,0 +1,13 @@
+<modal [visible]="showError">
+  <material-dialog>
+    <div header>
+      <h3>Warning</h3>
+    </div>
+
+    <p>{{error}}</p>
+
+    <div footer>
+      <material-button raised (trigger)="closeError()">Close</material-button>
+    </div>
+  </material-dialog>
+</modal>

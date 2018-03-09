@@ -4,10 +4,11 @@ import 'package:angular/core.dart';
 
 import '../banner/section.dart';
 
+import '../crf/request_information.dart';
+
 import '../learn/enrollment.dart';
 
 import 'previous_content_mapping.dart';
-import 'request_information.dart';
 
 /// The [PreviousContentService] class...
 @Injectable()

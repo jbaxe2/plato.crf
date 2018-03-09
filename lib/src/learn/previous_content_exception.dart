@@ -1,6 +1,6 @@
 library plato.angular.exceptions.previous_content;
 
-import '../plato/plato_exception.dart';
+import '../crf/plato_exception.dart';
 
 /// The [PreviousContentException] class...
 class PreviousContentException extends PlatoException {

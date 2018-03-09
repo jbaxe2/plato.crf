@@ -1,6 +1,6 @@
 library plato.angular.exceptions.cross_listing;
 
-import '../plato/plato_exception.dart';
+import '../crf/plato_exception.dart';
 
 /// The [CrossListingException] class...
 class CrossListingException extends PlatoException {

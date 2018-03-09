@@ -2,7 +2,7 @@ library plato.angular.models.crf.previous_content;
 
 import '../banner/section.dart';
 
-import '../learn/enrollment.dart';
+import 'enrollment.dart';
 
 /// The [PreviousContentMapping] class...
 class PreviousContentMapping {

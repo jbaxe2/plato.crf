@@ -1,6 +1,6 @@
 library plato.angular.exceptions.banner;
 
-import '../plato/plato_exception.dart';
+import '../crf/plato_exception.dart';
 
 /// The [BannerException] class...
 class BannerException extends PlatoException {

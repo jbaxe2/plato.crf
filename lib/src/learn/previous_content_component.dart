@@ -3,7 +3,7 @@ library plato.angular.components.crf.previous_content;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'previous_content_service.dart';
+import 'package:plato_angular/src/learn/previous_content_service.dart';
 
 /// The [PreviousContentComponent] class...
 @Component(
