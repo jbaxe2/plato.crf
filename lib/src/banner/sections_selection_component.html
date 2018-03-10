@@ -6,7 +6,7 @@
       value="section"
       (change)="handleSectionSelection(section, $event)"
       themeColor="#062c43">
-    {{section.title}} ({{section.faculty}})
+      [{{section.sectionId}}] {{section.title}} ({{section.faculty}})
   </material-checkbox>
 
   <br>

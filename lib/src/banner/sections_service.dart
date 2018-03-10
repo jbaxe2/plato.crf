@@ -68,7 +68,7 @@ class SectionsService {
       rawSections.forEach ((Map<String, String> rawSection) {
         sections.add (
           new Section (
-            rawSection['_id'], rawSection['term'], rawSection['crsno'],
+            rawSection['crsno'], rawSection['term'], rawSection['crsno'],
             rawSection['title'], rawSection['facname'], rawSection['mplace'],
             rawSection['mtime']
           )
