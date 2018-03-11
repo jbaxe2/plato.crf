@@ -3,18 +3,18 @@ library plato.angular.components.banner.section.info;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../crf/requested_sections_service.dart';
+import '../banner/section.dart';
 
-import 'section.dart';
+import 'requested_sections_service.dart';
 
-/// The [SectionInfoComponent] class...
+/// The [RequestedSectionComponent] class...
 @Component(
-  selector: 'section-info',
-  templateUrl: 'section_info_component.html',
+  selector: 'requested-section',
+  templateUrl: 'requested-section_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [RequestedSectionsService]
 )
-class SectionInfoComponent implements OnInit {
+class RequestedSectionComponent implements OnInit {
   @Input()
   Section section;
 
@@ -30,8 +30,8 @@ class SectionInfoComponent implements OnInit {
 
   final RequestedSectionsService _reqSectionsService;
 
-  /// The [SectionInfoComponent] constructor...
-  SectionInfoComponent (this._reqSectionsService);
+  /// The [RequestedSectionComponent] constructor...
+  RequestedSectionComponent (this._reqSectionsService);
 
   /// The [ngOnInit] method...
   @override
