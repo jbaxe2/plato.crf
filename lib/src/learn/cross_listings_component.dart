@@ -12,7 +12,7 @@ import 'cross_listing_service.dart';
 @Component(
     selector: 'cross-listings',
     templateUrl: 'cross_listings_component.html',
-    directives: const [CORE_DIRECTIVES, materialDirectives],
+    directives: const [CORE_DIRECTIVES, materialDirectives, DeferredContentDirective],
     providers: const [CrossListingService]
 )
 class CrossListingsComponent implements OnInit {
@@ -30,9 +30,7 @@ class CrossListingsComponent implements OnInit {
     crossListings = _crossListingService.crossListings;
 
     _crossListingService.sectionStreamer.stream.listen (
-      (Section section) {
-        invokerSection = section;
-      }
+      (Section section) => (invokerSection = section)
     );
   }
 

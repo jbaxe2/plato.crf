@@ -8,6 +8,8 @@ import 'src/banner/requesting_sections_component.dart';
 import 'src/crf/course_request_service.dart';
 import 'src/crf/requested_sections_component.dart';
 
+import 'src/learn/cross_listings_component.dart';
+
 import 'src/user/user_component.dart';
 
 /// The [CourseRequestComponent] component class...
@@ -19,7 +21,8 @@ import 'src/user/user_component.dart';
   ],
   directives: const [
     COMMON_DIRECTIVES, materialDirectives,
-    UserComponent, RequestingSectionsComponent, RequestedSectionsComponent
+    UserComponent, RequestingSectionsComponent, RequestedSectionsComponent,
+    CrossListingsComponent
   ],
   providers: const [materialProviders, CourseRequestService],
 )

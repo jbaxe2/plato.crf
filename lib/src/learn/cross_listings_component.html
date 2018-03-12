@@ -1,4 +1,4 @@
-<modal [visible]="null != invokerSection">
+<modal [visible]="null != invokerSection" *deferredcontent>
   <material-dialog headered>
     <div header>
       <p>Cross-list {{invokerSection.sectionId}} with other requested sections...</p>
@@ -17,7 +17,7 @@
     </cross-listing>
 
     <div footer>
-      <material-button (trigger)="confirmCrossListings()">
+      <material-button raised (trigger)="confirmCrossListings()">
         Confirm current cross-listing information
       </material-button>
     </div>
