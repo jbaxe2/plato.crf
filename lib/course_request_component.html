@@ -1,11 +1,22 @@
-<material-drawer permanent>
-  <div group *deferredcontent>
-    <requested-sections></requested-sections>
-  </div>
+<style>
+  header {
+    background-color: #718198;
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+  }
+
+  material-drawer {
+    background-color: #ddd;
+  }
+</style>
+
+<material-drawer persistent end #drawer="drawer">
+  <requested-sections></requested-sections>
 </material-drawer>
 
-<div class="material-content">
-  <header class="material-header shadow">
+<material-content>
+  <header class="shadow">
     <p>Plato Course Request From (Angular)</p>
   </header>
 
@@ -24,4 +35,4 @@
   <div class="controls">
     <material-button raised>Review and Submit Course Request</material-button>
   </div>
-</div>
+</material-content>

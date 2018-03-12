@@ -1,3 +1,82 @@
-<div>
-  <requested-section *ngFor="let section of sections" [section]="section"></requested-section>
+<style>
+  header {
+    background-color: #718198;
+    text-align: center;
+    color: white;
+  }
+
+  p {
+    padding: 15px;
+    text-align: center;
+  }
+
+  material-expansionpanel {
+    background-color: white;
+    margin: 8px;
+    border-top: 1px solid black;
+    padding: 8px;
+  }
+
+  requested-section {
+    margin: 8px;
+  }
+
+  #requested-sections {
+    margin: 0;
+    padding: 0;
+  }
+
+  #legend-note {
+    display: block;
+    border-top: 1px dashed #718198;
+    padding-top: 8px;
+  }
+</style>
+
+<div id="requested-sections">
+  <header>
+    <p>Step 3. Requested Sections</p>
+  </header>
+
+  <material-expansionpanel
+      *ngIf="sections.isEmpty"
+      [expanded]="true"
+      [hideExpandedHeader]="true"
+      [showSaveCancel]="false"
+      disabled>
+    <p>
+      Requested sections will appear here once one or
+      more sections have been selected and added.
+    </p>
+  </material-expansionpanel>
+
+  <material-expansionpanel
+      *ngIf="sections.isNotEmpty"
+      name="Icon Button Legend"
+      secondaryText="(use at bottom of requested sections)"
+      [expanded]="true"
+      [showSaveCancel]="false">
+    <material-icon icon="library_books"></material-icon>
+    <span>| copy content from a previous course</span><br>
+
+    <material-icon icon="device_hub"></material-icon>
+    <span>| add a section to a cross-listing set</span><br>
+
+    <material-icon icon="cancel"></material-icon>
+    <span>| remove a section from the request</span>
+
+    <span id="legend-note">
+      <strong style="text-decoration: underline;">NOTE:</strong>
+      use the icon buttons at the <strong><em>bottom</em></strong> of a
+      <strong>requested section</strong> to apply the controls for
+      <strong>that particular section</strong>.
+    </span>
+  </material-expansionpanel>
+
+  <div style="padding: 8px 0 8px 0; overflow: auto;">
+    <requested-section
+        *ngFor="let section of sections"
+        [section]="section">
+    </requested-section>
+  </div>
 </div>

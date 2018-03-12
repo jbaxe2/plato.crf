@@ -1,5 +1,7 @@
 library plato.angular.services.learn.cross_listing;
 
+import 'dart:async' show StreamController;
+
 import 'package:angular/core.dart';
 
 import '../banner/section.dart';
@@ -15,6 +17,8 @@ class CrossListingService {
 
   Map<Section, CrossListing> crossListedSections;
 
+  StreamController<Section> sectionStreamer;
+
   Section invokerSection;
 
   RequestInformation _requestInformation;
@@ -29,13 +33,9 @@ class CrossListingService {
   CrossListingService._() {
     _requestInformation = new RequestInformation();
     crossListings = _requestInformation.crossListings;
+
+    sectionStreamer = new StreamController<Section>.broadcast();
   }
-
-  /// The [invokeForSection] method...
-  void invokeForSection (Section section) => (invokerSection = section);
-
-  /// The [revokeSection] method...
-  void revokeSection() => (invokerSection = null);
 
   /// The [createCrossListingSet] method...
   CrossListing createCrossListingSet() {
@@ -47,6 +47,14 @@ class CrossListingService {
 
     return crossListing;
   }
+
+  /// The [invokeForSection] method...
+  void invokeForSection (Section section) {
+    sectionStreamer.add (invokerSection = section);
+  }
+
+  /// The [revokeSection] method...
+  void revokeSection() => sectionStreamer.add (invokerSection = null);
 
   /// The [addCrossListings] method...
   void addCrossListings (List<CrossListing> crossListings) =>

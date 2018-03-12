@@ -28,7 +28,12 @@ class CrossListingsComponent implements OnInit {
   /// The [ngOnInit] method...
   void ngOnInit ()  {
     crossListings = _crossListingService.crossListings;
-    invokerSection = _crossListingService.invokerSection;
+
+    _crossListingService.sectionStreamer.stream.listen (
+      (Section section) {
+        invokerSection = section;
+      }
+    );
   }
 
   /// The [createNewCrossListingSet] method...
