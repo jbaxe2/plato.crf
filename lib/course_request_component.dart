@@ -14,6 +14,9 @@ import 'src/user/user_component.dart';
 @Component(
   selector: 'course-request',
   templateUrl: 'course_request_component.html',
+  styleUrls: const [
+    'package:angular_components/app_layout/layout.scss.css'
+  ],
   directives: const [
     COMMON_DIRECTIVES, materialDirectives,
     UserComponent, RequestingSectionsComponent, RequestedSectionsComponent

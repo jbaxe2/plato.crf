@@ -13,11 +13,13 @@
         *ngFor="let crossListing of crossListings; let i=index"
         [crossListing]="crossListing"
         [invokerSection]="invokerSection"
-        [setNumber]="{{i+1}}">
+        [setNumber]="i+1">
     </cross-listing>
 
     <div footer>
-      <material-button (trigger)="confirmCrossListings()">Confirm current cross-listing information</material-button>
+      <material-button (trigger)="confirmCrossListings()">
+        Confirm current cross-listing information
+      </material-button>
     </div>
   </material-dialog>
 </modal>

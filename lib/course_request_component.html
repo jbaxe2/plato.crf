@@ -1,7 +1,27 @@
-<p>Plato Course Request Form (Angular)</p>
+<material-drawer permanent>
+  <div group *deferredcontent>
+    <requested-sections></requested-sections>
+  </div>
+</material-drawer>
 
-<user></user>
+<div class="material-content">
+  <header class="material-header shadow">
+    <p>Plato Course Request From (Angular)</p>
+  </header>
 
-<requesting-sections></requesting-sections>
+  <div>
+    <material-tab-panel>
+      <material-tab label="Step 1. User Information">
+        <user></user>
+      </material-tab>
 
-<requested-sections></requested-sections>
+      <material-tab label="Step 2. Courses Selection">
+        <requesting-sections></requesting-sections>
+      </material-tab>
+    </material-tab-panel>
+  </div>
+
+  <div class="controls">
+    <material-button raised>Review and Submit Course Request</material-button>
+  </div>
+</div>

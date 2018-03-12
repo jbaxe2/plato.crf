@@ -5,16 +5,31 @@
   <p *ngIf="sections.isEmpty">No sections have been added to this cross-listing set.</p>
 
   <material-list>
-    <material-list-item *ngFor="sections as section">
+    <material-list-item *ngFor="let section of sections">
       [{{section.sectionId}}] {{section.title}}
     </material-list-item>
   </material-list>
 
   <div toolbelt>
-    <material-button icon (trigger)="addSectionToCrossListing()">
-      <material-icon icon="playlist_add"></material-icon>
+    <material-button *ngIf="!hasInvokerSection" icon (trigger)="addSectionToCrossListing()">
+      <material-icon
+          icon="playlist_add"
+          title="add {{invokerSection.sectionId}} to cross-listing set #{{setNumber}}">
+      </material-icon>
     </material-button>
 
-    <material-button icon (trigger)=""
+    <material-button *ngIf="hasInvokerSection" icon (trigger)="removeSectionFromCrossListing()">
+      <material-icon
+          icon="remove_circle_outline"
+          title="remove {{invokerSection.sectionId}} from cross-listing set #{{setNumber}}">
+      </material-icon>
+    </material-button>
+
+    <material-button icon (trigger)="removeCrossListing()">
+      <material-icon
+          icon="highlight_off"
+          title="remove cross-listing set #{{setNumber}}">
+      </material-icon>
+    </material-button>
   </div>
 </material-expansionpanel>

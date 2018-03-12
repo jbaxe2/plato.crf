@@ -27,6 +27,8 @@ class CrossListingComponent implements OnInit {
   @Input()
   int setNumber;
 
+  bool get hasInvokerSection => crossListing.contains (invokerSection);
+
   final CrossListingService _crossListingService;
 
   /// The [CrossListingComponent] method...

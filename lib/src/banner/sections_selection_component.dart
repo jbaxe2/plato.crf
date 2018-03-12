@@ -40,10 +40,8 @@ class SectionsSelectionComponent implements OnInit {
   void handleSectionSelection (Section section, bool checked) {
     if (checked && !selectedSections.contains (section)) {
       selectedSections.add (section);
-    }
-
-    if (!checked && selectedSections.contains (section)) {
-      selectedSections.removeWhere ((Section aSection) => (section == aSection));
+    } else {
+      selectedSections.remove (section);
     }
   }
 

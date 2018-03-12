@@ -1,6 +1,7 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="CssInvalidPseudoSelector" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
@@ -19,7 +20,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="33">
+          <list size="36">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -53,6 +54,9 @@
             <item index="30" class="java.lang.String" itemvalue="cross-listing" />
             <item index="31" class="java.lang.String" itemvalue="material-list" />
             <item index="32" class="java.lang.String" itemvalue="material-list-item" />
+            <item index="33" class="java.lang.String" itemvalue="material-drawer" />
+            <item index="34" class="java.lang.String" itemvalue="material-tab-panel" />
+            <item index="35" class="java.lang.String" itemvalue="material-tab" />
           </list>
         </value>
       </option>

@@ -26,7 +26,11 @@ class RequestedSectionsService {
   }
 
   /// The [addSections] method...
-  void addSections (List<Section> sections) => _requestInformation.addSections (sections);
+  void addSections (List<Section> sections) {
+    sections.sort();
+
+    _requestInformation.addSections (sections);
+  }
 
   /// The [addSection] method...
   void addSection (Section section) => _requestInformation.addSection (section);
