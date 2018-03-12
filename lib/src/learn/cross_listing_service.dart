@@ -13,6 +13,10 @@ import 'cross_listing.dart';
 class CrossListingService {
   List<CrossListing> crossListings;
 
+  Map<Section, CrossListing> crossListedSections;
+
+  Section invokerSection;
+
   RequestInformation _requestInformation;
 
   static CrossListingService _instance;
@@ -26,6 +30,12 @@ class CrossListingService {
     _requestInformation = new RequestInformation();
     crossListings = _requestInformation.crossListings;
   }
+
+  /// The [invokeForSection] method...
+  void invokeForSection (Section section) => (invokerSection = section);
+
+  /// The [revokeSection] method...
+  void revokeSection() => (invokerSection = null);
 
   /// The [createCrossListingSet] method...
   CrossListing createCrossListingSet() {
@@ -50,6 +60,15 @@ class CrossListingService {
   void addSectionToCrossListing (Section theSection, CrossListing theCrossListing) {
     try {
       _requestInformation.addSectionToCrossListing (theSection, theCrossListing);
+      crossListedSections.putIfAbsent (theSection, () => theCrossListing);
+    } catch (_) { rethrow; }
+  }
+
+  /// The [removeSectionFromCrossListing] method...
+  void removeSectionFromCrossListing (Section theSection, CrossListing theCrossListing) {
+    try {
+      _requestInformation.removeSectionFromCrossListing (theSection, theCrossListing);
+      crossListedSections.remove (theSection);
     } catch (_) { rethrow; }
   }
 }

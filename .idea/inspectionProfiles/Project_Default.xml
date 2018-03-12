@@ -19,7 +19,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="29">
+          <list size="33">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -49,6 +49,10 @@
             <item index="26" class="java.lang.String" itemvalue="section-info" />
             <item index="27" class="java.lang.String" itemvalue="requested-sections" />
             <item index="28" class="java.lang.String" itemvalue="requested-section" />
+            <item index="29" class="java.lang.String" itemvalue="material-expansionpanel" />
+            <item index="30" class="java.lang.String" itemvalue="cross-listing" />
+            <item index="31" class="java.lang.String" itemvalue="material-list" />
+            <item index="32" class="java.lang.String" itemvalue="material-list-item" />
           </list>
         </value>
       </option>

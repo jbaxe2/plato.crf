@@ -6,6 +6,8 @@ import '../banner/section.dart';
 class CrossListing {
   List<Section> sections;
 
+  bool get isValid => (1 < sections.length);
+
   /// The [CrossListing] constructor...
   CrossListing() {
     sections = new List<Section>();

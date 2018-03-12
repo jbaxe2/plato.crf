@@ -7,8 +7,8 @@ import 'package:http/http.dart' show Client, Response;
 import 'package:angular/core.dart';
 
 import '../banner/section.dart';
-import 'package:plato_angular/src/learn/previous_content_mapping.dart';
 import '../learn/cross_listing.dart';
+import '../learn/previous_content_mapping.dart';
 import '../user/user_information.dart';
 
 import 'crf_exception.dart';

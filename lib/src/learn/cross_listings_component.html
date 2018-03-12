@@ -1,0 +1,23 @@
+<modal [visible]="null != invokerSection">
+  <material-dialog headered>
+    <div header>
+      <p>Cross-list {{invokerSection.sectionId}} with other requested sections...</p>
+    </div>
+
+    <material-button icon (trigger)="createNewCrossListingSet()">
+      <material-icon icon="add_box"></material-icon>
+    </material-button>
+    <span>(Click the '+' to add a new cross-listing set)</span>
+
+    <cross-listing
+        *ngFor="let crossListing of crossListings; let i=index"
+        [crossListing]="crossListing"
+        [invokerSection]="invokerSection"
+        [setNumber]="{{i+1}}">
+    </cross-listing>
+
+    <div footer>
+      <material-button (trigger)="confirmCrossListings()">Confirm current cross-listing information</material-button>
+    </div>
+  </material-dialog>
+</modal>

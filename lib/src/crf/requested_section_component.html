@@ -1,6 +1,8 @@
-<material-expansion-panel
-    name="{{section.sectionId}}"
-    showSaveCancel="false">
+<material-expansionpanel
+    name="{{section.title}}"
+    secondaryText="{{section.sectionId}}"
+    [expanded]="true"
+    [showSaveCancel]="false">
   <div>
     <p><strong>Title:</strong> <span>{{section.title}}</span></p>
     <p><strong>CRN:</strong> <span>{{section.crn}}</span></p>
@@ -11,6 +13,32 @@
   </div>
 
   <div *ngIf="hasExtraInfo">
-    <p>Here will be some extra info.</p>
+    <material-expansionpanel
+        *ngIf="hasPreviousContent"
+        [expanded]="true"
+        [hideExpandedHeader]="true">
+      <p>Here will be some previous content info.</p>
+    </material-expansionpanel>
+
+    <material-expansionpanel
+        *ngIf="hasCrossListing"
+        [expanded]="true"
+        [hideExpandedHeader]="true">
+      <p>Here will be some cross-listing info.</p>
+    </material-expansionpanel>
   </div>
-</material-expansion-panel>
+
+  <div toolbelt>
+    <material-button icon (trigger)="copyPreviousContent()">
+      <material-icon icon="library_books"></material-icon>
+    </material-button>
+
+    <material-button icon (trigger)="addToCrossListing()">
+      <material-icon icon="device_hub"></material-icon>
+    </material-button>
+
+    <material-button icon (trigger)="removeSection()">
+      <material-icon icon="cancel"></material-icon>
+    </material-button>
+  </div>
+</material-expansionpanel>

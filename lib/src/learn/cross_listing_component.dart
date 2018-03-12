@@ -16,9 +16,16 @@ import 'cross_listing_service.dart';
   providers: const [CrossListingService]
 )
 class CrossListingComponent implements OnInit {
+  @Input()
   CrossListing crossListing;
 
   List<Section> sections;
+
+  @Input()
+  Section invokerSection;
+
+  @Input()
+  int setNumber;
 
   final CrossListingService _crossListingService;
 
@@ -28,16 +35,18 @@ class CrossListingComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
-    crossListing = _crossListingService.createCrossListingSet();
     sections = crossListing.sections;
   }
 
   /// The [addSectionToCrossListing] method...
-  void addSectionToCrossListing (Section aSection) {
-    try {
-      _crossListingService.addSectionToCrossListing (aSection, crossListing);
-    } catch (_) {
-      rethrow;
-    }
-  }
+  void addSectionToCrossListing() =>
+    _crossListingService.addSectionToCrossListing (invokerSection, crossListing);
+
+  /// The [removeSectionFromCrossListing] method...
+  void removeSectionFromCrossListing() =>
+    _crossListingService.removeSectionFromCrossListing (invokerSection, crossListing);
+
+  /// The [removeCrossListing] method...
+  bool removeCrossListing() =>
+    _crossListingService.removeCrossListing (crossListing);
 }

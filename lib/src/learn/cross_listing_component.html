@@ -1,1 +1,20 @@
-<div></div>
+<material-expansionpanel
+    name="Sections contained in cross-listing set #{{setNumber}}"
+    [expanded]="true"
+    [showSaveCancel]="false">
+  <p *ngIf="sections.isEmpty">No sections have been added to this cross-listing set.</p>
+
+  <material-list>
+    <material-list-item *ngFor="sections as section">
+      [{{section.sectionId}}] {{section.title}}
+    </material-list-item>
+  </material-list>
+
+  <div toolbelt>
+    <material-button icon (trigger)="addSectionToCrossListing()">
+      <material-icon icon="playlist_add"></material-icon>
+    </material-button>
+
+    <material-button icon (trigger)=""
+  </div>
+</material-expansionpanel>

@@ -88,6 +88,14 @@ class RequestInformation {
 
   /// The [addCrossListing] method...
   void addCrossListing (CrossListing aCrossListing) {
+    if (
+      crossListings.any ((CrossListing crossListing) => !crossListing.isValid)
+    ) {
+      throw new CrossListingException (
+        'Cannot add a new cross-listing set when a different set is not valid.'
+      );
+    }
+
     if (!crossListings.contains (aCrossListing)) {
       crossListings.forEach ((CrossListing crossListing) {
         aCrossListing.sections.forEach ((Section section) {
