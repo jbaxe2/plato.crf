@@ -82,7 +82,7 @@
         <entry key="build_config">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/build_config-0.2.4/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/build_config-0.2.5/lib" />
             </list>
           </value>
         </entry>
@@ -429,7 +429,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/browser-0.10.0+2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/build-0.11.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/build_barback-0.4.0+2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/build_config-0.2.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/build_config-0.2.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/charcode-1.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/cli_util-0.1.2+1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/code_builder-1.0.4/lib" />

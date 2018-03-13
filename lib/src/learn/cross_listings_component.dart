@@ -6,19 +6,22 @@ import 'package:angular_components/angular_components.dart';
 import '../banner/section.dart';
 
 import 'cross_listing.dart';
+import 'cross_listing_component.dart';
 import 'cross_listing_service.dart';
 
 /// The [CrossListingsComponent] class...
 @Component(
     selector: 'cross-listings',
     templateUrl: 'cross_listings_component.html',
-    directives: const [CORE_DIRECTIVES, materialDirectives, DeferredContentDirective],
+    directives: const [CORE_DIRECTIVES, materialDirectives, CrossListingComponent],
     providers: const [CrossListingService]
 )
 class CrossListingsComponent implements OnInit {
   List<CrossListing> crossListings;
 
   Section invokerSection;
+
+  bool isVisible;
 
   final CrossListingService _crossListingService;
 
@@ -28,9 +31,13 @@ class CrossListingsComponent implements OnInit {
   /// The [ngOnInit] method...
   void ngOnInit ()  {
     crossListings = _crossListingService.crossListings;
+    isVisible = false;
 
     _crossListingService.sectionStreamer.stream.listen (
-      (Section section) => (invokerSection = section)
+      (Section section) {
+        invokerSection = section;
+        isVisible = true;
+      }
     );
   }
 
@@ -40,5 +47,5 @@ class CrossListingsComponent implements OnInit {
   }
 
   /// The [confirmCrossListings] method...
-  void confirmCrossListings() => _crossListingService.revokeSection();
+  void confirmCrossListings() => isVisible = false;
 }

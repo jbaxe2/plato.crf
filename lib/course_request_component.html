@@ -8,10 +8,15 @@
 
   material-drawer {
     background-color: #ddd;
+    width: 448px;
+  }
+
+  material-tab-panel {
+    width: auto;
   }
 </style>
 
-<material-drawer temporary end #drawer="drawer">
+<material-drawer persistent end #drawer="drawer" class="custom-width">
   <requested-sections></requested-sections>
 </material-drawer>
 
@@ -20,23 +25,21 @@
     <p>Plato Course Request From (Angular)</p>
   </header>
 
-  <div>
-    <material-tab-panel>
-      <material-tab label="Step 1. User Information">
-        <user></user>
-      </material-tab>
+  <material-tab-panel>
+    <material-tab label="Step 1. User Information">
+      <user></user>
+    </material-tab>
 
-      <material-tab label="Step 2. Courses Selection">
-        <requesting-sections></requesting-sections>
-      </material-tab>
-    </material-tab-panel>
-  </div>
-
-  <div>
-    <cross-listings></cross-listings>
-  </div>
+    <material-tab label="Step 2. Courses Selection">
+      <requesting-sections></requesting-sections>
+    </material-tab>
+  </material-tab-panel>
 
   <div class="controls">
     <material-button raised>Review and Submit Course Request</material-button>
   </div>
 </material-content>
+
+<cross-listings></cross-listings>
+
+<plato-error></plato-error>

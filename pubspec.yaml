@@ -1,6 +1,6 @@
 name: plato_angular
 description: A web app that uses AngularDart Components
-version: 0.18.20180312
+version: 0.18.20180313
 
 author: Joseph B. Axenroth
 
@@ -15,6 +15,7 @@ dependencies:
 dev_dependencies:
   browser: ^0.10.0
   dart_to_js_script_rewriter: ^1.0.1
+  sass_builder: 1.1.4
 
 transformers:
 - angular:

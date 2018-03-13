@@ -6,6 +6,7 @@ import 'package:angular_components/angular_components.dart';
 import 'src/banner/requesting_sections_component.dart';
 
 import 'src/crf/course_request_service.dart';
+import 'src/crf/error_component.dart';
 import 'src/crf/requested_sections_component.dart';
 
 import 'src/learn/cross_listings_component.dart';
@@ -22,7 +23,8 @@ import 'src/user/user_component.dart';
   directives: const [
     COMMON_DIRECTIVES, materialDirectives,
     UserComponent, RequestingSectionsComponent, RequestedSectionsComponent,
-    CrossListingsComponent
+    CrossListingsComponent,
+    ErrorComponent
   ],
   providers: const [materialProviders, CourseRequestService],
 )

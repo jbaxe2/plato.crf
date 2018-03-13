@@ -65,7 +65,7 @@ class RequestInformation {
   /// The [removeSection] method...
   bool removeSection (Section aSection) {
     crossListings.forEach ((CrossListing crossListing) {
-      crossListing.sections.removeWhere ((Section section) => aSection == section);
+      crossListing.sections.remove (aSection);
     });
 
     previousContents.removeWhere (

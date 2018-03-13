@@ -1,12 +1,9 @@
 library plato.angular.services.learn.cross_listing;
 
-import 'dart:async' show Stream, StreamController;
+import 'dart:async' show StreamController;
 
 import 'package:angular/angular.dart';
 import 'package:angular/core.dart';
-
-import 'package:angular_components/angular_components.dart'
-  show DeferredContentAware;
 
 import '../banner/section.dart';
 
@@ -16,20 +13,16 @@ import 'cross_listing.dart';
 
 /// The [CrossListingService] class...
 @Injectable()
-class CrossListingService implements DeferredContentAware {
+class CrossListingService {
   List<CrossListing> crossListings;
 
   Map<Section, CrossListing> crossListedSections;
 
   StreamController<Section> sectionStreamer;
 
-  StreamController<bool> invokerStreamer;
-
   RequestInformation _requestInformation;
 
   static CrossListingService _instance;
-
-  Stream<bool> get contentVisible => invokerStreamer.stream;
 
   /// The [CrossListingService] factory constructor...
   factory CrossListingService() =>
@@ -38,10 +31,11 @@ class CrossListingService implements DeferredContentAware {
   /// The [CrossListingService] private constructor...
   CrossListingService._() {
     _requestInformation = new RequestInformation();
+
     crossListings = _requestInformation.crossListings;
+    crossListedSections = new Map<Section, CrossListing>();
 
     sectionStreamer = new StreamController<Section>.broadcast();
-    invokerStreamer = new StreamController<bool>.broadcast();
   }
 
   /// The [createCrossListingSet] method...
@@ -58,13 +52,11 @@ class CrossListingService implements DeferredContentAware {
   /// The [invokeForSection] method...
   void invokeForSection (Section section) {
     sectionStreamer.add (section);
-    invokerStreamer.add (true);
   }
 
   /// The [revokeSection] method...
   void revokeSection() {
-    sectionStreamer.add (null);
-    invokerStreamer.add (false);
+    //sectionStreamer.add (null);
   }
 
   /// The [addCrossListings] method...

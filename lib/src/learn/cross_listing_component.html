@@ -1,5 +1,12 @@
+<style>
+  .dense {
+    @include expansionpanel-dense-theme;
+  }
+</style>
+
 <material-expansionpanel
     name="Sections contained in cross-listing set #{{setNumber}}"
+    class="dense"
     [expanded]="true"
     [showSaveCancel]="false">
   <p *ngIf="sections.isEmpty">No sections have been added to this cross-listing set.</p>
@@ -7,6 +14,12 @@
   <material-list>
     <material-list-item *ngFor="let section of sections">
       [{{section.sectionId}}] {{section.title}}
+    </material-list-item>
+
+    <material-list-item *ngIf="crossListing.sections.length == 1">
+      <strong style="color: #a44;">
+        Please add one or more sections to the cross-listing set.
+      </strong>
     </material-list-item>
   </material-list>
 

@@ -1,5 +1,7 @@
 library plato.angular.services.crf.error;
 
+import 'dart:async' show StreamController;
+
 import 'package:angular/core.dart';
 
 import 'plato_exception.dart';
@@ -11,6 +13,8 @@ class ErrorService {
 
   PlatoException get exception => _exception;
 
+  StreamController<PlatoException> errorStreamController;
+
   bool errorRaised;
 
   static ErrorService _instance;
@@ -20,6 +24,7 @@ class ErrorService {
 
   /// The [ErrorService] private constructor...
   ErrorService._() {
+    errorStreamController = new StreamController<PlatoException>.broadcast();
     errorRaised = false;
   }
 
@@ -27,5 +32,7 @@ class ErrorService {
   void raiseError (PlatoException theException) {
     _exception = theException;
     errorRaised = true;
+
+    errorStreamController.add (theException);
   }
 }

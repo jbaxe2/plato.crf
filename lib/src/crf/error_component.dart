@@ -1,18 +1,23 @@
 library plato.angular.components.crf.error;
 
+import 'dart:async' show Stream;
+
 import 'package:angular/angular.dart';
-import 'package:angular_components/angular_components.dart/';
+import 'package:angular_components/angular_components.dart';
 
 import 'error_service.dart';
+import 'plato_exception.dart';
 
 /// The [ErrorComponent] class...
 @Component(
-  selector: 'error',
+  selector: 'plato-error',
   templateUrl: 'error_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [ErrorService]
 )
 class ErrorComponent implements OnInit {
+  Stream<PlatoException> errorStream;
+
   String error;
 
   bool showError;
@@ -25,10 +30,16 @@ class ErrorComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
-    error = _errorService.exception.message;
     showError = _errorService.errorRaised;
-  }
+    error = 'No errors have occurred.';
 
-  /// The [closeError] method...
-  void closeError() => (showError = false);
+    errorStream = _errorService.errorStreamController.stream;
+
+    errorStream.listen (
+      (PlatoException exception) {
+        error = exception.toString();
+        showError = true;
+      }
+    );
+  }
 }

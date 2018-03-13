@@ -1,13 +1,17 @@
-<modal [visible]="null != invokerSection" *deferredcontent>
+<modal [visible]="isVisible">
   <material-dialog headered>
     <div header>
-      <p>Cross-list {{invokerSection.sectionId}} with other requested sections...</p>
+      <p>Cross-list with other requested sections...</p>
     </div>
 
-    <material-button icon (trigger)="createNewCrossListingSet()">
-      <material-icon icon="add_box"></material-icon>
-    </material-button>
-    <span>(Click the '+' to add a new cross-listing set)</span>
+    <span>
+      <material-button icon (trigger)="createNewCrossListingSet()">
+        <material-icon icon="add_box" baseline></material-icon>
+      </material-button>
+      (Click the '+' to add a new cross-listing set)
+    </span>
+
+    <p *ngIf="crossListings.isEmpty">There are currently no cross-listing sets.</p>
 
     <cross-listing
         *ngFor="let crossListing of crossListings; let i=index"
