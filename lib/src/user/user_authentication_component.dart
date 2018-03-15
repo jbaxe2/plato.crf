@@ -14,6 +14,7 @@ import 'user_information_service.dart';
 @Component (
   selector: 'user-authentication',
   templateUrl: 'user_authentication_component.html',
+  styleUrls: const ['user_authentication_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [UserInformationService, CourseRequestService]
 )

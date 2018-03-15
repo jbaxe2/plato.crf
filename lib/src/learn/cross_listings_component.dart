@@ -43,7 +43,9 @@ class CrossListingsComponent implements OnInit {
 
   /// The [createNewCrossListingSet] method...
   void createNewCrossListingSet() {
-    _crossListingService.createCrossListingSet();
+    try {
+      _crossListingService.createCrossListingSet();
+    } catch (_) {}
   }
 
   /// The [confirmCrossListings] method...

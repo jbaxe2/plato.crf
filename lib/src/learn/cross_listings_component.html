@@ -1,7 +1,7 @@
 <modal [visible]="isVisible">
   <material-dialog headered>
     <div header>
-      <p>Cross-list with other requested sections...</p>
+      <h3>Cross-list with other requested sections...</h3>
     </div>
 
     <span>
@@ -11,7 +11,7 @@
       (Click the '+' to add a new cross-listing set)
     </span>
 
-    <p *ngIf="crossListings.isEmpty">There are currently no cross-listing sets.</p>
+    <p *ngIf="crossListings.isEmpty"><em>There are currently no cross-listing sets.</em></p>
 
     <cross-listing
         *ngFor="let crossListing of crossListings; let i=index"

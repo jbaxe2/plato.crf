@@ -11,13 +11,15 @@ dependencies:
   angular: ^4.0.0+2
   angular_components: ^0.8.0
   http: ^0.11.3+13
+  sass_builder: 1.1.4
 
 dev_dependencies:
   browser: ^0.10.0
   dart_to_js_script_rewriter: ^1.0.1
-  sass_builder: 1.1.4
 
 transformers:
+- sass_builder:
+    outputExtension: .scss.css
 - angular:
     entry_points: web/main.dart
 - $dart2js:
