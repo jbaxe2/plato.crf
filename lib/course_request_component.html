@@ -1,18 +1,35 @@
 <style>
+  material-drawer {
+    background-color: #ddd !important;
+    width: 424px !important;
+    overflow-y: scroll !important;
+  }
+
+  material-content {
+    display: flex !important;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start !important;
+  }
+
   header {
     background-color: #718198;
     padding: 15px;
+    width: 100% !important;
     color: white;
     font-weight: bold;
   }
 
-  material-drawer {
-    background-color: #ddd;
-    width: 448px;
+  material-tab-panel {
+    width: 576px;
   }
 
-  material-tab-panel {
-    width: auto;
+  div.controls {
+    margin-top: 16px;
+  }
+
+  ::ng-deep material-button {
+    background-color: #bbb;
   }
 </style>
 

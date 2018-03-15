@@ -1,8 +1,14 @@
 <style>
+  :host {
+    padding-top: 0;
+  }
+
   header {
     background-color: #718198;
-    text-align: center;
+    margin: 0;
     color: white;
+    font-weight: bold;
+    text-align: center;
   }
 
   p {
@@ -12,18 +18,13 @@
 
   material-expansionpanel {
     background-color: white;
-    margin: 8px;
+    margin: 0 8px 0 8px;
     border-top: 1px solid black;
     padding: 8px;
   }
 
   requested-section {
-    margin: 8px;
-  }
-
-  #requested-sections {
-    margin: 0;
-    padding: 0;
+    margin: 0 15px 0 15px;
   }
 
   #legend-note {
@@ -33,56 +34,54 @@
   }
 </style>
 
-<div id="requested-sections">
-  <header>
-    <p>Step 3. Requested Sections</p>
-  </header>
+<header class="shadow">
+  <p>Step 3. Requested Sections</p>
+</header>
 
-  <material-expansionpanel
-      *ngIf="sections.isEmpty"
-      [expanded]="true"
-      [hideExpandedHeader]="true"
-      [showSaveCancel]="false"
-      disabled>
-    <p>
-      Requested sections will appear here once one or
-      more sections have been selected and added.
-    </p>
-  </material-expansionpanel>
+<material-expansionpanel
+    *ngIf="sections.isEmpty"
+    [expanded]="true"
+    [hideExpandedHeader]="true"
+    [showSaveCancel]="false"
+    disabled>
+  <p>
+    Requested sections will appear here once one or
+    more sections have been selected and added.
+  </p>
+</material-expansionpanel>
 
-  <material-expansionpanel
-      *ngIf="sections.isNotEmpty"
-      name="Icon Button Legend"
-      secondaryText="(use at bottom of requested sections)"
-      [expanded]="true"
-      [showSaveCancel]="false">
-    <span>
-      <material-icon icon="library_books" baseline></material-icon>
-      | copy content from a previous course
-    </span><br>
+<material-expansionpanel
+    *ngIf="sections.isNotEmpty"
+    name="Icon Button Legend"
+    secondaryText="(use at bottom of requested sections)"
+    [expanded]="true"
+    [showSaveCancel]="false">
+  <span style="margin-top: 15px;">
+    <material-icon icon="library_books" baseline></material-icon>
+    | copy content from a previous course
+  </span><br>
 
-    <span>
-      <material-icon icon="device_hub" baseline></material-icon>
-      | add a section to a cross-listing set
-    </span><br>
+  <span>
+    <material-icon icon="device_hub" baseline></material-icon>
+    | add a section to a cross-listing set
+  </span><br>
 
-    <span>
-      <material-icon icon="cancel" baseline></material-icon>
-      | remove a section from the request
-    </span>
+  <span style="margin-bottom: 15px;">
+    <material-icon icon="cancel" baseline></material-icon>
+    | remove a section from the request
+  </span>
 
-    <span id="legend-note">
-      <strong style="text-decoration: underline;">NOTE:</strong>
-      use the icon buttons at the <strong><em>bottom</em></strong> of a
-      <strong>requested section</strong> to apply the controls for
-      <strong>that particular section</strong>.
-    </span>
-  </material-expansionpanel>
+  <span id="legend-note">
+    <strong style="text-decoration: underline;">NOTE:</strong>
+    use the icon buttons at the <strong><em>bottom</em></strong> of a
+    <strong>requested section</strong> to apply the controls for
+    <strong>that particular section</strong>.
+  </span>
+</material-expansionpanel>
 
-  <div style="padding: 8px 0 8px 0; overflow: auto;">
-    <requested-section
-        *ngFor="let section of sections"
-        [section]="section">
-    </requested-section>
-  </div>
+<div>
+  <requested-section
+      *ngFor="let section of sections"
+      [section]="section">
+  </requested-section>
 </div>

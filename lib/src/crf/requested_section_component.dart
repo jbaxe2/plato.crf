@@ -21,21 +21,17 @@ import 'requested_sections_service.dart';
     RequestedSectionsService, CrossListingService, PreviousContentService
   ]
 )
-class RequestedSectionComponent implements OnInit {
+class RequestedSectionComponent {
   @Input()
   Section section;
 
   CrossListing _crossListing;
 
-  bool _hasCrossListing;
-
-  bool get hasCrossListing => _hasCrossListing;
+  bool get hasCrossListing => (null != _crossListing);
 
   PreviousContentMapping _previousContent;
 
-  bool _hasPreviousContent;
-
-  bool get hasPreviousContent => _hasPreviousContent;
+  bool get hasPreviousContent => (null != _previousContent);
 
   bool get hasExtraInfo => (hasCrossListing || hasPreviousContent);
 
@@ -49,13 +45,6 @@ class RequestedSectionComponent implements OnInit {
   RequestedSectionComponent (
     this._reqSectionsService, this._crossListingService, this._previousContentService
   );
-
-  /// The [ngOnInit] method...
-  @override
-  void ngOnInit() {
-    _hasCrossListing = false;
-    _hasPreviousContent = false;
-  }
 
   /// The [addToCrossListing] method...
   void addToCrossListing() => _crossListingService.invokeForSection (section);

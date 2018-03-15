@@ -1,3 +1,13 @@
+<style>
+  span {
+    font-weight: bold;
+  }
+
+  material-button {
+    margin-top: 8px;
+  }
+</style>
+
 <div *ngIf="haveSections">
   <span>Please select one or more sections.</span><br>
 
@@ -7,9 +17,7 @@
       (change)="handleSectionSelection(section, $event)"
       themeColor="#062c43">
       [{{section.sectionId}}] {{section.title}} ({{section.faculty}})
-  </material-checkbox>
-
-  <br>
+  </material-checkbox><br>
 
   <material-button raised (trigger)="addSelectedSections()">
     Add the selected sections

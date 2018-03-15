@@ -1,5 +1,23 @@
+<style>
+  p {
+    font-weight: bold;
+  }
+
+  div[footer] {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  material-button {
+    background-color: #a44;
+    color: white;
+    font-weight: bold;
+  }
+</style>
+
 <modal [visible]="showError">
-  <material-dialog>
+  <material-dialog headered>
     <div header>
       <h3>
         <material-icon icon="error_outline" baseline></material-icon>
