@@ -3,20 +3,12 @@
     padding-top: 0;
   }
 
-  header {
-    background-color: #718198;
-    margin: 0;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-  }
-
   p {
     padding: 15px;
     text-align: center;
   }
 
-  material-expansionpanel {
+  /*material-expansionpanel {
     background-color: white;
     margin: 0 8px 0 8px;
     border-top: 1px solid black;
@@ -25,18 +17,35 @@
 
   requested-section {
     margin: 0 15px 0 15px;
+  }*/
+
+  span {
+    margin-top: 15px;
+  }
+
+  .requested-sections-header {
+    background-color: #718198;
+    margin: 0;
+    color: white;
+    font-weight: bold;
+    text-align: center;
   }
 
   #legend-note {
     display: block;
+    margin-top: 8px;
     border-top: 1px dashed #718198;
     padding-top: 8px;
   }
+
+  #requested-sections-div {
+    margin: 0 8px 0 8px;
+  }
 </style>
 
-<header class="shadow">
+<div header class="requested-sections-header shadow">
   <p>Step 3. Requested Sections</p>
-</header>
+</div>
 
 <material-expansionpanel
     *ngIf="sections.isEmpty"
@@ -56,7 +65,7 @@
     secondaryText="(use at bottom of requested sections)"
     [expanded]="true"
     [showSaveCancel]="false">
-  <span style="margin-top: 15px;">
+  <span>
     <material-icon icon="library_books" baseline></material-icon>
     | copy content from a previous course
   </span><br>
@@ -66,7 +75,7 @@
     | add a section to a cross-listing set
   </span><br>
 
-  <span style="margin-bottom: 15px;">
+  <span>
     <material-icon icon="cancel" baseline></material-icon>
     | remove a section from the request
   </span>
@@ -79,7 +88,7 @@
   </span>
 </material-expansionpanel>
 
-<div>
+<div id="requested-sections-div">
   <requested-section
       *ngFor="let section of sections"
       [section]="section">

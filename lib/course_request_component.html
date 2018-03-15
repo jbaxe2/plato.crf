@@ -1,4 +1,8 @@
 <style>
+  :host ::ng-deep material-button {
+    background-color: #bbb !important;
+  }
+
   material-drawer {
     background-color: #ddd !important;
     width: 424px !important;
@@ -7,9 +11,12 @@
 
   material-content {
     display: flex !important;
-    flex: 1;
+    flex: content;
     flex-direction: column;
     justify-content: flex-start !important;
+    position: relative !important;
+    top: 0;
+    left: 0;
   }
 
   header {
@@ -24,12 +31,12 @@
     width: 576px;
   }
 
-  div.controls {
-    margin-top: 16px;
+  material-tab {
+    color: #062c43;
   }
 
-  ::ng-deep material-button {
-    background-color: #bbb;
+  div.controls {
+    margin-top: 16px;
   }
 </style>
 
@@ -38,7 +45,7 @@
 </material-drawer>
 
 <material-content>
-  <header class="shadow">
+  <header>
     <p>Plato Course Request From (Angular)</p>
   </header>
 
