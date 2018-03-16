@@ -5,10 +5,14 @@
     font-weight: bold;
   }
 
-  ::ng-deep .toolbelt {
+  ::ng-deep div[toolbelt] {
     background-color: #bbb;
     padding-right: 16px;
     text-align: right;
+  }
+
+  .extra-info-panel {
+    background-color: #ccc;
   }
 </style>
 
@@ -29,15 +33,21 @@
   <div *ngIf="hasExtraInfo">
     <material-expansionpanel
         *ngIf="hasPreviousContent"
+        name="Previous Content Info"
+        class="extra-info-panel"
         [expanded]="true"
-        [hideExpandedHeader]="true">
+        [hideExpandedHeader]="true"
+        [showSaveCancel]="false">
       <p>Here will be some previous content info.</p>
     </material-expansionpanel>
 
     <material-expansionpanel
         *ngIf="hasCrossListing"
+        name="Cross-listing Info"
+        class="extra-info-panel"
         [expanded]="true"
-        [hideExpandedHeader]="true">
+        [hideExpandedHeader]="true"
+        [showSaveCancel]="false">
       <p>Here will be some cross-listing info.</p>
     </material-expansionpanel>
   </div>

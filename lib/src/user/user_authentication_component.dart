@@ -7,7 +7,6 @@ import 'package:angular_components/angular_components.dart';
 
 import '../crf/course_request_service.dart';
 
-import 'user_exception.dart';
 import 'user_information_service.dart';
 
 /// The [UserAuthenticationComponent] class...

@@ -138,7 +138,7 @@ class RequestInformation {
 
   /// The [removeSectionFromCrossListing] method...
   bool removeSectionFromCrossListing (Section aSection, CrossListing aCrossListing) =>
-    aCrossListing.removeSection (aSection);
+    aCrossListing?.removeSection (aSection);
 
   /// The [_checkCrossListingConditions] method...
   bool _checkCrossListingConditions (Section aSection, CrossListing aCrossListing) {

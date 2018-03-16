@@ -21,7 +21,7 @@ import 'requested_sections_service.dart';
     RequestedSectionsService, CrossListingService, PreviousContentService
   ]
 )
-class RequestedSectionComponent {
+class RequestedSectionComponent implements OnInit {
   @Input()
   Section section;
 
@@ -46,6 +46,17 @@ class RequestedSectionComponent {
     this._reqSectionsService, this._crossListingService, this._previousContentService
   );
 
+  /// The [ngOnInit] method...
+  void ngOnInit() {
+    _crossListingService.crossListingStreamer.stream.listen (
+      (CrossListing crossListing) {
+        if (crossListing.sections.contains (section)) {
+          _crossListing = crossListing;
+        }
+      }
+    );
+  }
+
   /// The [addToCrossListing] method...
   void addToCrossListing() => _crossListingService.invokeForSection (section);
 
@@ -53,5 +64,8 @@ class RequestedSectionComponent {
   void copyPreviousContent() {}
 
   /// The [removeSection] method...
-  void removeSection() => _reqSectionsService.removeSection (section);
+  void removeSection() {
+    _reqSectionsService.removeSection (section);
+    _crossListing = null;
+  }
 }

@@ -1,6 +1,9 @@
 <style>
   :host {
     display: flex;
+    flex: initial;
+    left: 0;
+    top: 0;
   }
 
   ::ng-deep material-button {
@@ -14,6 +17,7 @@
     border-left: 1px solid #062c43;
     border-bottom: 1px solid #062c43;
     width: 424px !important;
+    overflow-y: visible !important;
   }
 
   material-content {
@@ -37,7 +41,7 @@
 
   material-tab-panel {
     margin: 1px 0 0 2px;
-    width: 600px;
+    width: 600px !important;
   }
 
   material-tab {
@@ -61,11 +65,11 @@
   <directions></directions>
 
   <material-tab-panel>
-    <material-tab label="Step 1. User Information">
+    <material-tab class="crf-tabs" label="Step 1. User Information">
       <user></user>
     </material-tab>
 
-    <material-tab label="Step 2. Courses Selection">
+    <material-tab class="crf-tabs" label="Step 2. Courses Selection">
       <requesting-sections></requesting-sections>
     </material-tab>
   </material-tab-panel>

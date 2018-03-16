@@ -10,6 +10,7 @@ import '../banner/section.dart';
 import '../crf/request_information.dart';
 
 import 'cross_listing.dart';
+import 'cross_listing_exception.dart';
 
 /// The [CrossListingService] class...
 @Injectable()
@@ -19,6 +20,8 @@ class CrossListingService {
   Map<Section, CrossListing> crossListedSections;
 
   StreamController<Section> sectionStreamer;
+
+  StreamController<CrossListing> crossListingStreamer;
 
   RequestInformation _requestInformation;
 
@@ -36,6 +39,7 @@ class CrossListingService {
     crossListedSections = new Map<Section, CrossListing>();
 
     sectionStreamer = new StreamController<Section>.broadcast();
+    crossListingStreamer = new StreamController<CrossListing>.broadcast();
   }
 
   /// The [createCrossListingSet] method...
@@ -81,5 +85,20 @@ class CrossListingService {
       _requestInformation.removeSectionFromCrossListing (theSection, theCrossListing);
       crossListedSections.remove (theSection);
     } catch (_) { rethrow; }
+  }
+
+  /// The [confirmCrossListings] method...
+  void confirmCrossListings() {
+    if (
+      crossListings.any ((CrossListing crossListing) => crossListing.sections.isEmpty)
+    ) {
+      throw new CrossListingException (
+        'Cannot confirm cross-listings when one or more sets is empty.'
+      );
+    }
+
+    crossListings.forEach (
+      (CrossListing aCrossListing) => crossListingStreamer.add (aCrossListing)
+    );
   }
 }

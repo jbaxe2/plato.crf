@@ -1,3 +1,13 @@
+<style>
+  material-button.icon-button {
+    background-color: white;
+  }
+
+  div[footer] {
+    margin-bottom: 8px;
+  }
+</style>
+
 <modal [visible]="isVisible">
   <material-dialog headered>
     <div header>
@@ -5,7 +15,7 @@
     </div>
 
     <span>
-      <material-button icon (trigger)="createNewCrossListingSet()">
+      <material-button class="icon-button" icon (trigger)="createNewCrossListingSet()">
         <material-icon icon="add_box" baseline></material-icon>
       </material-button>
       (Click the '+' to add a new cross-listing set)
@@ -21,7 +31,7 @@
     </cross-listing>
 
     <div footer>
-      <material-button raised (trigger)="isVisible = false">
+      <material-button raised (trigger)="confirmCrossListings()">
         Confirm current cross-listing information
       </material-button>
     </div>
