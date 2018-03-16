@@ -3,43 +3,48 @@
     display: flex;
   }
 
-  :host ::ng-deep material-button {
+  ::ng-deep material-button {
     background-color: #bbb !important;
+    color: black !important;
+    font-weight: bold !important;
   }
 
   material-drawer {
     background-color: #ddd !important;
+    border-left: 1px solid #062c43;
+    border-bottom: 1px solid #062c43;
     width: 424px !important;
-    overflow-y: scroll !important;
   }
 
   material-content {
     display: flex !important;
-    flex: available;
+    flex: auto;
     flex-direction: column;
     justify-content: flex-start !important;
-    position: absolute !important;
-    top: 1px;
-    left: 1px;
+    position: relative !important;
+    top: 0;
+    left: 0;
+    float: left;
+    margin: 0 !important;
   }
 
   header {
     background-color: #718198;
     padding: 15px;
-    width: 100% !important;
     color: white;
     font-weight: bold;
   }
 
   material-tab-panel {
-    width: 576px;
+    margin: 1px 0 0 2px;
+    width: 600px;
   }
 
   material-tab {
     color: #062c43;
   }
 
-  div.controls {
+  .controls {
     margin: 16px;
   }
 </style>
@@ -50,8 +55,10 @@
 
 <material-content>
   <header class="shadow">
-    <p>Plato Course Request From (Angular)</p>
+    <p>Plato Course Request Form (Angular)</p>
   </header>
+
+  <directions></directions>
 
   <material-tab-panel>
     <material-tab label="Step 1. User Information">
@@ -63,7 +70,7 @@
     </material-tab>
   </material-tab-panel>
 
-  <div class="controls">
+  <div class="controls" *ngIf="submittable">
     <material-button raised>Review and Submit Course Request</material-button>
   </div>
 </material-content>

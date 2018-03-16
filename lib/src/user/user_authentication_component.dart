@@ -46,12 +46,6 @@ class UserAuthenticationComponent implements OnInit {
 
   /// The [authenticateLearn] method...
   Future authenticateLearn() async {
-    if (isAuthenticated) {
-      throw new UserException (
-        'Authentication has already completed; cannot authenticate again.'
-      );
-    }
-
     try {
       await _userInfoService.authenticateLearn (username, password);
       await _userInfoService.retrieveUser();

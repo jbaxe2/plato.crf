@@ -23,6 +23,8 @@ class CourseRequestService {
 
   final Client _http;
 
+  bool get submittable => _requestInformation.submittable;
+
   static CourseRequestService _instance;
 
   /// The [CourseRequestService] factory constructor...

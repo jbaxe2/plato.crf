@@ -23,6 +23,8 @@ class RequestInformation {
 
   List<PreviousContentMapping> previousContents;
 
+  bool get submittable => (null != _userInformation) && sections.isNotEmpty;
+
   static RequestInformation _instance;
 
   /// The [RequestInformation] factory constructor...

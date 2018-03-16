@@ -64,6 +64,12 @@ class UserInformationService {
 
   /// The [authenticateLearn] method...
   Future authenticateLearn (String theUsername, String thePassword) async {
+    if (isAuthenticated) {
+      throw new UserException (
+        'Authentication has already completed; cannot authenticate again.'
+      );
+    }
+
     try {
       final Response authResponse = await _http.post (
         _LEARN_AUTH_URI,

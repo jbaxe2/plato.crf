@@ -37,6 +37,10 @@ class SectionsService {
 
   /// The [setCourseId] method...
   Future setCourseId (String courseId) async {
+    if (courseId == _courseId) {
+      return;
+    }
+
     _courseId = courseId;
 
     if (null != _termId) {
@@ -46,6 +50,10 @@ class SectionsService {
 
   /// The [setTermId] method...
   Future setTermId (String termId) async {
+    if (termId == _termId) {
+      return;
+    }
+
     _termId = termId;
 
     if (null != _courseId) {

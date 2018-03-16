@@ -37,6 +37,10 @@ class CoursesService {
 
   /// The [setDepartmentId] method...
   Future setDepartmentId (String departmentId) async {
+    if (departmentId == _departmentId) {
+      return;
+    }
+
     _departmentId = departmentId;
 
     if (null != _termId) {
@@ -46,6 +50,10 @@ class CoursesService {
 
   /// The [setTermId] method...
   Future setTermId (String termId) async {
+    if (termId == _termId) {
+      return;
+    }
+
     _termId = termId;
 
     if (null != _departmentId) {

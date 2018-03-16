@@ -12,6 +12,9 @@ import 'cross_listing_service.dart';
 @Component(
   selector: 'cross-listing',
   templateUrl: 'cross_listing_component.html',
+  styleUrls: const [
+    'package:angular_components/app_layout/layout.scss.css'
+  ],
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [CrossListingService]
 )
@@ -41,14 +44,27 @@ class CrossListingComponent implements OnInit {
   }
 
   /// The [addSectionToCrossListing] method...
-  void addSectionToCrossListing() =>
-    _crossListingService.addSectionToCrossListing (invokerSection, crossListing);
+  void addSectionToCrossListing() {
+    try {
+      _crossListingService.addSectionToCrossListing (invokerSection, crossListing);
+    } catch (_) {}
+  }
 
   /// The [removeSectionFromCrossListing] method...
-  void removeSectionFromCrossListing() =>
-    _crossListingService.removeSectionFromCrossListing (invokerSection, crossListing);
+  void removeSectionFromCrossListing() {
+    try {
+      _crossListingService.removeSectionFromCrossListing (invokerSection, crossListing);
+    } catch (_) {}
+  }
 
   /// The [removeCrossListing] method...
-  bool removeCrossListing() =>
-    _crossListingService.removeCrossListing (crossListing);
+  bool removeCrossListing() {
+    bool crossListingRemoved = false;
+
+    try {
+      crossListingRemoved = _crossListingService.removeCrossListing (crossListing);
+    } catch (_) {}
+
+    return crossListingRemoved;
+  }
 }

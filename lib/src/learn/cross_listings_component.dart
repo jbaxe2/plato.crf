@@ -49,5 +49,5 @@ class CrossListingsComponent implements OnInit {
   }
 
   /// The [confirmCrossListings] method...
-  void confirmCrossListings() => isVisible = false;
+  void confirmCrossListings() => (isVisible = false);
 }

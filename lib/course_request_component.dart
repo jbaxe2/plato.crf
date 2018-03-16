@@ -6,6 +6,7 @@ import 'package:angular_components/angular_components.dart';
 import 'src/banner/requesting_sections_component.dart';
 
 import 'src/crf/course_request_service.dart';
+import 'src/crf/directions_component.dart';
 import 'src/crf/error_component.dart';
 import 'src/crf/requested_sections_component.dart';
 
@@ -24,13 +25,15 @@ import 'src/user/user_component.dart';
     COMMON_DIRECTIVES, materialDirectives,
     UserComponent, RequestingSectionsComponent, RequestedSectionsComponent,
     CrossListingsComponent,
-    ErrorComponent
+    DirectionsComponent, ErrorComponent
   ],
   providers: const [materialProviders, CourseRequestService],
 )
 class CourseRequestComponent {
-  final CourseRequestService crfService;
+  bool get submittable => _crfService.submittable;
+
+  final CourseRequestService _crfService;
 
   /// The [CourseRequestComponent] constructor...
-  CourseRequestComponent (this.crfService);
+  CourseRequestComponent (this._crfService);
 }

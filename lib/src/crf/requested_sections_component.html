@@ -3,6 +3,12 @@
     padding-top: 0;
   }
 
+  :host ::ng-deep .meta-panels header {
+    font-weight: bold !important;
+    font-style: italic;
+    color: #062c43;
+  }
+
   p {
     padding: 15px;
     text-align: center;
@@ -11,8 +17,8 @@
   .requested-sections-header {
     background-color: #718198;
     position: relative;
-    top: 0;
-    margin: 0;
+    margin: 8px 8px 0 8px;
+    border: 1px solid #062c43;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -54,8 +60,8 @@
 <material-expansionpanel
     class="meta-panels"
     *ngIf="sections.isNotEmpty"
-    name="Icon Button Legend"
-    secondaryText="(use at bottom of requested sections)"
+    name="Icon Buttons Legend"
+    secondaryText="(use buttons at bottom of requested sections)"
     [expanded]="true"
     [showSaveCancel]="false">
   <span>
@@ -77,7 +83,7 @@
     <strong style="text-decoration: underline;">NOTE:</strong>
     use the icon buttons at the <strong><em>bottom</em></strong> of a
     <strong>requested section</strong> to apply the controls for
-    <strong>that particular section</strong>.
+    <strong>that particular section</strong>!
   </span>
 </material-expansionpanel>
 

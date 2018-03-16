@@ -13,7 +13,7 @@ import 'plato_exception.dart';
   selector: 'plato-error',
   templateUrl: 'error_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [ErrorService]
+  providers: const [materialProviders, ErrorService]
 )
 class ErrorComponent implements OnInit {
   Stream<PlatoException> errorStream;
