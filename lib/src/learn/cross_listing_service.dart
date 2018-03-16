@@ -7,6 +7,7 @@ import 'package:angular/core.dart';
 
 import '../banner/section.dart';
 
+import '../crf/extra_info_service.dart';
 import '../crf/request_information.dart';
 
 import 'cross_listing.dart';
@@ -14,12 +15,8 @@ import 'cross_listing_exception.dart';
 
 /// The [CrossListingService] class...
 @Injectable()
-class CrossListingService {
+class CrossListingService extends ExtraInfoService {
   List<CrossListing> crossListings;
-
-  Map<Section, CrossListing> crossListedSections;
-
-  StreamController<Section> sectionStreamer;
 
   StreamController<CrossListing> crossListingStreamer;
 
@@ -36,10 +33,9 @@ class CrossListingService {
     _requestInformation = new RequestInformation();
 
     crossListings = _requestInformation.crossListings;
-    crossListedSections = new Map<Section, CrossListing>();
-
-    sectionStreamer = new StreamController<Section>.broadcast();
     crossListingStreamer = new StreamController<CrossListing>.broadcast();
+
+    init();
   }
 
   /// The [createCrossListingSet] method...
@@ -51,11 +47,6 @@ class CrossListingService {
     } catch (_) { rethrow; }
 
     return crossListing;
-  }
-
-  /// The [invokeForSection] method...
-  void invokeForSection (Section section) {
-    sectionStreamer.add (section);
   }
 
   /// The [revokeSection] method...
@@ -75,7 +66,6 @@ class CrossListingService {
   void addSectionToCrossListing (Section theSection, CrossListing theCrossListing) {
     try {
       _requestInformation.addSectionToCrossListing (theSection, theCrossListing);
-      crossListedSections.putIfAbsent (theSection, () => theCrossListing);
     } catch (_) { rethrow; }
   }
 
@@ -83,7 +73,6 @@ class CrossListingService {
   void removeSectionFromCrossListing (Section theSection, CrossListing theCrossListing) {
     try {
       _requestInformation.removeSectionFromCrossListing (theSection, theCrossListing);
-      crossListedSections.remove (theSection);
     } catch (_) { rethrow; }
   }
 
@@ -95,6 +84,12 @@ class CrossListingService {
       throw new CrossListingException (
         'Cannot confirm cross-listings when one or more sets is empty.'
       );
+    }
+
+    if (crossListings.isEmpty) {
+      crossListingStreamer.add (null);
+
+      return;
     }
 
     crossListings.forEach (

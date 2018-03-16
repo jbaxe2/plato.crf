@@ -49,11 +49,7 @@ class RequestedSectionComponent implements OnInit {
   /// The [ngOnInit] method...
   void ngOnInit() {
     _crossListingService.crossListingStreamer.stream.listen (
-      (CrossListing crossListing) {
-        if (crossListing.sections.contains (section)) {
-          _crossListing = crossListing;
-        }
-      }
+      (CrossListing crossListing) => _updateCrossListingInfo (crossListing)
     );
   }
 
@@ -67,5 +63,35 @@ class RequestedSectionComponent implements OnInit {
   void removeSection() {
     _reqSectionsService.removeSection (section);
     _crossListing = null;
+  }
+
+  /// The [_updateCrossListingInfo] method...
+  void _updateCrossListingInfo (CrossListing crossListing) {
+    if (null == crossListing) {
+      _crossListing = null;
+
+      return;
+    }
+
+    if (crossListing.sections.contains (section)) {
+      _crossListing = crossListing;
+    } else {
+      if (crossListing == _crossListing) {
+        _crossListing = null;
+      }
+    }
+  }
+
+  /// The [_updatePreviousContentInfo] method...
+  void _updatePreviousContentInfo (PreviousContentMapping previousContent) {
+    if (null == previousContent) {
+      _previousContent = null;
+
+      return;
+    }
+
+    if (previousContent.section == section) {
+      _previousContent = previousContent;
+    }
   }
 }

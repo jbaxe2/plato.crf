@@ -5,6 +5,8 @@ import '../banner/section.dart';
 import 'package:plato_angular/src/learn/previous_content_mapping.dart';
 import 'package:plato_angular/src/learn/previous_content_exception.dart';
 
+import '../crf/requested_section.dart';
+
 import '../learn/cross_listing.dart';
 import '../learn/cross_listing_exception.dart';
 
@@ -23,6 +25,8 @@ class RequestInformation {
 
   List<PreviousContentMapping> previousContents;
 
+  Map<Section, RequestedSection> requestedSections;
+
   bool get submittable => (null != _userInformation) && sections.isNotEmpty;
 
   static RequestInformation _instance;
@@ -36,6 +40,8 @@ class RequestInformation {
     sections = new List<Section>();
     crossListings = new List<CrossListing>();
     previousContents = new List<PreviousContentMapping>();
+
+    requestedSections = new Map<Section, RequestedSection>();
   }
 
   /// The [setUserInformation] method...
@@ -67,14 +73,14 @@ class RequestInformation {
   /// The [removeSection] method...
   bool removeSection (Section aSection) {
     crossListings.forEach ((CrossListing crossListing) {
-      crossListing.sections.remove (aSection);
+      crossListing.sections?.remove (aSection);
     });
 
     previousContents.removeWhere (
       (PreviousContentMapping previousContent) => aSection == previousContent.section
     );
 
-    return sections.remove (aSection);
+    return sections?.remove (aSection);
   }
 
   /// The [addCrossListings] method...
@@ -122,8 +128,13 @@ class RequestInformation {
   }
 
   /// The [removeCrossListing] method...
-  bool removeCrossListing (CrossListing aCrossListing) =>
-    crossListings.remove (aCrossListing);
+  bool removeCrossListing (CrossListing aCrossListing) {
+    try {
+      return crossListings?.remove (aCrossListing);
+    } catch (_) {}
+
+    return false;
+  }
 
   /// The [addSectionToCrossListing] method...
   void addSectionToCrossListing (Section aSection, CrossListing aCrossListing) {
@@ -186,5 +197,27 @@ class RequestInformation {
     previousContents.removeWhere (
       (PreviousContentMapping previousContent) => (previousContent == aPreviousContent)
     );
+  }
+
+  /// The [addPreviousContentForSection] method...
+  void addPreviousContentForSection (
+    PreviousContentMapping thePreviousContent, Section theSection
+  ) {
+    ;
+  }
+
+  /// The [removePreviousContentForSection] method...
+  void removePreviousContentForSection (Section theSection) {
+    ;
+  }
+
+  /// The [verify] method...
+  bool verify() {
+    return false;
+  }
+
+  /// The [toJson] method...
+  Object toJson() {
+    return {};
   }
 }

@@ -59,12 +59,10 @@ class CrossListingComponent implements OnInit {
 
   /// The [removeCrossListing] method...
   bool removeCrossListing() {
-    bool crossListingRemoved = false;
-
     try {
-      crossListingRemoved = _crossListingService.removeCrossListing (crossListing);
+      _crossListingService.removeCrossListing (crossListing);
     } catch (_) {}
 
-    return crossListingRemoved;
+    return false;
   }
 }

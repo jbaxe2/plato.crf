@@ -33,7 +33,7 @@ class CrossListingsComponent implements OnInit {
     crossListings = _crossListingService.crossListings;
     isVisible = false;
 
-    _crossListingService.sectionStreamer.stream.listen (
+    _crossListingService.sectionsStreamer.stream.listen (
       (Section section) {
         invokerSection = section;
         isVisible = true;
