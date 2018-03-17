@@ -19,7 +19,7 @@
 
   <material-checkbox
       *ngFor="let section of sections"
-      value="section"
+      id="section-{{section.sectionId}}-checkbox"
       (change)="handleSectionSelection(section, $event)"
       themeColor="#062c43">
       [{{section.sectionId}}] {{section.title}} ({{section.faculty}})

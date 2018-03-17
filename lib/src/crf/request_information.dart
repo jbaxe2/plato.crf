@@ -62,6 +62,7 @@ class RequestInformation {
   void addSection (Section aSection) {
     if (!sections.contains (aSection)) {
       sections.add (aSection);
+      sections.sort();
     }
   }
 
@@ -72,15 +73,21 @@ class RequestInformation {
 
   /// The [removeSection] method...
   bool removeSection (Section aSection) {
-    crossListings.forEach ((CrossListing crossListing) {
-      crossListing.sections?.remove (aSection);
-    });
+    CrossListing crossListing;
+
+    try {
+      crossListing = crossListings.firstWhere (
+        (CrossListing someCrossListing) => someCrossListing.contains (aSection)
+      );
+    } catch (_) {}
+
+    removeSectionFromCrossListing (aSection, crossListing);
 
     previousContents.removeWhere (
       (PreviousContentMapping previousContent) => aSection == previousContent.section
     );
 
-    return sections?.remove (aSection);
+    return sections.remove (aSection);
   }
 
   /// The [addCrossListings] method...
@@ -130,7 +137,13 @@ class RequestInformation {
   /// The [removeCrossListing] method...
   bool removeCrossListing (CrossListing aCrossListing) {
     try {
-      return crossListings?.remove (aCrossListing);
+      var clSections = new List<Section>.from (aCrossListing.sections);
+
+      clSections.forEach ((Section aSection) {
+        removeSectionFromCrossListing (aSection, aCrossListing);
+      });
+
+      return crossListings.remove (aCrossListing);
     } catch (_) {}
 
     return false;

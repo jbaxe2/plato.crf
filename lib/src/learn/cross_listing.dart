@@ -36,6 +36,7 @@ class CrossListing {
   void addSection (Section section) {
     if (!sections.contains (section) && isCrossListableWith (section)) {
       sections.add (section);
+      sections.sort();
     }
   }
 

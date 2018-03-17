@@ -11,8 +11,14 @@
     text-align: right;
   }
 
+  material-list {
+    margin: 0;
+    padding: 0;
+  }
+
   .extra-info-panel {
     background-color: #ccc;
+    padding: 0;
   }
 </style>
 
@@ -32,23 +38,24 @@
 
   <div *ngIf="hasExtraInfo">
     <material-expansionpanel
-        *ngIf="hasPreviousContent"
-        name="Previous Content Info"
-        class="extra-info-panel"
-        [expanded]="true"
-        [hideExpandedHeader]="true"
-        [showSaveCancel]="false">
+        *ngIf="hasPreviousContent" name="Previous Content Info"
+        class="extra-info-panel dense" [expanded]="true"
+        [hideExpandedHeader]="true" [showSaveCancel]="false">
       <p>Here will be some previous content info.</p>
     </material-expansionpanel>
 
     <material-expansionpanel
-        *ngIf="hasCrossListing"
-        name="Cross-listing Info"
-        class="extra-info-panel"
-        [expanded]="true"
-        [hideExpandedHeader]="true"
-        [showSaveCancel]="false">
-      <p>Here will be some cross-listing info.</p>
+        *ngIf="hasCrossListing" name="Cross-listing Info"
+        class="extra-info-panel dense" [expanded]="true"
+        [hideExpandedHeader]="true" [showSaveCancel]="false">
+      <p style="font-size: small;">
+        Cross-listed with the following sections:
+      </p>
+      <material-list>
+        <material-list-item *ngFor="let clSection of crossListing.sections">
+          {{clSection.sectionId}}
+        </material-list-item>
+      </material-list>
     </material-expansionpanel>
   </div>
 

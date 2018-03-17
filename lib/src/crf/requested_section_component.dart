@@ -16,6 +16,7 @@ import 'requested_sections_service.dart';
 @Component(
   selector: 'requested-section',
   templateUrl: 'requested_section_component.html',
+  styleUrls: const ['requested_section_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [
     RequestedSectionsService, CrossListingService, PreviousContentService
@@ -27,9 +28,13 @@ class RequestedSectionComponent implements OnInit {
 
   CrossListing _crossListing;
 
+  CrossListing get crossListing => _crossListing;
+
   bool get hasCrossListing => (null != _crossListing);
 
   PreviousContentMapping _previousContent;
+
+  PreviousContentMapping get previousContent => _previousContent;
 
   bool get hasPreviousContent => (null != _previousContent);
 

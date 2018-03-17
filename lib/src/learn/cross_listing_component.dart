@@ -1,5 +1,7 @@
 library plato.angular.components.learn.cross_listing;
 
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 

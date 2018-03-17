@@ -74,11 +74,16 @@ class SectionsService {
       sections.clear();
 
       rawSections.forEach ((Map<String, String> rawSection) {
+        String faculty = rawSection['facname'].trim();
+
+        if ('' == faculty) {
+          faculty = 'Staff';
+        }
+
         sections.add (
           new Section (
             rawSection['crsno'], rawSection['term'], rawSection['crsno'],
-            rawSection['title'], rawSection['facname'], rawSection['mplace'],
-            rawSection['mtime']
+            rawSection['title'], faculty, rawSection['mplace'], rawSection['mtime']
           )
         );
       });
