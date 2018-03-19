@@ -52,6 +52,8 @@ class UserAuthenticationComponent implements OnInit {
 
       if (_userInfoService.isAuthenticated && _userInfoService.isLtiSession) {
         await _userInfoService.retrieveUser();
+
+        _retrieveEnrollmentsAndArchives();
       }
     } catch (_) {}
   }
@@ -64,8 +66,13 @@ class UserAuthenticationComponent implements OnInit {
 
       _crfService.setUserInformation (_userInfoService.userInformation);
 
-      _enrollmentsService.retrieveEnrollments();
-      _archivesService.retrieveArchives();
+      _retrieveEnrollmentsAndArchives();
     } catch (_) {}
+  }
+
+  /// The [_retrieveEnrollmentsAndArchives] method...
+  Future _retrieveEnrollmentsAndArchives() async {
+    _enrollmentsService.retrieveEnrollments();
+    _archivesService.retrieveArchives();
   }
 }

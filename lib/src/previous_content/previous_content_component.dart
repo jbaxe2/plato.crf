@@ -26,6 +26,8 @@ class PreviousContentComponent implements OnInit {
 
   bool isVisible;
 
+  Enrollment selected;
+
   final PreviousContentService _previousContentService;
 
   final EnrollmentsService _enrollmentsService;
@@ -40,10 +42,6 @@ class PreviousContentComponent implements OnInit {
 
     _previousContentService.sectionsStreamer.stream.listen (
       (Section section) {
-        window.console.log (
-          'Encountered a section (${section.sectionId}) for previous content'
-        );
-
         invokerSection = section;
         isVisible = true;
       }
@@ -56,5 +54,9 @@ class PreviousContentComponent implements OnInit {
   }
 
   /// The [confirmPreviousContent] method...
-  void confirmPreviousContent() {}
+  void confirmPreviousContent() {
+    window.console.log ('Selected ${selected.courseId} for previous content.');
+
+    isVisible = false;
+  }
 }

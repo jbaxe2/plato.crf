@@ -1,12 +1,39 @@
-<div>
-  <div>
-    <span>Plato Username: {{userInformation.username}}</span><br>
-    <span>Plato Password: *********</span><br>
+<style>
+  div {
+    background-color: #eee;
+    margin: 8px;
+    border: 1px dashed #ddd;
+    padding: 15px;
+  }
+
+  div.lti-info {
+    padding: 4px;
+    border: 1px dashed #bbb;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    color: #062c43;
+  }
+</style>
+
+<section>
+  <div *ngIf="userInformation.isLtiSession" class="lti-info">
+    <p>
+      You have been automatically logged into the request form.<br>
+      Please proceed to <strong><em>Step 2: Courses Selection</em></strong>.
+    </p>
   </div>
 
   <div>
-    <span>First name: {{userInformation.firstName}}</span><br>
-    <span>Last name: {{userInformation.lastName}}</span><br>
-    <span>E-mail address: {{userInformation.email}}</span>
+    <span><strong>Plato Username:</strong> {{userInformation.username}}</span><br>
+    <span><strong>Plato Password:</strong> *********</span><br>
   </div>
-</div>
+
+  <div>
+    <span><strong>First name:</strong> {{userInformation.firstName}}</span><br>
+    <span><strong>Last name:</strong> {{userInformation.lastName}}</span><br>
+    <span><strong>E-mail address:</strong> {{userInformation.email}}</span>
+  </div>
+</section>

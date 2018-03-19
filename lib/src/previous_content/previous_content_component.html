@@ -3,6 +3,10 @@
     font-size: medium;
   }
 
+  material-radio {
+    display: flex;
+  }
+
   material-button.error {
     background-color: #a44 !important;
     color: white !important;
@@ -11,8 +15,9 @@
 
   #enrollments-container {
     display: flex;
+    flex: initial;
     flex-direction: column;
-    max-height: 350px;
+    max-height: 300px;
     overflow-y: scroll !important;
   }
 </style>
@@ -25,13 +30,13 @@
     </div>
 
     <p *ngIf="enrollments.isEmpty">
-      Please authenticate with Plato <strong>(Step 1)</strong>.  Doing so will
-      allow<br>you to select a current or previous Plato enrollment to use<br>
-      as previous content for a requested section.
+      Please authenticate with Plato <strong>(Step 1: User Information)</strong>.
+      <br><br>Doing so will allow you to select a current or previous<br>Plato
+      enrollment to use as previous content for<br>a requested section.
     </p>
 
     <div *ngIf="enrollments.isNotEmpty" id="enrollments-container">
-      <material-radio-group>
+      <material-radio-group [(ngModel)]="selected">
         <material-radio
             *ngFor="let enrollment of enrollments"
             value="enrollment.courseId"

@@ -11,10 +11,10 @@ import 'cross_listing_service.dart';
 
 /// The [CrossListingsComponent] class...
 @Component(
-    selector: 'cross-listings',
-    templateUrl: 'cross_listings_component.html',
-    directives: const [CORE_DIRECTIVES, materialDirectives, CrossListingComponent],
-    providers: const [CrossListingService]
+  selector: 'cross-listings',
+  templateUrl: 'cross_listings_component.html',
+  directives: const [CORE_DIRECTIVES, materialDirectives, CrossListingComponent],
+  providers: const [CrossListingService]
 )
 class CrossListingsComponent implements OnInit {
   List<CrossListing> crossListings;
@@ -35,6 +35,10 @@ class CrossListingsComponent implements OnInit {
 
     _crossListingService.sectionsStreamer.stream.listen (
       (Section section) {
+        crossListings.removeWhere (
+          (CrossListing crossListing) => crossListing.sections.isEmpty
+        );
+
         invokerSection = section;
         isVisible = true;
       }

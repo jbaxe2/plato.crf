@@ -1,6 +1,6 @@
 library plato.angular.services.user.information;
 
-import 'dart:async' show Future;
+import 'dart:async' show Future, StreamController;
 import 'dart:convert' show JSON;
 
 import 'package:angular/core.dart';
@@ -32,6 +32,8 @@ class UserInformationService {
 
   bool get isAuthenticated => _isAuthenticated;
 
+  StreamController<bool> authStreamController;
+
   final Client _http;
 
   static UserInformationService _instance;
@@ -44,6 +46,8 @@ class UserInformationService {
   UserInformationService._ (this._http) {
     _isLtiSession = false;
     _isAuthenticated = false;
+
+    authStreamController = new StreamController<bool>.broadcast();
   }
 
   /// The [retrieveSession] method...
@@ -116,5 +120,7 @@ class UserInformationService {
     } catch (_) {
       throw new UserException ('Unable to retrieve the user information.');
     }
+
+    authStreamController.add (true);
   }
 }

@@ -32,5 +32,9 @@ class UserComponent implements OnInit {
   /// The [ngOnInit] method...
   void ngOnInit() {
     _isAuthenticated = _userInfoService.isAuthenticated;
+
+    _userInfoService.authStreamController.stream.listen (
+      (bool authReceived) => (_isAuthenticated = authReceived)
+    );
   }
 }

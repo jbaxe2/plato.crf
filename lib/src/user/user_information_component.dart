@@ -13,11 +13,14 @@ import 'user_information_service.dart';
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [UserInformationService]
 )
-class UserInformationComponent  {
+class UserInformationComponent implements OnInit {
   UserInformation userInformation;
 
-  final UserInformationService userInfoService;
+  final UserInformationService _userInfoService;
 
   /// The [UserInformationComponent] constructor...
-  UserInformationComponent (this.userInfoService);
+  UserInformationComponent (this._userInfoService);
+
+  /// The [ngOnInit] method...
+  void ngOnInit() => (userInformation = _userInfoService.userInformation);
 }
