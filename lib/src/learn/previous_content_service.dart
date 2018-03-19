@@ -11,6 +11,7 @@ import '../crf/request_information.dart';
 
 import '../learn/enrollment.dart';
 
+import 'previous_content_exception.dart';
 import 'previous_content_mapping.dart';
 
 /// The [PreviousContentService] class...
@@ -52,9 +53,12 @@ class PreviousContentService extends ExtraInfoService {
   /// The [revokeSection] method...
   void revokeSection() {}
 
-  /// The [addPreviousContents] method...
-  void addPreviousContents (List<PreviousContentMapping> previousContents) =>
-    _requestInformation.addPreviousContentMappings (previousContents);
+  /// The [addPreviousContent] method...
+  void addPreviousContent (PreviousContentMapping previousContent) {
+    _requestInformation.addPreviousContentMapping (previousContent);
+
+    previousContentStreamer.add (previousContent);
+  }
 
   /// The [removePreviousContent] method...
   void removePreviousContent (PreviousContentMapping previousContent) =>
@@ -65,5 +69,29 @@ class PreviousContentService extends ExtraInfoService {
     PreviousContentMapping previousContent, Section section
   ) {
     _requestInformation.addPreviousContentForSection (previousContent, section);
+  }
+
+  /// The [confirmPreviousContents] method...
+  void confirmPreviousContents() {
+    if (
+      previousContents.any (
+        (PreviousContentMapping previousContent) => (null == previousContent.enrollment)
+      )
+    ) {
+      throw new PreviousContentException (
+        'Cannot confirm previous contents when no enrollment has been selected.'
+      );
+    }
+
+    if (previousContents.isEmpty) {
+      previousContentStreamer.add (null);
+
+      return;
+    }
+
+    previousContents.forEach (
+      (PreviousContentMapping previousContent) =>
+        previousContentStreamer.add (previousContent)
+    );
   }
 }

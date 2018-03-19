@@ -1,6 +1,6 @@
 name: plato_angular
 description: A web app that uses AngularDart Components
-version: 0.19.20180317
+version: 0.19.20180319
 
 author: Joseph B. Axenroth
 
@@ -12,6 +12,8 @@ dependencies:
   angular_components: ^0.8.0
   http: ^0.11.3+13
   sass_builder: 1.1.4
+    #git:
+    #  url: 'https://github.com/dart-league/sass_builder.git'
 
 dev_dependencies:
   browser: ^0.10.0

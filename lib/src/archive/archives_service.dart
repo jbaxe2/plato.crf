@@ -25,7 +25,7 @@ class ArchivesService {
   ArchivesService._ (this._http);
 
   /// The [retrieveArchives] method...
-  Future retrieveArchives (String archiveId) async {}
+  Future retrieveArchives() async {}
 
   /// The [pullArchive] method...
   Future pullArchive (String archiveId, String termId) async {}

@@ -1,4 +1,4 @@
-library plato.angular.services.crf.request_information;
+library plato.angular.services.crf.request;
 
 import 'dart:async' show Future;
 
@@ -6,13 +6,13 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
-import '../banner/section.dart';
-import '../learn/cross_listing.dart';
-import '../learn/previous_content_mapping.dart';
-import '../user/user_information.dart';
+import 'src/banner/section.dart';
+import 'src/learn/cross_listing.dart';
+import 'src/learn/previous_content_mapping.dart';
+import 'src/user/user_information.dart';
 
-import 'crf_exception.dart';
-import 'request_information.dart';
+import 'src/crf/crf_exception.dart';
+import 'src/crf/request_information.dart';
 
 const String _SUBMISSION_URI = '/plato/submit/crf';
 
@@ -82,7 +82,7 @@ class CourseRequestService {
       }
 
       if (!crossListing.sections.every (
-          (Section section) => (_requestInformation.sections.contains (section))
+        (Section section) => (_requestInformation.sections.contains (section))
       )) {
         throw new CrfException (
           'Cannot have a cross-listing set containing a section which is not '

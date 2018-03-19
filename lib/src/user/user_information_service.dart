@@ -48,17 +48,21 @@ class UserInformationService {
 
   /// The [retrieveSession] method...
   Future retrieveSession() async {
-    final Response sessionResponse = await _http.get (_SESSION_URI);
+    try {
+      final Response sessionResponse = await _http.get (_SESSION_URI);
 
-    Map<String, dynamic> rawSession =
-      (JSON.decode (sessionResponse.body) as Map)['session'];
+      Map<String, dynamic> rawSession =
+        (JSON.decode (sessionResponse.body) as Map)['session'];
 
-    if ((rawSession.containsKey ('plato.session.exists')) &&
-        (rawSession.containsKey ('learn.user.authenticated'))) {
-      if ('true' == rawSession['learn.user.authenticated']) {
-        _isLtiSession = true;
-        _isAuthenticated = true;
+      if ((rawSession.containsKey ('plato.session.exists')) &&
+          (rawSession.containsKey ('learn.user.authenticated'))) {
+        if ('true' == rawSession['learn.user.authenticated']) {
+          _isLtiSession = true;
+          _isAuthenticated = true;
+        }
       }
+    } catch (_) {
+      throw new UserException ('Unable to determine if a user session exists.');
     }
   }
 

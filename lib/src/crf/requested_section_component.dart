@@ -62,7 +62,7 @@ class RequestedSectionComponent implements OnInit {
   void addToCrossListing() => _crossListingService.invokeForSection (section);
 
   /// The [copyPreviousContent] method...
-  void copyPreviousContent() {}
+  void copyPreviousContent() => _previousContentService.invokeForSection (section);
 
   /// The [removeSection] method...
   void removeSection() {

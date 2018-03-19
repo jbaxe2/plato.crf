@@ -5,7 +5,7 @@ import 'package:angular_components/angular_components.dart';
 
 import 'src/banner/requesting_sections_component.dart';
 
-import 'src/crf/course_request_service.dart';
+import 'package:plato_angular/course_request_service.dart';
 import 'src/crf/directions_component.dart';
 import 'src/crf/error_component.dart';
 import 'src/crf/requested_sections_component.dart';

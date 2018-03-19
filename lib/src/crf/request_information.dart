@@ -192,13 +192,13 @@ class RequestInformation {
 
   /// The [addPreviousContentMapping] method...
   void addPreviousContentMapping (PreviousContentMapping aPreviousContent) {
-    if (!previousContents.every (
+    if (previousContents.any (
       (PreviousContentMapping previousContent) =>
-        (previousContent.section != aPreviousContent.section)
+        (previousContent.section == aPreviousContent.section)
     )) {
       throw new PreviousContentException (
-        'Cannot add a previous content mapping for a section that is not part '
-        'of the course request.'
+        'Cannot add a previous content mapping for a section that already '
+        'contains other previous content.'
       );
     }
 

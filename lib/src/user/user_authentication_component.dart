@@ -5,7 +5,10 @@ import 'dart:async' show Future;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../crf/course_request_service.dart';
+import '../../course_request_service.dart';
+
+import '../learn/enrollments_service.dart';
+import '../archive/archives_service.dart';
 
 import 'user_information_service.dart';
 
@@ -15,7 +18,9 @@ import 'user_information_service.dart';
   templateUrl: 'user_authentication_component.html',
   styleUrls: const ['user_authentication_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [UserInformationService, CourseRequestService]
+  providers: const [
+    UserInformationService, CourseRequestService, EnrollmentsService, ArchivesService
+  ]
 )
 class UserAuthenticationComponent implements OnInit {
   String username;
@@ -28,8 +33,15 @@ class UserAuthenticationComponent implements OnInit {
 
   final CourseRequestService _crfService;
 
+  final EnrollmentsService _enrollmentsService;
+
+  final ArchivesService _archivesService;
+
   /// The [UserAuthenticationComponent] constructor...
-  UserAuthenticationComponent (this._userInfoService, this._crfService);
+  UserAuthenticationComponent (
+    this._userInfoService, this._crfService,
+    this._enrollmentsService, this._archivesService
+  );
 
   /// The [ngOnInit] method...
   @override
@@ -50,6 +62,9 @@ class UserAuthenticationComponent implements OnInit {
       await _userInfoService.retrieveUser();
 
       _crfService.setUserInformation (_userInfoService.userInformation);
+
+      _enrollmentsService.retrieveEnrollments();
+      _archivesService.retrieveArchives();
     } catch (_) {}
   }
 }
