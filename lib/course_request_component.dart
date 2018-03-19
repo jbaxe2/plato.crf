@@ -5,14 +5,16 @@ import 'package:angular_components/angular_components.dart';
 
 import 'src/banner/requesting_sections_component.dart';
 
-import 'package:plato_angular/course_request_service.dart';
 import 'src/crf/directions_component.dart';
 import 'src/crf/error_component.dart';
 import 'src/crf/requested_sections_component.dart';
 
 import 'src/learn/cross_listings_component.dart';
+import 'src/learn/previous_content_component.dart';
 
 import 'src/user/user_component.dart';
+
+import 'course_request_service.dart';
 
 /// The [CourseRequestComponent] component class...
 @Component(
@@ -25,7 +27,7 @@ import 'src/user/user_component.dart';
   directives: const [
     COMMON_DIRECTIVES, materialDirectives,
     UserComponent, RequestingSectionsComponent, RequestedSectionsComponent,
-    CrossListingsComponent,
+    CrossListingsComponent, PreviousContentComponent,
     DirectionsComponent, ErrorComponent
   ],
   providers: const [materialProviders, CourseRequestService],

@@ -30,6 +30,9 @@ class ArchivesService {
   /// The [pullArchive] method...
   Future pullArchive (String archiveId, String termId) async {}
 
+  /// The [browseArchive] method...
+  Future browseArchive (String archiveId) async {}
+
   /// The [retrieveContent] method...
   Future retrieveContent (String contentId) async {}
 }

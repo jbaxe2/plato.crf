@@ -56,8 +56,6 @@ class PreviousContentService extends ExtraInfoService {
   /// The [addPreviousContent] method...
   void addPreviousContent (PreviousContentMapping previousContent) {
     _requestInformation.addPreviousContentMapping (previousContent);
-
-    previousContentStreamer.add (previousContent);
   }
 
   /// The [removePreviousContent] method...

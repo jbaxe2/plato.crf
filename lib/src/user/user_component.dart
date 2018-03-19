@@ -29,6 +29,7 @@ class UserComponent implements OnInit {
     _isAuthenticated = false;
   }
 
+  /// The [ngOnInit] method...
   void ngOnInit() {
     _isAuthenticated = _userInfoService.isAuthenticated;
   }

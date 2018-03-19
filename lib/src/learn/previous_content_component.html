@@ -1,1 +1,56 @@
-<div></div>
+<style>
+  p {
+    font-size: large;
+  }
+
+  material-button.error {
+    background-color: #a44 !important;
+    color: white !important;
+    font-weight: bold !important;
+  }
+</style>
+
+<modal [visible]="isVisible">
+  <material-dialog headered>
+    <div header>
+      <h3 *ngIf="enrollments.isEmpty">Please authenticate first...</h3>
+      <h3 *ngIf="enrollments.isNotEmpty">Select previous content to copy...</h3>
+    </div>
+
+    <p *ngIf="enrollments.isEmpty">
+      Please authenticate with Plato <strong>(Step 1)</strong>.  Doing so will
+      allow<br>you to select a current or previous Plato enrollment to use<br>
+      as previous<br>content for a requested section.
+    </p>
+
+    <div *ngIf="enrollments.isNotEmpty">
+      <material-radio-group>
+        <material-radio
+            *ngFor="let enrollment of enrollments"
+            value="enrollment.courseId">
+          [{{enrollment.courseId}}] {{enrollment.courseName}}
+          <span *ngIf="enrollment.isArchive">
+            (<a (trigger)="browseArchive(enrollment.courseId)">browse archive</a>)
+          </span>
+        </material-radio>
+      </material-radio-group>
+    </div>
+
+    <div footer>
+      <material-button
+          *ngIf="enrollments.isNotEmpty"
+          raised
+          (trigger)="confirmPreviousContent()">
+        Confirm Previous Content
+      </material-button>
+
+      <material-button
+          raised
+          [class.error]="enrollments.isEmpty"
+          (trigger)="isVisible = false">
+        <span *ngIf="enrollments.isEmpty">OK</span>
+        <span *ngIf="enrollments.isNotEmpty">Cancel</span>
+      </material-button>
+    </div>
+  </material-dialog>
+</modal>

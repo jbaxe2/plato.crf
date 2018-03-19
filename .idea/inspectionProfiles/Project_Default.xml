@@ -20,7 +20,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="41">
+          <list size="44">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -62,6 +62,9 @@
             <item index="38" class="java.lang.String" itemvalue="error" />
             <item index="39" class="java.lang.String" itemvalue="plato-error" />
             <item index="40" class="java.lang.String" itemvalue="directions" />
+            <item index="41" class="java.lang.String" itemvalue="material-radio-group" />
+            <item index="42" class="java.lang.String" itemvalue="material-radio" />
+            <item index="43" class="java.lang.String" itemvalue="previous-content" />
           </list>
         </value>
       </option>

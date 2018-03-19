@@ -81,7 +81,9 @@ class RequestedSectionComponent implements OnInit {
     if (crossListing.sections.contains (section)) {
       _crossListing = crossListing;
     } else {
-      if (crossListing == _crossListing) {
+      bool crossListingEmpty = _crossListing?.sections?.isEmpty;
+
+      if ((crossListing == _crossListing) || crossListingEmpty) {
         _crossListing = null;
       }
     }

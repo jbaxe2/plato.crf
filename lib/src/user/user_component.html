@@ -1,4 +1,4 @@
 <div>
-  <user-authentication></user-authentication>
-  <user-information></user-information>
+  <user-authentication *ngIf="!isAuthenticated"></user-authentication>
+  <user-information *ngIf="isAuthenticated"></user-information>
 </div>
