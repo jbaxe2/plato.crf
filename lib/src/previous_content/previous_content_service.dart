@@ -4,15 +4,15 @@ import 'dart:async' show StreamController;
 
 import 'package:angular/core.dart';
 
-import '../banner/section.dart';
+import 'package:plato_angular/src/sections/section.dart';
 
 import '../crf/extra_info_service.dart';
 import '../crf/request_information.dart';
 
-import '../learn/enrollment.dart';
+import 'package:plato_angular/src/enrollments/enrollment.dart';
 
-import 'previous_content_exception.dart';
-import 'previous_content_mapping.dart';
+import 'package:plato_angular/src/previous_content/previous_content_exception.dart';
+import 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
 
 /// The [PreviousContentService] class...
 @Injectable()

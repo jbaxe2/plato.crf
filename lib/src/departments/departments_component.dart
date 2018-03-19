@@ -1,12 +1,13 @@
-library plato.angular.components.banner.departments;
+library plato.angular.components.departments;
 
 import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
+import '../course/courses_service.dart';
+
 import 'department.dart';
-import 'courses_service.dart';
 import 'departments_service.dart';
 
 /// The [DepartmentsComponent] component class...
@@ -36,9 +37,11 @@ class DepartmentsComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   Future ngOnInit() async {
-    await deptsService.retrieveDepartments();
+    try {
+      await deptsService.retrieveDepartments();
 
-    departments = deptsService.departments;
+      departments = deptsService.departments;
+    } catch (_) {}
   }
 
   /// The [onDepartmentSelected] method...

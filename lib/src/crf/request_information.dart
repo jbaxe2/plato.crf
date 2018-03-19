@@ -1,14 +1,13 @@
 library plato.angular.models.crf.request_information;
 
-import '../banner/section.dart';
+import '../cross_listings/cross_listing.dart';
+import '../cross_listings/cross_listing_exception.dart';
 
-import 'package:plato_angular/src/learn/previous_content_mapping.dart';
-import 'package:plato_angular/src/learn/previous_content_exception.dart';
+import '../previous_content/previous_content_mapping.dart';
+import '../previous_content/previous_content_exception.dart';
 
-import '../crf/requested_section.dart';
-
-import '../learn/cross_listing.dart';
-import '../learn/cross_listing_exception.dart';
+import '../sections/section.dart';
+import '../sections/requested_section.dart';
 
 import '../user/user_exception.dart';
 import '../user/user_information.dart';

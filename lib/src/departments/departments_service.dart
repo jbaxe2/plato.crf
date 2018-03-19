@@ -9,7 +9,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:plato_angular/src/banner/banner_exception.dart';
 
-import 'department.dart';
+import 'package:plato_angular/src/departments/department.dart';
 
 const String _DEPTS_URI = '/plato/retrieve/departments';
 

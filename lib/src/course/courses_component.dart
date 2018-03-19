@@ -1,11 +1,12 @@
-library plato.angular.components.banner.courses;
+library plato.angular.components.course.courses;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'course.dart';
-import 'courses_service.dart';
-import 'sections_service.dart';
+import '../course/course.dart';
+import '../course/courses_service.dart';
+
+import '../sections/sections_service.dart';
 
 /// The [CoursesComponent] component class...
 @Component(

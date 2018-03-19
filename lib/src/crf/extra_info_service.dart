@@ -2,7 +2,7 @@ library plato.angular.services.crf.extra_info;
 
 import 'dart:async' show StreamController;
 
-import '../banner/section.dart';
+import 'package:plato_angular/src/sections/section.dart';
 
 /// The [ExtraInfoService] class...
 abstract class ExtraInfoService {

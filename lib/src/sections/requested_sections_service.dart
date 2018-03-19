@@ -2,7 +2,7 @@ library plato.angular.services.crf.requesting_sections;
 
 import 'package:angular/core.dart';
 
-import '../banner/section.dart';
+import 'package:plato_angular/src/sections/section.dart';
 
 import '../crf/request_information.dart';
 

@@ -1,6 +1,6 @@
 library plato.angular.models.banner.section;
 
-import 'banner_exception.dart';
+import 'section_exception.dart';
 
 /// The [Section] class...
 class Section implements Comparable {
@@ -81,7 +81,7 @@ class Section implements Comparable {
   /// The [compareTo] method...
   int compareTo (dynamic other) {
     if (!(other is Section)) {
-      throw new BannerException ('Cannot compare a section to some other type.');
+      throw new SectionException ('Cannot compare a section to some other type.');
     }
 
     return sectionId.compareTo (other.sectionId);

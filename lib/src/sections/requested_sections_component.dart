@@ -3,10 +3,10 @@ library plato.angular.components.crf.sections.requested;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../banner/section.dart';
+import 'package:plato_angular/src/sections/section.dart';
 
-import 'requested_section_component.dart';
-import 'requested_sections_service.dart';
+import 'package:plato_angular/src/sections/requested_section_component.dart';
+import 'package:plato_angular/src/sections/requested_sections_service.dart';
 
 /// The [RequestedSectionsComponent] class...
 @Component(

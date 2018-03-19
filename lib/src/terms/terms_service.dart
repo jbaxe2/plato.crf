@@ -9,7 +9,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:plato_angular/src/learn/learn_exception.dart';
 
-import 'term.dart';
+import 'package:plato_angular/src/terms/term.dart';
 
 const String _TERMS_URI = '/plato/retrieve/terms';
 

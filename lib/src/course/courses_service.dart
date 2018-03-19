@@ -1,4 +1,4 @@
-library plato.angular.services.banner.courses;
+library plato.angular.services.course.courses;
 
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;
@@ -7,9 +7,8 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart' show Client, Response;
 
-import 'package:plato_angular/src/banner/banner_exception.dart';
-
 import 'course.dart';
+import 'course_exception.dart';
 
 const String _COURSES_URI = '/plato/retrieve/courses';
 
@@ -77,7 +76,7 @@ class CoursesService {
         courses.add (new Course (rawCourse['courseId'], rawCourse['title']));
       });
     } catch (_) {
-      throw new BannerException ('Unable to retrieve the courses list.');
+      throw new CourseException ('Unable to retrieve the courses list.');
     }
   }
 }

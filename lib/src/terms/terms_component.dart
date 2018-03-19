@@ -5,11 +5,11 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../banner/courses_service.dart';
-import '../banner/sections_service.dart';
+import 'package:plato_angular/src/course/courses_service.dart';
+import 'package:plato_angular/src/sections/sections_service.dart';
 
-import 'term.dart';
-import 'terms_service.dart';
+import 'package:plato_angular/src/terms/term.dart';
+import 'package:plato_angular/src/terms/terms_service.dart';
 
 /// The [TermsComponent] component class...
 @Component(

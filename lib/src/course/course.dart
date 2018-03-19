@@ -1,4 +1,4 @@
-library plato.angular.models.banner.course;
+library plato.angular.models.course;
 
 /// The [Course] class...
 class Course {

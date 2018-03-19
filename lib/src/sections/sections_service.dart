@@ -9,7 +9,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:plato_angular/src/banner/banner_exception.dart';
 
-import 'section.dart';
+import 'package:plato_angular/src/sections/section.dart';
 
 const String _SECTIONS_URI = '/plato/retrieve/sections';
 

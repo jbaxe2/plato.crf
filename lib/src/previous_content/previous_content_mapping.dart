@@ -1,8 +1,8 @@
 library plato.angular.models.learn.previous_content;
 
-import '../banner/section.dart';
+import 'package:plato_angular/src/sections/section.dart';
 
-import 'enrollment.dart';
+import 'package:plato_angular/src/enrollments/enrollment.dart';
 
 /// The [PreviousContentMapping] class...
 class PreviousContentMapping {

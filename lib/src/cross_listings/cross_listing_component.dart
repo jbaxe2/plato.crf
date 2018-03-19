@@ -1,11 +1,9 @@
-library plato.angular.components.learn.cross_listing;
-
-import 'dart:html';
+library plato.angular.components.cross_listing;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../banner/section.dart';
+import '../sections/section.dart';
 
 import 'cross_listing.dart';
 import 'cross_listing_service.dart';

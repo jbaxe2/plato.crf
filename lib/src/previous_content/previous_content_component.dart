@@ -5,11 +5,11 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../banner/section.dart';
+import 'package:plato_angular/src/sections/section.dart';
 
-import 'enrollment.dart';
-import 'enrollments_service.dart';
-import 'previous_content_service.dart';
+import 'package:plato_angular/src/enrollments/enrollment.dart';
+import 'package:plato_angular/src/enrollments/enrollments_service.dart';
+import 'package:plato_angular/src/previous_content/previous_content_service.dart';
 
 /// The [PreviousContentComponent] class...
 @Component(

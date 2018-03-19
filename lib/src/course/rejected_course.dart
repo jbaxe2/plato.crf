@@ -1,6 +1,6 @@
-library plato.angular.models.crf.rejected_course;
+library plato.angular.models.course.rejected;
 
-import '../banner/course.dart';
+import 'course.dart';
 
 /// The [RejectedCourse] class...
 class RejectedCourse extends Course {

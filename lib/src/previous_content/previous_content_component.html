@@ -1,12 +1,19 @@
 <style>
   p {
-    font-size: large;
+    font-size: medium;
   }
 
   material-button.error {
     background-color: #a44 !important;
     color: white !important;
     font-weight: bold !important;
+  }
+
+  #enrollments-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 350px;
+    overflow-y: scroll !important;
   }
 </style>
 
@@ -20,19 +27,20 @@
     <p *ngIf="enrollments.isEmpty">
       Please authenticate with Plato <strong>(Step 1)</strong>.  Doing so will
       allow<br>you to select a current or previous Plato enrollment to use<br>
-      as previous<br>content for a requested section.
+      as previous content for a requested section.
     </p>
 
-    <div *ngIf="enrollments.isNotEmpty">
+    <div *ngIf="enrollments.isNotEmpty" id="enrollments-container">
       <material-radio-group>
         <material-radio
             *ngFor="let enrollment of enrollments"
-            value="enrollment.courseId">
+            value="enrollment.courseId"
+            themeColor="#062c43">
           [{{enrollment.courseId}}] {{enrollment.courseName}}
           <span *ngIf="enrollment.isArchive">
             (<a (trigger)="browseArchive(enrollment.courseId)">browse archive</a>)
           </span>
-        </material-radio>
+        </material-radio><br>
       </material-radio-group>
     </div>
 

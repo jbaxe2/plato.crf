@@ -3,14 +3,14 @@ library plato.angular.course_request;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'src/banner/requesting_sections_component.dart';
+import 'package:plato_angular/src/sections/requesting_sections_component.dart';
 
 import 'src/crf/directions_component.dart';
 import 'src/crf/error_component.dart';
-import 'src/crf/requested_sections_component.dart';
+import 'package:plato_angular/src/sections/requested_sections_component.dart';
 
-import 'src/learn/cross_listings_component.dart';
-import 'src/learn/previous_content_component.dart';
+import 'package:plato_angular/src/cross_listings/cross_listings_component.dart';
+import 'package:plato_angular/src/previous_content/previous_content_component.dart';
 
 import 'src/user/user_component.dart';
 

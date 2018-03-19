@@ -5,10 +5,10 @@ import 'dart:async' show StreamController;
 import 'package:angular/angular.dart';
 import 'package:angular/core.dart';
 
-import '../banner/section.dart';
-
 import '../crf/extra_info_service.dart';
 import '../crf/request_information.dart';
+
+import '../sections/section.dart';
 
 import 'cross_listing.dart';
 import 'cross_listing_exception.dart';

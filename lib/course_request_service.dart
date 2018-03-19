@@ -6,9 +6,9 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
-import 'src/banner/section.dart';
-import 'src/learn/cross_listing.dart';
-import 'src/learn/previous_content_mapping.dart';
+import 'package:plato_angular/src/sections/section.dart';
+import 'package:plato_angular/src/cross_listings/cross_listing.dart';
+import 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
 import 'src/user/user_information.dart';
 
 import 'src/crf/crf_exception.dart';

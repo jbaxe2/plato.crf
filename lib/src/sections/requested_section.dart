@@ -1,10 +1,10 @@
 library plato.angular.models.crf.requested_section;
 
-import '../banner/section.dart';
+import 'package:plato_angular/src/sections/section.dart';
 
-import '../learn/cross_listing.dart';
+import 'package:plato_angular/src/cross_listings/cross_listing.dart';
 
-import 'package:plato_angular/src/learn/previous_content_mapping.dart';
+import 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
 
 /// The [RequestedSection] class...
 class RequestedSection {

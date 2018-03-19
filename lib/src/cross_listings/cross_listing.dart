@@ -1,6 +1,6 @@
-library plato.angular.models.learn.cross_listing;
+library plato.angular.models.cross_listing;
 
-import '../banner/section.dart';
+import '../sections/section.dart';
 
 /// The [CrossListing] class...
 class CrossListing {

@@ -3,10 +3,10 @@ library plato.angular.components.banner.sections.selection;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../crf/requested_sections_service.dart';
+import 'package:plato_angular/src/sections/requested_sections_service.dart';
 
-import 'section.dart';
-import 'sections_service.dart';
+import 'package:plato_angular/src/sections/section.dart';
+import 'package:plato_angular/src/sections/sections_service.dart';
 
 /// The [SectionsSelectionComponent] class...
 @Component(
