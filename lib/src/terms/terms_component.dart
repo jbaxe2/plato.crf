@@ -1,15 +1,16 @@
-library plato.angular.components.banner.terms;
+library plato.angular.components.terms;
 
 import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'package:plato_angular/src/course/courses_service.dart';
-import 'package:plato_angular/src/sections/sections_service.dart';
+import '../course/courses_service.dart';
 
-import 'package:plato_angular/src/terms/term.dart';
-import 'package:plato_angular/src/terms/terms_service.dart';
+import '../sections/sections_service.dart';
+
+import 'term.dart';
+import 'terms_service.dart';
 
 /// The [TermsComponent] component class...
 @Component(

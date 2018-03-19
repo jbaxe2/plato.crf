@@ -11,9 +11,7 @@ dependencies:
   angular: ^4.0.0+2
   angular_components: ^0.8.0
   http: ^0.11.3+13
-  sass_builder: 1.1.4
-    #git:
-    #  url: 'https://github.com/dart-league/sass_builder.git'
+  sass_builder: 1.1.5
 
 dev_dependencies:
   browser: ^0.10.0

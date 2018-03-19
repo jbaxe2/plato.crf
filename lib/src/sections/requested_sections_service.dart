@@ -1,10 +1,10 @@
-library plato.angular.services.crf.requesting_sections;
+library plato.angular.services.sections.requested;
 
 import 'package:angular/core.dart';
 
-import 'package:plato_angular/src/sections/section.dart';
-
 import '../crf/request_information.dart';
+
+import 'section.dart';
 
 /// The [RequestedSectionsService] class...
 @Injectable()

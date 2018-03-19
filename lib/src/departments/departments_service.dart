@@ -1,4 +1,4 @@
-library plato.angular.services.banner.departments;
+library plato.angular.services.departments;
 
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;
@@ -7,9 +7,8 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart' show Client, Response;
 
-import 'package:plato_angular/src/banner/banner_exception.dart';
-
-import 'package:plato_angular/src/departments/department.dart';
+import 'department.dart';
+import 'department_exception.dart';
 
 const String _DEPTS_URI = '/plato/retrieve/departments';
 
@@ -45,7 +44,7 @@ class DepartmentsService {
         departments.add (new Department (rawDept['code'], rawDept['description']));
       });
     } catch (_) {
-      throw new BannerException ('Unable to retrieve the departments list.');
+      throw new DepartmentException ('Unable to retrieve the departments list.');
     }
   }
 }

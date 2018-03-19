@@ -1,4 +1,4 @@
-library plato.angular.services.banner.terms;
+library plato.angular.services.terms;
 
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;
@@ -7,9 +7,8 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart' show Client, Response;
 
-import 'package:plato_angular/src/learn/learn_exception.dart';
-
-import 'package:plato_angular/src/terms/term.dart';
+import 'term.dart';
+import 'term_exception.dart';
 
 const String _TERMS_URI = '/plato/retrieve/terms';
 
@@ -45,7 +44,7 @@ class TermsService {
         terms.add (new Term (rawTerm['id'], rawTerm['description']));
       });
     } catch (_) {
-      throw new LearnException ('Unable to retrieve the list of terms.');
+      throw new TermException ('Unable to retrieve the list of terms.');
     }
   }
 }

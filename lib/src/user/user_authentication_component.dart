@@ -7,8 +7,9 @@ import 'package:angular_components/angular_components.dart';
 
 import '../../course_request_service.dart';
 
-import 'package:plato_angular/src/enrollments/enrollments_service.dart';
 import '../archive/archives_service.dart';
+
+import '../enrollments/enrollments_service.dart';
 
 import 'user_information_service.dart';
 

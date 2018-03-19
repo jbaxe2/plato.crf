@@ -1,13 +1,13 @@
-library plato.angular.components.learn.cross_listings;
+library plato.angular.components.cross_listings;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
 import 'package:plato_angular/src/sections/section.dart';
 
-import 'package:plato_angular/src/cross_listings/cross_listing.dart';
-import 'package:plato_angular/src/cross_listings/cross_listing_component.dart';
-import 'package:plato_angular/src/cross_listings/cross_listing_service.dart';
+import 'cross_listing.dart';
+import 'cross_listing_component.dart';
+import 'cross_listing_service.dart';
 
 /// The [CrossListingsComponent] class...
 @Component(

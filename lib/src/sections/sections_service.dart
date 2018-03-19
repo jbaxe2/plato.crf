@@ -1,4 +1,4 @@
-library plato.angular.services.banner.sections;
+library plato.angular.services.sections;
 
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;
@@ -7,9 +7,9 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart' show Client, Response;
 
-import 'package:plato_angular/src/banner/banner_exception.dart';
+import 'section_exception.dart';
 
-import 'package:plato_angular/src/sections/section.dart';
+import 'section.dart';
 
 const String _SECTIONS_URI = '/plato/retrieve/sections';
 
@@ -87,8 +87,10 @@ class SectionsService {
           )
         );
       });
+
+      sections.sort();
     } catch (_) {
-      throw new BannerException (
+      throw new SectionException (
         'Retrieving the sections information resulted in an error.'
       );
     }

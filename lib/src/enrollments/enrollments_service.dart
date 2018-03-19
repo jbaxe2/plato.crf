@@ -1,4 +1,4 @@
-library plato.angular.services.learn.enrollments;
+library plato.angular.services.enrollments;
 
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;

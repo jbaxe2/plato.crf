@@ -1,4 +1,4 @@
-library plato.angular.models.banner.section;
+library plato.angular.models.section;
 
 import 'section_exception.dart';
 

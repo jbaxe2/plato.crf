@@ -1,4 +1,4 @@
-library plato.angular.services.learn.cross_listing;
+library plato.angular.services.cross_listing;
 
 import 'dart:async' show StreamController;
 

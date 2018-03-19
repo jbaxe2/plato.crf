@@ -1,4 +1,4 @@
-library plato.angular.models.banner.department;
+library plato.angular.models.department;
 
 /// The [Department] class...
 class Department {

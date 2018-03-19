@@ -1,4 +1,4 @@
-library plato.angular.models.learn.term;
+library plato.angular.models.term;
 
 /// The [Term] class...
 class Term {

@@ -3,9 +3,9 @@ library plato.angular.services.user.information;
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;
 
-import 'package:http/http.dart' show Client, Response;
-
 import 'package:angular/core.dart';
+
+import 'package:http/http.dart' show Client, Response;
 
 import '../user/user_exception.dart';
 
