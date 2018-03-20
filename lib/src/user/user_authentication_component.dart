@@ -5,7 +5,7 @@ import 'dart:async' show Future;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../archive/archives_service.dart';
+import '../archives/archives_service.dart';
 
 import '../course_request/course_request_service.dart';
 

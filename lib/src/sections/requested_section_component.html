@@ -41,14 +41,20 @@
         *ngIf="hasPreviousContent" name="Previous Content Info"
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
-      <p>Here will be some previous content info.</p>
+      <p style="font-size: small; font-weight: bold;">
+        Content will be based on the following previous course:
+      </p>
+      <p>
+        <strong>Course ID:</strong>&nbsp; {{previousContent.enrollment.courseId}}<br>
+        <strong>Course Name:</strong>&nbsp; {{previousContent.enrollment.courseName}}
+      </p>
     </material-expansionpanel>
 
     <material-expansionpanel
         *ngIf="hasCrossListing" name="Cross-listing Info"
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
-      <p style="font-size: small;">
+      <p style="font-size: small; font-weight: bold;">
         Cross-listed with the following sections:
       </p>
       <material-list>

@@ -17,6 +17,7 @@
     display: flex;
     flex: initial;
     flex-direction: column;
+    margin-bottom: 8px;
     max-height: 300px;
     overflow-y: scroll !important;
   }
@@ -39,7 +40,8 @@
       <material-radio-group [(ngModel)]="selected">
         <material-radio
             *ngFor="let enrollment of enrollments"
-            value="enrollment.courseId"
+            [value]="enrollment"
+            (trigger)="selected = enrollment"
             themeColor="#062c43">
           [{{enrollment.courseId}}] {{enrollment.courseName}}
           <span *ngIf="enrollment.isArchive">

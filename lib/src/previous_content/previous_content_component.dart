@@ -10,6 +10,7 @@ import '../enrollments/enrollments_service.dart';
 
 import '../sections/section.dart';
 
+import 'previous_content_mapping.dart';
 import 'previous_content_service.dart';
 
 /// The [PreviousContentComponent] class...
@@ -55,7 +56,20 @@ class PreviousContentComponent implements OnInit {
 
   /// The [confirmPreviousContent] method...
   void confirmPreviousContent() {
-    window.console.log ('Selected ${selected.courseId} for previous content.');
+    try {
+      PreviousContentMapping previousContent =
+        _previousContentService.previousContents.firstWhere (
+          (PreviousContentMapping prevContent) => (prevContent.section == invokerSection)
+        );
+
+      if (null == previousContent) {
+        _previousContentService.createPreviousContent (invokerSection, selected);
+      } else {
+        previousContent.enrollment = selected;
+      }
+
+      _previousContentService.confirmPreviousContents();
+    } catch (_) {}
 
     isVisible = false;
   }

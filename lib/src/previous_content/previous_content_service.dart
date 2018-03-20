@@ -8,8 +8,7 @@ import '../course_request/request_information.dart';
 
 import '../enrollments/enrollment.dart';
 
-import '../extra_info/extra_info_service.dart';
-
+import '../sections/extended_section_service.dart';
 import '../sections/section.dart';
 
 import 'previous_content_exception.dart';
@@ -17,7 +16,7 @@ import 'previous_content_mapping.dart';
 
 /// The [PreviousContentService] class...
 @Injectable()
-class PreviousContentService extends ExtraInfoService {
+class PreviousContentService extends ExtendedSectionService {
   List<PreviousContentMapping> previousContents;
 
   StreamController<PreviousContentMapping> previousContentStreamer;

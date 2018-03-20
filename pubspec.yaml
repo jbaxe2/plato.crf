@@ -1,6 +1,6 @@
 name: plato_angular
 description: A rewrite of the Plato Course Request Form, written in AngularDart.
-version: 0.20.20180320
+version: 0.22.20180320
 
 author: Joseph B. Axenroth
 

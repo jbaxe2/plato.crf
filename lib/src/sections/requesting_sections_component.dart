@@ -3,7 +3,7 @@ library plato.angular.components.sections.requesting;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../course/courses_component.dart';
+import '../courses/courses_component.dart';
 
 import '../departments/departments_component.dart';
 

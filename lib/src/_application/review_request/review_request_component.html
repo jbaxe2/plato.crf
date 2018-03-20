@@ -1,0 +1,42 @@
+<modal [visible]="isVisible">
+  <material-dialog headered>
+    <div header>
+      <h3>Review and submit the course request...</h3>
+    </div>
+
+    <div>
+      <material-expansionpanel
+          name="User Information"
+          [expanded]="true"
+          [showSaveCancel]="false">
+        <p>User information will be here.</p>
+      </material-expansionpanel>
+
+      <material-expansionpanel
+          name="Requested Sections"
+          [expanded]="true"
+          [showSaveCancel]="false">
+        <p>Requested sections will be here.</p>
+      </material-expansionpanel>
+
+      <material-expansionpanel
+          name="Cross-listing Information"
+          [expanded]="true"
+          [showSaveCancel]="false">
+        <p>Cross-listing information will be here.</p>
+      </material-expansionpanel>
+
+      <material-expansionpanel
+          name="Previous Content Information"
+          [expanded]="true"
+          [showSaveCancel]="false">
+        <p>Previous content information will be here.</p>
+      </material-expansionpanel>
+    </div>
+
+    <div footer>
+      <material-button raised>Submit Course Request</material-button>
+      <material-button raised>Edit Information</material-button>
+    </div>
+  </material-dialog>
+</modal>

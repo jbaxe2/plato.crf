@@ -1,11 +1,11 @@
-library plato.angular.services.extra_info;
+library plato.angular.services.sections.extended;
 
 import 'dart:async' show StreamController;
 
-import '../sections/section.dart';
+import 'section.dart';
 
-/// The [ExtraInfoService] class...
-abstract class ExtraInfoService {
+/// The [ExtendedSectionService] class...
+abstract class ExtendedSectionService {
   /// A [StreamController] that will add instances of [Section] to a stream.
   /// Note that it is imperative that each subclass (representing a service for
   /// some type of extra info) must have its own instance of the stream

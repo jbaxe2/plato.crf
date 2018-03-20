@@ -56,6 +56,11 @@ class RequestedSectionComponent implements OnInit {
     _crossListingService.crossListingStreamer.stream.listen (
       (CrossListing crossListing) => _updateCrossListingInfo (crossListing)
     );
+
+    _previousContentService.previousContentStreamer.stream.listen (
+      (PreviousContentMapping previousContent) =>
+        _updatePreviousContentInfo (previousContent)
+    );
   }
 
   /// The [addToCrossListing] method...
