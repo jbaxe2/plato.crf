@@ -56,12 +56,16 @@ class PreviousContentComponent implements OnInit {
 
   /// The [confirmPreviousContent] method...
   void confirmPreviousContent() {
+    PreviousContentMapping previousContent;
+
     try {
-      PreviousContentMapping previousContent =
+      previousContent =
         _previousContentService.previousContents.firstWhere (
           (PreviousContentMapping prevContent) => (prevContent.section == invokerSection)
         );
+    } catch (_) {}
 
+    try {
       if (null == previousContent) {
         _previousContentService.createPreviousContent (invokerSection, selected);
       } else {

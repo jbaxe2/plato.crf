@@ -54,12 +54,12 @@ class RequestedSectionComponent implements OnInit {
   /// The [ngOnInit] method...
   void ngOnInit() {
     _crossListingService.crossListingStreamer.stream.listen (
-      (CrossListing crossListing) => _updateCrossListingInfo (crossListing)
+      (CrossListing aCrossListing) => _updateCrossListingInfo (aCrossListing)
     );
 
     _previousContentService.previousContentStreamer.stream.listen (
-      (PreviousContentMapping previousContent) =>
-        _updatePreviousContentInfo (previousContent)
+      (PreviousContentMapping aPreviousContent) =>
+        _updatePreviousContentInfo (aPreviousContent)
     );
   }
 
@@ -76,34 +76,34 @@ class RequestedSectionComponent implements OnInit {
   }
 
   /// The [_updateCrossListingInfo] method...
-  void _updateCrossListingInfo (CrossListing crossListing) {
-    if (null == crossListing) {
+  void _updateCrossListingInfo (CrossListing theCrossListing) {
+    if (null == theCrossListing) {
       _crossListing = null;
 
       return;
     }
 
-    if (crossListing.sections.contains (section)) {
-      _crossListing = crossListing;
+    if (theCrossListing.sections.contains (section)) {
+      _crossListing = theCrossListing;
     } else {
       bool crossListingEmpty = _crossListing?.sections?.isEmpty;
 
-      if ((crossListing == _crossListing) || crossListingEmpty) {
+      if ((theCrossListing == _crossListing) || crossListingEmpty) {
         _crossListing = null;
       }
     }
   }
 
   /// The [_updatePreviousContentInfo] method...
-  void _updatePreviousContentInfo (PreviousContentMapping previousContent) {
-    if (null == previousContent) {
+  void _updatePreviousContentInfo (PreviousContentMapping thePreviousContent) {
+    if (null == thePreviousContent) {
       _previousContent = null;
 
       return;
     }
 
-    if (previousContent.section == section) {
-      _previousContent = previousContent;
+    if (thePreviousContent.section == section) {
+      _previousContent = thePreviousContent;
     }
   }
 }

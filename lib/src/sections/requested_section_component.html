@@ -42,11 +42,10 @@
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
       <p style="font-size: small; font-weight: bold;">
-        Content will be based on the following previous course:
+        Content will be based on the following:
       </p>
-      <p>
-        <strong>Course ID:</strong>&nbsp; {{previousContent.enrollment.courseId}}<br>
-        <strong>Course Name:</strong>&nbsp; {{previousContent.enrollment.courseName}}
+      <p style="background-color: #eee; padding: 8px; font-size: small;">
+        {{previousContent.enrollment.courseId}}
       </p>
     </material-expansionpanel>
 
@@ -55,7 +54,7 @@
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
       <p style="font-size: small; font-weight: bold;">
-        Cross-listed with the following sections:
+        Part of the following cross-listing set:
       </p>
       <material-list>
         <material-list-item *ngFor="let clSection of crossListing.sections">
