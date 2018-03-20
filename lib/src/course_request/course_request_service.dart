@@ -1,4 +1,4 @@
-library plato.angular.services.crf.request;
+library plato.angular.services.course_request;
 
 import 'dart:async' show Future;
 
@@ -46,10 +46,10 @@ class CourseRequestService {
     } catch (_) { rethrow; }
   }
 
-  /// The [submitCrf] method...
-  Future submitCrf() async {
+  /// The [submitCourseRequest] method...
+  Future submitCourseRequest() async {
     try {
-      _validateCrf();
+      _validateCourseRequest();
     } catch (_) { rethrow; }
 
     try {
@@ -57,37 +57,43 @@ class CourseRequestService {
 
       crfResponse.body;
     } catch (_) {
-      throw new CrfException (
+      throw new CourseRequestException (
         'An error has occurred while attempting to submit the course request.'
       );
     }
   }
 
-  /// The [_validateCrf] method...
-  void _validateCrf() {
+  /// The [_validateCourseRequest] method...
+  void _validateCourseRequest() {
     if (null == _requestInformation) {
-      throw new CrfException ('Cannot submit a course request that does not exist.');
+      throw new CourseRequestException (
+        'Cannot submit a course request that does not exist.'
+      );
     }
 
     if (null == _requestInformation.userInformation) {
-      throw new CrfException (
+      throw new CourseRequestException (
         'No user information has been provided to submit the course request.'
       );
     }
 
     if (_requestInformation.sections.isEmpty) {
-      throw new CrfException ('No sections have been selected for this course request.');
+      throw new CourseRequestException (
+        'No sections have been selected for this course request.'
+      );
     }
 
     _requestInformation.crossListings.forEach ((CrossListing crossListing) {
       if (crossListing.sections.length < 2) {
-        throw new CrfException ('Cannot have a cross-listing set with only one section.');
+        throw new CourseRequestException (
+          'Cannot have a cross-listing set with only one section.'
+        );
       }
 
       if (!crossListing.sections.every (
         (Section section) => (_requestInformation.sections.contains (section))
       )) {
-        throw new CrfException (
+        throw new CourseRequestException (
           'Cannot have a cross-listing set containing a section which is not '
             'part of the course request.'
         );
@@ -96,7 +102,7 @@ class CourseRequestService {
 
     _requestInformation.previousContents.forEach ((PreviousContentMapping previousContent) {
       if (!_requestInformation.sections.contains (previousContent.section)) {
-        throw new CrfException (
+        throw new CourseRequestException (
           'Cannot have previous content specified for a section that is not part '
             'of the course request.'
         );

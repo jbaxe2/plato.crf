@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
 import '../../course_request/course_request_service.dart';
+import '../../course_request/request_information.dart';
 
 /// The [ReviewRequestComponent] class...
 @Component(
@@ -15,6 +16,8 @@ import '../../course_request/course_request_service.dart';
 class ReviewRequestComponent implements OnInit {
   bool isVisible;
 
+  RequestInformation requestInformation;
+
   final CourseRequestService _crfService;
 
   /// The [ReviewRequestComponent] constructor...
@@ -22,6 +25,14 @@ class ReviewRequestComponent implements OnInit {
 
   /// The [ngOnInit] method...
   void ngOnInit() {
+    requestInformation = new RequestInformation();
     isVisible = false;
+  }
+
+  /// The [submitCrf] method...
+  void submitCrf() {
+    try {
+      _crfService.submitCourseRequest();
+    } catch (_) {}
   }
 }
