@@ -1,6 +1,6 @@
 library plato.angular.models.learn.enrollment;
 
-import 'package:plato_angular/src/enrollments/enrollments_exception.dart';
+import 'enrollments_exception.dart';
 
 /// The [Enrollment] class...
 class Enrollment implements Comparable {

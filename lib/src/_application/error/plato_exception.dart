@@ -1,6 +1,6 @@
 library plato.angular.exceptions.plato;
 
-import 'error_service.dart';
+import 'package:plato_angular/src/_application/error/error_service.dart';
 
 /// The [PlatoException] class...
 class PlatoException implements Exception {

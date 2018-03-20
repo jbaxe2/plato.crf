@@ -1,6 +1,6 @@
 library plato.angular.exceptions.department;
 
-import '../crf/plato_exception.dart';
+import '../_application/error/plato_exception.dart';
 
 /// The [DepartmentException] class...
 class DepartmentException extends PlatoException {

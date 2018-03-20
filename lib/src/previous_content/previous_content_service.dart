@@ -4,10 +4,11 @@ import 'dart:async' show StreamController;
 
 import 'package:angular/core.dart';
 
-import '../crf/extra_info_service.dart';
-import '../crf/request_information.dart';
+import '../course_request/request_information.dart';
 
 import '../enrollments/enrollment.dart';
+
+import '../extra_info/extra_info_service.dart';
 
 import '../sections/section.dart';
 

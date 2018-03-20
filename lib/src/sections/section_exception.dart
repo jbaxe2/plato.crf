@@ -1,6 +1,6 @@
 library plato.angular.exceptions.section;
 
-import '../crf/plato_exception.dart';
+import '../_application/error/plato_exception.dart';
 
 /// The [SectionException] class...
 class SectionException extends PlatoException {

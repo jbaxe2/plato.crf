@@ -1,6 +1,6 @@
 library plato.angular.exceptions.course;
 
-import '../crf/plato_exception.dart';
+import '../_application/error/plato_exception.dart';
 
 /// The [CourseException] class...
 class CourseException extends PlatoException {

@@ -1,6 +1,6 @@
 library plato.angular.exceptions.term;
 
-import '../crf/plato_exception.dart';
+import '../_application/error/plato_exception.dart';
 
 /// The [TermException] class...
 class TermException extends PlatoException {

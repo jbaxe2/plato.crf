@@ -6,13 +6,16 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
-import 'package:plato_angular/src/sections/section.dart';
-import 'package:plato_angular/src/cross_listings/cross_listing.dart';
-import 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
-import 'src/user/user_information.dart';
+import '../cross_listings/cross_listing.dart';
 
-import 'src/crf/crf_exception.dart';
-import 'src/crf/request_information.dart';
+import '../previous_content/previous_content_mapping.dart';
+
+import '../sections/section.dart';
+
+import '../user/user_information.dart';
+
+import 'course_request_exception.dart';
+import 'request_information.dart';
 
 const String _SUBMISSION_URI = '/plato/submit/crf';
 

@@ -1,6 +1,6 @@
 library plato.angular.exceptions.enrollments;
 
-import '../crf/plato_exception.dart';
+import '../_application/error/plato_exception.dart';
 
 /// The [EnrollmentsException] class...
 class EnrollmentsException extends PlatoException {

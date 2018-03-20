@@ -7,8 +7,8 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
-import 'package:plato_angular/src/enrollments/enrollment.dart';
-import 'package:plato_angular/src/enrollments/enrollments_exception.dart';
+import 'enrollment.dart';
+import 'enrollments_exception.dart';
 
 const String _ENROLLMENTS_URI = '/plato/retrieve/enrollments/instructor';
 

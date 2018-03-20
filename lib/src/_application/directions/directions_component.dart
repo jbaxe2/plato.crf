@@ -1,4 +1,4 @@
-library plato.angular.components.crf.directions;
+library plato.angular.components.application.directions;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

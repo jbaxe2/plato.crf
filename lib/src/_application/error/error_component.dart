@@ -1,12 +1,12 @@
-library plato.angular.components.crf.error;
+library plato.angular.components.application.error;
 
 import 'dart:async' show Stream;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'error_service.dart';
-import 'plato_exception.dart';
+import 'package:plato_angular/src/_application/error/error_service.dart';
+import 'package:plato_angular/src/_application/error/plato_exception.dart';
 
 /// The [ErrorComponent] class...
 @Component(

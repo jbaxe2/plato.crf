@@ -1,6 +1,6 @@
 library plato.angular.exceptions.user;
 
-import '../crf/plato_exception.dart';
+import '../_application/error/plato_exception.dart';
 
 /// The [UserException] class...
 class UserException extends PlatoException {
