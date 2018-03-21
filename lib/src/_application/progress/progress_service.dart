@@ -20,12 +20,11 @@ class ProgressService {
     messageStreamController = new StreamController<String>.broadcast();
   }
 
-  /// The [invokeProgress] method...
-  void invokeProgress (String message) =>
-    messageStreamController.add (
-      message ?? '(Progress invoked with unkown message.)'
-    );
+  /// The [invoke] method...
+  void invoke (String message) => messageStreamController.add (
+    message ?? '(Status indicator invoked with unkown message.)'
+  );
 
-  /// The [revokeProgress] method...
-  void revokeProgress() => messageStreamController.add (null);
+  /// The [revoke] method...
+  void revoke() => messageStreamController.add (null);
 }

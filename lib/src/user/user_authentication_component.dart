@@ -5,6 +5,8 @@ import 'dart:async' show Future;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
+import '../_application/progress/progress_service.dart';
+
 import '../archives/archives_service.dart';
 
 import '../course_request/course_request_service.dart';
@@ -20,7 +22,8 @@ import 'user_information_service.dart';
   styleUrls: const ['user_authentication_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [
-    UserInformationService, CourseRequestService, EnrollmentsService, ArchivesService
+    UserInformationService, CourseRequestService, EnrollmentsService,
+    ArchivesService, ProgressService
   ]
 )
 class UserAuthenticationComponent implements OnInit {
@@ -38,41 +41,59 @@ class UserAuthenticationComponent implements OnInit {
 
   final ArchivesService _archivesService;
 
+  final ProgressService _progressService;
+
   /// The [UserAuthenticationComponent] constructor...
   UserAuthenticationComponent (
     this._userInfoService, this._crfService,
-    this._enrollmentsService, this._archivesService
+    this._enrollmentsService, this._archivesService,
+    this._progressService
   );
 
   /// The [ngOnInit] method...
   @override
   Future ngOnInit() async {
     try {
+      _progressService.invoke (
+        'Determining launch context and session information.'
+      );
+
       await _userInfoService.retrieveSession();
 
       if (_userInfoService.isAuthenticated && _userInfoService.isLtiSession) {
+        _progressService.invoke ('Retrieving the user information.');
+
         await _userInfoService.retrieveUser();
 
         _retrieveEnrollmentsAndArchives();
       }
     } catch (_) {}
+
+    _progressService.revoke();
   }
 
   /// The [authenticateLearn] method...
   Future authenticateLearn() async {
     try {
-      await _userInfoService.authenticateLearn (username, password);
-      await _userInfoService.retrieveUser();
+      _progressService.invoke (
+        'Attempting to verify Plato credentials.'
+      );
 
+      await _userInfoService.authenticateLearn (username, password);
+      _progressService.invoke ('Retrieving the user information.');
+
+      await _userInfoService.retrieveUser();
       _crfService.setUserInformation (_userInfoService.userInformation);
 
       _retrieveEnrollmentsAndArchives();
     } catch (_) {}
+
+    _progressService.revoke();
   }
 
   /// The [_retrieveEnrollmentsAndArchives] method...
   Future _retrieveEnrollmentsAndArchives() async {
-    _enrollmentsService.retrieveEnrollments();
-    _archivesService.retrieveArchives();
+    await _enrollmentsService.retrieveEnrollments();
+    await _archivesService.retrieveArchives();
   }
 }

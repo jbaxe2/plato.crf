@@ -1,5 +1,14 @@
-<modal visible="isVisible">
-  <material-dialog>
-    <
+<modal [visible]="isVisible">
+  <material-dialog headered>
+    <div header>
+      <h3>
+        <material-icon icon="cached" baseline></material-icon>
+        Please wait...
+      </h3>
+    </div>
+
+    <p style="font-weight: bold;">{{message}}</p>
+
+    <material-progress [indeterminate]="true"></material-progress>
   </material-dialog>
 </modal>
