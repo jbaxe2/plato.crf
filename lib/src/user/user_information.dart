@@ -18,9 +18,21 @@ class UserInformation {
 
   bool get isLtiSession => _isLtiSession;
 
-  /// The [UserInformation] constructor...
-  UserInformation (
-    this.username, this.password, this.firstName, this.lastName, this.email, this.cwid,
-    [this._isLtiSession = false]
+  static UserInformation _instance;
+
+  /// The [UserInformation] factory constructor...
+  factory UserInformation (
+    String username, String password, String firstName, String lastName,
+    String email, String cwid, [bool isLtiSession = false]
+  ) {
+    return _instance ?? (_instance = new UserInformation._ (
+      username, password, firstName, lastName, email, cwid, isLtiSession
+    ));
+  }
+
+  /// The [UserInformation] private constructor...
+  UserInformation._ (
+    this.username, this.password, this.firstName, this.lastName, this.email,
+    this.cwid, [this._isLtiSession = false]
   );
 }

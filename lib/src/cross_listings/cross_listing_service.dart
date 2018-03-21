@@ -7,7 +7,7 @@ import 'package:angular/core.dart';
 
 import '../course_request/request_information.dart';
 
-import '../sections/extended_section_service.dart';
+import '../sections/featured_section_service.dart';
 import '../sections/section.dart';
 
 import 'cross_listing.dart';
@@ -15,7 +15,7 @@ import 'cross_listing_exception.dart';
 
 /// The [CrossListingService] class...
 @Injectable()
-class CrossListingService extends ExtendedSectionService {
+class CrossListingService extends FeaturedSectionService {
   List<CrossListing> crossListings;
 
   StreamController<CrossListing> crossListingStreamer;

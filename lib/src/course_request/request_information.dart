@@ -3,6 +3,8 @@ library plato.angular.models.crf.request_information;
 import '../cross_listings/cross_listing.dart';
 import '../cross_listings/cross_listing_exception.dart';
 
+import '../enrollments/enrollment.dart';
+
 import '../previous_content/previous_content_mapping.dart';
 import '../previous_content/previous_content_exception.dart';
 
@@ -211,11 +213,17 @@ class RequestInformation {
     );
   }
 
-  /// The [addPreviousContentForSection] method...
-  void addPreviousContentForSection (
-    PreviousContentMapping thePreviousContent, Section theSection
+  /// The [setPreviousContentEnrollment] method...
+  void setPreviousContentEnrollment (
+    PreviousContentMapping thePreviousContent, Enrollment enrollment
   ) {
-    ;
+    if (!previousContents.contains (thePreviousContent)) {
+      throw new PreviousContentException (
+        'The previous content specified is not attached to any requested section.'
+      );
+    }
+
+    thePreviousContent.enrollment = enrollment;
   }
 
   /// The [removePreviousContentForSection] method...

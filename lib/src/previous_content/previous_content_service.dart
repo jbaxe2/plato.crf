@@ -1,4 +1,4 @@
-library plato.angular.services.learn.previous_content;
+library plato.angular.services.previous_content;
 
 import 'dart:async' show StreamController;
 
@@ -8,7 +8,7 @@ import '../course_request/request_information.dart';
 
 import '../enrollments/enrollment.dart';
 
-import '../sections/extended_section_service.dart';
+import '../sections/featured_section_service.dart';
 import '../sections/section.dart';
 
 import 'previous_content_exception.dart';
@@ -16,7 +16,7 @@ import 'previous_content_mapping.dart';
 
 /// The [PreviousContentService] class...
 @Injectable()
-class PreviousContentService extends ExtendedSectionService {
+class PreviousContentService extends FeaturedSectionService {
   List<PreviousContentMapping> previousContents;
 
   StreamController<PreviousContentMapping> previousContentStreamer;
@@ -62,11 +62,11 @@ class PreviousContentService extends ExtendedSectionService {
   void removePreviousContent (PreviousContentMapping previousContent) =>
     _requestInformation.removePreviousContent (previousContent);
 
-  /// The [addPreviousContentForSection] method...
-  void addPreviousContentForSection (
-    PreviousContentMapping previousContent, Section section
+  /// The [setPreviousContentEnrollment] method...
+  void setPreviousContentEnrollment (
+    PreviousContentMapping previousContent, Enrollment enrollment
   ) {
-    _requestInformation.addPreviousContentForSection (previousContent, section);
+    _requestInformation.setPreviousContentEnrollment (previousContent, enrollment);
   }
 
   /// The [confirmPreviousContents] method...

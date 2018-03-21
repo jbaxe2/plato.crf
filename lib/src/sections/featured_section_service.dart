@@ -4,8 +4,8 @@ import 'dart:async' show StreamController;
 
 import 'section.dart';
 
-/// The [ExtendedSectionService] class...
-abstract class ExtendedSectionService {
+/// The [FeaturedSectionService] class...
+abstract class FeaturedSectionService {
   /// A [StreamController] that will add instances of [Section] to a stream.
   /// Note that it is imperative that each subclass (representing a service for
   /// some type of extra info) must have its own instance of the stream

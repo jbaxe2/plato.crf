@@ -18,7 +18,7 @@ import 'previous_content_service.dart';
   selector: 'previous-content',
   templateUrl: 'previous_content_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [PreviousContentService, EnrollmentsService]
+  providers: const [materialProviders, PreviousContentService, EnrollmentsService]
 )
 class PreviousContentComponent implements OnInit {
   List<Enrollment> enrollments;
@@ -69,7 +69,9 @@ class PreviousContentComponent implements OnInit {
       if (null == previousContent) {
         _previousContentService.createPreviousContent (invokerSection, selected);
       } else {
-        previousContent.enrollment = selected;
+        _previousContentService.setPreviousContentEnrollment(
+          previousContent, selected
+        );
       }
 
       _previousContentService.confirmPreviousContents();
