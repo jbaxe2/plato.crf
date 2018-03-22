@@ -39,9 +39,7 @@ class CrossListingComponent implements OnInit {
 
   /// The [ngOnInit] method...
   @override
-  void ngOnInit() {
-    sections = crossListing.sections;
-  }
+  void ngOnInit() => (sections = crossListing.sections);
 
   /// The [addSectionToCrossListing] method...
   void addSectionToCrossListing() {

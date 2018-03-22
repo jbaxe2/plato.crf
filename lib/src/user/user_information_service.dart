@@ -112,6 +112,8 @@ class UserInformationService {
       Map<String, String> rawUser =
         (JSON.decode (userResponse.body) as Map)['user'];
 
+      _username = rawUser['learn.user.username'];
+
       userInformation = new UserInformation (
         _username, _password, rawUser['learn.user.firstName'],
         rawUser['learn.user.lastName'], rawUser['learn.user.email'],

@@ -11,6 +11,10 @@
 
   material-radio {}
 
+  material-button {
+    background-color: #718198 !important;
+  }
+
   material-button.error {
     background-color: #a44 !important;
     color: white !important;
@@ -45,8 +49,7 @@
         <span *ngFor="let enrollment of enrollments">
           <material-radio
               [value]="enrollment"
-              (trigger)="selected = enrollment"
-              themeColor="#062c43">
+              (trigger)="selected = enrollment">
             [{{enrollment.courseId}}] {{enrollment.courseName}}
           </material-radio>
           <span *ngIf="enrollment.isArchive">

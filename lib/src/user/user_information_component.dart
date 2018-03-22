@@ -22,5 +22,6 @@ class UserInformationComponent implements OnInit {
   UserInformationComponent (this._userInfoService);
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit() => (userInformation = _userInfoService.userInformation);
 }

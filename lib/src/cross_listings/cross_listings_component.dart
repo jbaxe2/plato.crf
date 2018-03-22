@@ -29,6 +29,7 @@ class CrossListingsComponent implements OnInit {
   CrossListingsComponent (this._crossListingService);
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit ()  {
     crossListings = _crossListingService.crossListings;
     isVisible = false;

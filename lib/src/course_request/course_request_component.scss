@@ -1,4 +1,5 @@
 @import 'package:angular_components/css/material/material';
 @import 'package:angular_components/material_tab/mixins';
 
-@include tab-strip-color('.crf-tabs', #062c43, #ddd);
+@include tab-strip-color('material-content', #062c43, #718198);
+@include tab-strip-selected-tab-color('material-content', #062c43);

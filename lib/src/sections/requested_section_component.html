@@ -11,6 +11,10 @@
     text-align: right;
   }
 
+  ::ng-deep material-button {
+    background-color: #bbb !important;
+  }
+
   material-list {
     margin: 0;
     padding: 0;
@@ -60,6 +64,12 @@
         <material-list-item *ngFor="let clSection of crossListing.sections">
           {{clSection.sectionId}}
         </material-list-item>
+
+        <material-list-item *ngIf="crossListing.sections.length == 1">
+        <strong style="color: #a44;">
+          Please add one or more sections.
+        </strong>
+      </material-list-item>
       </material-list>
     </material-expansionpanel>
   </div>

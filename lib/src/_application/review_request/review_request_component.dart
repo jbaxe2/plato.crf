@@ -6,6 +6,8 @@ import 'package:angular_components/angular_components.dart';
 import '../../course_request/course_request_service.dart';
 import '../../course_request/request_information.dart';
 
+import '../progress/progress_service.dart';
+
 /// The [ReviewRequestComponent] class...
 @Component(
   selector: 'review-request',
@@ -20,10 +22,13 @@ class ReviewRequestComponent implements OnInit {
 
   final CourseRequestService _crfService;
 
+  final ProgressService _progressService;
+
   /// The [ReviewRequestComponent] constructor...
-  ReviewRequestComponent (this._crfService);
+  ReviewRequestComponent (this._crfService, this._progressService);
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit() {
     requestInformation = new RequestInformation();
     isVisible = false;
@@ -31,8 +36,12 @@ class ReviewRequestComponent implements OnInit {
 
   /// The [submitCrf] method...
   void submitCrf() {
+    _progressService.invoke ('Submitting the course request.');
+
     try {
       _crfService.submitCourseRequest();
     } catch (_) {}
+
+    _progressService.revoke();
   }
 }

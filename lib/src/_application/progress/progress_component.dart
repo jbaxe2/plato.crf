@@ -9,6 +9,7 @@ import 'progress_service.dart';
 @Component(
   selector: 'plato-progress',
   templateUrl: 'progress_component.html',
+  styleUrls: const ['progress_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [materialProviders, ProgressService]
 )
@@ -28,6 +29,7 @@ class ProgressComponent implements OnInit {
   );
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit() {
     _progressService.messageStreamController.stream.listen (
       (String theMessage) {

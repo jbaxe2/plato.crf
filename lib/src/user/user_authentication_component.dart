@@ -45,9 +45,8 @@ class UserAuthenticationComponent implements OnInit {
 
   /// The [UserAuthenticationComponent] constructor...
   UserAuthenticationComponent (
-    this._userInfoService, this._crfService,
-    this._enrollmentsService, this._archivesService,
-    this._progressService
+    this._userInfoService, this._crfService, this._enrollmentsService,
+    this._archivesService, this._progressService
   );
 
   /// The [ngOnInit] method...
@@ -73,13 +72,10 @@ class UserAuthenticationComponent implements OnInit {
   /// The [authenticateLearn] method...
   Future authenticateLearn() async {
     try {
-      _progressService.invoke (
-        'Attempting to verify Plato credentials.'
-      );
-
+      _progressService.invoke ('Attempting to verify Plato credentials.');
       await _userInfoService.authenticateLearn (username, password);
-      _progressService.invoke ('Retrieving the user information.');
 
+      _progressService.invoke ('Retrieving the user information.');
       await _userInfoService.retrieveUser();
       _crfService.setUserInformation (_userInfoService.userInformation);
 

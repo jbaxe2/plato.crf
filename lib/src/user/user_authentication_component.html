@@ -3,16 +3,14 @@
       floatingLabel
       label="Plato Username"
       [(ngModel)]="username"
-      [disabled]="isAuthenticated"
-      themeColor="#062c43"></material-input><br>
+      [disabled]="isAuthenticated"></material-input><br>
 
   <material-input
       floatingLabel
       label="Plato Password"
       type="password"
       [(ngModel)]="password"
-      [disabled]="isAuthenticated"
-      themeColor="#062c43"></material-input><br>
+      [disabled]="isAuthenticated"></material-input><br>
 
   <material-button raised [disabled]="isAuthenticated" (trigger)="authenticateLearn()">
     <material-icon icon="vpn_key"></material-icon> Authenticate

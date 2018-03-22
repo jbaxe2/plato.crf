@@ -50,6 +50,7 @@ class PreviousContentComponent implements OnInit {
   );
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit() {
     enrollments = _enrollmentsService.enrollments;
     isVisible = false;

@@ -23,6 +23,7 @@ class SubmissionResponseComponent implements OnInit {
   SubmissionResponseComponent (this._crfService);
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit() {
     rejectedCourses = new List<RejectedCourse>();
   }

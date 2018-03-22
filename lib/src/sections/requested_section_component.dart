@@ -52,6 +52,7 @@ class RequestedSectionComponent implements OnInit {
   );
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit() {
     _crossListingService.crossListingStreamer.stream.listen (
       (CrossListing aCrossListing) => _updateCrossListingInfo (aCrossListing)
