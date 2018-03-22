@@ -1,6 +1,6 @@
 library plato.angular.components.departments;
 
-import 'dart:async';
+import 'dart:async' show Future;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

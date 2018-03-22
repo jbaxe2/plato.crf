@@ -1,9 +1,13 @@
 library plato.angular.components.previous_content;
 
-import 'dart:html';
+import 'dart:async' show Future;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
+
+import '../_application/progress/progress_service.dart';
+
+import '../archives/archives_service.dart';
 
 import '../enrollments/enrollment.dart';
 import '../enrollments/enrollments_service.dart';
@@ -18,7 +22,9 @@ import 'previous_content_service.dart';
   selector: 'previous-content',
   templateUrl: 'previous_content_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [materialProviders, PreviousContentService, EnrollmentsService]
+  providers: const [
+    PreviousContentService, EnrollmentsService, ArchivesService, ProgressService
+  ]
 )
 class PreviousContentComponent implements OnInit {
   List<Enrollment> enrollments;
@@ -33,8 +39,15 @@ class PreviousContentComponent implements OnInit {
 
   final EnrollmentsService _enrollmentsService;
 
+  final ArchivesService _archivesService;
+
+  final ProgressService _progressService;
+
   /// The [PreviousContentComponent] constructor...
-  PreviousContentComponent (this._previousContentService, this._enrollmentsService);
+  PreviousContentComponent (
+    this._previousContentService, this._enrollmentsService, this._archivesService,
+    this._progressService
+  );
 
   /// The [ngOnInit] method...
   void ngOnInit() {
@@ -47,11 +60,25 @@ class PreviousContentComponent implements OnInit {
         isVisible = true;
       }
     );
+
+    _archivesService.archiveStreamController.stream.listen (
+      (Enrollment archiveEnrollment) => enrollments.add (archiveEnrollment)
+    );
   }
 
   /// The [browseArchive] method...
-  void browseArchive (String archiveId) {
-    window.console.debug ('Attempting to view archive info for $archiveId.');
+  Future browseArchive (String archiveId) async {
+    try {
+      String termId = (archiveId.split ('_')).last;
+
+      _progressService.invoke ('Pulling the archive for browsing.');
+      await _archivesService.pullArchive (archiveId, termId);
+
+      _progressService.invoke ('Processing course archive information.');
+      await _archivesService.browseArchive (archiveId);
+    } catch (_) {}
+
+    _progressService.revoke();
   }
 
   /// The [confirmPreviousContent] method...

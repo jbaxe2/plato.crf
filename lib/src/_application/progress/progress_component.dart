@@ -1,7 +1,5 @@
 library plato.angular.components.application.progress;
 
-import 'dart:html';
-
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -33,8 +31,6 @@ class ProgressComponent implements OnInit {
   void ngOnInit() {
     _progressService.messageStreamController.stream.listen (
       (String theMessage) {
-        window.console.log ('received a progress message:\n"$theMessage"');
-
         message = theMessage ?? _defaultMessage;
 
         isVisible = (null != theMessage);

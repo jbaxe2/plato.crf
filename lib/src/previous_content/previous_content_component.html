@@ -3,9 +3,13 @@
     font-size: medium;
   }
 
-  material-radio {
-    display: flex;
+  a {
+    font-weight: bold;
+    color: #062c43;
+    text-decoration: underline;
   }
+
+  material-radio {}
 
   material-button.error {
     background-color: #a44 !important;
@@ -38,16 +42,17 @@
 
     <div *ngIf="enrollments.isNotEmpty" id="enrollments-container">
       <material-radio-group [(ngModel)]="selected">
-        <material-radio
-            *ngFor="let enrollment of enrollments"
-            [value]="enrollment"
-            (trigger)="selected = enrollment"
-            themeColor="#062c43">
-          [{{enrollment.courseId}}] {{enrollment.courseName}}
+        <span *ngFor="let enrollment of enrollments">
+          <material-radio
+              [value]="enrollment"
+              (trigger)="selected = enrollment"
+              themeColor="#062c43">
+            [{{enrollment.courseId}}] {{enrollment.courseName}}
+          </material-radio>
           <span *ngIf="enrollment.isArchive">
-            (<a (trigger)="browseArchive(enrollment.courseId)">browse archive</a>)
-          </span>
-        </material-radio><br>
+            [<a (click)="browseArchive(enrollment.courseId)">browse archive</a>]
+          </span><br>
+        </span>
       </material-radio-group>
     </div>
 
