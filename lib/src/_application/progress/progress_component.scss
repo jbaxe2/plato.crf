@@ -1,4 +1,8 @@
 @import 'package:angular_components/css/material/material';
 @import 'package:angular_components/material_progress/mixins';
 
-@include material-progress-theme($indeterminate-color: #062c43);
+@include material-progress-theme(
+  $indeterminate-color: #062c43,
+  $active-color: #062c43,
+  $secondary-color: #718198
+);
