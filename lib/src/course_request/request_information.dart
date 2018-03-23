@@ -184,6 +184,33 @@ class RequestInformation {
     return true;
   }
 
+  /// The [getCrossListingForSection] method...
+  CrossListing getCrossListingForSection (Section aSection) {
+    CrossListing crossListing;
+
+    try {
+      crossListing = crossListings.firstWhere (
+        (CrossListing aCrossListing) => aCrossListing.contains (aSection)
+      );
+    } catch (_) {}
+
+    return crossListing;
+  }
+
+  /// The [getPreviousContentForSection] method...
+  PreviousContentMapping getPreviousContentForSection (Section section) {
+    PreviousContentMapping previousContent;
+
+    try {
+      previousContent = previousContents.firstWhere (
+        (PreviousContentMapping aPreviousContent) =>
+          (aPreviousContent.section == section)
+      );
+    } catch (_) {}
+
+    return previousContent;
+  }
+
   /// The [addPreviousContentMappings] method...
   void addPreviousContentMappings (List<PreviousContentMapping> somePreviousContents) {
     somePreviousContents.forEach (
@@ -226,18 +253,23 @@ class RequestInformation {
     thePreviousContent.enrollment = enrollment;
   }
 
-  /// The [_checkPreviousContentConditions] method...
-  bool _checkPreviousContentConditions (
-    Section aSection, PreviousContentMapping aPreviousContent
-  ) {
-    ;
-
-    return false;
-  }
-
   /// The [removePreviousContentForSection] method...
   void removePreviousContentForSection (Section theSection) {
     ;
+  }
+
+  /// The [_checkCrossListingsForPreviousContent] method...
+  bool _checkCrossListingsForPreviousContent (
+    Section section, PreviousContentMapping previousContent
+  ) {
+    return false;
+  }
+
+  /// The [_checkPreviousContentsForCrossListing] method...
+  bool _checkPreviousContentsForCrossListing (
+    Section section, CrossListing crossListing
+  ) {
+    return false;
   }
 
   /// The [verify] method...
