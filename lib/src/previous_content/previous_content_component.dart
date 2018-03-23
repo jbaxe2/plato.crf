@@ -21,6 +21,7 @@ import 'previous_content_service.dart';
 @Component(
   selector: 'previous-content',
   templateUrl: 'previous_content_component.html',
+  styleUrls: const ['previous_content_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [
     PreviousContentService, EnrollmentsService, ArchivesService, ProgressService

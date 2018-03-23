@@ -2,5 +2,6 @@
 @import 'package:angular_components/material_input/mixins';
 
 material-input {
-  @include material-input-theme(#062c43);
+  @include input-label-color(#062c43);
+  @include material-input-focused-underline-color(#062c43);
 }

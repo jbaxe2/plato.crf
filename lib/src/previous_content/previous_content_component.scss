@@ -1,0 +1,6 @@
+@import 'package:angular_components/css/material/material';
+@import 'package:angular_components/material_radio/mixins';
+
+@include material-radio-theme(
+  $primary-color: #062c43
+);

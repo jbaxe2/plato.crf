@@ -1,6 +1,5 @@
 @import 'package:angular_components/css/material/material';
 @import 'package:angular_components/material_expansionpanel/mixins';
-@import 'package:angular_components/material_tab/mixins';
 
 .dense {
   @include expansionpanel-dense-theme;

@@ -226,6 +226,15 @@ class RequestInformation {
     thePreviousContent.enrollment = enrollment;
   }
 
+  /// The [_checkPreviousContentConditions] method...
+  bool _checkPreviousContentConditions (
+    Section aSection, PreviousContentMapping aPreviousContent
+  ) {
+    ;
+
+    return false;
+  }
+
   /// The [removePreviousContentForSection] method...
   void removePreviousContentForSection (Section theSection) {
     ;
