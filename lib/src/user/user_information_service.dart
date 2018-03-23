@@ -78,6 +78,10 @@ class UserInformationService {
       );
     }
 
+    if (theUsername.isEmpty || thePassword.isEmpty) {
+      return;
+    }
+
     try {
       final Response authResponse = await _http.post (
         _LEARN_AUTH_URI,
@@ -92,6 +96,8 @@ class UserInformationService {
 
         _username = theUsername;
         _password = thePassword;
+      } else {
+        throw theUsername;
       }
     } catch (_) {
       throw new UserException ('Authentication for the Plato user has failed.');
@@ -102,7 +108,7 @@ class UserInformationService {
   Future retrieveUser() async {
     if (!_isAuthenticated) {
       throw new UserException (
-        'Authentication must happen before retrieving user infomration.'
+        'Authentication must happen before retrieving user information.'
       );
     }
 

@@ -159,6 +159,14 @@ class RequestInformation {
     }
 
     aCrossListing.addSection (aSection);
+
+    try {
+      _normalizeClAndPcForSection (aSection);
+    } catch (_) {
+      aCrossListing.removeSection (aSection);
+
+      rethrow;
+    }
   }
 
   /// The [removeSectionFromCrossListing] method...
@@ -251,25 +259,100 @@ class RequestInformation {
     }
 
     thePreviousContent.enrollment = enrollment;
+
+    try {
+      _normalizeClAndPcForSection (thePreviousContent.section);
+    } catch (_) {
+      rethrow;
+    }
   }
 
   /// The [removePreviousContentForSection] method...
   void removePreviousContentForSection (Section theSection) {
-    ;
+    previousContents.remove (getPreviousContentForSection (theSection));
+  }
+
+  /// The [_normalizeClAndPcForSection] method...
+  void _normalizeClAndPcForSection (Section section) {
+    CrossListing crossListing = getCrossListingForSection (section);
+    PreviousContentMapping previousContent = getPreviousContentForSection (section);
+
+    if ((null == crossListing) && (null == previousContent)) {
+      return;
+    }
+
+    if (null != crossListing) {
+      if (!_checkPreviousContentsForCrossListing (section, crossListing)) {
+        throw new CrossListingException (
+          'A section in the cross-listing set has differing previous content.'
+        );
+      }
+
+      crossListing.sections.forEach ((Section clSection) {
+        PreviousContentMapping clPrevContent = getPreviousContentForSection (clSection);
+
+        if ((null == clPrevContent) && (null != previousContent)) {
+          previousContents.add (
+            new PreviousContentMapping (clSection, previousContent.enrollment)
+          );
+        }
+      });
+    }
+
+    if (null != previousContent) {
+      if (!_checkCrossListingsForPreviousContent (section, previousContent)) {
+        throw new PreviousContentException (
+          'The previous content differs from that for a section in the cross-listing set.'
+        );
+      }
+
+      crossListing?.sections?.forEach ((Section clSection) {
+        previousContents.add (
+          new PreviousContentMapping (clSection, previousContent.enrollment)
+        );
+      });
+    }
   }
 
   /// The [_checkCrossListingsForPreviousContent] method...
   bool _checkCrossListingsForPreviousContent (
     Section section, PreviousContentMapping previousContent
   ) {
-    return false;
+    return _checkPreviousContentWithCrossListing (
+      previousContent, getCrossListingForSection (section)
+    );
   }
 
   /// The [_checkPreviousContentsForCrossListing] method...
   bool _checkPreviousContentsForCrossListing (
     Section section, CrossListing crossListing
   ) {
-    return false;
+    return _checkPreviousContentWithCrossListing (
+      getPreviousContentForSection (section), crossListing
+    );
+  }
+
+  /// The [_checkPreviousContentWithCrossListing] method...
+  bool _checkPreviousContentWithCrossListing (
+    PreviousContentMapping previousContent, CrossListing crossListing
+  ) {
+    if ((null == previousContent) || (null == crossListing)) {
+      return true;
+    }
+
+    return crossListing.sections.every (
+      (Section clSection) {
+        PreviousContentMapping clPreviousContent =
+          getPreviousContentForSection (clSection);
+
+        if ((null == clPreviousContent) ||
+            (clPreviousContent.enrollment == previousContent.enrollment)) {
+          return true;
+        }
+
+        return false;
+      }
+    );
   }
 
   /// The [verify] method...

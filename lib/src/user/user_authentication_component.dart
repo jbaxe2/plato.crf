@@ -60,9 +60,7 @@ class UserAuthenticationComponent implements OnInit {
       await _userInfoService.retrieveSession();
 
       if (_userInfoService.isAuthenticated && _userInfoService.isLtiSession) {
-        _progressService.invoke ('Retrieving the user information.');
-        await _userInfoService.retrieveUser();
-        await _retrieveEnrollmentsAndArchives();
+        await _retrieveUserEnrollmentsAndArchives();
       }
     } catch (_) {}
 
@@ -71,22 +69,26 @@ class UserAuthenticationComponent implements OnInit {
 
   /// The [authenticateLearn] method...
   Future authenticateLearn() async {
+    if (username.isEmpty || password.isEmpty) {
+      return;
+    }
+
     try {
       _progressService.invoke ('Attempting to verify Plato credentials.');
       await _userInfoService.authenticateLearn (username, password);
 
-      _progressService.invoke ('Retrieving the user information.');
-      await _userInfoService.retrieveUser();
-      _crfService.setUserInformation (_userInfoService.userInformation);
-
-      await _retrieveEnrollmentsAndArchives();
+      await _retrieveUserEnrollmentsAndArchives();
     } catch (_) {}
 
     _progressService.revoke();
   }
 
-  /// The [_retrieveEnrollmentsAndArchives] method...
-  Future _retrieveEnrollmentsAndArchives() async {
+  /// The [_retrieveUserEnrollmentsAndArchives] method...
+  Future _retrieveUserEnrollmentsAndArchives() async {
+    _progressService.invoke ('Retrieving the user information.');
+    await _userInfoService.retrieveUser();
+    _crfService.setUserInformation (_userInfoService.userInformation);
+
     _progressService.invoke ('Retrieving the instructor enrollments.');
     await _enrollmentsService.retrieveEnrollments();
 

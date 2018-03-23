@@ -3,6 +3,7 @@
       floatingLabel
       label="Plato Username"
       [(ngModel)]="username"
+      (keyup.enter)="authenticateLearn()"
       [disabled]="isAuthenticated"></material-input><br>
 
   <material-input
@@ -10,6 +11,7 @@
       label="Plato Password"
       type="password"
       [(ngModel)]="password"
+      (keyup.enter)="authenticateLearn()"
       [disabled]="isAuthenticated"></material-input><br>
 
   <material-button raised [disabled]="isAuthenticated" (trigger)="authenticateLearn()">
