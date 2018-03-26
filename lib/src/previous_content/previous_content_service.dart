@@ -59,8 +59,10 @@ class PreviousContentService extends FeaturedSectionService {
   }
 
   /// The [removePreviousContent] method...
-  void removePreviousContent (PreviousContentMapping previousContent) =>
+  void removePreviousContent (PreviousContentMapping previousContent) {
     _requestInformation.removePreviousContent (previousContent);
+    confirmPreviousContents();
+  }
 
   /// The [setPreviousContentEnrollment] method...
   void setPreviousContentEnrollment (

@@ -83,10 +83,7 @@ class RequestInformation {
     } catch (_) {}
 
     removeSectionFromCrossListing (aSection, crossListing);
-
-    previousContents.removeWhere (
-      (PreviousContentMapping previousContent) => aSection == previousContent.section
-    );
+    removePreviousContentForSection (aSection);
 
     return sections.remove (aSection);
   }
@@ -159,9 +156,10 @@ class RequestInformation {
     }
 
     aCrossListing.addSection (aSection);
+    _normalizePcAddedForClSection (aSection);
 
     try {
-      _normalizeClAndPcForSection (aSection);
+      ;
     } catch (_) {
       aCrossListing.removeSection (aSection);
 
@@ -239,13 +237,18 @@ class RequestInformation {
     }
 
     previousContents.add (aPreviousContent);
+    _normalizePcAddedForClSection (aPreviousContent.section);
   }
 
   /// The [removePreviousContent] method...
   void removePreviousContent (PreviousContentMapping aPreviousContent) {
+    Section pcSection = aPreviousContent.section;
+
     previousContents.removeWhere (
       (PreviousContentMapping previousContent) => (previousContent == aPreviousContent)
     );
+
+    _normalizePcRemovedForClSection (pcSection);
   }
 
   /// The [setPreviousContentEnrollment] method...
@@ -259,12 +262,7 @@ class RequestInformation {
     }
 
     thePreviousContent.enrollment = enrollment;
-
-    try {
-      _normalizeClAndPcForSection (thePreviousContent.section);
-    } catch (_) {
-      rethrow;
-    }
+    _normalizePcAddedForClSection (thePreviousContent.section);
   }
 
   /// The [removePreviousContentForSection] method...
@@ -272,87 +270,62 @@ class RequestInformation {
     previousContents.remove (getPreviousContentForSection (theSection));
   }
 
-  /// The [_normalizeClAndPcForSection] method...
-  void _normalizeClAndPcForSection (Section section) {
-    CrossListing crossListing = getCrossListingForSection (section);
-    PreviousContentMapping previousContent = getPreviousContentForSection (section);
+  /// The [_normalizePcAddedForClSection] method...
+  void _normalizePcAddedForClSection (Section aSection) {
+    CrossListing crossListing = getCrossListingForSection (aSection);
 
-    if ((null == crossListing) && (null == previousContent)) {
-      return;
+    if ((null != crossListing) && (1 < crossListing.sections.length)) {
+      PreviousContentMapping previousContent = getPreviousContentForSection (aSection);
+
+      if (null == previousContent) {
+        PreviousContentMapping clPreviousContent = getPreviousContentForSection (
+          crossListing.sections.firstWhere (
+            (Section clSection) => (clSection != aSection)
+          )
+        );
+
+        if (null != clPreviousContent) {
+          var prevContent = new PreviousContentMapping (
+            aSection, clPreviousContent.enrollment
+          );
+
+          addPreviousContentMapping (prevContent);
+        }
+      } else {
+        crossListing.sections.forEach ((Section clSection) {
+          if (clSection == aSection) {
+            return;
+          }
+
+          PreviousContentMapping clPreviousContent =
+            getPreviousContentForSection (clSection);
+
+          if (null == clPreviousContent) {
+            var prevContent = new PreviousContentMapping (
+              clSection, previousContent.enrollment
+            );
+
+            addPreviousContentMapping (prevContent);
+          }
+
+          if ((null != clPreviousContent) &&
+              (clPreviousContent.enrollment != previousContent.enrollment)) {
+            setPreviousContentEnrollment (clPreviousContent, previousContent.enrollment);
+          }
+        });
+      }
     }
+  }
+
+  /// The [_normalizePcRemovedForClSection] method...
+  void _normalizePcRemovedForClSection (Section aSection) {
+    CrossListing crossListing = getCrossListingForSection (aSection);
 
     if (null != crossListing) {
-      if (!_checkPreviousContentsForCrossListing (section, crossListing)) {
-        throw new CrossListingException (
-          'A section in the cross-listing set has differing previous content.'
-        );
-      }
-
       crossListing.sections.forEach ((Section clSection) {
-        PreviousContentMapping clPrevContent = getPreviousContentForSection (clSection);
-
-        if ((null == clPrevContent) && (null != previousContent)) {
-          previousContents.add (
-            new PreviousContentMapping (clSection, previousContent.enrollment)
-          );
-        }
+        removePreviousContentForSection (clSection);
       });
     }
-
-    if (null != previousContent) {
-      if (!_checkCrossListingsForPreviousContent (section, previousContent)) {
-        throw new PreviousContentException (
-          'The previous content differs from that for a section in the cross-listing set.'
-        );
-      }
-
-      crossListing?.sections?.forEach ((Section clSection) {
-        previousContents.add (
-          new PreviousContentMapping (clSection, previousContent.enrollment)
-        );
-      });
-    }
-  }
-
-  /// The [_checkCrossListingsForPreviousContent] method...
-  bool _checkCrossListingsForPreviousContent (
-    Section section, PreviousContentMapping previousContent
-  ) {
-    return _checkPreviousContentWithCrossListing (
-      previousContent, getCrossListingForSection (section)
-    );
-  }
-
-  /// The [_checkPreviousContentsForCrossListing] method...
-  bool _checkPreviousContentsForCrossListing (
-    Section section, CrossListing crossListing
-  ) {
-    return _checkPreviousContentWithCrossListing (
-      getPreviousContentForSection (section), crossListing
-    );
-  }
-
-  /// The [_checkPreviousContentWithCrossListing] method...
-  bool _checkPreviousContentWithCrossListing (
-    PreviousContentMapping previousContent, CrossListing crossListing
-  ) {
-    if ((null == previousContent) || (null == crossListing)) {
-      return true;
-    }
-
-    return crossListing.sections.every (
-      (Section clSection) {
-        PreviousContentMapping clPreviousContent =
-          getPreviousContentForSection (clSection);
-
-        if ((null == clPreviousContent) ||
-            (clPreviousContent.enrollment == previousContent.enrollment)) {
-          return true;
-        }
-
-        return false;
-      }
-    );
   }
 
   /// The [verify] method...

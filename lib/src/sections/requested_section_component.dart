@@ -20,7 +20,8 @@ import 'section.dart';
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [
     RequestedSectionsService, CrossListingService, PreviousContentService
-  ]
+  ],
+  pipes: const [SlicePipe]
 )
 class RequestedSectionComponent implements OnInit {
   @Input()
@@ -73,7 +74,21 @@ class RequestedSectionComponent implements OnInit {
   /// The [removeSection] method...
   void removeSection() {
     _reqSectionsService.removeSection (section);
+
     _crossListing = null;
+    _previousContent = null;
+  }
+
+  /// The [removeFromCrossListing] method...
+  void removeFromCrossListing() {
+    _crossListingService.removeSectionFromCrossListing (section, crossListing);
+    _crossListing = null;
+  }
+
+  /// The [removePreviousContent] method...
+  void removePreviousContent() {
+    _previousContentService.removePreviousContent (previousContent);
+    _previousContent = null;
   }
 
   /// The [_updateCrossListingInfo] method...

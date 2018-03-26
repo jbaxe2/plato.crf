@@ -24,6 +24,11 @@
     background-color: #ccc;
     padding: 0;
   }
+
+  .remove-icon {
+    background-color: white !important;
+    float: right;
+  }
 </style>
 
 <material-expansionpanel
@@ -45,11 +50,19 @@
         *ngIf="hasPreviousContent" name="Previous Content Info"
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
+      <material-button class="remove-icon" icon (trigger)="removePreviousContent()">
+        <material-icon icon="backspace"></material-icon>
+        <material-tooltip-text>
+          Remove previous content from {{section.sectionId}}...
+        </material-tooltip-text>
+      </material-button>
+
       <p style="font-size: small; font-weight: bold;">
         Content will be based on the following:
       </p>
       <p style="background-color: #eee; padding: 8px; font-size: small;">
-        {{previousContent.enrollment.courseId}}
+        {{previousContent.enrollment.courseId | slice:0:25}}
+        <span *ngIf="25 < previousContent.enrollment.courseId.length">...</span>
       </p>
     </material-expansionpanel>
 
@@ -57,15 +70,23 @@
         *ngIf="hasCrossListing" name="Cross-listing Info"
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
+      <material-button class="remove-icon" icon (trigger)="removeFromCrossListing()">
+        <material-icon icon="backspace"></material-icon>
+        <material-tooltip-text>
+          Remove {{section.sectionId}} from cross-listing...
+        </material-tooltip-text>
+      </material-button>
+
       <p style="font-size: small; font-weight: bold;">
         Part of the following cross-listing set:
       </p>
+
       <material-list>
         <material-list-item *ngFor="let clSection of crossListing.sections">
           {{clSection.sectionId}}
         </material-list-item>
 
-        <material-list-item *ngIf="crossListing.sections.length == 1">
+        <material-list-item *ngIf="1 == crossListing.sections.length">
         <strong style="color: #a44;">
           Please add one or more sections.
         </strong>
@@ -77,14 +98,21 @@
   <div toolbelt>
     <material-button icon (trigger)="copyPreviousContent()">
       <material-icon icon="library_books"></material-icon>
+      <material-tooltip-text>Copy previous content...</material-tooltip-text>
     </material-button>
 
     <material-button icon (trigger)="addToCrossListing()">
       <material-icon icon="device_hub"></material-icon>
+      <material-tooltip-text>
+        Add {{section.sectionId}} to cross-listing set...
+      </material-tooltip-text>
     </material-button>
 
     <material-button icon (trigger)="removeSection()">
       <material-icon icon="cancel"></material-icon>
+      <material-tooltip-text>
+        Remove {{section.sectionId}} from requested sections...
+      </material-tooltip-text>
     </material-button>
   </div>
 </material-expansionpanel>

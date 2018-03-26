@@ -22,6 +22,42 @@ class Enrollment implements Comparable {
     {this.isArchive: false}
   );
 
+  /// The [==] operator...
+  @override
+  bool operator ==(Object other) {
+    if (identical (this, other)) {
+      return true;
+    }
+
+    if (other is Enrollment) {
+      if ((other.username == username) &&
+          (other.courseId == courseId) &&
+          (other.courseName == courseName) &&
+          (other.role == role) &&
+          (other.available == available) &&
+          (other.isArchive == isArchive)) {
+        return true;
+      };
+    }
+
+    return false;
+  }
+
+  /// The [hashCode] getter...
+  @override
+  int get hashCode {
+    int result = 3;
+
+    result = 7 * result + ((null == username) ? 0 : username.hashCode);
+    result = 7 * result + ((null == courseId) ? 0 : courseId.hashCode);
+    result = 7 * result + ((null == courseName) ? 0 : courseName.hashCode);
+    result = 7 * result + ((null == role) ? 0 : role.hashCode);
+    result = 7 * result + ((null == available) ? 0 : available.hashCode);
+    result = 7 * result + ((null == isArchive) ? 0 : isArchive.hashCode);
+
+    return result;
+  }
+
   /// The [compareTo] method...
   int compareTo (dynamic other) {
     if (!(other is Enrollment)) {
