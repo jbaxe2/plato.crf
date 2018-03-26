@@ -73,12 +73,18 @@
   </material-tab-panel>
 
   <div class="controls" *ngIf="submittable">
-    <material-button raised>Step 4. Review &amp; Submit Course Request</material-button>
+    <material-button raised (trigger)="reviewCourseRequest()">
+      Step 4. Review &amp; Submit Course Request
+    </material-button>
   </div>
 </material-content>
 
 <cross-listings></cross-listings>
 <previous-content></previous-content>
 
+<review-request></review-request>
+
 <plato-progress></plato-progress>
 <plato-error></plato-error>
+
+<session-cleanup></session-cleanup>

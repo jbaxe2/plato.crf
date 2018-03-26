@@ -1,6 +1,6 @@
 library plato.angular.services.course_request;
 
-import 'dart:async' show Future;
+import 'dart:async' show Future, StreamController;
 
 import 'package:http/http.dart' show Client, Response;
 
@@ -28,6 +28,8 @@ class CourseRequestService {
 
   bool get submittable => _requestInformation.submittable;
 
+  StreamController<RequestInformation> requestController;
+
   static CourseRequestService _instance;
 
   /// The [CourseRequestService] factory constructor...
@@ -37,6 +39,7 @@ class CourseRequestService {
   /// The [CourseRequestService] private constructor...
   CourseRequestService._ (this._http) {
     _requestInformation = new RequestInformation();
+    requestController = new StreamController<RequestInformation>.broadcast();
   }
 
   /// The [setUserInformation] method...
@@ -44,6 +47,17 @@ class CourseRequestService {
     try {
       _requestInformation.setUserInformation (userInformation);
     } catch (_) { rethrow; }
+  }
+
+  /// The [reviewCourseRequest] method...
+  void reviewCourseRequest() {
+    if (!submittable) {
+      throw new CourseRequestException (
+        'Unable to review and submit an incomplete course request.'
+      );
+    }
+
+    requestController.add (_requestInformation);
   }
 
   /// The [submitCourseRequest] method...

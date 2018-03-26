@@ -12,8 +12,9 @@ import '../progress/progress_service.dart';
 @Component(
   selector: 'review-request',
   templateUrl: 'review_request_component.html',
+  styleUrls: const ['review_request_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [CourseRequestService]
+  providers: const [CourseRequestService, ProgressService]
 )
 class ReviewRequestComponent implements OnInit {
   bool isVisible;
@@ -30,8 +31,14 @@ class ReviewRequestComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
-    requestInformation = new RequestInformation();
     isVisible = false;
+
+    _crfService.requestController.stream.listen (
+      (RequestInformation requestInfo) {
+        requestInformation = requestInfo;
+        isVisible = true;
+      }
+    );
   }
 
   /// The [submitCrf] method...

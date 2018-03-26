@@ -157,14 +157,6 @@ class RequestInformation {
 
     aCrossListing.addSection (aSection);
     _normalizePcAddedForClSection (aSection);
-
-    try {
-      ;
-    } catch (_) {
-      aCrossListing.removeSection (aSection);
-
-      rethrow;
-    }
   }
 
   /// The [removeSectionFromCrossListing] method...

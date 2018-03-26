@@ -16,17 +16,21 @@
     padding: 0;
   }
 
+  material-list-item {
+    background-color: #eee;
+  }
+
   material-button {
     background-color: #bbb !important;
   }
 
   .extra-info-panel {
-    background-color: #ccc;
+    background-color: #eee;
     padding: 0;
   }
 
   .remove-icon {
-    background-color: white !important;
+    background-color: #eee !important;
     float: right;
   }
 </style>
@@ -51,14 +55,14 @@
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
       <material-button class="remove-icon" icon (trigger)="removePreviousContent()">
-        <material-icon icon="backspace"></material-icon>
-        <material-tooltip-text>
+        <material-icon tooltipTarget #removePc="tooltipTarget" icon="backspace"></material-icon>
+        <material-tooltip-text [for]="removePc">
           Remove previous content from {{section.sectionId}}...
         </material-tooltip-text>
       </material-button>
 
       <p style="font-size: small; font-weight: bold;">
-        Content will be based on the following:
+        Content will be based on:
       </p>
       <p style="background-color: #eee; padding: 8px; font-size: small;">
         {{previousContent.enrollment.courseId | slice:0:25}}
@@ -71,8 +75,8 @@
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
       <material-button class="remove-icon" icon (trigger)="removeFromCrossListing()">
-        <material-icon icon="backspace"></material-icon>
-        <material-tooltip-text>
+        <material-icon tooltipTarget #removeCl="tooltipTarget" icon="backspace"></material-icon>
+        <material-tooltip-text [for]="removeCl">
           Remove {{section.sectionId}} from cross-listing...
         </material-tooltip-text>
       </material-button>
@@ -97,20 +101,20 @@
 
   <div toolbelt>
     <material-button icon (trigger)="copyPreviousContent()">
-      <material-icon icon="library_books"></material-icon>
-      <material-tooltip-text>Copy previous content...</material-tooltip-text>
+      <material-icon tooltipTarget #copyPc="tooltipTarget" icon="library_books"></material-icon>
+      <material-tooltip-text [for]="copyPc">Copy previous content...</material-tooltip-text>
     </material-button>
 
     <material-button icon (trigger)="addToCrossListing()">
-      <material-icon icon="device_hub"></material-icon>
-      <material-tooltip-text>
+      <material-icon tooltipTarget #addToCl="tooltipTarget" icon="device_hub"></material-icon>
+      <material-tooltip-text [for]="addToCl">
         Add {{section.sectionId}} to cross-listing set...
       </material-tooltip-text>
     </material-button>
 
     <material-button icon (trigger)="removeSection()">
-      <material-icon icon="cancel"></material-icon>
-      <material-tooltip-text>
+      <material-icon tooltipTarget #sectionRemove="tooltipTarget" icon="cancel"></material-icon>
+      <material-tooltip-text [for]="sectionRemove">
         Remove {{section.sectionId}} from requested sections...
       </material-tooltip-text>
     </material-button>

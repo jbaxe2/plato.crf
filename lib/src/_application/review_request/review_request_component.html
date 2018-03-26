@@ -1,4 +1,13 @@
 <style>
+  :host ::ng-deep header {
+    background-color: #718198 !important;
+    border: 1px solid #062c43 !important;
+    font-weight: bold !important;
+  }
+
+  strong {
+    color: #062c43;
+  }
 </style>
 
 <modal [visible]="isVisible">
@@ -7,11 +16,12 @@
       <h3>Review and submit the course request...</h3>
     </div>
 
-    <div>
+    <div *ngIf="null != requestInformation">
       <material-expansionpanel
           name="Submitting request for:"
           [expanded]="true"
-          [showSaveCancel]="false">
+          [showSaveCancel]="false"
+          class="request-info-panel">
         <p>
           <span>
             <strong>Plato Username:</strong>&nbsp;
@@ -32,7 +42,8 @@
       <material-expansionpanel
           name="Requested sections:"
           [expanded]="true"
-          [showSaveCancel]="false">
+          [showSaveCancel]="false"
+          class="request-info-panel">
         <material-list>
           <material-list-item *ngFor="let section of requestInformation.sections">
             [{{section.sectionId}}] {{section.title}}
@@ -41,9 +52,11 @@
       </material-expansionpanel>
 
       <material-expansionpanel
+          *ngIf="!requestInformation.crossListings.isEmpty"
           name="Cross-listing information:"
           [expanded]="true"
-          [showSaveCancel]="false">
+          [showSaveCancel]="false"
+          class="request-info-panel">
         <material-list
             *ngFor="let crossListing of requestInformation.crossListings; let i=index">
           <span>Cross-listing set #{{i}} contains:</span><br>
@@ -55,9 +68,11 @@
       </material-expansionpanel>
 
       <material-expansionpanel
+          *ngIf="!requestInformation.previousContents.isEmpty"
           name="Previous content information:"
           [expanded]="true"
-          [showSaveCancel]="false">
+          [showSaveCancel]="false"
+          class="request-info-panel">
         <material-list>
           <material-list-item
               *ngFor="let previousContent of requestInformation.previousContents">
