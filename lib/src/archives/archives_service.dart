@@ -118,6 +118,7 @@ class ArchivesService {
         resourceController.add (rawArchiveInfo['resource']);
       }
     } catch (_) {
+      window.console.debug (_);
       throw new ArchiveException (
         'Missing course information from retrieved archive information.'
       );
@@ -138,36 +139,15 @@ class ArchivesService {
     var archiveItems = new List<ArchiveItem>();
 
     rawArchiveItems.forEach ((String itemKey, Map rawArchiveItem) {
-      String title = '';
-      ArchiveItem archiveItem;
-      List<ArchiveItem> subArchiveItems;
+      rawArchiveItem.forEach ((String subItemKey, dynamic subItem) {
+        var archiveItem = new ArchiveItem (subItemKey, subItem[subItemKey]);
 
-      window.console.debug (rawArchiveItem);
-
-      if (rawArchiveItem[itemKey] is String) {
-        if (rawArchiveItem[itemKey].contains ('divider')) {
-          rawArchiveItem[itemKey] = '-------------------------';
+        if (subItem is Map) {
+          archiveItem.items = _buildArchiveItem (subItem);
         }
 
-        title = rawArchiveItem[itemKey];
-      } else if (rawArchiveItem[itemKey] is Map) {
-        window.console.log ('found a sub archive item map');
-        window.console.debug (rawArchiveItem[itemKey]);
-
-        title = rawArchiveItem[itemKey].values.first;
-
-        subArchiveItems = _buildArchiveItem (rawArchiveItem[itemKey]);
-      } else {
-        window.console.log ('raw archive type is ${rawArchiveItem[itemKey].runtimeType.toString()}');
-      }
-
-      archiveItem = new ArchiveItem (itemKey, title);
-
-      if (null != subArchiveItems) {
-        archiveItem.items = subArchiveItems;
-      }
-
-      archiveItems.add (archiveItem);
+        archiveItems.add (archiveItem);
+      });
     });
 
     return archiveItems;
