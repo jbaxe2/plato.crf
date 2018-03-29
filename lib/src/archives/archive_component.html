@@ -1,0 +1,28 @@
+<style>
+  em {
+    display: block;
+    background-color: #eee;
+    padding: 8px;
+  }
+</style>
+
+<modal [visible]="isVisible">
+  <material-dialog headered>
+    <div header>
+      <h3 *ngIf="null != courseTitle">{{courseTitle}}</h3>
+    </div>
+
+    <div *ngIf="archiveItems.isNotEmpty">
+      <em>
+        Below is a simplified view of the archived course.  Please note that not
+        all parts of the archived course can be accessed in this view.
+      </em>
+
+      <material-tree [options]="archiveOptions"></material-tree>
+    </div>
+
+    <div footer>
+      <material-button raised (trigger)="isVisible = false">OK</material-button>
+    </div>
+  </material-dialog>
+</modal>

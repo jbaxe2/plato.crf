@@ -21,7 +21,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="50">
+          <list size="51">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -72,6 +72,7 @@
             <item index="47" class="java.lang.String" itemvalue="review-request" />
             <item index="48" class="java.lang.String" itemvalue="session-cleanup" />
             <item index="49" class="java.lang.String" itemvalue="archives" />
+            <item index="50" class="java.lang.String" itemvalue="material-tree" />
           </list>
         </value>
       </option>

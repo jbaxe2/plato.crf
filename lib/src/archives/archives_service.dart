@@ -10,6 +10,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import '../enrollments/enrollment.dart';
 
+import 'archive_course.dart';
 import 'archive_exception.dart';
 import 'archive_item.dart';
 
@@ -24,7 +25,7 @@ class ArchivesService {
 
   StreamController<Enrollment> archiveStreamController;
 
-  StreamController<List<ArchiveItem>> archiveItemController;
+  StreamController<ArchiveCourse> archiveCourseController;
 
   StreamController<String> resourceController;
 
@@ -41,7 +42,7 @@ class ArchivesService {
     archiveEnrollments = new List<Enrollment>();
 
     archiveStreamController = new StreamController<Enrollment>.broadcast();
-    archiveItemController = new StreamController<List<ArchiveItem>>.broadcast();
+    archiveCourseController = new StreamController<ArchiveCourse>.broadcast();
     resourceController = new StreamController<String>.broadcast();
   }
 
@@ -111,7 +112,12 @@ class ArchivesService {
       }
 
       if (rawArchiveInfo.containsKey ('manifestOutline')) {
-        _parseManifestOutline (rawArchiveInfo['manifestOutline']);
+        var archiveCourse = new ArchiveCourse (
+          rawArchiveInfo['courseId'], rawArchiveInfo['courseTitle'],
+          _buildArchiveItems (rawArchiveInfo['manifestOutline'])
+        );
+
+        archiveCourseController.add (archiveCourse);
       }
 
       if (rawArchiveInfo.containsKey ('resource')) {
@@ -125,29 +131,38 @@ class ArchivesService {
     }
   }
 
-  /// The [_parseManifestOutline] method...
-  void _parseManifestOutline (Map<String, dynamic> manifestOutline) {
-    List<ArchiveItem> manifestItems = _buildArchiveItem (manifestOutline);
-
-    if (manifestItems.isNotEmpty) {
-      archiveItemController.add (manifestItems);
-    }
-  }
-
-  /// The [_buildArchiveItem] method...
-  List<ArchiveItem> _buildArchiveItem (Map<String, Map> rawArchiveItems) {
+  /// The [_buildArchiveItems] method...
+  List<ArchiveItem> _buildArchiveItems (Map<String, dynamic> rawArchiveItems) {
     var archiveItems = new List<ArchiveItem>();
 
-    rawArchiveItems.forEach ((String itemKey, Map rawArchiveItem) {
-      rawArchiveItem.forEach ((String subItemKey, dynamic subItem) {
-        var archiveItem = new ArchiveItem (subItemKey, subItem[subItemKey]);
+    rawArchiveItems.forEach ((String itemKey, dynamic rawArchiveItem) {
+      String resourceId = itemKey;
+      String title = '';
 
-        if (subItem is Map) {
-          archiveItem.items = _buildArchiveItem (subItem);
+      var subArchiveItems = new List<ArchiveItem>();
+
+      if (rawArchiveItem is String) {
+        title = rawArchiveItem;
+
+        if (title.startsWith ('divider_')) {
+          title = '-----------------------';
         }
+      } else if (rawArchiveItem is Map) {
+        title = rawArchiveItem[itemKey];
 
-        archiveItems.add (archiveItem);
-      });
+        if (1 < rawArchiveItem.keys.length) {
+          rawArchiveItem.forEach ((String subKey, dynamic subItems) {
+            if (subItems is Map) {
+              subArchiveItems.addAll (_buildArchiveItems (subItems));
+            }
+          });
+        }
+      }
+
+      archiveItems.add (
+        new ArchiveItem (resourceId, title)
+          ..items = subArchiveItems
+      );
     });
 
     return archiveItems;

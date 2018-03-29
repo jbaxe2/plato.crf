@@ -2,9 +2,9 @@ library plato.angular.models.course;
 
 /// The [Course] class...
 class Course {
-  String id;
+  final String id;
 
-  String title;
+  final String title;
 
   /// The [Course] constructor...
   Course (this.id, this.title);

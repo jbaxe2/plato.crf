@@ -9,7 +9,7 @@ import '../_application/progress/progress_component.dart';
 import '../_application/review_request/review_request_component.dart';
 import '../_application/session_cleanup/session_cleanup_component.dart';
 
-import '../archives/archives_component.dart';
+import '../archives/archive_component.dart';
 
 import '../cross_listings/cross_listings_component.dart';
 
