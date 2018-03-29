@@ -2,7 +2,6 @@ library plato.angular.services.archives;
 
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show JSON;
-import 'dart:html' show window;
 
 import 'package:angular/core.dart';
 
@@ -13,6 +12,7 @@ import '../enrollments/enrollment.dart';
 import 'archive_course.dart';
 import 'archive_exception.dart';
 import 'archive_item.dart';
+import 'archive_item_options.dart';
 
 const String _RETRIEVE_URI = '/plato/retrieve/archives';
 const String _PULL_URI = '/plato/pull/archive';
@@ -124,7 +124,6 @@ class ArchivesService {
         resourceController.add (rawArchiveInfo['resource']);
       }
     } catch (_) {
-      window.console.debug (_);
       throw new ArchiveException (
         'Missing course information from retrieved archive information.'
       );
@@ -133,7 +132,7 @@ class ArchivesService {
 
   /// The [_buildArchiveItems] method...
   List<ArchiveItem> _buildArchiveItems (Map<String, dynamic> rawArchiveItems) {
-    var archiveItems = new List<ArchiveItem>();
+    var archiveItems = new List<ArchiveItemNode>();
 
     rawArchiveItems.forEach ((String itemKey, dynamic rawArchiveItem) {
       String resourceId = itemKey;
@@ -142,10 +141,10 @@ class ArchivesService {
       var subArchiveItems = new List<ArchiveItem>();
 
       if (rawArchiveItem is String) {
-        title = rawArchiveItem;
-
-        if (title.startsWith ('divider_')) {
+        if (rawArchiveItem.contains ('divider_')) {
           title = '-----------------------';
+        } else {
+          title = rawArchiveItem;
         }
       } else if (rawArchiveItem is Map) {
         title = rawArchiveItem[itemKey];
@@ -160,7 +159,7 @@ class ArchivesService {
       }
 
       archiveItems.add (
-        new ArchiveItem (resourceId, title)
+        new ArchiveItemNode (resourceId, title)
           ..items = subArchiveItems
       );
     });

@@ -33,7 +33,7 @@ import 'course_request_service.dart';
   directives: const [
     COMMON_DIRECTIVES, materialDirectives,
     UserComponent, RequestingSectionsComponent, RequestedSectionsComponent,
-    CrossListingsComponent, PreviousContentComponent, ArchivesComponent,
+    CrossListingsComponent, PreviousContentComponent, ArchiveComponent,
     DirectionsComponent, ErrorComponent, ProgressComponent,
     ReviewRequestComponent, SessionCleanupComponent
   ],

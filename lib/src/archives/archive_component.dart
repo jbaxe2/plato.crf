@@ -5,16 +5,17 @@ import 'package:angular_components/angular_components.dart';
 
 import 'archive_course.dart';
 import 'archive_item.dart';
+import 'archive_item_options.dart';
 import 'archives_service.dart';
 
-/// The [ArchivesComponent] class...
+/// The [ArchiveComponent] class...
 @Component(
   selector: 'archive-course',
   templateUrl: 'archive_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [materialProviders, ArchivesService]
 )
-class ArchivesComponent implements OnInit {
+class ArchiveComponent implements OnInit {
   bool isVisible;
 
   ArchiveCourse _archiveCourse;
@@ -25,17 +26,20 @@ class ArchivesComponent implements OnInit {
 
   List<ArchiveItem> archiveItems;
 
-  SelectionOptions<ArchiveItem> archiveOptions;
+  ArchiveItemOptions archiveOptions;
+
+  final ItemRenderer<ArchiveItemNode> archiveRenderer =
+    (ArchiveItemNode item) => item.title;
 
   final ArchivesService _archivesService;
 
-  /// The [ArchivesComponent] constructor...
-  ArchivesComponent (this._archivesService);
+  /// The [ArchiveComponent] constructor...
+  ArchiveComponent (this._archivesService);
 
   /// The [ngOnInit] method...
   void ngOnInit() {
     isVisible = false;
-    archiveItems = new List<ArchiveItem>();
+    archiveItems = new List<ArchiveItemNode>();
 
     _archivesService.archiveCourseController.stream.listen (
       (ArchiveCourse archiveCourse) {
@@ -47,7 +51,7 @@ class ArchivesComponent implements OnInit {
         archiveItems.clear();
         archiveItems = _archiveCourse.rootArchiveItems;
 
-        archiveOptions = new SelectionOptions<ArchiveItem>.fromList (archiveItems);
+        archiveOptions = new ArchiveItemOptions ([new OptionGroup (archiveItems)]);
 
         isVisible = true;
       }

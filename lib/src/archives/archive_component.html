@@ -1,24 +1,35 @@
 <style>
   em {
     display: block;
-    background-color: #eee;
+    background-color: #bbb;
     padding: 8px;
+  }
+
+  .archive-tree-container {
+    background-color: #eee;
+    margin-bottom: 8px;
+    border-top: 2px dashed #062c43;
+    max-height: 350px;
+    overflow-y: scroll;
   }
 </style>
 
 <modal [visible]="isVisible">
   <material-dialog headered>
     <div header>
-      <h3 *ngIf="null != courseTitle">{{courseTitle}}</h3>
+      <h3 *ngIf="null != courseTitle">{{courseTitle}} [{{courseId}}]</h3>
     </div>
 
-    <div *ngIf="archiveItems.isNotEmpty">
-      <em>
-        Below is a simplified view of the archived course.  Please note that not
-        all parts of the archived course can be accessed in this view.
-      </em>
+    <em>
+      Below is a simplified view of the archived course.  Please note that not
+      all parts of the archived course can be accessed in this view.
+    </em>
 
-      <material-tree [options]="archiveOptions"></material-tree>
+    <div *ngIf="archiveItems.isNotEmpty" class="archive-tree-container">
+      <material-tree
+          [options]="archiveOptions"
+          [itemRenderer]="archiveRenderer">
+      </material-tree>
     </div>
 
     <div footer>
