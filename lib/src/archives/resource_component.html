@@ -1,1 +1,18 @@
-<div></div>
+<style>
+  .resource-container {
+    background-color: #eee;
+    border-top: 2px dashed #062c43;
+  }
+</style>
+
+<modal [visible]="isVisible">
+  <material-dialog *ngIf="null != resource" headered>
+    <h3 header>{{resource.title}}</h3>
+
+    <div class="resource-container">{{resource.content}}</div>
+
+    <div footer>
+      <material-button raised (trigger)="isVisible = false">OK</material-button>
+    </div>
+  </material-dialog>
+</modal>

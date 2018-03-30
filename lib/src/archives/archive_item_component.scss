@@ -1,0 +1,7 @@
+@import 'package:angular_components/material_tree/mixins';
+
+@include material-tree-border-expanded;
+
+:host {
+  display: inline-block;
+}

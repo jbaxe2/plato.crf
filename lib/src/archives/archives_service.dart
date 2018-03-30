@@ -12,7 +12,8 @@ import '../enrollments/enrollment.dart';
 import 'archive_course.dart';
 import 'archive_exception.dart';
 import 'archive_item.dart';
-import 'archive_item_options.dart';
+import 'archive_item_node.dart';
+import 'archive_resource.dart';
 
 const String _RETRIEVE_URI = '/plato/retrieve/archives';
 const String _PULL_URI = '/plato/pull/archive';
@@ -27,7 +28,9 @@ class ArchivesService {
 
   StreamController<ArchiveCourse> archiveCourseController;
 
-  StreamController<String> resourceController;
+  StreamController<ArchiveResource> resourceController;
+
+  String _lastArchiveId;
 
   final Client _http;
 
@@ -43,7 +46,7 @@ class ArchivesService {
 
     archiveStreamController = new StreamController<Enrollment>.broadcast();
     archiveCourseController = new StreamController<ArchiveCourse>.broadcast();
-    resourceController = new StreamController<String>.broadcast();
+    resourceController = new StreamController<ArchiveResource>.broadcast();
   }
 
   /// The [retrieveArchives] method...
@@ -90,6 +93,8 @@ class ArchivesService {
       if (pulledArchive != archiveId) {
         throw pulledArchive;
       }
+
+      _lastArchiveId = archiveId;
     } catch (_) {
       throw new ArchiveException (
         'Unable to pull the specified archive.'
@@ -98,7 +103,9 @@ class ArchivesService {
   }
 
   /// The [browseArchive] method...
-  Future browseArchive (String archiveId, [String resourceId = 'none']) async {
+  Future browseArchive (
+    String archiveId, [String resourceId = 'none', String resourceTitle = 'N/A']
+  ) async {
     try {
       final Response archiveResponse = await _http.get (
         '$_BROWSE_URI?archiveId=$archiveId&resourceId=$resourceId'
@@ -121,7 +128,9 @@ class ArchivesService {
       }
 
       if (rawArchiveInfo.containsKey ('resource')) {
-        resourceController.add (rawArchiveInfo['resource']);
+        resourceController.add (
+          _createResource (resourceId, resourceTitle, rawArchiveInfo['resource'])
+        );
       }
     } catch (_) {
       throw new ArchiveException (
@@ -129,6 +138,10 @@ class ArchivesService {
       );
     }
   }
+
+  /// The [previewResource] method...
+  Future previewResource (String resourceId, String title) async =>
+    await browseArchive (_lastArchiveId, resourceId, title);
 
   /// The [_buildArchiveItems] method...
   List<ArchiveItem> _buildArchiveItems (Map<String, dynamic> rawArchiveItems) {
@@ -165,5 +178,10 @@ class ArchivesService {
     });
 
     return archiveItems;
+  }
+
+  /// The [_createResource] method...
+  ArchiveResource _createResource (String resourceId, String title, String content) {
+    return new ArchiveResource (resourceId, title, content);
   }
 }

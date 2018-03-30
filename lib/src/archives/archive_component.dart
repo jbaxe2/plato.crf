@@ -5,7 +5,9 @@ import 'package:angular_components/angular_components.dart';
 
 import 'archive_course.dart';
 import 'archive_item.dart';
+import 'archive_item_component.dart';
 import 'archive_item_options.dart';
+import 'archive_item_node.dart';
 import 'archives_service.dart';
 
 /// The [ArchiveComponent] class...
@@ -28,8 +30,7 @@ class ArchiveComponent implements OnInit {
 
   ArchiveItemOptions archiveOptions;
 
-  final ItemRenderer<ArchiveItemNode> archiveRenderer =
-    (ArchiveItemNode item) => item.title;
+  final ComponentRenderer archiveRenderer = (_) => ArchiveItemComponent;
 
   final ArchivesService _archivesService;
 
