@@ -15,9 +15,9 @@ import 'archives_service.dart';
   selector: 'archive-item',
   template: r'''
     <span>{{value.title}}</span> &nbsp;
-    <a *ngIf="showPreviewLink" (click)="previewResource()">
-      [preview resource]
-    </a>
+    <span *ngIf="showPreviewLink" class="preview-link">
+      [<a (click)="previewResource()">preview resource</a>]
+    </span>
   ''',
   styleUrls: const ['archive_item_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
@@ -37,7 +37,7 @@ class ArchiveItemComponent implements OnInit, RendersValue<ArchiveItem> {
 
   /// The [ngOnInit] method...
   void ngOnInit() {
-    showPreviewLink = value.items.isEmpty && !value.title.contains ('divider');
+    showPreviewLink = value.items.isEmpty && !value.title.startsWith ('-----');
   }
 
   /// The [previewResource] method...

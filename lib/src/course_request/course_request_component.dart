@@ -10,6 +10,7 @@ import '../_application/review_request/review_request_component.dart';
 import '../_application/session_cleanup/session_cleanup_component.dart';
 
 import '../archives/archive_component.dart';
+import '../archives/resource_component.dart';
 
 import '../cross_listings/cross_listings_component.dart';
 
@@ -33,7 +34,8 @@ import 'course_request_service.dart';
   directives: const [
     COMMON_DIRECTIVES, materialDirectives,
     UserComponent, RequestingSectionsComponent, RequestedSectionsComponent,
-    CrossListingsComponent, PreviousContentComponent, ArchiveComponent,
+    CrossListingsComponent, PreviousContentComponent,
+    ArchiveComponent, ResourceComponent,
     DirectionsComponent, ErrorComponent, ProgressComponent,
     ReviewRequestComponent, SessionCleanupComponent
   ],

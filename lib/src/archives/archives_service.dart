@@ -154,11 +154,7 @@ class ArchivesService {
       var subArchiveItems = new List<ArchiveItem>();
 
       if (rawArchiveItem is String) {
-        if (rawArchiveItem.contains ('divider_')) {
-          title = '-----------------------';
-        } else {
-          title = rawArchiveItem;
-        }
+        title = rawArchiveItem;
       } else if (rawArchiveItem is Map) {
         title = rawArchiveItem[itemKey];
 
@@ -169,6 +165,10 @@ class ArchivesService {
             }
           });
         }
+      }
+
+      if (title.startsWith ('divider_')) {
+        title = '-----------------------';
       }
 
       archiveItems.add (

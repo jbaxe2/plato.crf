@@ -1,5 +1,7 @@
 library plato.angular.components.archive;
 
+import 'dart:html' show window;
+
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -52,6 +54,7 @@ class ArchiveComponent implements OnInit {
         archiveItems.clear();
         archiveItems = _archiveCourse.rootArchiveItems;
 
+        window.console.debug (archiveItems);
         archiveOptions = new ArchiveItemOptions ([new OptionGroup (archiveItems)]);
 
         isVisible = true;
