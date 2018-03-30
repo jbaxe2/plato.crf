@@ -24,6 +24,7 @@ import 'archives_service.dart';
   providers: const [materialProviders, ArchivesService, ProgressService]
 )
 class ArchiveItemComponent implements OnInit, RendersValue<ArchiveItem> {
+  @override
   ArchiveItem value;
 
   bool showPreviewLink;
@@ -36,18 +37,19 @@ class ArchiveItemComponent implements OnInit, RendersValue<ArchiveItem> {
   ArchiveItemComponent (this._archivesService, this._progressService);
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit() {
     showPreviewLink = value.items.isEmpty && !value.title.startsWith ('-----');
   }
 
   /// The [previewResource] method...
   Future previewResource() async {
+    _progressService.invoke ('Loading the resource (${value.title}).');
+
     try {
-      _progressService.invoke ('Loading the resource (${value.title}).');
-
       await _archivesService.previewResource (value.resourceId, value.title);
-
-      _progressService.revoke();
     } catch (_) {}
+
+    _progressService.revoke();
   }
 }

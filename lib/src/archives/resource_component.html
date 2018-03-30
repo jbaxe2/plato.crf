@@ -1,8 +1,12 @@
 <style>
   .resource-container {
     background-color: #eee;
+    margin-bottom: 8px;
     border-top: 2px dashed #062c43;
     padding: 15px;
+    max-width: 600px;
+    max-height: 500px;
+    overflow-y: scroll;
   }
 </style>
 
@@ -12,7 +16,7 @@
       <h3>{{resource.title}}</h3>
     </div>
 
-    <div class="resource-container">{{resource.content}}</div>
+    <div class="resource-container">{{resource.content}}}</div>
 
     <div footer>
       <material-button raised (trigger)="isVisible = false">OK</material-button>
