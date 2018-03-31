@@ -270,43 +270,55 @@ class RequestInformation {
       PreviousContentMapping previousContent = getPreviousContentForSection (aSection);
 
       if (null == previousContent) {
-        PreviousContentMapping clPreviousContent = getPreviousContentForSection (
-          crossListing.sections.firstWhere (
-            (Section clSection) => (clSection != aSection)
-          )
-        );
-
-        if (null != clPreviousContent) {
-          var prevContent = new PreviousContentMapping (
-            aSection, clPreviousContent.enrollment
-          );
-
-          addPreviousContentMapping (prevContent);
-        }
+        _normalizeNullPcAdded(aSection, crossListing);
       } else {
-        crossListing.sections.forEach ((Section clSection) {
-          if (clSection == aSection) {
-            return;
-          }
-
-          PreviousContentMapping clPreviousContent =
-            getPreviousContentForSection (clSection);
-
-          if (null == clPreviousContent) {
-            var prevContent = new PreviousContentMapping (
-              clSection, previousContent.enrollment
-            );
-
-            addPreviousContentMapping (prevContent);
-          }
-
-          if ((null != clPreviousContent) &&
-              (clPreviousContent.enrollment != previousContent.enrollment)) {
-            setPreviousContentEnrollment (clPreviousContent, previousContent.enrollment);
-          }
-        });
+        _normalizeNotNullPcAdded(aSection, crossListing, previousContent);
       }
     }
+  }
+
+  /// The [_normalizeNullPcAdded] method...
+  void _normalizeNullPcAdded (Section aSection, CrossListing aCrossListing) {
+    PreviousContentMapping clPreviousContent = getPreviousContentForSection (
+      aCrossListing.sections.firstWhere (
+        (Section clSection) => (clSection != aSection)
+      )
+    );
+
+    if (null != clPreviousContent) {
+      var prevContent = new PreviousContentMapping (
+        aSection, clPreviousContent.enrollment
+      );
+
+      addPreviousContentMapping (prevContent);
+    }
+  }
+
+  /// The [_normalizeNotNullPcAdded] method...
+  void _normalizeNotNullPcAdded (
+    Section aSection, CrossListing aCrossListing, PreviousContentMapping aPreviousContent
+  ) {
+    aCrossListing.sections.forEach ((Section clSection) {
+      if (clSection == aSection) {
+        return;
+      }
+
+      PreviousContentMapping clPreviousContent =
+        getPreviousContentForSection (clSection);
+
+      if (null == clPreviousContent) {
+        var prevContent = new PreviousContentMapping (
+            clSection, aPreviousContent.enrollment
+        );
+
+        addPreviousContentMapping (prevContent);
+      }
+
+      if ((null != clPreviousContent) &&
+          (clPreviousContent.enrollment != aPreviousContent.enrollment)) {
+        setPreviousContentEnrollment (clPreviousContent, aPreviousContent.enrollment);
+      }
+    });
   }
 
   /// The [_normalizePcRemovedForClSection] method...
