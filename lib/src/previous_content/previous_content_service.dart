@@ -4,7 +4,7 @@ import 'dart:async' show StreamController;
 
 import 'package:angular/core.dart';
 
-import '../course_request/request_information.dart';
+import '../course_request/course_request.dart';
 
 import '../enrollments/enrollment.dart';
 
@@ -21,7 +21,7 @@ class PreviousContentService extends FeaturedSectionService {
 
   StreamController<PreviousContentMapping> previousContentStreamer;
 
-  RequestInformation _requestInformation;
+  CourseRequest _courseRequest;
 
   static PreviousContentService _instance;
 
@@ -31,9 +31,9 @@ class PreviousContentService extends FeaturedSectionService {
 
   /// The [PreviousContentService] private constructor...
   PreviousContentService._() {
-    _requestInformation = new RequestInformation();
+    _courseRequest = new CourseRequest();
 
-    previousContents = _requestInformation.previousContents;
+    previousContents = _courseRequest.previousContents;
     previousContentStreamer = new StreamController<PreviousContentMapping>.broadcast();
 
     init();
@@ -44,7 +44,7 @@ class PreviousContentService extends FeaturedSectionService {
     var previousContent = new PreviousContentMapping (section, enrollment);
 
     try {
-      _requestInformation.addPreviousContentMapping (previousContent);
+      _courseRequest.addPreviousContentMapping (previousContent);
     } catch (_) { rethrow; }
 
     return previousContent;
@@ -55,12 +55,12 @@ class PreviousContentService extends FeaturedSectionService {
 
   /// The [addPreviousContent] method...
   void addPreviousContent (PreviousContentMapping previousContent) {
-    _requestInformation.addPreviousContentMapping (previousContent);
+    _courseRequest.addPreviousContentMapping (previousContent);
   }
 
   /// The [removePreviousContent] method...
   void removePreviousContent (PreviousContentMapping previousContent) {
-    _requestInformation.removePreviousContent (previousContent);
+    _courseRequest.removePreviousContent (previousContent);
     confirmPreviousContents();
   }
 
@@ -68,7 +68,7 @@ class PreviousContentService extends FeaturedSectionService {
   void setPreviousContentEnrollment (
     PreviousContentMapping previousContent, Enrollment enrollment
   ) {
-    _requestInformation.setPreviousContentEnrollment (previousContent, enrollment);
+    _courseRequest.setPreviousContentEnrollment (previousContent, enrollment);
   }
 
   /// The [confirmPreviousContents] method...

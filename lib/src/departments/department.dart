@@ -2,9 +2,9 @@ library plato.angular.models.department;
 
 /// The [Department] class...
 class Department {
-  String code;
+  final String code;
 
-  String description;
+  final String description;
 
   /// The [Department] constructor...
   Department (this.code, this.description);

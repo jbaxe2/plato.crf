@@ -13,12 +13,7 @@ import 'archives_service.dart';
 /// The [ArchiveItemComponent] class...
 @Component(
   selector: 'archive-item',
-  template: r'''
-    <span>{{value.title}}</span> &nbsp;
-    <span *ngIf="showPreviewLink" class="preview-link">
-      [<a (click)="previewResource()">preview resource</a>]
-    </span>
-  ''',
+  templateUrl: 'archive_item_component.html',
   styleUrls: const ['archive_item_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [materialProviders, ArchivesService, ProgressService]

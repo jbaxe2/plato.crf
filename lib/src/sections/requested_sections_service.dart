@@ -2,7 +2,7 @@ library plato.angular.services.sections.requested;
 
 import 'package:angular/core.dart';
 
-import '../course_request/request_information.dart';
+import '../course_request/course_request.dart';
 
 import 'section.dart';
 
@@ -11,7 +11,7 @@ import 'section.dart';
 class RequestedSectionsService {
   List<Section> requestedSections;
 
-  RequestInformation _requestInformation;
+  CourseRequest _courseRequest;
 
   static RequestedSectionsService _instance;
 
@@ -21,20 +21,20 @@ class RequestedSectionsService {
 
   /// The [RequestedSectionsService] private constructor...
   RequestedSectionsService._() {
-    _requestInformation = new RequestInformation();
-    requestedSections = _requestInformation.sections;
+    _courseRequest = new CourseRequest();
+    requestedSections = _courseRequest.sections;
   }
 
   /// The [addSections] method...
   void addSections (List<Section> sections) {
     sections.sort();
 
-    _requestInformation.addSections (sections);
+    _courseRequest.addSections (sections);
   }
 
   /// The [addSection] method...
-  void addSection (Section section) => _requestInformation.addSection (section);
+  void addSection (Section section) => _courseRequest.addSection (section);
 
   /// The [removeSection] method...
-  bool removeSection (Section section) => _requestInformation.removeSection (section);
+  bool removeSection (Section section) => _courseRequest.removeSection (section);
 }

@@ -29,7 +29,7 @@
       <h3>Review and submit the course request...</h3>
     </div>
 
-    <div *ngIf="null != requestInformation" class="request-review-container">
+    <div *ngIf="null != courseRequest" class="request-review-container">
       <material-expansionpanel
           name="Submitting request for:"
           [expanded]="true"
@@ -38,16 +38,16 @@
         <p>
           <span>
             <strong>Plato Username:</strong>&nbsp;
-            {{requestInformation.userInformation.username}}
+            {{courseRequest.userInformation.username}}
           </span><br>
           <span>
             <strong>Name:</strong>&nbsp;
-            {{requestInformation.userInformation.firstName}}
-            {{requestInformation.userInformation.lastName}}
+            {{courseRequest.userInformation.firstName}}
+            {{courseRequest.userInformation.lastName}}
           </span><br>
           <span>
             <strong>E-mail:</strong>&nbsp;
-            {{requestInformation.userInformation.email}}
+            {{courseRequest.userInformation.email}}
           </span>
         </p>
       </material-expansionpanel>
@@ -58,20 +58,20 @@
           [showSaveCancel]="false"
           class="request-info-panel dense">
         <material-list>
-          <material-list-item *ngFor="let section of requestInformation.sections">
+          <material-list-item *ngFor="let section of courseRequest.sections">
             [{{section.sectionId}}] {{section.title}}
           </material-list-item><br>
         </material-list>
       </material-expansionpanel>
 
       <material-expansionpanel
-          *ngIf="!requestInformation.crossListings.isEmpty"
+          *ngIf="!courseRequest.crossListings.isEmpty"
           name="Cross-listing information:"
           [expanded]="true"
           [showSaveCancel]="false"
           class="request-info-panel dense">
         <material-list
-            *ngFor="let crossListing of requestInformation.crossListings; let i=index">
+            *ngFor="let crossListing of courseRequest.crossListings; let i=index">
           <strong style="margin-left: 8px;">Cross-listing set #{{i+1}} contains:</strong><br>
 
           <material-list-item *ngFor="let section of crossListing.sections">
@@ -81,14 +81,14 @@
       </material-expansionpanel>
 
       <material-expansionpanel
-          *ngIf="!requestInformation.previousContents.isEmpty"
+          *ngIf="!courseRequest.previousContents.isEmpty"
           name="Previous content information:"
           [expanded]="true"
           [showSaveCancel]="false"
           class="request-info-panel dense">
         <material-list>
           <material-list-item
-              *ngFor="let previousContent of requestInformation.previousContents">
+              *ngFor="let previousContent of courseRequest.previousContents">
             {{previousContent.section.sectionId}} &#x021A4;
             {{previousContent.enrollment.courseId}}
           </material-list-item>
@@ -97,7 +97,7 @@
     </div>
 
     <div footer>
-      <material-button raised (trigger)="">
+      <material-button raised (trigger)="submitCrf()">
         Submit Course Request
       </material-button>
 

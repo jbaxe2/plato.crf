@@ -5,7 +5,7 @@ import 'dart:async' show StreamController;
 import 'package:angular/angular.dart';
 import 'package:angular/core.dart';
 
-import '../course_request/request_information.dart';
+import '../course_request/course_request.dart';
 
 import '../sections/featured_section_service.dart';
 import '../sections/section.dart';
@@ -20,7 +20,7 @@ class CrossListingService extends FeaturedSectionService {
 
   StreamController<CrossListing> crossListingStreamer;
 
-  RequestInformation _requestInformation;
+  CourseRequest _courseRequest;
 
   static CrossListingService _instance;
 
@@ -30,9 +30,9 @@ class CrossListingService extends FeaturedSectionService {
 
   /// The [CrossListingService] private constructor...
   CrossListingService._() {
-    _requestInformation = new RequestInformation();
+    _courseRequest = new CourseRequest();
 
-    crossListings = _requestInformation.crossListings;
+    crossListings = _courseRequest.crossListings;
     crossListingStreamer = new StreamController<CrossListing>.broadcast();
 
     init();
@@ -43,7 +43,7 @@ class CrossListingService extends FeaturedSectionService {
     var crossListing = new CrossListing();
 
     try {
-      _requestInformation.addCrossListing (crossListing);
+      _courseRequest.addCrossListing (crossListing);
     } catch (_) { rethrow; }
 
     return crossListing;
@@ -56,23 +56,23 @@ class CrossListingService extends FeaturedSectionService {
 
   /// The [addCrossListings] method...
   void addCrossListings (List<CrossListing> crossListings) =>
-    _requestInformation.addCrossListings (crossListings);
+    _courseRequest.addCrossListings (crossListings);
 
   /// The [removeCrossListing] method...
   bool removeCrossListing (CrossListing crossListing) =>
-    _requestInformation.removeCrossListing (crossListing);
+    _courseRequest.removeCrossListing (crossListing);
 
   /// The [addSectionToCrossListing] method...
   void addSectionToCrossListing (Section theSection, CrossListing theCrossListing) {
     try {
-      _requestInformation.addSectionToCrossListing (theSection, theCrossListing);
+      _courseRequest.addSectionToCrossListing (theSection, theCrossListing);
     } catch (_) { rethrow; }
   }
 
   /// The [removeSectionFromCrossListing] method...
   void removeSectionFromCrossListing (Section theSection, CrossListing theCrossListing) {
     try {
-      _requestInformation.removeSectionFromCrossListing (theSection, theCrossListing);
+      _courseRequest.removeSectionFromCrossListing (theSection, theCrossListing);
     } catch (_) { rethrow; }
   }
 

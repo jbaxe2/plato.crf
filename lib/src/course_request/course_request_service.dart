@@ -6,29 +6,23 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
-import '../cross_listings/cross_listing.dart';
-
-import '../previous_content/previous_content_mapping.dart';
-
-import '../sections/section.dart';
-
 import '../user/user_information.dart';
 
 import 'course_request_exception.dart';
-import 'request_information.dart';
+import 'course_request.dart';
 
 const String _SUBMISSION_URI = '/plato/submit/crf';
 
 /// The [CourseRequestService] class...
 @Injectable()
 class CourseRequestService {
-  RequestInformation _requestInformation;
+  CourseRequest _courseRequest;
 
   final Client _http;
 
-  bool get submittable => _requestInformation.submittable;
+  bool get submittable => _courseRequest.submittable;
 
-  StreamController<RequestInformation> requestController;
+  StreamController<CourseRequest> requestController;
 
   static CourseRequestService _instance;
 
@@ -38,14 +32,14 @@ class CourseRequestService {
 
   /// The [CourseRequestService] private constructor...
   CourseRequestService._ (this._http) {
-    _requestInformation = new RequestInformation();
-    requestController = new StreamController<RequestInformation>.broadcast();
+    _courseRequest = new CourseRequest();
+    requestController = new StreamController<CourseRequest>.broadcast();
   }
 
   /// The [setUserInformation] method...
   void setUserInformation (UserInformation userInformation) {
     try {
-      _requestInformation.setUserInformation (userInformation);
+      _courseRequest.setUserInformation (userInformation);
     } catch (_) { rethrow; }
   }
 
@@ -57,7 +51,7 @@ class CourseRequestService {
       );
     }
 
-    requestController.add (_requestInformation);
+    requestController.add (_courseRequest);
   }
 
   /// The [submitCourseRequest] method...
@@ -67,7 +61,9 @@ class CourseRequestService {
     } catch (_) { rethrow; }
 
     try {
-      final Response crfResponse = await _http.post (_SUBMISSION_URI);
+      final Response crfResponse = await _http.post (
+        _SUBMISSION_URI, body: _courseRequest.toJson()
+      );
 
       crfResponse.body;
     } catch (_) {
@@ -79,48 +75,10 @@ class CourseRequestService {
 
   /// The [_validateCourseRequest] method...
   void _validateCourseRequest() {
-    if (null == _requestInformation) {
-      throw new CourseRequestException (
-        'Cannot submit a course request that does not exist.'
-      );
+    try {
+      _courseRequest.verify();
+    } catch (_) {
+      rethrow;
     }
-
-    if (null == _requestInformation.userInformation) {
-      throw new CourseRequestException (
-        'No user information has been provided to submit the course request.'
-      );
-    }
-
-    if (_requestInformation.sections.isEmpty) {
-      throw new CourseRequestException (
-        'No sections have been selected for this course request.'
-      );
-    }
-
-    _requestInformation.crossListings.forEach ((CrossListing crossListing) {
-      if (crossListing.sections.length < 2) {
-        throw new CourseRequestException (
-          'Cannot have a cross-listing set with only one section.'
-        );
-      }
-
-      if (!crossListing.sections.every (
-        (Section section) => (_requestInformation.sections.contains (section))
-      )) {
-        throw new CourseRequestException (
-          'Cannot have a cross-listing set containing a section which is not '
-            'part of the course request.'
-        );
-      }
-    });
-
-    _requestInformation.previousContents.forEach ((PreviousContentMapping previousContent) {
-      if (!_requestInformation.sections.contains (previousContent.section)) {
-        throw new CourseRequestException (
-          'Cannot have previous content specified for a section that is not part '
-            'of the course request.'
-        );
-      };
-    });
   }
 }

@@ -53,7 +53,7 @@ class Enrollment implements Comparable {
     result = 7 * result + ((null == courseName) ? 0 : courseName.hashCode);
     result = 7 * result + ((null == role) ? 0 : role.hashCode);
     result = 7 * result + ((null == available) ? 0 : available.hashCode);
-    result = 7 * result + ((null == isArchive) ? 0 : isArchive.hashCode);
+    result = 7 * result + isArchive.hashCode;
 
     return result;
   }

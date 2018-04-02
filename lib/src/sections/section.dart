@@ -4,19 +4,19 @@ import 'section_exception.dart';
 
 /// The [Section] class...
 class Section implements Comparable {
-  String sectionId;
+  final String sectionId;
 
-  String termId;
+  final String termId;
 
-  String crn;
+  final String crn;
 
-  String title;
+  final String title;
 
-  String faculty;
+  final String faculty;
 
-  String place;
+  final String place;
 
-  String time;
+  final String time;
 
   /// The [Section] constructor...
   Section (this.sectionId, this.termId, this.crn, this.title, this.faculty, this.place, this.time);

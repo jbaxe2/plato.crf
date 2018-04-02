@@ -54,7 +54,6 @@ class ArchiveComponent implements OnInit {
         archiveItems.clear();
         archiveItems = _archiveCourse.rootArchiveItems;
 
-        window.console.debug (archiveItems);
         archiveOptions = new ArchiveItemOptions ([new OptionGroup (archiveItems)]);
 
         isVisible = true;

@@ -9,10 +9,6 @@ import 'package:plato_angular/src/_application/error/plato_exception.dart';
 /// The [ErrorService] class...
 @Injectable()
 class ErrorService {
-  PlatoException _exception;
-
-  PlatoException get exception => _exception;
-
   StreamController<PlatoException> errorStreamController;
 
   bool errorRaised;
@@ -29,10 +25,8 @@ class ErrorService {
   }
 
   /// The [raiseError] method...
-  void raiseError (PlatoException theException) {
-    _exception = theException;
+  void raiseError (PlatoException exception) {
+    errorStreamController.add (exception);
     errorRaised = true;
-
-    errorStreamController.add (theException);
   }
 }

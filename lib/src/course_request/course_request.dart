@@ -8,14 +8,15 @@ import '../enrollments/enrollment.dart';
 import '../previous_content/previous_content_mapping.dart';
 import '../previous_content/previous_content_exception.dart';
 
-import '../sections/section.dart';
 import '../sections/requested_section.dart';
+import '../sections/section.dart';
+import '../sections/section_exception.dart';
 
 import '../user/user_exception.dart';
 import '../user/user_information.dart';
 
-/// The [RequestInformation] class...
-class RequestInformation {
+/// The [CourseRequest] class...
+class CourseRequest {
   UserInformation _userInformation;
 
   UserInformation get userInformation => _userInformation;
@@ -30,14 +31,14 @@ class RequestInformation {
 
   bool get submittable => (null != _userInformation) && sections.isNotEmpty;
 
-  static RequestInformation _instance;
+  static CourseRequest _instance;
 
-  /// The [RequestInformation] factory constructor...
-  factory RequestInformation() =>
-    _instance ?? (_instance = new RequestInformation._());
+  /// The [CourseRequest] factory constructor...
+  factory CourseRequest() =>
+    _instance ?? (_instance = new CourseRequest._());
 
-  /// The [RequestInformation] private constructor...
-  RequestInformation._() {
+  /// The [CourseRequest] private constructor...
+  CourseRequest._() {
     sections = new List<Section>();
     crossListings = new List<CrossListing>();
     previousContents = new List<PreviousContentMapping>();
@@ -334,7 +335,45 @@ class RequestInformation {
 
   /// The [verify] method...
   bool verify() {
-    return false;
+    if (null == userInformation) {
+      throw new UserException (
+        'No user information has been provided to submit the course request.'
+      );
+    }
+
+    if (sections.isEmpty) {
+      throw new SectionException (
+        'No sections have been selected for this course request.'
+      );
+    }
+
+    crossListings.forEach ((CrossListing crossListing) {
+      if (crossListing.sections.length < 2) {
+        throw new CrossListingException (
+          'Cannot have a cross-listing set with only one section.'
+        );
+      }
+
+      if (!crossListing.sections.every (
+          (Section section) => (sections.contains (section))
+      )) {
+        throw new CrossListingException (
+          'Cannot have a cross-listing set containing a section which is not '
+            'part of the course request.'
+        );
+      }
+    });
+
+    previousContents.forEach ((PreviousContentMapping previousContent) {
+      if (!sections.contains (previousContent.section)) {
+        throw new PreviousContentException (
+          'Cannot have previous content specified for a section that is not part '
+            'of the course request.'
+        );
+      };
+    });
+
+    return true;
   }
 
   /// The [toJson] method...

@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
 import '../../course_request/course_request_service.dart';
-import '../../course_request/request_information.dart';
+import '../../course_request/course_request.dart';
 
 import '../progress/progress_service.dart';
 
@@ -19,7 +19,7 @@ import '../progress/progress_service.dart';
 class ReviewRequestComponent implements OnInit {
   bool isVisible;
 
-  RequestInformation requestInformation;
+  CourseRequest courseRequest;
 
   final CourseRequestService _crfService;
 
@@ -34,8 +34,8 @@ class ReviewRequestComponent implements OnInit {
     isVisible = false;
 
     _crfService.requestController.stream.listen (
-      (RequestInformation requestInfo) {
-        requestInformation = requestInfo;
+      (CourseRequest requestInfo) {
+        courseRequest = requestInfo;
         isVisible = true;
       }
     );
