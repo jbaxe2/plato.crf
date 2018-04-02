@@ -182,6 +182,10 @@ class ArchivesService {
 
   /// The [_createResource] method...
   ArchiveResource _createResource (String resourceId, String title, String content) {
+    if ('' == content) {
+      content = '(The content for this resource returned blank.)';
+    }
+
     return new ArchiveResource (resourceId, title, content);
   }
 }
