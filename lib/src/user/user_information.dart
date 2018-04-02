@@ -35,4 +35,16 @@ class UserInformation {
     this.username, this.password, this.firstName, this.lastName, this.email,
     this.cwid, [this._isLtiSession = false]
   );
+
+  /// The [toJson] method...
+  Object toJson() {
+    return {
+      'username': username,
+      'password': password,
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'cwid': cwid
+    };
+  }
 }

@@ -1,10 +1,13 @@
 library plato.angular.services.course_request;
 
 import 'dart:async' show Future, StreamController;
+import 'dart:convert' show JSON;
 
 import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
+
+import '../courses/rejected_course.dart';
 
 import '../user/user_information.dart';
 
@@ -24,6 +27,8 @@ class CourseRequestService {
 
   StreamController<CourseRequest> requestController;
 
+  StreamController<List<RejectedCourse>> rejectedController;
+
   static CourseRequestService _instance;
 
   /// The [CourseRequestService] factory constructor...
@@ -33,7 +38,9 @@ class CourseRequestService {
   /// The [CourseRequestService] private constructor...
   CourseRequestService._ (this._http) {
     _courseRequest = new CourseRequest();
+
     requestController = new StreamController<CourseRequest>.broadcast();
+    rejectedController = new StreamController<List<RejectedCourse>>.broadcast();
   }
 
   /// The [setUserInformation] method...
@@ -57,15 +64,15 @@ class CourseRequestService {
   /// The [submitCourseRequest] method...
   Future submitCourseRequest() async {
     try {
-      _validateCourseRequest();
+      _courseRequest.verify();
     } catch (_) { rethrow; }
 
     try {
       final Response crfResponse = await _http.post (
-        _SUBMISSION_URI, body: _courseRequest.toJson()
+        _SUBMISSION_URI, body: JSON.encode (_courseRequest.toJson())
       );
 
-      crfResponse.body;
+      _parseSubmissionResponse (JSON.decode (crfResponse.body));
     } catch (_) {
       throw new CourseRequestException (
         'An error has occurred while attempting to submit the course request.'
@@ -73,12 +80,37 @@ class CourseRequestService {
     }
   }
 
-  /// The [_validateCourseRequest] method...
-  void _validateCourseRequest() {
-    try {
-      _courseRequest.verify();
-    } catch (_) {
-      rethrow;
+  /// The [_parseSubmissionResponse] method...
+  void _parseSubmissionResponse (Map<String, dynamic> submissionResponse) {
+    if (!(submissionResponse.containsKey ('result') &&
+          submissionResponse.containsKey ('rejectedCourses'))) {
+      throw new CourseRequestException (
+        'The received response from submitting the request resulted in error.'
+      );
     }
+
+    var rejectedCourses = new List<RejectedCourse>();
+
+    try {
+      if ((submissionResponse['result'] as String).contains ('partial')) {
+        var rawRejectedCourses =
+          submissionResponse['rejectedCourses'] as List<Map<String, String>>;
+
+        rawRejectedCourses.forEach ((Map<String, String> rawRejectedCourse) {
+          rejectedCourses.add (
+            new RejectedCourse (
+              rawRejectedCourse['id'], rawRejectedCourse['title']
+            )
+          );
+        });
+      }
+    } catch (_) {
+      throw new CourseRequestException (
+        'Some courses were rejected, but the response from the server was '
+        'improperly formatted.'
+      );
+    }
+
+    rejectedController.add (rejectedCourses);
   }
 }

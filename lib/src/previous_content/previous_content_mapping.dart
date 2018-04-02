@@ -12,4 +12,12 @@ class PreviousContentMapping {
 
   /// The [PreviousContentMapping] constructor...
   PreviousContentMapping (this.section, this.enrollment);
+
+  /// The [toJson] method...
+  Object toJson() {
+    return {
+      'section': section,
+      'courseEnrollment': enrollment
+    };
+  }
 }

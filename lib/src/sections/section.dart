@@ -19,7 +19,10 @@ class Section implements Comparable {
   final String time;
 
   /// The [Section] constructor...
-  Section (this.sectionId, this.termId, this.crn, this.title, this.faculty, this.place, this.time);
+  Section (
+    this.sectionId, this.termId, this.crn, this.title, this.faculty,
+    this.place, this.time
+  );
 
   /// The [isDay] method...
   bool isDay() {
@@ -85,5 +88,18 @@ class Section implements Comparable {
     }
 
     return sectionId.compareTo (other.sectionId);
+  }
+
+  /// The [toJson] method...
+  Object toJson() {
+    return {
+      'sectionId': sectionId,
+      'crn': crn,
+      'courseTitle': title,
+      'termId': termId,
+      'faculty': faculty,
+      'time': time,
+      'place': place
+    };
   }
 }

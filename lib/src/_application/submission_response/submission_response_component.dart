@@ -1,5 +1,7 @@
 library plato.angular.components.application.response;
 
+import 'dart:async' show Stream;
+
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -26,5 +28,11 @@ class SubmissionResponseComponent implements OnInit {
   @override
   void ngOnInit() {
     rejectedCourses = new List<RejectedCourse>();
+
+    _crfService.rejectedController.stream.listen (
+      (List<RejectedCourse> someRejectedCourses) {
+        rejectedCourses = someRejectedCourses;
+      }
+    );
   }
 }

@@ -38,4 +38,13 @@ class RequestedSection {
       _previousContent = aPreviousContent;
     }
   }
+
+  /// The [toJson] method...
+  Object toJson() {
+    return {
+      'section': section,
+      'crossListing': crossListing,
+      'previousContent': previousContent
+    };
+  }
 }

@@ -82,4 +82,11 @@ class CrossListing {
 
     return result;
   }
+
+  /// The [toJson] method...
+  Object toJson() {
+    return {
+      'sections': sections
+    };
+  }
 }

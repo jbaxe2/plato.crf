@@ -1,5 +1,7 @@
 library plato.angular.models.crf.request_information;
 
+import 'dart:html';
+
 import '../cross_listings/cross_listing.dart';
 import '../cross_listings/cross_listing_exception.dart';
 
@@ -205,7 +207,9 @@ class CourseRequest {
         (PreviousContentMapping aPreviousContent) =>
           (aPreviousContent.section == section)
       );
-    } catch (_) {}
+    } catch (_) {
+      window.console.log ('Previous content error for ${section.sectionId}:\n${_.toString()}');
+    }
 
     return previousContent;
   }
@@ -378,6 +382,12 @@ class CourseRequest {
 
   /// The [toJson] method...
   Object toJson() {
-    return {};
+    return {
+      'userInfo': _userInformation,
+      'sections': sections,
+      'crossListings': crossListings,
+      'requestedSections': requestedSections,
+      'context': _userInformation.isLtiSession
+    };
   }
 }

@@ -66,4 +66,16 @@ class Enrollment implements Comparable {
 
     return courseId.compareTo (other.courseId);
   }
+
+  /// The [toJson] method...
+  Object toJson() {
+    return {
+      'username': username,
+      'courseId': courseId,
+      'courseName': courseName,
+      'role': role,
+      'available': available,
+      'isArchive': isArchive.toString()
+    };
+  }
 }
