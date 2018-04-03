@@ -119,12 +119,13 @@ class ArchivesService {
 
       if (rawArchiveInfo.containsKey ('manifestOutline')) {
         archiveCourseController.add (_archiveCourseFactory.create (rawArchiveInfo));
-      }
-
-      if (rawArchiveInfo.containsKey ('resource')) {
+      } else if (rawArchiveInfo.containsKey ('resource')) {
         resourceController.add (
           _createResource (resourceId, resourceTitle, rawArchiveInfo['resource'])
         );
+      } else {
+        // Must have either a manifest outline or resource.
+        throw rawArchiveInfo;
       }
     } catch (_) {
       throw new ArchiveException (
