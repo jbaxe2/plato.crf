@@ -1,7 +1,5 @@
 library plato.angular.components.application.response;
 
-import 'dart:async' show Stream;
-
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 

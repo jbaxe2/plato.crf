@@ -9,6 +9,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'department.dart';
 import 'department_exception.dart';
+import 'department_factory.dart';
 
 const String _DEPTS_URI = '/plato/retrieve/departments';
 
@@ -16,6 +17,8 @@ const String _DEPTS_URI = '/plato/retrieve/departments';
 @Injectable()
 class DepartmentsService {
   List<Department> departments;
+
+  DepartmentFactory _departmentFactory;
 
   final Client _http;
 
@@ -28,6 +31,7 @@ class DepartmentsService {
   /// The [DepartmentsService] private constructor...
   DepartmentsService._ (this._http) {
     departments = new List<Department>();
+    _departmentFactory = new DepartmentFactory();
   }
 
   /// The [retrieveDepartments] method...
@@ -38,11 +42,9 @@ class DepartmentsService {
       List<Map<String, String>> rawDepts =
         (JSON.decode (deptsResponse.body) as Map)['departments'];
 
-      departments.clear();
-
-      rawDepts.forEach ((Map<String, String> rawDept) {
-        departments.add (new Department (rawDept['code'], rawDept['description']));
-      });
+      departments
+        ..clear()
+        ..addAll (_departmentFactory.createAll (rawDepts));
     } catch (_) {
       throw new DepartmentException ('Unable to retrieve the departments list.');
     }

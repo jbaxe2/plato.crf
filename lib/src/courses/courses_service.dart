@@ -9,6 +9,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'course.dart';
 import 'course_exception.dart';
+import 'course_factory.dart';
 
 const String _COURSES_URI = '/plato/retrieve/courses';
 
@@ -21,6 +22,8 @@ class CoursesService {
 
   List<Course> courses;
 
+  CourseFactory _courseFactory;
+
   final Client _http;
 
   static CoursesService _instance;
@@ -32,6 +35,7 @@ class CoursesService {
   /// The [CoursesService] private constructor...
   CoursesService._ (this._http) {
     courses = new List<Course>();
+    _courseFactory = new CourseFactory();
   }
 
   /// The [setDepartmentId] method...
@@ -70,11 +74,9 @@ class CoursesService {
       List<Map<String, String>> rawCourses =
         (JSON.decode (coursesResponse.body) as Map)['courses'];
 
-      courses.clear();
-
-      rawCourses.forEach ((Map<String, String> rawCourse) {
-        courses.add (new Course (rawCourse['courseId'], rawCourse['title']));
-      });
+      courses
+        ..clear()
+        ..addAll (_courseFactory.createAll (rawCourses));
     } catch (_) {
       throw new CourseException ('Unable to retrieve the courses list.');
     }

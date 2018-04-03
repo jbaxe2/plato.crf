@@ -9,6 +9,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'term.dart';
 import 'term_exception.dart';
+import 'term_factory.dart';
 
 const String _TERMS_URI = '/plato/retrieve/terms';
 
@@ -16,6 +17,8 @@ const String _TERMS_URI = '/plato/retrieve/terms';
 @Injectable()
 class TermsService {
   List<Term> terms;
+
+  TermFactory _termFactory;
 
   final Client _http;
 
@@ -28,6 +31,7 @@ class TermsService {
   /// The [TermsService] private constructor...
   TermsService._ (this._http) {
     terms = new List<Term>();
+    _termFactory = new TermFactory();
   }
 
   /// The [retrieveTerms] method...
@@ -38,11 +42,9 @@ class TermsService {
       List<Map<String, String>> rawTerms =
         (JSON.decode (termsResponse.body) as Map)['terms'];
 
-      terms.clear();
-
-      rawTerms.forEach ((Map<String, String> rawTerm) {
-        terms.add (new Term (rawTerm['id'], rawTerm['description']));
-      });
+      terms
+        ..clear()
+        ..addAll (_termFactory.createAll (rawTerms));
     } catch (_) {
       throw new TermException ('Unable to retrieve the list of terms.');
     }
