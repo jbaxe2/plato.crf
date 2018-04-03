@@ -8,11 +8,11 @@ import 'package:angular/core.dart';
 import 'package:http/http.dart' show Client, Response;
 
 import '../enrollments/enrollment.dart';
+import '../enrollments/enrollment_factory.dart';
 
 import 'archive_course.dart';
+import 'archive_course_factory.dart';
 import 'archive_exception.dart';
-import 'archive_item.dart';
-import 'archive_item_node.dart';
 import 'archive_resource.dart';
 
 const String _RETRIEVE_URI = '/plato/retrieve/archives';
@@ -32,6 +32,10 @@ class ArchivesService {
 
   String _lastArchiveId;
 
+  EnrollmentFactory _enrollmentFactory;
+
+  ArchiveCourseFactory _archiveCourseFactory;
+
   final Client _http;
 
   static ArchivesService _instance;
@@ -47,6 +51,9 @@ class ArchivesService {
     archiveStreamController = new StreamController<Enrollment>.broadcast();
     archiveCourseController = new StreamController<ArchiveCourse>.broadcast();
     resourceController = new StreamController<ArchiveResource>.broadcast();
+
+    _enrollmentFactory = new EnrollmentFactory();
+    _archiveCourseFactory = new ArchiveCourseFactory();
   }
 
   /// The [retrieveArchives] method...
@@ -57,23 +64,15 @@ class ArchivesService {
       List<Map<String, String>> rawArchives =
         (JSON.decode (archivesResponse.body))['archives'];
 
-      archiveEnrollments.clear();
+      archiveEnrollments
+        ..clear()
+        ..addAll (_enrollmentFactory.createAll (rawArchives, true))
+        ..sort();
 
-      rawArchives.forEach ((Map<String, String> rawArchive) {
-        var archiveEnrollment = new Enrollment (
-          rawArchive['learn.user.username'],
-          rawArchive['learn.course.id'],
-          rawArchive['learn.course.name'],
-          rawArchive['learn.membership.role'],
-          rawArchive['learn.membership.available'],
-          isArchive: true
-        );
-
-        archiveEnrollments.add (archiveEnrollment);
-        archiveStreamController.add (archiveEnrollment);
-      });
-
-      archiveEnrollments.sort();
+      archiveEnrollments.forEach (
+        (Enrollment archiveEnrollment) =>
+          archiveStreamController.add (archiveEnrollment)
+      );
     } catch (_) {
       throw new ArchiveException (
         'Unable to retrieve the list of archived course enrollments.'
@@ -119,12 +118,7 @@ class ArchivesService {
       }
 
       if (rawArchiveInfo.containsKey ('manifestOutline')) {
-        var archiveCourse = new ArchiveCourse (
-          rawArchiveInfo['courseId'], rawArchiveInfo['courseTitle'],
-          _buildArchiveItems (rawArchiveInfo['manifestOutline'])
-        );
-
-        archiveCourseController.add (archiveCourse);
+        archiveCourseController.add (_archiveCourseFactory.create (rawArchiveInfo));
       }
 
       if (rawArchiveInfo.containsKey ('resource')) {
@@ -142,43 +136,6 @@ class ArchivesService {
   /// The [previewResource] method...
   Future previewResource (String resourceId, String title) async =>
     await browseArchive (_lastArchiveId, resourceId, title);
-
-  /// The [_buildArchiveItems] method...
-  List<ArchiveItem> _buildArchiveItems (Map<String, dynamic> rawArchiveItems) {
-    var archiveItems = new List<ArchiveItemNode>();
-
-    rawArchiveItems.forEach ((String itemKey, dynamic rawArchiveItem) {
-      String resourceId = itemKey;
-      String title = '';
-
-      var subArchiveItems = new List<ArchiveItem>();
-
-      if (rawArchiveItem is String) {
-        title = rawArchiveItem;
-      } else if (rawArchiveItem is Map) {
-        title = rawArchiveItem[itemKey];
-
-        if (1 < rawArchiveItem.keys.length) {
-          rawArchiveItem.forEach ((String subKey, dynamic subItems) {
-            if (subItems is Map) {
-              subArchiveItems.addAll (_buildArchiveItems (subItems));
-            }
-          });
-        }
-      }
-
-      if (title.startsWith ('divider_')) {
-        title = '-----------------------';
-      }
-
-      archiveItems.add (
-        new ArchiveItemNode (resourceId, title)
-          ..items = subArchiveItems
-      );
-    });
-
-    return archiveItems;
-  }
 
   /// The [_createResource] method...
   ArchiveResource _createResource (String resourceId, String title, String content) {

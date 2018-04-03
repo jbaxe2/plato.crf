@@ -7,6 +7,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
+import '../courses/course_factory.dart';
 import '../courses/rejected_course.dart';
 
 import '../user/user_information.dart';
@@ -29,6 +30,8 @@ class CourseRequestService {
 
   StreamController<List<RejectedCourse>> rejectedController;
 
+  CourseFactory _courseFactory;
+
   static CourseRequestService _instance;
 
   /// The [CourseRequestService] factory constructor...
@@ -41,6 +44,8 @@ class CourseRequestService {
 
     requestController = new StreamController<CourseRequest>.broadcast();
     rejectedController = new StreamController<List<RejectedCourse>>.broadcast();
+
+    _courseFactory = new CourseFactory();
   }
 
   /// The [setUserInformation] method...
@@ -96,13 +101,9 @@ class CourseRequestService {
         var rawRejectedCourses =
           submissionResponse['rejectedCourses'] as List<Map<String, String>>;
 
-        rawRejectedCourses.forEach ((Map<String, String> rawRejectedCourse) {
-          rejectedCourses.add (
-            new RejectedCourse (
-              rawRejectedCourse['id'], rawRejectedCourse['title']
-            )
-          );
-        });
+        rejectedCourses.addAll (
+          _courseFactory.createRejectedCourses (rawRejectedCourses)
+        );
       }
     } catch (_) {
       throw new CourseRequestException (

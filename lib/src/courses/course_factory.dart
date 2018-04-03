@@ -4,6 +4,7 @@ import '../_application/factory/plato_factory.dart';
 
 import 'course.dart';
 import 'course_exception.dart';
+import 'rejected_course.dart';
 
 /// The [CourseFactory] class...
 class CourseFactory implements PlatoFactory<Course> {
@@ -35,5 +36,27 @@ class CourseFactory implements PlatoFactory<Course> {
     }
 
     return courses;
+  }
+
+  /// The [createRejectedCourse] method...
+  RejectedCourse createRejectedCourse (Map<String, dynamic> rawRejectedCourse) {
+    return (create (rawRejectedCourse) as RejectedCourse);
+  }
+
+  /// The [createRejectedCourses] method...
+  List<RejectedCourse> createRejectedCourses (
+    Iterable<Map<String, dynamic>> rawRejectedCourses
+  ) {
+    var rejectedCourses = new List<RejectedCourse>();
+
+    try {
+      rawRejectedCourses.forEach ((Map<String, dynamic> rawRejectedCourse) {
+        rejectedCourses.add (createRejectedCourse (rawRejectedCourse));
+      });
+    } catch (_) {
+      rethrow;
+    }
+
+    return rejectedCourses;
   }
 }

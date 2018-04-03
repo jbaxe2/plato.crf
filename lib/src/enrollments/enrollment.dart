@@ -1,6 +1,6 @@
 library plato.angular.models.learn.enrollment;
 
-import 'enrollments_exception.dart';
+import 'enrollment_exception.dart';
 
 /// The [Enrollment] class...
 class Enrollment implements Comparable {
@@ -61,7 +61,7 @@ class Enrollment implements Comparable {
   /// The [compareTo] method...
   int compareTo (dynamic other) {
     if (!(other is Enrollment)) {
-      throw new EnrollmentsException ('Cannot compare an enrollment to some other type.');
+      throw new EnrollmentException ('Cannot compare an enrollment to some other type.');
     }
 
     return courseId.compareTo (other.courseId);

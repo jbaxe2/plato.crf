@@ -7,9 +7,9 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart' show Client, Response;
 
-import 'section_exception.dart';
-
 import 'section.dart';
+import 'section_exception.dart';
+import 'section_factory.dart';
 
 const String _SECTIONS_URI = '/plato/retrieve/sections';
 
@@ -22,6 +22,8 @@ class SectionsService {
 
   List<Section> sections;
 
+  SectionFactory _sectionFactory;
+
   final Client _http;
 
   static SectionsService _instance;
@@ -33,6 +35,7 @@ class SectionsService {
   /// The [SectionsService] private constructor...
   SectionsService._ (this._http) {
     sections = new List<Section>();
+    _sectionFactory = new SectionFactory();
   }
 
   /// The [setCourseId] method...
@@ -71,24 +74,10 @@ class SectionsService {
       List<Map<String, String>> rawSections =
         (JSON.decode (sectionsResponse.body) as Map)['sections'];
 
-      sections.clear();
-
-      rawSections.forEach ((Map<String, String> rawSection) {
-        String faculty = rawSection['facname'].trim();
-
-        if ('' == faculty) {
-          faculty = 'Staff';
-        }
-
-        sections.add (
-          new Section (
-            rawSection['crsno'], rawSection['term'], rawSection['crsno'],
-            rawSection['title'], faculty, rawSection['mplace'], rawSection['mtime']
-          )
-        );
-      });
-
-      sections.sort();
+      sections
+        ..clear()
+        ..addAll (_sectionFactory.createAll (rawSections))
+        ..sort();
     } catch (_) {
       throw new SectionException (
         'Retrieving the sections information resulted in an error.'

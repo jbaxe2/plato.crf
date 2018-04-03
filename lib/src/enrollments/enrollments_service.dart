@@ -8,7 +8,8 @@ import 'package:http/http.dart' show Client, Response;
 import 'package:angular/core.dart';
 
 import 'enrollment.dart';
-import 'enrollments_exception.dart';
+import 'enrollment_exception.dart';
+import 'enrollment_factory.dart';
 
 const String _ENROLLMENTS_URI = '/plato/retrieve/enrollments/instructor';
 
@@ -16,6 +17,8 @@ const String _ENROLLMENTS_URI = '/plato/retrieve/enrollments/instructor';
 @Injectable()
 class EnrollmentsService {
   List<Enrollment> enrollments;
+
+  EnrollmentFactory _enrollmentFactory;
 
   final Client _http;
 
@@ -28,6 +31,7 @@ class EnrollmentsService {
   /// The [EnrollmentsService] private constructor...
   EnrollmentsService._ (this._http) {
     enrollments = new List<Enrollment>();
+    _enrollmentFactory = new EnrollmentFactory();
   }
 
   /// The [retrieveEnrollments] method...
@@ -38,25 +42,12 @@ class EnrollmentsService {
       List<Map<String, String>> rawEnrollments =
         (JSON.decode (enrollmentsResponse.body) as Map)['enrollments'];
 
-      enrollments.clear();
-
-      rawEnrollments.forEach ((Map<String, String> rawEnrollment) {
-        if ('Instructor' != rawEnrollment['learn.membership.role']) {
-          return;
-        }
-
-        var enrollment = new Enrollment (
-          rawEnrollment['learn.user.username'], rawEnrollment['learn.course.id'],
-          rawEnrollment['learn.course.name'], rawEnrollment['learn.membership.role'],
-          rawEnrollment['learn.membership.available']
-        );
-
-        enrollments.add (enrollment);
-      });
-
-      enrollments.sort();
+      enrollments
+        ..clear()
+        ..addAll (_enrollmentFactory.createAll (rawEnrollments))
+        ..sort();
     } catch (_) {
-      throw new EnrollmentsException (
+      throw new EnrollmentException (
         'Unable to properly retrieve and parse the enrollments.'
       );
     }

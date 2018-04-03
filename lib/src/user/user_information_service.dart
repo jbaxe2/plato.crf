@@ -7,8 +7,8 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart' show Client, Response;
 
-import '../user/user_exception.dart';
-
+import 'user_exception.dart';
+import 'user_factory.dart';
 import 'user_information.dart';
 
 const String _LEARN_AUTH_URI = '/plato/authenticate/learn';
@@ -34,6 +34,8 @@ class UserInformationService {
 
   StreamController<bool> authStreamController;
 
+  UserFactory _userFactory;
+
   final Client _http;
 
   static UserInformationService _instance;
@@ -48,6 +50,7 @@ class UserInformationService {
     _isAuthenticated = false;
 
     authStreamController = new StreamController<bool>.broadcast();
+    _userFactory = new UserFactory();
   }
 
   /// The [retrieveSession] method...
@@ -120,10 +123,8 @@ class UserInformationService {
 
       _username = rawUser['learn.user.username'];
 
-      userInformation = new UserInformation (
-        _username, _password, rawUser['learn.user.firstName'],
-        rawUser['learn.user.lastName'], rawUser['learn.user.email'],
-        rawUser['banner.user.cwid'], _isLtiSession
+      userInformation = _userFactory.create (
+        rawUser, _username, _password, _isLtiSession
       );
     } catch (_) {
       throw new UserException ('Unable to retrieve the user information.');
