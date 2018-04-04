@@ -1,8 +1,8 @@
 library plato.angular.models.archive.course;
 
-import '../courses/course.dart';
+import '../../courses/course.dart';
 
-import 'archive_item.dart';
+import '../item/archive_item.dart';
 
 /// The [ArchiveCourse] class...
 class ArchiveCourse extends Course {

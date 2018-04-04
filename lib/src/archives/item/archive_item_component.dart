@@ -5,10 +5,11 @@ import 'dart:async' show Future;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../_application/progress/progress_service.dart';
+import '../../_application/progress/progress_service.dart';
+
+import '../archives_service.dart';
 
 import 'archive_item.dart';
-import 'archives_service.dart';
 
 /// The [ArchiveItemComponent] class...
 @Component(

@@ -10,10 +10,12 @@ import 'package:http/http.dart' show Client, Response;
 import '../enrollments/enrollment.dart';
 import '../enrollments/enrollment_factory.dart';
 
-import 'archive_course.dart';
-import 'archive_course_factory.dart';
+import './course/archive_course.dart';
+import './course/archive_course_factory.dart';
+
+import './resource/archive_resource.dart';
+
 import 'archive_exception.dart';
-import 'archive_resource.dart';
 
 const String _RETRIEVE_URI = '/plato/retrieve/archives';
 const String _PULL_URI = '/plato/pull/archive';

@@ -1,6 +1,4 @@
-library plato.angular.models.crf.request_information;
-
-import 'dart:html';
+library plato.angular.models.course_request;
 
 import '../cross_listings/cross_listing.dart';
 import '../cross_listings/cross_listing_exception.dart';
@@ -207,9 +205,7 @@ class CourseRequest {
         (PreviousContentMapping aPreviousContent) =>
           (aPreviousContent.section == section)
       );
-    } catch (_) {
-      window.console.log ('Previous content error for ${section.sectionId}:\n${_.toString()}');
-    }
+    } catch (_) {}
 
     return previousContent;
   }

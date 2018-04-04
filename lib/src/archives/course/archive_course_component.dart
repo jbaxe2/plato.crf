@@ -3,21 +3,23 @@ library plato.angular.components.archive;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'archive_course.dart';
-import 'archive_item.dart';
-import 'archive_item_component.dart';
-import 'archive_item_options.dart';
-import 'archive_item_node.dart';
-import 'archives_service.dart';
+import '../item/archive_item.dart';
+import '../item/archive_item_component.dart';
+import '../item/archive_item_options.dart';
+import '../item/archive_item_node.dart';
 
-/// The [ArchiveComponent] class...
+import '../browse_archive_service.dart';
+
+import 'archive_course.dart';
+
+/// The [ArchiveCourseComponent] class...
 @Component(
   selector: 'archive-course',
-  templateUrl: 'archive_component.html',
+  templateUrl: 'archive_course_component.html',
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [materialProviders, ArchivesService]
+  providers: const [materialProviders, BrowseArchiveService]
 )
-class ArchiveComponent implements OnInit {
+class ArchiveCourseComponent implements OnInit {
   bool isVisible;
 
   ArchiveCourse _archiveCourse;
@@ -32,25 +34,27 @@ class ArchiveComponent implements OnInit {
 
   final ComponentRenderer archiveRenderer = (_) => ArchiveItemComponent;
 
-  final ArchivesService _archivesService;
+  final BrowseArchiveService _browseArchiveService;
 
-  /// The [ArchiveComponent] constructor...
-  ArchiveComponent (this._archivesService);
+  /// The [ArchiveCourseComponent] constructor...
+  ArchiveCourseComponent (this._browseArchiveService);
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit() {
     isVisible = false;
     archiveItems = new List<ArchiveItemNode>();
 
-    _archivesService.archiveCourseController.stream.listen (
+    _browseArchiveService.archiveCourseController.stream.listen (
       (ArchiveCourse archiveCourse) {
         _archiveCourse = archiveCourse;
 
         courseId = _archiveCourse.id;
         courseTitle = _archiveCourse.title;
 
-        archiveItems.clear();
-        archiveItems = _archiveCourse.rootArchiveItems;
+        archiveItems
+          ..clear()
+          ..addAll (_archiveCourse.rootArchiveItems);
 
         archiveOptions = new ArchiveItemOptions ([new OptionGroup (archiveItems)]);
 

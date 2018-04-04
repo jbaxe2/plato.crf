@@ -1,11 +1,13 @@
 library plato.angular.factory.archive.course;
 
-import '../_application/factory/plato_factory.dart';
+import '../../_application/factory/plato_factory.dart';
+
+import '../item/archive_item.dart';
+import '../item/archive_item_node.dart';
+
+import '../archive_exception.dart';
 
 import 'archive_course.dart';
-import 'archive_exception.dart';
-import 'archive_item.dart';
-import 'archive_item_node.dart';
 
 /// The [ArchiveCourseFactory] class...
 class ArchiveCourseFactory implements PlatoFactory<ArchiveCourse> {
