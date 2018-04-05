@@ -1,1 +1,17 @@
-<div></div>
+<style></style>
+
+<modal [visible]="isVisible">
+  <material-dialog headered>
+    <div header>
+      <h3>Course Request Submission Results</h3>
+    </div>
+
+    <div *ngIf="null != submissionResponse">
+      <p>Results...</p>
+    </div>
+
+    <div footer>
+      <material-button raised (trigger)="">OK</material-button>
+    </div>
+  </material-dialog>
+</modal>

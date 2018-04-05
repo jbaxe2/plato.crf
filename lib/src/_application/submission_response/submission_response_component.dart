@@ -7,6 +7,8 @@ import '../../courses/rejected_course.dart';
 
 import '../../course_request/course_request_service.dart';
 
+import 'submission_response.dart';
+
 /// The [SubmissionResponseComponent] class...
 @Component(
   selector: 'submission-response',
@@ -15,6 +17,10 @@ import '../../course_request/course_request_service.dart';
   providers: const [CourseRequestService]
 )
 class SubmissionResponseComponent implements OnInit {
+  bool isVisible;
+
+  SubmissionResponse submissionResponse;
+
   List<RejectedCourse> rejectedCourses;
 
   final CourseRequestService _crfService;
@@ -25,11 +31,18 @@ class SubmissionResponseComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
+    isVisible = false;
     rejectedCourses = new List<RejectedCourse>();
 
-    _crfService.rejectedController.stream.listen (
-      (List<RejectedCourse> someRejectedCourses) {
-        rejectedCourses = someRejectedCourses;
+    _crfService.responseController.stream.listen (
+      (SubmissionResponse theSubmissionResponse) {
+        submissionResponse = theSubmissionResponse;
+
+        rejectedCourses
+          ..clear()
+          ..addAll (submissionResponse.rejectedCourses);
+
+        isVisible = true;
       }
     );
   }

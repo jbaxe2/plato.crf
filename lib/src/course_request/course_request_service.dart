@@ -7,6 +7,8 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
+import '../_application/submission_response/submission_response.dart';
+
 import '../courses/course_factory.dart';
 import '../courses/rejected_course.dart';
 
@@ -28,7 +30,7 @@ class CourseRequestService {
 
   StreamController<CourseRequest> requestController;
 
-  StreamController<List<RejectedCourse>> rejectedController;
+  StreamController<SubmissionResponse> responseController;
 
   CourseFactory _courseFactory;
 
@@ -43,7 +45,7 @@ class CourseRequestService {
     _courseRequest = new CourseRequest();
 
     requestController = new StreamController<CourseRequest>.broadcast();
-    rejectedController = new StreamController<List<RejectedCourse>>.broadcast();
+    responseController = new StreamController<SubmissionResponse>.broadcast();
 
     _courseFactory = new CourseFactory();
   }
@@ -112,6 +114,11 @@ class CourseRequestService {
       );
     }
 
-    rejectedController.add (rejectedCourses);
+    responseController.add (
+      new SubmissionResponse (
+        ('success' == submissionResponse['result'] as String),
+        rejectedCourses
+      )
+    );
   }
 }
