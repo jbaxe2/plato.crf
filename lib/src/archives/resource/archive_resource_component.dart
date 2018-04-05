@@ -29,9 +29,11 @@ class ArchiveResourceComponent implements OnInit {
   void ngOnInit() {
     isVisible = false;
 
-    _browseArchiveService.resourceController.stream.listen ((ArchiveResource aResource) {
-      resource = aResource;
-      isVisible = true;
-    });
+    _browseArchiveService.resourceController.stream.listen (
+      (ArchiveResource aResource) {
+        resource = aResource;
+        isVisible = true;
+      }
+    );
   }
 }

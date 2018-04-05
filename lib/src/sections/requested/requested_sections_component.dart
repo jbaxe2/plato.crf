@@ -3,7 +3,8 @@ library plato.angular.components.sections.requested;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'section.dart';
+import '../section.dart';
+
 import 'requested_section_component.dart';
 import 'requested_sections_service.dart';
 
@@ -28,7 +29,5 @@ class RequestedSectionsComponent implements OnInit {
   }
 
   /// The [ngOnInit] method...
-  void ngOnInit() {
-    sections = _reqSectionsService.requestedSections;
-  }
+  void ngOnInit() => (sections = _reqSectionsService.requestedSections);
 }

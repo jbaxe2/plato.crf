@@ -1,4 +1,4 @@
-library plato.angular.services.archive.resources;
+library plato.angular.services.archive.browse;
 
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show JSON;
@@ -9,7 +9,9 @@ import 'package:http/http.dart' show Client, Response;
 
 import './course/archive_course.dart';
 import './course/archive_course_factory.dart';
+
 import './item/archive_item.dart';
+
 import './resource/archive_resource.dart';
 
 import 'archive_exception.dart';
@@ -31,7 +33,7 @@ class BrowseArchiveService {
 
   /// The [BrowseArchiveService] factory constructor...
   factory BrowseArchiveService (Client http) =>
-    _instance ?? (_instance = new BrowseArchiveService (http));
+    _instance ?? (_instance = new BrowseArchiveService._ (http));
 
   /// The [BrowseArchiveService] private constructor...
   BrowseArchiveService._ (this._http) {

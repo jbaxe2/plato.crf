@@ -1,4 +1,4 @@
-library plato.angular.services.archive.items;
+library plato.angular.services.archive.pull;
 
 import 'dart:async' show Future;
 import 'dart:convert' show JSON;

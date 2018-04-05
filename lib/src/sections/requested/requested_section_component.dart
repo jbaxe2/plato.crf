@@ -3,14 +3,15 @@ library plato.angular.components.section.info;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../cross_listings/cross_listing.dart';
-import '../cross_listings/cross_listing_service.dart';
+import '../../cross_listings/cross_listing.dart';
+import '../../cross_listings/cross_listing_service.dart';
 
-import '../previous_content/previous_content_mapping.dart';
-import '../previous_content/previous_content_service.dart';
+import '../../previous_content/previous_content_mapping.dart';
+import '../../previous_content/previous_content_service.dart';
+
+import '../section.dart';
 
 import 'requested_sections_service.dart';
-import 'section.dart';
 
 /// The [RequestedSectionComponent] class...
 @Component(

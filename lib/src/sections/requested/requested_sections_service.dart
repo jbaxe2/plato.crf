@@ -2,9 +2,9 @@ library plato.angular.services.sections.requested;
 
 import 'package:angular/core.dart';
 
-import '../course_request/course_request.dart';
+import '../../course_request/course_request.dart';
 
-import 'section.dart';
+import '../section.dart';
 
 /// The [RequestedSectionsService] class...
 @Injectable()

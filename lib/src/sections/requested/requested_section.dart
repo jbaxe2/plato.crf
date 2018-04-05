@@ -1,10 +1,10 @@
 library plato.angular.models.section.requested;
 
-import '../cross_listings/cross_listing.dart';
+import '../../cross_listings/cross_listing.dart';
 
-import '../previous_content/previous_content_mapping.dart';
+import '../../previous_content/previous_content_mapping.dart';
 
-import 'section.dart';
+import '../section.dart';
 
 /// The [RequestedSection] class...
 class RequestedSection {

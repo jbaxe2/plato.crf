@@ -3,9 +3,10 @@ library plato.angular.components.sections.selection;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'requested_sections_service.dart';
-import 'section.dart';
-import 'sections_service.dart';
+import '../requested/requested_sections_service.dart';
+
+import '../section.dart';
+import '../sections_service.dart';
 
 /// The [SectionsSelectionComponent] class...
 @Component(

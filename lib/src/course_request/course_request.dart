@@ -8,7 +8,9 @@ import '../enrollments/enrollment.dart';
 import '../previous_content/previous_content_mapping.dart';
 import '../previous_content/previous_content_exception.dart';
 
-import '../sections/requested_section.dart';
+import '../sections/requested/requested_section.dart';
+import '../sections/requested/requested_section_factory.dart';
+
 import '../sections/section.dart';
 import '../sections/section_exception.dart';
 
@@ -27,8 +29,6 @@ class CourseRequest {
 
   List<PreviousContentMapping> previousContents;
 
-  Map<Section, RequestedSection> requestedSections;
-
   bool get submittable => (null != _userInformation) && sections.isNotEmpty;
 
   static CourseRequest _instance;
@@ -42,8 +42,6 @@ class CourseRequest {
     sections = new List<Section>();
     crossListings = new List<CrossListing>();
     previousContents = new List<PreviousContentMapping>();
-
-    requestedSections = new Map<Section, RequestedSection>();
   }
 
   /// The [setUserInformation] method...
@@ -382,8 +380,18 @@ class CourseRequest {
       'userInfo': _userInformation,
       'sections': sections,
       'crossListings': crossListings,
-      'requestedSections': requestedSections,
+      'requestedSections': _buildRequestedSections(),
       'context': _userInformation.isLtiSession
     };
+  }
+
+  /// The [_buildRequestedSections] method...
+  List<RequestedSection> _buildRequestedSections() {
+    var requestedSectionFactory = new RequestedSectionFactory()
+      ..setSections (sections)
+      ..setCrossListings (crossListings)
+      ..setPreviousContents (previousContents);
+
+    return requestedSectionFactory.build();
   }
 }
