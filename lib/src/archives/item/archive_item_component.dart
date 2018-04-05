@@ -7,7 +7,6 @@ import 'package:angular_components/angular_components.dart';
 
 import '../../_application/progress/progress_service.dart';
 
-import '../archives_service.dart';
 import '../browse_archive_service.dart';
 
 import 'archive_item.dart';

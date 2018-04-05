@@ -7,7 +7,7 @@ import 'package:angular_components/angular_components.dart';
 
 import '../_application/progress/progress_service.dart';
 
-import '../archives/archives_service.dart';
+import '../archives/retrieve_archives_service.dart';
 
 import '../course_request/course_request_service.dart';
 
@@ -23,7 +23,7 @@ import 'user_information_service.dart';
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [
     UserInformationService, CourseRequestService, EnrollmentsService,
-    ArchivesService, ProgressService
+    RetrieveArchivesService, ProgressService
   ]
 )
 class UserAuthenticationComponent implements OnInit {
@@ -39,14 +39,14 @@ class UserAuthenticationComponent implements OnInit {
 
   final EnrollmentsService _enrollmentsService;
 
-  final ArchivesService _archivesService;
+  final RetrieveArchivesService _retrieveArchivesService;
 
   final ProgressService _progressService;
 
   /// The [UserAuthenticationComponent] constructor...
   UserAuthenticationComponent (
     this._userInfoService, this._crfService, this._enrollmentsService,
-    this._archivesService, this._progressService
+    this._retrieveArchivesService, this._progressService
   );
 
   /// The [ngOnInit] method...
@@ -93,6 +93,6 @@ class UserAuthenticationComponent implements OnInit {
     await _enrollmentsService.retrieveEnrollments();
 
     _progressService.invoke ('Determining if there are any archived enrollments.');
-    await _archivesService.retrieveArchives();
+    await _retrieveArchivesService.retrieveArchives();
   }
 }

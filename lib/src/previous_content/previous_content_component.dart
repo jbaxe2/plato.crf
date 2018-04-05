@@ -7,7 +7,9 @@ import 'package:angular_components/angular_components.dart';
 
 import '../_application/progress/progress_service.dart';
 
-import '../archives/archives_service.dart';
+import '../archives/retrieve_archives_service.dart';
+import '../archives/pull_archive_service.dart';
+import '../archives/browse_archive_service.dart';
 
 import '../enrollments/enrollment.dart';
 import '../enrollments/enrollments_service.dart';
@@ -24,7 +26,8 @@ import 'previous_content_service.dart';
   styleUrls: const ['previous_content_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [
-    PreviousContentService, EnrollmentsService, ArchivesService, ProgressService
+    PreviousContentService, EnrollmentsService, RetrieveArchivesService,
+    PullArchiveService, BrowseArchiveService, ProgressService
   ]
 )
 class PreviousContentComponent implements OnInit {
@@ -40,14 +43,18 @@ class PreviousContentComponent implements OnInit {
 
   final EnrollmentsService _enrollmentsService;
 
-  final ArchivesService _archivesService;
+  final RetrieveArchivesService _retrieveArchivesService;
+
+  final PullArchiveService _pullArchiveService;
+
+  final BrowseArchiveService _browseArchiveService;
 
   final ProgressService _progressService;
 
   /// The [PreviousContentComponent] constructor...
   PreviousContentComponent (
-    this._previousContentService, this._enrollmentsService, this._archivesService,
-    this._progressService
+    this._previousContentService, this._enrollmentsService, this._retrieveArchivesService,
+    this._browseArchiveService, this._pullArchiveService, this._progressService
   );
 
   /// The [ngOnInit] method...
@@ -63,7 +70,7 @@ class PreviousContentComponent implements OnInit {
       }
     );
 
-    _archivesService.archiveStreamController.stream.listen (
+    _retrieveArchivesService.archiveStreamController.stream.listen (
       (Enrollment archiveEnrollment) => enrollments.add (archiveEnrollment)
     );
   }
@@ -74,10 +81,10 @@ class PreviousContentComponent implements OnInit {
       String termId = (archiveId.split ('_')).last;
 
       _progressService.invoke ('Pulling the archive for browsing.');
-      await _archivesService.pullArchive (archiveId, termId);
+      await _pullArchiveService.pullArchive (archiveId, termId);
 
       _progressService.invoke ('Processing course archive information.');
-      await _archivesService.browseArchive (archiveId);
+      await _browseArchiveService.browseArchive (archiveId);
     } catch (_) {}
 
     _progressService.revoke();
