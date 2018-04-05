@@ -1,5 +1,7 @@
 library plato.angular.models.course_request;
 
+import 'dart:html' show window;
+
 import '../cross_listings/cross_listing.dart';
 import '../cross_listings/cross_listing_exception.dart';
 
@@ -353,7 +355,7 @@ class CourseRequest {
       }
 
       if (!crossListing.sections.every (
-          (Section section) => (sections.contains (section))
+        (Section section) => (sections.contains (section))
       )) {
         throw new CrossListingException (
           'Cannot have a cross-listing set containing a section which is not '

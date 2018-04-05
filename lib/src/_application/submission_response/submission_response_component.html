@@ -1,4 +1,16 @@
-<style></style>
+<style>
+  .rejected-courses-container {
+    background-color: #ddd;
+    border-top: 2px dashed #062c43;
+    padding: 8px;
+  }
+
+  .rejected-courses-container p {
+    background-color: #eee;
+    border: 1px dotted #718198;
+    padding: 8px;
+  }
+</style>
 
 <modal [visible]="isVisible">
   <material-dialog headered>
@@ -7,11 +19,33 @@
     </div>
 
     <div *ngIf="null != submissionResponse">
-      <p>Results...</p>
+      <p><strong>Submission of the course request resulted in
+        {{submissionResponse.success ? '' : 'partial'}} success.
+      </strong></p>
+
+      <div *ngIf="rejectedCourses.isNotEmpty" class="rejected-courses-container">
+        <p *ngFor="let rejectedCourse of rejectedCourses">
+          <strong>Course Title:</strong> &nbsp; {{rejectedCourse.title}}<br>
+          <strong>Course ID:</strong> &nbsp; {{rejectedCourse.id}}
+        </p>
+      </div>
+
+      <p><strong>
+        Please check your e-mail for an automated confirmation message<br>
+        detailing the results of the course request.<br><br>
+
+        Clicking the <strong>OK</strong> button will bring you to Plato, where you can<br>
+        log in and start working on the successfully created courses.<br><br>
+
+        <em>(Note that it may take a few minutes for all content to finish<br>
+        loading, if you copied content from a larger course.  Requesting<br>
+        archived content to be copied in may take a few days before you<br>
+        have access to the corresponding requested course.)</em>
+      </strong></p>
     </div>
 
     <div footer>
-      <material-button raised (trigger)="">OK</material-button>
+      <material-button raised (trigger)="redirectToPlato()">OK</material-button>
     </div>
   </material-dialog>
 </modal>

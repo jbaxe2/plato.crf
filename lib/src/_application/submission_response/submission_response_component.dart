@@ -1,5 +1,7 @@
 library plato.angular.components.application.response;
 
+import 'dart:html' show window;
+
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -23,10 +25,10 @@ class SubmissionResponseComponent implements OnInit {
 
   List<RejectedCourse> rejectedCourses;
 
-  final CourseRequestService _crfService;
+  final CourseRequestService _courseRequestService;
 
   /// The [SubmissionResponseComponent] constructor...
-  SubmissionResponseComponent (this._crfService);
+  SubmissionResponseComponent (this._courseRequestService);
 
   /// The [ngOnInit] method...
   @override
@@ -34,7 +36,7 @@ class SubmissionResponseComponent implements OnInit {
     isVisible = false;
     rejectedCourses = new List<RejectedCourse>();
 
-    _crfService.responseController.stream.listen (
+    _courseRequestService.responseController.stream.listen (
       (SubmissionResponse theSubmissionResponse) {
         submissionResponse = theSubmissionResponse;
 
@@ -45,5 +47,10 @@ class SubmissionResponseComponent implements OnInit {
         isVisible = true;
       }
     );
+  }
+
+  /// The [redirectToPlato] method...
+  void redirectToPlato() {
+    window.location.replace ('http://www.westfield.ma.edu/plato/');
   }
 }

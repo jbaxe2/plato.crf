@@ -50,7 +50,7 @@ class CrossListing {
   }
 
   /// The [contains] method...
-  bool contains (Section section) => sections.contains (section);
+  bool contains (Section section) => sections?.contains (section);
 
   /// The [==] operator...
   @override

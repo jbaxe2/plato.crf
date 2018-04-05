@@ -2,6 +2,7 @@ library plato.angular.services.course_request;
 
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show JSON;
+import 'dart:html' show window;
 
 import 'package:http/http.dart' show Client, Response;
 
@@ -75,12 +76,18 @@ class CourseRequestService {
     } catch (_) { rethrow; }
 
     try {
+      var jsonRequest = _courseRequest.toJson();
+      window.console.log ('object created for json');
+      window.console.debug (jsonRequest);
+
       final Response crfResponse = await _http.post (
         _SUBMISSION_URI, body: JSON.encode (_courseRequest.toJson())
       );
 
       _parseSubmissionResponse (JSON.decode (crfResponse.body));
     } catch (_) {
+      window.console.log (_.toString());
+
       throw new CourseRequestException (
         'An error has occurred while attempting to submit the course request.'
       );

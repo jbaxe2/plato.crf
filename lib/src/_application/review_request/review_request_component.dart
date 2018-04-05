@@ -21,19 +21,19 @@ class ReviewRequestComponent implements OnInit {
 
   CourseRequest courseRequest;
 
-  final CourseRequestService _crfService;
+  final CourseRequestService _courseRequestService;
 
   final ProgressService _progressService;
 
   /// The [ReviewRequestComponent] constructor...
-  ReviewRequestComponent (this._crfService, this._progressService);
+  ReviewRequestComponent (this._courseRequestService, this._progressService);
 
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
     isVisible = false;
 
-    _crfService.requestController.stream.listen (
+    _courseRequestService.requestController.stream.listen (
       (CourseRequest requestInfo) {
         courseRequest = requestInfo;
         isVisible = true;
@@ -41,12 +41,12 @@ class ReviewRequestComponent implements OnInit {
     );
   }
 
-  /// The [submitCrf] method...
-  void submitCrf() {
+  /// The [submitCourseRequest] method...
+  void submitCourseRequest() {
     _progressService.invoke ('Submitting the course request.');
 
     try {
-      _crfService.submitCourseRequest();
+      _courseRequestService.submitCourseRequest();
     } catch (_) {}
 
     _progressService.revoke();

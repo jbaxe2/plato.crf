@@ -1,6 +1,7 @@
 library plato.angular.services.application.error;
 
 import 'dart:async' show StreamController;
+import 'dart:html' show window;
 
 import 'package:angular/core.dart';
 
@@ -26,6 +27,8 @@ class ErrorService {
 
   /// The [raiseError] method...
   void raiseError (PlatoException exception) {
+    window.console.log ('Encountered an error:\n${exception.toString()}');
+
     errorStreamController.add (exception);
     errorRaised = true;
   }

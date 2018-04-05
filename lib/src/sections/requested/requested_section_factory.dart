@@ -22,7 +22,11 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
   List<PreviousContentMapping> _previousContents;
 
   /// The [RequestedSectionFactory] constructor...
-  RequestedSectionFactory();
+  RequestedSectionFactory() {
+    _sections = new List<Section>();
+    _crossListings = new List<CrossListing>();
+    _previousContents = new List<PreviousContentMapping>();
+  }
 
   /// The [setSections] method...
   void setSections (List<Section> sections) => _sections = sections;
@@ -112,9 +116,11 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
     CrossListing crossListing;
 
     try {
-      crossListing = _crossListings.firstWhere (
-        (CrossListing aCrossListing) => aCrossListing.contains (section)
-      );
+      if (0 < _crossListings.length) {
+        crossListing = _crossListings.firstWhere (
+          (CrossListing aCrossListing) => aCrossListing.contains (section)
+        );
+      }
     } catch (_) {}
 
     return crossListing;
@@ -125,10 +131,12 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
     PreviousContentMapping previousContent;
 
     try {
-      previousContent = _previousContents.firstWhere (
-        (PreviousContentMapping aPreviousContent) =>
-          (aPreviousContent.section == section)
-      );
+      if (0 < _previousContents.length) {
+        previousContent = _previousContents.firstWhere (
+          (PreviousContentMapping aPreviousContent) =>
+            (aPreviousContent.section == section)
+        );
+      }
     } catch (_) {}
 
     return previousContent;
