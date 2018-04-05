@@ -8,6 +8,7 @@ import 'package:angular_components/angular_components.dart';
 import '../../_application/progress/progress_service.dart';
 
 import '../archives_service.dart';
+import '../browse_archive_service.dart';
 
 import 'archive_item.dart';
 
@@ -17,7 +18,7 @@ import 'archive_item.dart';
   templateUrl: 'archive_item_component.html',
   styleUrls: const ['archive_item_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
-  providers: const [materialProviders, ArchivesService, ProgressService]
+  providers: const [materialProviders, BrowseArchiveService, ProgressService]
 )
 class ArchiveItemComponent implements OnInit, RendersValue<ArchiveItem> {
   @override
@@ -25,12 +26,12 @@ class ArchiveItemComponent implements OnInit, RendersValue<ArchiveItem> {
 
   bool showPreviewLink;
 
-  final ArchivesService _archivesService;
+  final BrowseArchiveService _browseArchiveService;
 
   final ProgressService _progressService;
 
   /// The [ArchiveItemComponent] constructor...
-  ArchiveItemComponent (this._archivesService, this._progressService);
+  ArchiveItemComponent (this._browseArchiveService, this._progressService);
 
   /// The [ngOnInit] method...
   @override
@@ -43,7 +44,7 @@ class ArchiveItemComponent implements OnInit, RendersValue<ArchiveItem> {
     _progressService.invoke ('Loading the resource (${value.title}).');
 
     try {
-      await _archivesService.previewResource (value.resourceId, value.title);
+      await _browseArchiveService.previewResource (value);
     } catch (_) {}
 
     _progressService.revoke();

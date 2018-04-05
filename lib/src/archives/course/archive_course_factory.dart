@@ -11,6 +11,8 @@ import 'archive_course.dart';
 
 /// The [ArchiveCourseFactory] class...
 class ArchiveCourseFactory implements PlatoFactory<ArchiveCourse> {
+  String _lastArchiveId;
+
   /// The [ArchiveCourseFactory] default constructor...
   ArchiveCourseFactory();
 
@@ -24,6 +26,8 @@ class ArchiveCourseFactory implements PlatoFactory<ArchiveCourse> {
         'The provided archive course information was not properly formatted.'
       );
     }
+
+    _lastArchiveId = rawArchiveCourse['courseId'];
 
     return new ArchiveCourse (
       rawArchiveCourse['courseId'], rawArchiveCourse['courseTitle'],
@@ -72,7 +76,7 @@ class ArchiveCourseFactory implements PlatoFactory<ArchiveCourse> {
       }
 
       archiveItems.add (
-        new ArchiveItemNode (resourceId, title)
+        new ArchiveItemNode (_lastArchiveId, resourceId, title)
           ..items = subArchiveItems
       );
     });

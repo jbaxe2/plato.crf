@@ -9,7 +9,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import './course/archive_course.dart';
 import './course/archive_course_factory.dart';
-
+import './item/archive_item.dart';
 import './resource/archive_resource.dart';
 
 import 'archive_exception.dart';
@@ -75,8 +75,8 @@ class BrowseArchiveService {
   }
 
   /// The [previewResource] method...
-  Future previewResource (String archiveId, String resourceId, String title) async =>
-    await browseArchive (archiveId, resourceId, title);
+  Future previewResource (ArchiveItem item) async =>
+    await browseArchive (item.archiveId, item.resourceId, item.title);
 
   /// The [_createResource] method...
   ArchiveResource _createResource (String resourceId, String title, String content) {

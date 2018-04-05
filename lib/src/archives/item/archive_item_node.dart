@@ -7,5 +7,6 @@ import 'archive_item.dart';
 /// The [ArchiveItemNode] class...
 class ArchiveItemNode extends ArchiveItem with MaterialTreeExpandState {
   /// The [ArchiveItemNode] constructor...
-  ArchiveItemNode (String resourceId, String title) : super (resourceId, title);
+  ArchiveItemNode (String archiveId, String resourceId, String title) :
+    super (archiveId, resourceId, title);
 }
