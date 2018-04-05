@@ -50,7 +50,9 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
       );
     }
 
-    if (!_sections.contains (rawRequestedSection['section'])) {
+    Section section = rawRequestedSection['section'] as Section;
+
+    if (!_sections.contains (section)) {
       throw new RequestedSectionException (
         'The provided section is not part of the list of requested sections.'
       );
@@ -69,8 +71,6 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
         'The provided previous content is not available to use for the requested section.'
       );
     }
-
-    Section section = rawRequestedSection['section'] as Section;
 
     return new RequestedSection (section)
       ..setCrossListing (_getCrossListingForSection (section))

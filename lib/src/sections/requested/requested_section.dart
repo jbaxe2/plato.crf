@@ -27,6 +27,10 @@ class RequestedSection {
 
   /// The [setCrossListing] method...
   void setCrossListing (CrossListing aCrossListing) {
+    if (null == aCrossListing) {
+      return;
+    }
+
     if (aCrossListing.contains (section)) {
       _crossListing = aCrossListing;
     }
@@ -34,6 +38,10 @@ class RequestedSection {
 
   /// The [setPreviousContent] method...
   void setPreviousContent (PreviousContentMapping aPreviousContent) {
+    if (null == aPreviousContent) {
+      return;
+    }
+
     if (aPreviousContent.section == section) {
       _previousContent = aPreviousContent;
     }

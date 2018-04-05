@@ -2,12 +2,12 @@ library plato.angular.services.course_request;
 
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show JSON;
-import 'dart:html' show window;
 
 import 'package:http/http.dart' show Client, Response;
 
 import 'package:angular/core.dart';
 
+import '../_application/error/plato_exception.dart';
 import '../_application/submission_response/submission_response.dart';
 
 import '../courses/course_factory.dart';
@@ -76,17 +76,15 @@ class CourseRequestService {
     } catch (_) { rethrow; }
 
     try {
-      var jsonRequest = _courseRequest.toJson();
-      window.console.log ('object created for json');
-      window.console.debug (jsonRequest);
-
       final Response crfResponse = await _http.post (
         _SUBMISSION_URI, body: JSON.encode (_courseRequest.toJson())
       );
 
       _parseSubmissionResponse (JSON.decode (crfResponse.body));
-    } catch (_) {
-      window.console.log (_.toString());
+    } catch (e) {
+      if (e is PlatoException) {
+        rethrow;
+      }
 
       throw new CourseRequestException (
         'An error has occurred while attempting to submit the course request.'
@@ -96,6 +94,10 @@ class CourseRequestService {
 
   /// The [_parseSubmissionResponse] method...
   void _parseSubmissionResponse (Map<String, dynamic> submissionResponse) {
+    if (submissionResponse.containsKey ('error')) {
+      throw new CourseRequestException (submissionResponse['error']);
+    }
+
     if (!(submissionResponse.containsKey ('result') &&
           submissionResponse.containsKey ('rejectedCourses'))) {
       throw new CourseRequestException (

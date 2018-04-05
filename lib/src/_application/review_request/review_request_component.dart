@@ -1,5 +1,7 @@
 library plato.angular.components.application.review;
 
+import 'dart:async' show Future;
+
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -42,11 +44,11 @@ class ReviewRequestComponent implements OnInit {
   }
 
   /// The [submitCourseRequest] method...
-  void submitCourseRequest() {
+  Future submitCourseRequest() async {
     _progressService.invoke ('Submitting the course request.');
 
     try {
-      _courseRequestService.submitCourseRequest();
+      await _courseRequestService.submitCourseRequest();
     } catch (_) {}
 
     _progressService.revoke();

@@ -1,7 +1,5 @@
 library plato.angular.models.course_request;
 
-import 'dart:html' show window;
-
 import '../cross_listings/cross_listing.dart';
 import '../cross_listings/cross_listing_exception.dart';
 
