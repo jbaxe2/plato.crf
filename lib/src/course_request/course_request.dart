@@ -307,7 +307,7 @@ class CourseRequest {
 
       if (null == clPreviousContent) {
         var prevContent = new PreviousContentMapping (
-            clSection, aPreviousContent.enrollment
+          clSection, aPreviousContent.enrollment
         );
 
         addPreviousContentMapping (prevContent);
