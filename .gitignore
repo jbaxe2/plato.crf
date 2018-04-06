@@ -9,3 +9,6 @@ pubspec.lock
 # Directory created by dartdoc
 doc/api/
 test/
+
+plato.angular.iml
+plato-angular.iml

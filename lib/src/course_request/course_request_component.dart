@@ -8,6 +8,7 @@ import '../_application/error/error_component.dart';
 import '../_application/progress/progress_component.dart';
 import '../_application/review_request/review_request_component.dart';
 import '../_application/session_cleanup/session_cleanup_component.dart';
+import '../_application/submission_response/submission_response_component.dart';
 
 import '../archives/course/archive_course_component.dart';
 import '../archives/resource/archive_resource_component.dart';
@@ -37,7 +38,7 @@ import 'course_request_service.dart';
     CrossListingsComponent, PreviousContentComponent,
     ArchiveCourseComponent, ArchiveResourceComponent,
     DirectionsComponent, ErrorComponent, ProgressComponent,
-    ReviewRequestComponent, SessionCleanupComponent
+    ReviewRequestComponent, SubmissionResponseComponent, SessionCleanupComponent
   ],
   providers: const [materialProviders, CourseRequestService],
 )

@@ -100,22 +100,24 @@
   </div>
 
   <div toolbelt>
-    <material-button icon (trigger)="copyPreviousContent()">
-      <material-icon tooltipTarget #copyPc="tooltipTarget" icon="library_books"></material-icon>
-      <material-tooltip-text [for]="copyPc">Copy previous content...</material-tooltip-text>
-    </material-button>
-
-    <material-button icon (trigger)="addToCrossListing()">
-      <material-icon tooltipTarget #addToCl="tooltipTarget" icon="device_hub"></material-icon>
-      <material-tooltip-text [for]="addToCl">
-        Add {{section.sectionId}} to cross-listing set...
+    <material-button icon tooltipTarget #copyPc="tooltipTarget" (trigger)="copyPreviousContent()">
+      <material-icon icon="library_books"></material-icon>
+      <material-tooltip-text [for]="copyPc">
+        Copy previous content for {{section.sectionId}}...
       </material-tooltip-text>
     </material-button>
 
-    <material-button icon (trigger)="removeSection()">
-      <material-icon tooltipTarget #sectionRemove="tooltipTarget" icon="cancel"></material-icon>
+    <material-button icon tooltipTarget #addToCl="tooltipTarget" (trigger)="addToCrossListing()">
+      <material-icon icon="device_hub"></material-icon>
+      <material-tooltip-text [for]="addToCl">
+        Add {{section.sectionId}} to a cross-listing set...
+      </material-tooltip-text>
+    </material-button>
+
+    <material-button icon tooltipTarget #sectionRemove="tooltipTarget" (trigger)="removeSection()">
+      <material-icon icon="cancel"></material-icon>
       <material-tooltip-text [for]="sectionRemove">
-        Remove {{section.sectionId}} from requested sections...
+        Remove {{section.sectionId}} from requested sections.
       </material-tooltip-text>
     </material-button>
   </div>

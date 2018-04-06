@@ -12,6 +12,10 @@
     max-height: 350px;
     overflow-y: scroll;
   }
+
+  material-tree {
+    cursor: context-menu !important;
+  }
 </style>
 
 <modal [visible]="isVisible">
@@ -28,7 +32,9 @@
     <div *ngIf="archiveItems.isNotEmpty" class="archive-tree-container">
       <material-tree
           [options]="archiveOptions"
-          [componentRenderer]="archiveRenderer">
+          [componentRenderer]="archiveRenderer"
+          [optimizeForDropdown]="true"
+          [expandFirstRoot]="true">
       </material-tree>
     </div>
 

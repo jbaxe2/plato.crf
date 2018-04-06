@@ -46,20 +46,36 @@ class ArchiveCourseComponent implements OnInit {
     archiveItems = new List<ArchiveItemNode>();
 
     _browseArchiveService.archiveCourseController.stream.listen (
-      (ArchiveCourse archiveCourse) {
-        _archiveCourse = archiveCourse;
-
-        courseId = _archiveCourse.id;
-        courseTitle = _archiveCourse.title;
-
-        archiveItems
-          ..clear()
-          ..addAll (_archiveCourse.rootArchiveItems);
-
-        archiveOptions = new ArchiveItemOptions ([new OptionGroup (archiveItems)]);
-
-        isVisible = true;
-      }
+      (ArchiveCourse archiveCourse) => _setUpTreeForArchive (archiveCourse)
     );
+  }
+
+  /// The [_setUpTreeForArchive] method...
+  void _setUpTreeForArchive (ArchiveCourse archiveCourse) {
+    _archiveCourse = archiveCourse;
+
+    courseId = _archiveCourse.id;
+    courseTitle = _archiveCourse.title;
+
+    archiveItems
+      ..clear()
+      ..addAll (_createRootArchiveItem());
+
+    archiveOptions = new ArchiveItemOptions ([new OptionGroup (archiveItems)]);
+
+    isVisible = true;
+  }
+
+  /// The [_createRootArchiveItem] method...
+  List<ArchiveItem> _createRootArchiveItem() {
+    String title = '${_archiveCourse.title} <em>(click to expand)</em>';
+
+    var rootArchiveItem = new ArchiveItem (
+      _archiveCourse.id, _archiveCourse.id, title
+    );
+
+    rootArchiveItem.items.addAll (_archiveCourse.rootArchiveItems);
+
+    return [rootArchiveItem];
   }
 }
