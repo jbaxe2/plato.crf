@@ -5,8 +5,8 @@ import 'package:angular_components/angular_components.dart';
 
 import '../item/archive_item.dart';
 import '../item/archive_item_component.dart';
-import '../item/archive_item_options.dart';
 import '../item/archive_item_node.dart';
+import '../item/archive_item_options.dart';
 
 import '../browse_archive_service.dart';
 
@@ -68,7 +68,7 @@ class ArchiveCourseComponent implements OnInit {
 
   /// The [_createRootArchiveItem] method...
   List<ArchiveItem> _createRootArchiveItem() {
-    String title = '${_archiveCourse.title} <em>(click to expand)</em>';
+    String title = '${_archiveCourse.title} (click to expand)';
 
     var rootArchiveItem = new ArchiveItem (
       _archiveCourse.id, _archiveCourse.id, title

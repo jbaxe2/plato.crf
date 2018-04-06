@@ -54,10 +54,14 @@
         *ngIf="hasPreviousContent" name="Previous Content Info"
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
-      <material-button class="remove-icon" icon (trigger)="removePreviousContent()">
-        <material-icon tooltipTarget #removePc="tooltipTarget" icon="backspace"></material-icon>
+      <material-button
+          icon tooltipTarget
+          #removePc="tooltipTarget"
+          class="remove-icon"
+          (trigger)="removePreviousContent()">
+        <material-icon icon="backspace"></material-icon>
         <material-tooltip-text [for]="removePc">
-          Remove previous content from {{section.sectionId}}...
+          Remove previous content from {{section.sectionId}}.
         </material-tooltip-text>
       </material-button>
 
@@ -74,15 +78,19 @@
         *ngIf="hasCrossListing" name="Cross-listing Info"
         class="extra-info-panel dense" [expanded]="true"
         [hideExpandedHeader]="true" [showSaveCancel]="false">
-      <material-button class="remove-icon" icon (trigger)="removeFromCrossListing()">
-        <material-icon tooltipTarget #removeCl="tooltipTarget" icon="backspace"></material-icon>
+      <material-button
+          icon tooltipTarget
+          #removeCl="tooltipTarget"
+          class="remove-icon"
+          (trigger)="removeFromCrossListing()">
+        <material-icon icon="backspace"></material-icon>
         <material-tooltip-text [for]="removeCl">
-          Remove {{section.sectionId}} from cross-listing...
+          Remove {{section.sectionId}} from cross-listing.
         </material-tooltip-text>
       </material-button>
 
       <p style="font-size: small; font-weight: bold;">
-        Part of the following cross-listing set:
+        Part of the cross-listing set:
       </p>
 
       <material-list>
