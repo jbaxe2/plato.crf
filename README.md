@@ -8,7 +8,8 @@ This client application allows faculty at Westfield State University to request
  request results in near-real-time creation of the courses.
  
 Features currently include:
-* Authenticating Plato credentials
+* Authenticating Plato credentials, if needed
+* Being context-aware for LTI-based launches
 * Requesting courses
 * Creating cross-listing sets that courses may be added to
 * Selecting previous content for each requested course, including archived course
@@ -17,7 +18,7 @@ Features currently include:
  the children
 * Previewing archived courses in a simplified view
   * The preview displays the content areas for the course
-  * Content areas' content can be drilled down
+  * Content areas' content can be drilled down, folder by folder
   * Linked files in the simplified view may be downloaded
 
 The client is still a current work-in-progress, but is now *1.0*.
