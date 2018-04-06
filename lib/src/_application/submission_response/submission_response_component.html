@@ -1,4 +1,11 @@
 <style>
+  .submission-response-container {
+    margin-bottom: 8px;
+    padding: 0 8px 0 0;
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+
   .rejected-courses-container {
     background-color: #ddd;
     border-top: 2px dashed #062c43;
@@ -18,7 +25,7 @@
       <h3>Course Request Submission Results</h3>
     </div>
 
-    <div *ngIf="null != submissionResponse">
+    <div *ngIf="null != submissionResponse" class="submission-response-container">
       <p><strong>Submission of the course request resulted in
         {{submissionResponse.success ? '' : 'partial'}} success.
       </strong></p>
