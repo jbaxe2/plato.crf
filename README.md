@@ -5,7 +5,7 @@ was re-written using AngularDart (instead of keeping with
 PolymerDart, which has not been updated).
 
 This client application allows faculty at Westfield State University
-to request courses for use on Plato (Blackboard Learn).
+to request course shells for use on Plato (Blackboard Learn).
   
 Successful submission of the request results in real-time creation of
 the faculty member's Blackboard courses (although archived content must
