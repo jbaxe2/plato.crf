@@ -269,9 +269,9 @@ class CourseRequest {
       PreviousContentMapping previousContent = getPreviousContentForSection (aSection);
 
       if (null == previousContent) {
-        _normalizeNullPcAdded(aSection, crossListing);
+        _normalizeNullPcAdded (aSection, crossListing);
       } else {
-        _normalizeNotNullPcAdded(aSection, crossListing, previousContent);
+        _normalizeNotNullPcAdded (aSection, crossListing, previousContent);
       }
     }
   }
@@ -307,7 +307,7 @@ class CourseRequest {
 
       if (null == clPreviousContent) {
         var prevContent = new PreviousContentMapping (
-            clSection, aPreviousContent.enrollment
+          clSection, aPreviousContent.enrollment
         );
 
         addPreviousContentMapping (prevContent);

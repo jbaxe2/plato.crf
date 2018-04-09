@@ -105,7 +105,7 @@ class PreviousContentComponent implements OnInit {
       if (null == previousContent) {
         _previousContentService.createPreviousContent (invokerSection, selected);
       } else {
-        _previousContentService.setPreviousContentEnrollment(
+        _previousContentService.setPreviousContentEnrollment (
           previousContent, selected
         );
       }
