@@ -73,15 +73,7 @@ class CourseRequest {
 
   /// The [removeSection] method...
   bool removeSection (Section aSection) {
-    CrossListing crossListing;
-
-    try {
-      crossListing = crossListings.firstWhere (
-        (CrossListing someCrossListing) => someCrossListing.contains (aSection)
-      );
-    } catch (_) {}
-
-    removeSectionFromCrossListing (aSection, crossListing);
+    removeSectionFromCrossListing (aSection, getCrossListingForSection (aSection));
     removePreviousContentForSection (aSection);
 
     return sections.remove (aSection);
