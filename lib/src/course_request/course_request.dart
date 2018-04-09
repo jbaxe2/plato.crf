@@ -79,6 +79,9 @@ class CourseRequest {
     return sections.remove (aSection);
   }
 
+  /// The [removeAllSections] method...
+  void removeAllSections() => removeSections (new List.from (sections));
+
   /// The [addCrossListings] method...
   void addCrossListings (List<CrossListing> someCrossListings) {
     try {

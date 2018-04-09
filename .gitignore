@@ -8,8 +8,7 @@ pubspec.lock
 
 # Directory created by dartdoc
 doc/api/
-test/
+#test/
 
 plato.angular.iml
 plato-angular.iml
-

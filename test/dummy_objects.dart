@@ -1,0 +1,58 @@
+library plato.angular.tests.models.dummy;
+
+import 'package:plato_angular/src/course_request/course_request.dart';
+import 'package:plato_angular/src/cross_listings/cross_listing.dart';
+import 'package:plato_angular/src/enrollments/enrollment.dart';
+import 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
+import 'package:plato_angular/src/sections/section.dart';
+
+export 'package:plato_angular/src/course_request/course_request.dart';
+export 'package:plato_angular/src/cross_listings/cross_listing.dart';
+export 'package:plato_angular/src/enrollments/enrollment.dart';
+export 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
+export 'package:plato_angular/src/sections/section.dart';
+
+var courseRequest = new CourseRequest();
+
+List<Section> sections = createSomeSections();
+List<Enrollment> enrollments = createSomeEnrollments();
+
+List<CrossListing> crossListings = courseRequest.crossListings;
+List<PreviousContentMapping> previousContents = courseRequest.previousContents;
+
+var firstCrossListing = new CrossListing();
+var secondCrossListing = new CrossListing();
+
+var firstPreviousContent = new PreviousContentMapping (sections.first, enrollments.first);
+var lastPreviousContent = new PreviousContentMapping (sections.last, enrollments.last);
+
+/// The [createSomeSections] function...
+List<Section> createSomeSections() {
+  var sections = new List<Section>();
+
+  for (int i=0; i<5; i++) {
+    var section = new Section (
+        'section_id_$i', 'section_term', 'section_id_$i',
+        'Section Title #$i', 'Faculty #$i', 'here', '-'
+    );
+
+    sections.add (section);
+  }
+
+  return sections;
+}
+
+/// The [createSomeEnrollments] function...
+List<Enrollment> createSomeEnrollments() {
+  var enrollments = new List<Enrollment>();
+
+  for (int i=0; i<5; i++) {
+    var enrollment = new Enrollment (
+        'someuser', 'old_section_id_$i', 'Old Section Title #$i', 'Instructor', 'true'
+    );
+
+    enrollments.add (enrollment);
+  }
+
+  return enrollments;
+}
