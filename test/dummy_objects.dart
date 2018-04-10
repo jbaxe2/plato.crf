@@ -29,8 +29,8 @@ List<Section> createSomeSections() {
 
   for (int i=0; i<5; i++) {
     var section = new Section (
-        'section_id_$i', 'section_term', 'section_id_$i',
-        'Section Title #$i', 'Faculty #$i', 'here', '-'
+      'section_id_$i', 'section_term', 'section_id_$i',
+      'Section Title #$i', 'Faculty #$i', 'here', '-'
     );
 
     sections.add (section);

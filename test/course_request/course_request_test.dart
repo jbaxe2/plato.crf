@@ -11,7 +11,7 @@ void main() {
   testAddAllSections();
   testAddNewCrossListing();
   testAddTwoSectionsToCrossListing();
-  testAddPreviousContent();
+  testAddFirstPreviousContent();
   testOverwriteFirstSectionPrevContentViaCl();
   testClearAllSections();
 }
@@ -44,9 +44,9 @@ void testAddTwoSectionsToCrossListing() {
   });
 }
 
-/// The [testAddPreviousContent] function...
-void testAddPreviousContent() {
-  test ('Add previous content to request', () {
+/// The [testAddFirstPreviousContent] function...
+void testAddFirstPreviousContent() {
+  test ('Add the first previous content to request', () {
     courseRequest.addPreviousContentMapping (firstPreviousContent);
 
     expect ((0 < courseRequest.previousContents.length), true);
@@ -56,12 +56,10 @@ void testAddPreviousContent() {
 /// The [testOverwriteFirstSectionPrevContentViaCl] function...
 void testOverwriteFirstSectionPrevContentViaCl() {
   test (
-    'Add previous content to a cross-listed section, that overwrites '
+    'Change previous content enrollment in a cross-listed section, that overwrites '
       'the previous content of the other section in the set.',
     () {
-      courseRequest.addPreviousContentMapping (
-        new PreviousContentMapping (sections[1], enrollments[2])
-      );
+      courseRequest.setPreviousContentEnrollment (firstPreviousContent, enrollments[2]);
 
       expect (
         (courseRequest.previousContents.first.enrollment == enrollments[2]),
