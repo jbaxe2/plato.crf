@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 
 import '../dummy_objects.dart';
 
-/// The [testCourseRequest] function...
-void testCourseRequest() {
+/// The [main] function...
+void main() {
   testAddAllSections();
   testAddNewCrossListing();
   testAddTwoSectionsToCrossListing();
