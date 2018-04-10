@@ -16,6 +16,7 @@ void main() {
       testAddTwoSectionsToCrossListing();
       testAddFirstPreviousContent();
       testOverwriteFirstSectionPrevContentViaCl();
+      testRemovePreviousContentForClSection();
       testClearAllSections();
     }
   );
@@ -69,6 +70,22 @@ void testOverwriteFirstSectionPrevContentViaCl() {
       expect (
         (courseRequest.previousContents.first.enrollment == enrollments[2]),
         true
+      );
+    }
+  );
+}
+
+/// The [testRemovePreviousContentForClSection] function...
+void testRemovePreviousContentForClSection() {
+  test (
+    'Removing previous content for section in first cross-listing set '
+      'removes it from all sections in set',
+    () {
+      courseRequest.removePreviousContentForSection (sections.first);
+
+      expect (
+        (courseRequest.getPreviousContentForSection (sections[1])),
+        null
       );
     }
   );
