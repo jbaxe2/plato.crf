@@ -8,12 +8,17 @@ import '../dummy_objects.dart';
 
 /// The [main] function...
 void main() {
-  testAddAllSections();
-  testAddNewCrossListing();
-  testAddTwoSectionsToCrossListing();
-  testAddFirstPreviousContent();
-  testOverwriteFirstSectionPrevContentViaCl();
-  testClearAllSections();
+  group (
+    'Course Request: ',
+    () {
+      testAddAllSections();
+      testAddNewCrossListing();
+      testAddTwoSectionsToCrossListing();
+      testAddFirstPreviousContent();
+      testOverwriteFirstSectionPrevContentViaCl();
+      testClearAllSections();
+    }
+  );
 }
 
 /// The [testAddAllSections] function...
