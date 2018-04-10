@@ -17,9 +17,6 @@ var courseRequest = new CourseRequest();
 List<Section> sections = createSomeSections();
 List<Enrollment> enrollments = createSomeEnrollments();
 
-List<CrossListing> crossListings = courseRequest.crossListings;
-List<PreviousContentMapping> previousContents = courseRequest.previousContents;
-
 var firstCrossListing = new CrossListing();
 var secondCrossListing = new CrossListing();
 
@@ -48,7 +45,7 @@ List<Enrollment> createSomeEnrollments() {
 
   for (int i=0; i<5; i++) {
     var enrollment = new Enrollment (
-        'someuser', 'old_section_id_$i', 'Old Section Title #$i', 'Instructor', 'true'
+      'someuser', 'old_section_id_$i', 'Old Section Title #$i', 'Instructor', 'true'
     );
 
     enrollments.add (enrollment);

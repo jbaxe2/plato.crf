@@ -73,8 +73,16 @@ class CourseRequest {
 
   /// The [removeSection] method...
   bool removeSection (Section aSection) {
-    removeSectionFromCrossListing (aSection, getCrossListingForSection (aSection));
-    removePreviousContentForSection (aSection);
+    CrossListing crossListing = getCrossListingForSection (aSection);
+    PreviousContentMapping previousContent = getPreviousContentForSection (aSection);
+
+    if (null != crossListing) {
+      removeSectionFromCrossListing (aSection, getCrossListingForSection (aSection));
+    }
+
+    if (null != previousContent) {
+      removePreviousContentForSection (aSection);
+    }
 
     return sections.remove (aSection);
   }
@@ -154,8 +162,15 @@ class CourseRequest {
   }
 
   /// The [removeSectionFromCrossListing] method...
-  bool removeSectionFromCrossListing (Section aSection, CrossListing aCrossListing) =>
-    aCrossListing?.removeSection (aSection);
+  bool removeSectionFromCrossListing (Section aSection, CrossListing aCrossListing) {
+    bool sectionRemoved = aCrossListing.removeSection (aSection);
+
+    if (aCrossListing.sections.isEmpty) {
+      removeCrossListing (aCrossListing);
+    }
+
+    return sectionRemoved;
+  }
 
   /// The [_checkCrossListingConditions] method...
   bool _checkCrossListingConditions (Section aSection, CrossListing aCrossListing) {

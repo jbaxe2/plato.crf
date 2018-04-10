@@ -1,0 +1,17 @@
+# Plato Angular tests configuration
+
+platforms: [content-shell, chrome]
+
+test_on: 'browser'
+
+timeout: 'none'
+
+tags:
+  aot:
+
+reporter: expanded
+
+filename: '*_test.dart'
+
+paths:
+- test/

@@ -1,3 +1,5 @@
+@Tags(const ['aot'])
+@TestOn('browser')
 library plato.angular.tests.course_request;
 
 import 'package:test/test.dart';
@@ -17,43 +19,37 @@ void main() {
 /// The [testAddAllSections] function...
 void testAddAllSections() {
   test ('Add all sections to request', () {
-    expect (
-      courseRequest.addSections (createSomeSections()),
-      (5 == courseRequest.sections.length)
-    );
+    courseRequest.addSections (createSomeSections());
+
+    expect (courseRequest.sections.length, 5);
   });
 }
 
 /// The [testAddNewCrossListing] function...
 void testAddNewCrossListing() {
-  test ('Add new cross-listing set to request', () {
-    expect (
-      courseRequest.addCrossListing (firstCrossListing),
-      (0 < courseRequest.crossListings.length)
-    );
+  test ('Add the first cross-listing set to request', () {
+    courseRequest.addCrossListing (firstCrossListing);
+
+    expect ((0 < courseRequest.crossListings.length), true);
   });
 }
 
 /// The [testAddTwoSectionsToCrossListing] function...
 void testAddTwoSectionsToCrossListing() {
-  test ('Add two sections to the cross-listing set', () {
-    expect (
-      () {
-        firstCrossListing.addSection (sections[0]);
-        firstCrossListing.addSection (sections[1]);
-      },
-      (1 < firstCrossListing.sections.length)
-    );
+  test ('Add two sections to the first cross-listing set', () {
+    firstCrossListing.addSection (sections[0]);
+    firstCrossListing.addSection (sections[1]);
+
+    expect ((1 < firstCrossListing.sections.length), true);
   });
 }
 
 /// The [testAddPreviousContent] function...
 void testAddPreviousContent() {
   test ('Add previous content to request', () {
-    expect (
-      courseRequest.addPreviousContentMapping (firstPreviousContent),
-      (0 < courseRequest.previousContents.length)
-    );
+    courseRequest.addPreviousContentMapping (firstPreviousContent);
+
+    expect ((0 < courseRequest.previousContents.length), true);
   });
 }
 
@@ -63,11 +59,13 @@ void testOverwriteFirstSectionPrevContentViaCl() {
     'Add previous content to a cross-listed section, that overwrites '
       'the previous content of the other section in the set.',
     () {
+      courseRequest.addPreviousContentMapping (
+        new PreviousContentMapping (sections[1], enrollments[2])
+      );
+
       expect (
-        courseRequest.addPreviousContentMapping (
-          new PreviousContentMapping(sections[1], enrollments[2])
-        ),
-        (courseRequest.previousContents.first.enrollment == enrollments[2])
+        (courseRequest.previousContents.first.enrollment == enrollments[2]),
+        true
       );
     }
   );
@@ -76,13 +74,13 @@ void testOverwriteFirstSectionPrevContentViaCl() {
 /// The [testClearAllSections] function...
 void testClearAllSections() {
   test ('Clear all sections', () {
+    courseRequest.removeAllSections();
+
     expect (
-      courseRequest.removeAllSections(),
-      allOf ([
-        (0 == courseRequest.sections.length),
-        (0 == courseRequest.crossListings.length),
-        (0 == courseRequest.previousContents.length)
-      ])
+      ((0 == courseRequest.sections.length) &&
+       (0 == courseRequest.crossListings.length) &&
+       (0 == courseRequest.previousContents.length)),
+      true
     );
   });
 }
