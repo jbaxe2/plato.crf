@@ -47,7 +47,14 @@ class SectionsSelectionComponent implements OnInit {
 
   /// The [addSelectedSections] method...
   void addSelectedSections() {
-    _reqSectionsService.addSections (selectedSections);
-    selectedSections.clear();
+    var addableSections = new List<Section>();
+
+    selectedSections.forEach ((Section section) {
+      if (sections.contains (section)) {
+        addableSections.add (section);
+      }
+    });
+
+    _reqSectionsService.addSections (addableSections);
   }
 }
