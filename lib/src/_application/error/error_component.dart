@@ -1,12 +1,10 @@
 library plato.angular.components.application.error;
 
-import 'dart:async' show Stream;
-
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'package:plato_angular/src/_application/error/error_service.dart';
-import 'package:plato_angular/src/_application/error/plato_exception.dart';
+import 'error_service.dart';
+import 'plato_exception.dart';
 
 /// The [ErrorComponent] class...
 @Component(
@@ -16,8 +14,6 @@ import 'package:plato_angular/src/_application/error/plato_exception.dart';
   providers: const [materialProviders, ErrorService]
 )
 class ErrorComponent implements OnInit {
-  Stream<PlatoException> errorStream;
-
   String error;
 
   bool showError;
@@ -30,12 +26,10 @@ class ErrorComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
-    showError = _errorService.errorRaised;
     error = 'No errors have occurred.';
+    showError = _errorService.errorRaised;
 
-    errorStream = _errorService.errorStreamController.stream;
-
-    errorStream.listen (
+    _errorService.errorStreamController.stream.listen (
       (PlatoException exception) {
         error = exception.toString();
         showError = true;

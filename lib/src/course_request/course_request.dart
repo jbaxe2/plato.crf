@@ -66,9 +66,14 @@ class CourseRequest {
     }
   }
 
+  /// The [removeAllSections] method...
+  bool removeAllSections() => removeSections (new List.from (sections));
+
   /// The [removeSections] method...
   bool removeSections (List<Section> someSections) {
-    return someSections.every ((Section aSection) => removeSection (aSection));
+    var removableSections = new List<Section>.from (someSections);
+
+    return removableSections.every ((Section aSection) => removeSection (aSection));
   }
 
   /// The [removeSection] method...
@@ -86,9 +91,6 @@ class CourseRequest {
 
     return sections.remove (aSection);
   }
-
-  /// The [removeAllSections] method...
-  void removeAllSections() => removeSections (new List.from (sections));
 
   /// The [addCrossListings] method...
   void addCrossListings (List<CrossListing> someCrossListings) {
@@ -164,6 +166,7 @@ class CourseRequest {
   /// The [removeSectionFromCrossListing] method...
   bool removeSectionFromCrossListing (Section aSection, CrossListing aCrossListing) {
     bool sectionRemoved = aCrossListing.removeSection (aSection);
+    _normalizePcRemovedForClSection (aSection);
 
     if (aCrossListing.sections.isEmpty) {
       removeCrossListing (aCrossListing);
@@ -245,11 +248,9 @@ class CourseRequest {
   void removePreviousContent (PreviousContentMapping aPreviousContent) {
     Section pcSection = aPreviousContent.section;
 
-    previousContents.removeWhere (
-      (PreviousContentMapping previousContent) => (previousContent == aPreviousContent)
-    );
-
-    _normalizePcRemovedForClSection (pcSection);
+    if (previousContents.remove (aPreviousContent)) {
+      _normalizePcRemovedForClSection (pcSection);
+    }
   }
 
   /// The [setPreviousContentEnrollment] method...
@@ -268,7 +269,9 @@ class CourseRequest {
 
   /// The [removePreviousContentForSection] method...
   void removePreviousContentForSection (Section theSection) {
-    previousContents.remove (getPreviousContentForSection (theSection));
+    if (previousContents.remove (getPreviousContentForSection (theSection))) {
+      _normalizePcRemovedForClSection (theSection);
+    }
   }
 
   /// The [_normalizePcAddedForClSection] method...
@@ -335,9 +338,9 @@ class CourseRequest {
     CrossListing crossListing = getCrossListingForSection (aSection);
 
     if (null != crossListing) {
-      crossListing.sections.forEach ((Section clSection) {
-        removePreviousContentForSection (clSection);
-      });
+      crossListing.sections.forEach (
+        (Section clSection) => removePreviousContentForSection (clSection)
+      );
     }
   }
 

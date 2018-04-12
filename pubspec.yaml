@@ -38,6 +38,6 @@ transformers:
     commandLineOptions: [--trust-type-annotations, --trust-primitives]
 - dart_to_js_script_rewriter
 
-web:
-  compiler:
-    debug: dartdevc
+#web:
+#  compiler:
+#    debug: dartdevc
