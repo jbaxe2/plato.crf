@@ -12,6 +12,7 @@ void main() {
     'Course Request: ',
     () {
       testAddAllSections();
+      testClearAllSections();
       testAddNewCrossListing();
       testAddTwoSectionsToCrossListing();
       testAddFirstPreviousContent();
@@ -19,7 +20,7 @@ void main() {
       testRemovePreviousContentForClSection();
       testAddPcToSectionInFirstClSet();
       testRemovePcFromFirstClSet();
-      testClearAllSections();
+      testAddPcSectionToClSet();
     }
   );
 }
@@ -29,35 +30,82 @@ void testAddAllSections() {
   test ('Add all sections to request.', () {
     courseRequest.addSections (createSomeSections());
 
-    expect (courseRequest.sections.length, 5);
+    expect (0 < courseRequest.sections.length, true);
+
+    courseRequest.removeAllSections();
+  });
+}
+
+
+/// The [testClearAllSections] function...
+void testClearAllSections() {
+  test ('Clear all sections in the request.', () {
+    firstCrossListing
+      ..addSection (sections.first)
+      ..addSection (sections[1]);
+
+    secondCrossListing
+      ..addSection (sections[2])
+      ..addSection (sections[3]);
+
+    courseRequest
+      ..addSections (createSomeSections())
+      ..addCrossListing (firstCrossListing)
+      ..addCrossListing (secondCrossListing)
+      ..addPreviousContentMapping (firstPreviousContent)
+      ..addPreviousContentMapping (lastPreviousContent)
+      ..removeAllSections();
+
+    expect (
+      ((0 == courseRequest.sections.length) &&
+       (0 == courseRequest.crossListings.length) &&
+       (0 == courseRequest.previousContents.length)),
+      true
+    );
   });
 }
 
 /// The [testAddNewCrossListing] function...
 void testAddNewCrossListing() {
   test ('Add the first cross-listing set to request.', () {
+    courseRequest.addSections (createSomeSections());
+
+    firstCrossListing
+      ..addSection (sections.first)
+      ..addSection (sections[1]);
+
     courseRequest.addCrossListing (firstCrossListing);
 
     expect ((0 < courseRequest.crossListings.length), true);
+
+    courseRequest.removeAllSections();
   });
 }
 
 /// The [testAddTwoSectionsToCrossListing] function...
 void testAddTwoSectionsToCrossListing() {
   test ('Add two sections to the first cross-listing set.', () {
+    courseRequest.addSections (createSomeSections());
+
     firstCrossListing.addSection (sections[0]);
     firstCrossListing.addSection (sections[1]);
 
     expect ((1 < firstCrossListing.sections.length), true);
+
+    courseRequest.removeAllSections();
   });
 }
 
 /// The [testAddFirstPreviousContent] function...
 void testAddFirstPreviousContent() {
   test ('Add the first previous content to request.', () {
-    courseRequest.addPreviousContentMapping (firstPreviousContent);
+    courseRequest
+      ..addSections (createSomeSections())
+      ..addPreviousContentMapping (firstPreviousContent);
 
     expect ((0 < courseRequest.previousContents.length), true);
+
+    courseRequest.removeAllSections();
   });
 }
 
@@ -67,12 +115,17 @@ void testOverwriteFirstSectionPrevContentViaCl() {
     'Change previous content enrollment in a cross-listed section, that overwrites '
       'the previous content of the other section in the set.',
     () {
-      courseRequest.setPreviousContentEnrollment (firstPreviousContent, enrollments[2]);
+      courseRequest
+        ..addSections (createSomeSections())
+        ..addPreviousContentMapping (firstPreviousContent)
+        ..setPreviousContentEnrollment (firstPreviousContent, enrollments[2]);
 
       expect (
         (courseRequest.previousContents.first.enrollment == enrollments[2]),
         true
       );
+
+      courseRequest.removeAllSections();
     }
   );
 }
@@ -83,7 +136,17 @@ void testRemovePreviousContentForClSection() {
     'Removing previous content for section in first cross-listing set '
       'removes it from all sections in the set (no other sets).',
     () {
-      courseRequest.removePreviousContentForSection (sections.first);
+      firstCrossListing
+        ..sections.clear()
+        ..addSection (sections.first)
+        ..addSection (sections[1]);
+
+      courseRequest
+        ..previousContents.clear()
+        ..addSections (createSomeSections())
+        ..addCrossListing (firstCrossListing)
+        ..addPreviousContentMapping (firstPreviousContent)
+        ..removePreviousContentForSection (sections.first);
 
       CrossListing crossListing =
         courseRequest.getCrossListingForSection (sections.first);
@@ -93,6 +156,8 @@ void testRemovePreviousContentForClSection() {
       });
 
       expect (result, true);
+
+      courseRequest.removeAllSections();
     }
   );
 }
@@ -101,14 +166,8 @@ void testRemovePreviousContentForClSection() {
 void testAddPcToSectionInFirstClSet() {
   test (
     'Add previous content to a section that is cross-listed with another section, '
-    'whereby a different cross-listing set is unaffected.',
+      'whereby a different cross-listing set is unaffected.',
     () {
-      List<CrossListing> crossListings = new List.from (courseRequest.crossListings);
-
-      crossListings.forEach ((CrossListing crossListing) {
-        courseRequest.removeCrossListing (crossListing);
-      });
-
       firstCrossListing.sections
         ..clear()
         ..addAll ([sections.first, sections[1]]);
@@ -118,6 +177,7 @@ void testAddPcToSectionInFirstClSet() {
         ..addAll ([sections[2], sections.last]);
 
       courseRequest
+        ..addSections (createSomeSections())
         ..crossListings.clear()
         ..addCrossListing (firstCrossListing)
         ..addCrossListing (secondCrossListing);
@@ -137,6 +197,8 @@ void testAddPcToSectionInFirstClSet() {
       });
 
       expect (result, true);
+
+      courseRequest.removeAllSections();
     }
   );
 }
@@ -147,36 +209,70 @@ void testRemovePcFromFirstClSet() {
     'Remove previous content for a section in a cross-listing set, with all courses '
       'losing previous content, whereby another cross-listing set is unaffected.',
     () {
-      CrossListing crossListing =
-        courseRequest.getCrossListingForSection (sections.first);
+      firstCrossListing.sections
+        ..clear()
+        ..addAll ([sections.first, sections[1]]);
 
-      courseRequest.removePreviousContentForSection (sections.first);
+      secondCrossListing.sections
+        ..clear()
+        ..addAll ([sections[2], sections.last]);
 
-      bool result = crossListing.sections.every (
-        (Section section) => (null == courseRequest.getPreviousContentForSection (section))
-      );
+      courseRequest
+        ..crossListings.clear()
+        ..addSections (createSomeSections())
+        ..addCrossListing (firstCrossListing)
+        ..addCrossListing (secondCrossListing);
 
-      courseRequest.crossListings.forEach ((CrossListing aCrossListing) {
-        if (crossListing != aCrossListing) {
-          ;
-        }
+      courseRequest
+        ..previousContents.clear()
+        ..addPreviousContentMapping (firstPreviousContent)
+        ..addPreviousContentMapping (lastPreviousContent)
+        ..removePreviousContentForSection (sections.first);
+
+      CrossListing crossListing = courseRequest.getCrossListingForSection (sections.first);
+
+      bool result = crossListing.sections.every ((Section section) {
+        return (null == courseRequest.getPreviousContentForSection (section));
       });
 
       expect (result, true);
+
+      courseRequest.removeAllSections();
     }
   );
 }
 
-/// The [testClearAllSections] function...
-void testClearAllSections() {
-  test ('Clear all sections in the request.', () {
-    courseRequest.removeAllSections();
+/// The [testAddPcSectionToClSet] function...
+void testAddPcSectionToClSet() {
+  test (
+    'Add a section with previous content to a cross-listing set, then add another '
+      'section to the same set without previous content; confirm both sections '
+      'have the same previous content.',
+    () {
+      courseRequest
+        ..addSections (createSomeSections())
+        ..previousContents.clear()
+        ..crossListings.clear()
+        ..addPreviousContentMapping (firstPreviousContent);
 
-    expect (
-      ((0 == courseRequest.sections.length) &&
-       (0 == courseRequest.crossListings.length) &&
-       (0 == courseRequest.previousContents.length)),
-      true
-    );
-  });
+      PreviousContentMapping firstPrevContent =
+        courseRequest.getPreviousContentForSection (sections.first);
+
+      assert (firstPreviousContent == firstPrevContent);
+
+      courseRequest
+        ..addCrossListing (firstCrossListing)
+        ..addSectionToCrossListing (sections.first, firstCrossListing)
+        ..addSectionToCrossListing (sections[1], firstCrossListing);
+
+      PreviousContentMapping secondPrevContent =
+        courseRequest.getPreviousContentForSection (firstCrossListing.sections[1]);
+
+      assert (null != secondPrevContent);
+
+      expect ((firstPrevContent.enrollment == secondPrevContent.enrollment), true);
+
+      courseRequest.removeAllSections();
+    }
+  );
 }

@@ -126,6 +126,14 @@ class CourseRequest {
       });
 
       crossListings.add (aCrossListing);
+
+      if (aCrossListing.sections.isNotEmpty) {
+        if (aCrossListing.sections.any (
+          (Section section) => (null != getPreviousContentForSection (section)))
+        ) {
+          _normalizePcAddedForClSection (aCrossListing.sections.first);
+        }
+      }
     }
   }
 
@@ -213,8 +221,7 @@ class CourseRequest {
 
     try {
       previousContent = previousContents.firstWhere (
-        (PreviousContentMapping aPreviousContent) =>
-          (aPreviousContent.section == section)
+        (PreviousContentMapping prevContent) => (prevContent.section == section)
       );
     } catch (_) {}
 
@@ -324,11 +331,12 @@ class CourseRequest {
         );
 
         addPreviousContentMapping (prevContent);
-      }
-
-      if ((null != clPreviousContent) &&
-          (clPreviousContent.enrollment != aPreviousContent.enrollment)) {
-        setPreviousContentEnrollment (clPreviousContent, aPreviousContent.enrollment);
+      } else {
+        if (clPreviousContent.enrollment != aPreviousContent.enrollment) {
+          setPreviousContentEnrollment (
+            clPreviousContent, aPreviousContent.enrollment
+          );
+        }
       }
     });
   }
