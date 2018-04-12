@@ -2,12 +2,14 @@ library plato.angular.tests.models.dummy;
 
 import 'package:plato_angular/src/course_request/course_request.dart';
 import 'package:plato_angular/src/cross_listings/cross_listing.dart';
+import 'package:plato_angular/src/cross_listings/cross_listing_exception.dart';
 import 'package:plato_angular/src/enrollments/enrollment.dart';
 import 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
 import 'package:plato_angular/src/sections/section.dart';
 
 export 'package:plato_angular/src/course_request/course_request.dart';
 export 'package:plato_angular/src/cross_listings/cross_listing.dart';
+export 'package:plato_angular/src/cross_listings/cross_listing_exception.dart';
 export 'package:plato_angular/src/enrollments/enrollment.dart';
 export 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
 export 'package:plato_angular/src/sections/section.dart';

@@ -29,7 +29,7 @@ transformers:
 - angular/transform/codegen
 - angular/transform/reflection_remover:
     $include:
-        - test/plato_angular_test.dart
+        - test/**_test.dart
 - test/pub_serve:
     $include:
         - test/**_test.dart

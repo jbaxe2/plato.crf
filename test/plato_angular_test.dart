@@ -7,7 +7,8 @@ import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
 
-import 'course_request/course_request_test.dart' as course_request;
+import 'course_request_test.dart' as course_request;
+import 'cross_listing_test.dart' as cross_listing;
 
 /// The [main] function...
 @AngularEntrypoint()
@@ -15,4 +16,5 @@ void main() {
   tearDown (disposeAnyRunningTest);
 
   course_request.main();
+  cross_listing.main();
 }

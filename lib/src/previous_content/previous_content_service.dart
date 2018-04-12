@@ -72,11 +72,9 @@ class PreviousContentService extends FeaturedSectionService {
 
   /// The [confirmPreviousContents] method...
   void confirmPreviousContents() {
-    if (
-      previousContents.any (
-        (PreviousContentMapping previousContent) => (null == previousContent.enrollment)
-      )
-    ) {
+    if (previousContents.any (
+      (PreviousContentMapping previousContent) => (null == previousContent.enrollment)
+    )) {
       throw new PreviousContentException (
         'Cannot confirm previous contents when no enrollment has been selected.'
       );

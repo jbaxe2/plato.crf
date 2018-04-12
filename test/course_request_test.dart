@@ -4,7 +4,7 @@ library plato.angular.tests.course_request;
 
 import 'package:test/test.dart';
 
-import '../dummy_objects.dart';
+import 'dummy_objects.dart';
 
 /// The [main] function...
 void main() {
@@ -15,6 +15,7 @@ void main() {
       testClearAllSections();
       testAddNewCrossListing();
       testAddTwoSectionsToCrossListing();
+      testAddOneSectionToTwoCrossListings();
       testAddFirstPreviousContent();
       testOverwriteFirstSectionPrevContentViaCl();
       testRemovePreviousContentForClSection();
@@ -85,12 +86,41 @@ void testAddNewCrossListing() {
 /// The [testAddTwoSectionsToCrossListing] function...
 void testAddTwoSectionsToCrossListing() {
   test ('Add two sections to the first cross-listing set.', () {
-    courseRequest.addSections (createSomeSections());
+    courseRequest
+      ..crossListings.clear()
+      ..addSections (createSomeSections())
+      ..addCrossListing (firstCrossListing)
+      ..addSectionToCrossListing (sections.first, firstCrossListing)
+      ..addSectionToCrossListing (sections[1], firstCrossListing);
 
-    firstCrossListing.addSection (sections[0]);
-    firstCrossListing.addSection (sections[1]);
+    assert (courseRequest.crossListings.first == firstCrossListing);
 
-    expect ((1 < firstCrossListing.sections.length), true);
+    expect ((1 < courseRequest.crossListings.first.sections.length), true);
+
+    courseRequest.removeAllSections();
+  });
+}
+
+/// The [testAddOneSectionToTwoCrossListings] function...
+void testAddOneSectionToTwoCrossListings() {
+  test ('Add one section to two different cross-listing sets.', () {
+    courseRequest
+      ..crossListings.clear()
+      ..addSections (createSomeSections())
+      ..addCrossListing (firstCrossListing)
+      ..addSectionToCrossListing (sections.first, firstCrossListing)
+      ..addSectionToCrossListing (sections[1], firstCrossListing)
+      ..addCrossListing (secondCrossListing);
+
+    try {
+      courseRequest.addSectionToCrossListing (sections.first, secondCrossListing);
+    } catch (e) {
+      assert (e is CrossListingException);
+
+      String error = 'The specified section is part of a different cross-listing set.';
+
+      expect (e.toString() == error, true);
+    }
 
     courseRequest.removeAllSections();
   });
@@ -134,7 +164,7 @@ void testOverwriteFirstSectionPrevContentViaCl() {
 void testRemovePreviousContentForClSection() {
   test (
     'Removing previous content for section in first cross-listing set '
-      'removes it from all sections in the set (no other sets).',
+      'removes it from all sections in the set (but no other sets).',
     () {
       firstCrossListing
         ..sections.clear()
@@ -143,6 +173,7 @@ void testRemovePreviousContentForClSection() {
 
       courseRequest
         ..previousContents.clear()
+        ..crossListings.clear()
         ..addSections (createSomeSections())
         ..addCrossListing (firstCrossListing)
         ..addPreviousContentMapping (firstPreviousContent)
@@ -253,14 +284,7 @@ void testAddPcSectionToClSet() {
         ..addSections (createSomeSections())
         ..previousContents.clear()
         ..crossListings.clear()
-        ..addPreviousContentMapping (firstPreviousContent);
-
-      PreviousContentMapping firstPrevContent =
-        courseRequest.getPreviousContentForSection (sections.first);
-
-      assert (firstPreviousContent == firstPrevContent);
-
-      courseRequest
+        ..addPreviousContentMapping (firstPreviousContent)
         ..addCrossListing (firstCrossListing)
         ..addSectionToCrossListing (sections.first, firstCrossListing)
         ..addSectionToCrossListing (sections[1], firstCrossListing);
@@ -270,7 +294,7 @@ void testAddPcSectionToClSet() {
 
       assert (null != secondPrevContent);
 
-      expect ((firstPrevContent.enrollment == secondPrevContent.enrollment), true);
+      expect ((firstPreviousContent.enrollment == secondPrevContent.enrollment), true);
 
       courseRequest.removeAllSections();
     }
