@@ -79,14 +79,26 @@ void testOverwriteFirstSectionPrevContentViaCl() {
 void testRemovePreviousContentForClSection() {
   test (
     'Removing previous content for section in first cross-listing set '
-      'removes it from all sections in set',
+      'removes it from all sections in the set.',
     () {
       courseRequest.removePreviousContentForSection (sections.first);
 
-      expect (
-        (courseRequest.getPreviousContentForSection (sections[1])),
-        null
-      );
+      CrossListing crossListing =
+        courseRequest.getCrossListingForSection (sections.first);
+
+      bool result = crossListing.sections.every ((Section section) {
+        return (null == courseRequest.getPreviousContentForSection (section));
+      });
+
+      crossListing.sections.forEach ((Section section) {
+        PreviousContentMapping prevContent = courseRequest.getPreviousContentForSection (section);
+
+        if (null != prevContent) {
+          print ('Found non-null previous content: ${prevContent.section.sectionId}');
+        }
+      });
+
+      expect (result, true);
     }
   );
 }
