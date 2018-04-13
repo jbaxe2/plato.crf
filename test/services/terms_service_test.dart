@@ -2,14 +2,13 @@
 @TestOn('browser')
 library plato.angular.tests.services.terms;
 
-import 'package:http/http.dart';
-import 'package:http/browser_client.dart';
-
 import 'package:test/test.dart';
 
 import 'package:plato_angular/src/terms/terms_service.dart';
 
-Client _http = new BrowserClient();
+import 'mock_client/mock_terms_client.dart';
+
+var _http = new MockTermsClient();
 
 /// The [main] function...
 void main() {
@@ -42,6 +41,6 @@ void testRetrieveTerms() {
       await termsService.retrieveTerms();
 
       expect ((0 < termsService.terms.length), true);
-    }, skip: 'Need to mock retrieving the terms.'
+    }
   );
 }

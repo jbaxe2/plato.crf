@@ -1,9 +1,14 @@
 library plato.angular.tests.mock.response;
 
-/// The [Response] mock class...
-class Response {
+import 'package:http/http.dart';
+import 'package:mockito/mockito.dart';
+
+export 'package:http/http.dart' show Response;
+
+/// The [MockResponse] mock class...
+class MockResponse extends Mock implements Response {
   String body;
 
-  /// The [Response] default constructor...
-  Response();
+  /// The [MockResponse] default constructor...
+  MockResponse();
 }
