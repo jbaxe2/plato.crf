@@ -84,12 +84,20 @@ class RequestedSectionComponent implements OnInit {
   void removeFromCrossListing() {
     _crossListingService.removeSectionFromCrossListing (section, crossListing);
     _crossListing = null;
+    _confirmFeaturedOptions();
   }
 
   /// The [removePreviousContent] method...
   void removePreviousContent() {
     _previousContentService.removePreviousContent (previousContent);
     _previousContent = null;
+    _confirmFeaturedOptions();
+  }
+
+  /// The [_confirmFeaturedOptions] method...
+  void _confirmFeaturedOptions() {
+    _crossListingService.confirmCrossListings();
+    _previousContentService.confirmPreviousContents();
   }
 
   /// The [_updateCrossListingInfo] method...
@@ -100,8 +108,13 @@ class RequestedSectionComponent implements OnInit {
       return;
     }
 
+    if (theCrossListing == crossListing) {
+      return;
+    }
+
     if (theCrossListing.sections.contains (section)) {
       _crossListing = theCrossListing;
+      _confirmFeaturedOptions();
     } else {
       bool crossListingEmpty = _crossListing?.sections?.isEmpty;
 
@@ -119,8 +132,13 @@ class RequestedSectionComponent implements OnInit {
       return;
     }
 
+    if (thePreviousContent == previousContent) {
+      return;
+    }
+
     if (thePreviousContent.section == section) {
       _previousContent = thePreviousContent;
+      _confirmFeaturedOptions();
     }
   }
 }

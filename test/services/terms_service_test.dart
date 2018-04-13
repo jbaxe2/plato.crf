@@ -1,0 +1,47 @@
+@Tags(const ['aot'])
+@TestOn('browser')
+library plato.angular.tests.services.terms;
+
+import 'package:http/http.dart';
+import 'package:http/browser_client.dart';
+
+import 'package:test/test.dart';
+
+import 'package:plato_angular/src/terms/terms_service.dart';
+
+Client _http = new BrowserClient();
+
+/// The [main] function...
+void main() {
+  group (
+    'Terms service: ',
+    () {
+      testTwoTermsServiceReferencesAreSame();
+      testRetrieveTerms();
+    }
+  );
+}
+
+/// The [testTwoTermsServiceReferencesAreSame] function...
+void testTwoTermsServiceReferencesAreSame() {
+  test (
+    'Confirm that two term service instance references are same instance.', () {
+      var termsService1 = new TermsService (_http);
+      var termsService2 = new TermsService (_http);
+
+      expect ((identical (termsService1, termsService2)), true);
+    }
+  );
+}
+
+/// The [testRetrieveTerms] function...
+void testRetrieveTerms() {
+  test (
+    'Retrieve the list of terms from the server.', () async {
+      var termsService = new TermsService (_http);
+      await termsService.retrieveTerms();
+
+      expect ((0 < termsService.terms.length), true);
+    }, skip: 'Need to mock retrieving the terms.'
+  );
+}
