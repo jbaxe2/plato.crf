@@ -7,6 +7,7 @@ import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
 
+import 'services/departments_service_test.dart' as departments_service;
 import 'services/terms_service_test.dart' as terms_service;
 
 import 'course_request_test.dart' as course_request;
@@ -19,5 +20,7 @@ void main() {
 
   course_request.main();
   cross_listing.main();
+
+  departments_service.main();
   terms_service.main();
 }
