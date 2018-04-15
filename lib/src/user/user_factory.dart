@@ -2,16 +2,16 @@ library plato.angular.factory.user;
 
 import '../_application/factory/plato_factory.dart';
 
+import 'plato_user.dart';
 import 'user_exception.dart';
-import 'user_information.dart';
 
 /// The [UserFactory] class...
-class UserFactory implements PlatoFactory<UserInformation> {
+class UserFactory implements PlatoFactory<PlatoUser> {
   /// The [UserFactory] default constructor...
   UserFactory();
 
   /// The [create] method...
-  UserInformation create (
+  PlatoUser create (
     Map<String, dynamic> rawUser,
     [String username, String password, bool isLtiSession = false]
   ) {
@@ -25,7 +25,7 @@ class UserFactory implements PlatoFactory<UserInformation> {
       );
     }
 
-    return new UserInformation (
+    return new PlatoUser (
       username, password,
       rawUser['learn.user.firstName'], rawUser['learn.user.lastName'],
       rawUser['learn.user.email'], rawUser['banner.user.cwid'],
@@ -34,7 +34,7 @@ class UserFactory implements PlatoFactory<UserInformation> {
   }
 
   /// The [createAll] method...
-  List<UserInformation> createAll (Iterable<Map<String, dynamic>> rawUsers) {
+  List<PlatoUser> createAll (Iterable<Map<String, dynamic>> rawUsers) {
     throw new UserException (
       'Unable to create multiple instances of a single user.'
     );

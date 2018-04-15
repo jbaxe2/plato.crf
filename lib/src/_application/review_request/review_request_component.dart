@@ -36,8 +36,8 @@ class ReviewRequestComponent implements OnInit {
     isVisible = false;
 
     _courseRequestService.requestController.stream.listen (
-      (CourseRequest requestInfo) {
-        courseRequest = requestInfo;
+      (CourseRequest theCourseRequest) {
+        courseRequest = theCourseRequest;
         isVisible = true;
       }
     );

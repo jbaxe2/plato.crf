@@ -9,11 +9,9 @@ import '../_application/progress/progress_service.dart';
 
 import '../archives/retrieve_archives_service.dart';
 
-import '../course_request/course_request_service.dart';
-
 import '../enrollments/enrollments_service.dart';
 
-import 'user_information_service.dart';
+import 'plato_user_service.dart';
 
 /// The [UserAuthenticationComponent] class...
 @Component (
@@ -22,7 +20,7 @@ import 'user_information_service.dart';
   styleUrls: const ['user_authentication_component.scss.css'],
   directives: const [CORE_DIRECTIVES, materialDirectives],
   providers: const [
-    UserInformationService, CourseRequestService, EnrollmentsService,
+    PlatoUserService, EnrollmentsService,
     RetrieveArchivesService, ProgressService
   ]
 )
@@ -31,11 +29,9 @@ class UserAuthenticationComponent implements OnInit {
 
   String password;
 
-  bool get isAuthenticated => _userInfoService.isAuthenticated;
+  bool get isAuthenticated => _platoUserService.isAuthenticated;
 
-  final UserInformationService _userInfoService;
-
-  final CourseRequestService _crfService;
+  final PlatoUserService _platoUserService;
 
   final EnrollmentsService _enrollmentsService;
 
@@ -45,7 +41,7 @@ class UserAuthenticationComponent implements OnInit {
 
   /// The [UserAuthenticationComponent] constructor...
   UserAuthenticationComponent (
-    this._userInfoService, this._crfService, this._enrollmentsService,
+    this._platoUserService, this._enrollmentsService,
     this._retrieveArchivesService, this._progressService
   );
 
@@ -57,9 +53,9 @@ class UserAuthenticationComponent implements OnInit {
         'Determining launch context and session information.'
       );
 
-      await _userInfoService.retrieveSession();
+      await _platoUserService.retrieveSession();
 
-      if (_userInfoService.isAuthenticated && _userInfoService.isLtiSession) {
+      if (_platoUserService.isAuthenticated && _platoUserService.isLtiSession) {
         await _retrieveUserEnrollmentsAndArchives();
       }
     } catch (_) {}
@@ -75,7 +71,7 @@ class UserAuthenticationComponent implements OnInit {
 
     try {
       _progressService.invoke ('Attempting to verify Plato credentials.');
-      await _userInfoService.authenticateLearn (username, password);
+      await _platoUserService.authenticateLearn (username, password);
 
       await _retrieveUserEnrollmentsAndArchives();
     } catch (_) {}
@@ -86,8 +82,7 @@ class UserAuthenticationComponent implements OnInit {
   /// The [_retrieveUserEnrollmentsAndArchives] method...
   Future _retrieveUserEnrollmentsAndArchives() async {
     _progressService.invoke ('Retrieving the user information.');
-    await _userInfoService.retrieveUser();
-    _crfService.setUserInformation (_userInfoService.userInformation);
+    await _platoUserService.retrieveUser();
 
     _progressService.invoke ('Retrieving the instructor enrollments.');
     await _enrollmentsService.retrieveEnrollments();

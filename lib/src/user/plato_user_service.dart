@@ -1,4 +1,4 @@
-library plato.angular.services.user.information;
+library plato.angular.services.user.plato;
 
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show JSON;
@@ -7,18 +7,22 @@ import 'package:angular/core.dart';
 
 import 'package:http/http.dart' show Client, Response;
 
+import '../course_request/course_request.dart';
+
+import 'plato_user.dart';
 import 'user_exception.dart';
 import 'user_factory.dart';
-import 'user_information.dart';
 
 const String _LEARN_AUTH_URI = '/plato/authenticate/learn';
 const String _SESSION_URI = '/plato/retrieve/session';
 const String _USER_URI = '/plato/retrieve/user';
 
 @Injectable()
-/// The [UserInformationService] class...
-class UserInformationService {
-  UserInformation userInformation;
+/// The [PlatoUserService] class...
+class PlatoUserService {
+  PlatoUser platoUser;
+
+  CourseRequest _courseRequest;
 
   String _username;
 
@@ -38,14 +42,14 @@ class UserInformationService {
 
   final Client _http;
 
-  static UserInformationService _instance;
+  static PlatoUserService _instance;
 
-  /// The [UserInformationService] factory constructor...
-  factory UserInformationService (Client http) =>
-    _instance ?? (_instance = new UserInformationService._ (http));
+  /// The [PlatoUserService] factory constructor...
+  factory PlatoUserService (Client http) =>
+    _instance ?? (_instance = new PlatoUserService._ (http));
 
-  /// The [UserInformationService] private constructor...
-  UserInformationService._ (this._http) {
+  /// The [PlatoUserService] private constructor...
+  PlatoUserService._ (this._http) {
     _isLtiSession = false;
     _isAuthenticated = false;
 
@@ -58,7 +62,7 @@ class UserInformationService {
     try {
       final Response sessionResponse = await _http.get (_SESSION_URI);
 
-      Map<String, dynamic> rawSession =
+      final Map<String, dynamic> rawSession =
         (JSON.decode (sessionResponse.body) as Map)['session'];
 
       if ((rawSession.containsKey ('plato.session.exists')) &&
@@ -92,7 +96,7 @@ class UserInformationService {
         body: {'username': theUsername, 'password': thePassword}
       );
 
-      Map<String, dynamic> rawAuth = JSON.decode (authResponse.body) as Map;
+      final Map<String, dynamic> rawAuth = JSON.decode (authResponse.body) as Map;
 
       if (true == rawAuth['learn.user.authenticated']) {
         _isAuthenticated = true;
@@ -118,12 +122,12 @@ class UserInformationService {
     try {
       final Response userResponse = await _http.get (_USER_URI);
 
-      Map<String, String> rawUser =
+      final Map<String, String> rawUser =
         (JSON.decode (userResponse.body) as Map)['user'];
 
       _username = rawUser['learn.user.username'];
 
-      userInformation = _userFactory.create (
+      platoUser = _userFactory.create (
         rawUser, _username, _password, _isLtiSession
       );
     } catch (_) {
@@ -131,5 +135,10 @@ class UserInformationService {
     }
 
     authStreamController.add (true);
+
+    _setPlatoUser();
   }
+
+  /// The [_setPlatoUser] method...
+  void _setPlatoUser() => _courseRequest.setPlatoUser (platoUser);
 }

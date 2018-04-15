@@ -13,8 +13,6 @@ import '../_application/submission_response/submission_response.dart';
 import '../courses/course_factory.dart';
 import '../courses/rejected_course.dart';
 
-import '../user/user_information.dart';
-
 import 'course_request_exception.dart';
 import 'course_request.dart';
 
@@ -29,9 +27,13 @@ class CourseRequestService {
 
   bool get submittable => _courseRequest.submittable;
 
-  StreamController<CourseRequest> requestController;
+  StreamController<CourseRequest> _requestController;
 
-  StreamController<SubmissionResponse> responseController;
+  StreamController<CourseRequest> get requestController => _requestController;
+
+  StreamController<SubmissionResponse> _responseController;
+
+  StreamController<SubmissionResponse> get responseController => _responseController;
 
   CourseFactory _courseFactory;
 
@@ -45,17 +47,10 @@ class CourseRequestService {
   CourseRequestService._ (this._http) {
     _courseRequest = new CourseRequest();
 
-    requestController = new StreamController<CourseRequest>.broadcast();
-    responseController = new StreamController<SubmissionResponse>.broadcast();
+    _requestController = new StreamController<CourseRequest>.broadcast();
+    _responseController = new StreamController<SubmissionResponse>.broadcast();
 
     _courseFactory = new CourseFactory();
-  }
-
-  /// The [setUserInformation] method...
-  void setUserInformation (UserInformation userInformation) {
-    try {
-      _courseRequest.setUserInformation (userInformation);
-    } catch (_) { rethrow; }
   }
 
   /// The [reviewCourseRequest] method...
@@ -66,7 +61,7 @@ class CourseRequestService {
       );
     }
 
-    requestController.add (_courseRequest);
+    _requestController.add (_courseRequest);
   }
 
   /// The [submitCourseRequest] method...
@@ -123,7 +118,7 @@ class CourseRequestService {
       );
     }
 
-    responseController.add (
+    _responseController.add (
       new SubmissionResponse (
         ('success' == submissionResponse['result'] as String),
         rejectedCourses

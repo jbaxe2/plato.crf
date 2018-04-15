@@ -1,7 +1,7 @@
-library plato.angular.models.user.information;
+library plato.angular.models.user.plato;
 
-/// The [UserInformation] class...
-class UserInformation {
+/// The [PlatoUser] class...
+class PlatoUser {
   final String username;
 
   final String password;
@@ -18,20 +18,20 @@ class UserInformation {
 
   bool get isLtiSession => _isLtiSession;
 
-  static UserInformation _instance;
+  static PlatoUser _instance;
 
-  /// The [UserInformation] factory constructor...
-  factory UserInformation (
+  /// The [PlatoUser] factory constructor...
+  factory PlatoUser (
     String username, String password, String firstName, String lastName,
     String email, String cwid, [bool isLtiSession = false]
   ) {
-    return _instance ?? (_instance = new UserInformation._ (
+    return _instance ?? (_instance = new PlatoUser._ (
       username, password, firstName, lastName, email, cwid, isLtiSession
     ));
   }
 
-  /// The [UserInformation] private constructor...
-  UserInformation._ (
+  /// The [PlatoUser] private constructor...
+  PlatoUser._ (
     this.username, this.password, this.firstName, this.lastName, this.email,
     this.cwid, [this._isLtiSession = false]
   );

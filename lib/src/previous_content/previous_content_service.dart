@@ -39,23 +39,25 @@ class PreviousContentService extends FeaturedSectionService {
     init();
   }
 
+  /// The [revokeSection] method...
+  void revokeSection() {}
+
   /// The [createPreviousContent] method...
   PreviousContentMapping createPreviousContent (Section section, Enrollment enrollment) {
     var previousContent = new PreviousContentMapping (section, enrollment);
 
-    try {
-      _courseRequest.addPreviousContentMapping (previousContent);
-    } catch (_) { rethrow; }
+    addPreviousContent (previousContent);
 
     return previousContent;
   }
 
-  /// The [revokeSection] method...
-  void revokeSection() {}
-
   /// The [addPreviousContent] method...
   void addPreviousContent (PreviousContentMapping previousContent) {
-    _courseRequest.addPreviousContentMapping (previousContent);
+    try {
+      _courseRequest.addPreviousContentMapping (previousContent);
+    } catch (_) {
+      rethrow;
+    }
   }
 
   /// The [removePreviousContent] method...

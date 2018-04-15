@@ -47,7 +47,7 @@ void testRetrieveCourses() {
         ..setDepartmentId ('CAIS')
         ..setTermId ('2018fall');
 
-      await new Future.delayed (new Duration (seconds: 1), () {
+      await new Future (() {
         expect ((0 < coursesService.courses.length), true);
       });
     }
@@ -63,7 +63,7 @@ void testRetrieveCourseForWrongDeptId() {
         ..setDepartmentId ('ART')
         ..setTermId ('2018fall');
 
-      await new Future.delayed (new Duration (seconds: 1), () {
+      await new Future (() {
         expect ((0 == coursesService.courses.length), true);
       });
     }
@@ -79,7 +79,7 @@ void testRetrieveCourseForWrongTermId() {
         ..setDepartmentId ('CAIS')
         ..setTermId ('2018spring');
 
-      await new Future.delayed (new Duration (seconds: 1), () {
+      await new Future (() {
         expect ((0 == coursesService.courses.length), true);
       });
     }

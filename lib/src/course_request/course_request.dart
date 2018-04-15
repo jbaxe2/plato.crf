@@ -4,6 +4,7 @@ import '../cross_listings/cross_listing.dart';
 import '../cross_listings/cross_listing_exception.dart';
 
 import '../enrollments/enrollment.dart';
+import '../enrollments/enrollment_exception.dart';
 
 import '../previous_content/previous_content_mapping.dart';
 import '../previous_content/previous_content_exception.dart';
@@ -14,14 +15,14 @@ import '../sections/requested/requested_section_factory.dart';
 import '../sections/section.dart';
 import '../sections/section_exception.dart';
 
+import '../user/plato_user.dart';
 import '../user/user_exception.dart';
-import '../user/user_information.dart';
 
 /// The [CourseRequest] class...
 class CourseRequest {
-  UserInformation _userInformation;
+  PlatoUser _platoUser;
 
-  UserInformation get userInformation => _userInformation;
+  PlatoUser get platoUser => _platoUser;
 
   List<Section> sections;
 
@@ -29,7 +30,7 @@ class CourseRequest {
 
   List<PreviousContentMapping> previousContents;
 
-  bool get submittable => (null != _userInformation) && sections.isNotEmpty;
+  bool get submittable => (null != _platoUser) && sections.isNotEmpty;
 
   static CourseRequest _instance;
 
@@ -44,13 +45,13 @@ class CourseRequest {
     previousContents = new List<PreviousContentMapping>();
   }
 
-  /// The [setUserInformation] method...
-  void setUserInformation (UserInformation theUserInformation) {
-    if (null != userInformation) {
+  /// The [setPlatoUser] method...
+  void setPlatoUser (PlatoUser thePlatoUser) {
+    if (null != platoUser) {
       throw new UserException ('Cannot add the user information more than once.');
     }
 
-    _userInformation = theUserInformation;
+    _platoUser = thePlatoUser;
   }
 
   /// The [addSections] method...
@@ -270,6 +271,13 @@ class CourseRequest {
       );
     }
 
+    if (null == enrollment) {
+      throw new EnrollmentException (
+        'Setting a different enrollment for previous content requires '
+        'a valid enrollment.'
+      );
+    }
+
     thePreviousContent.enrollment = enrollment;
     _normalizePcAddedForClSection (thePreviousContent.section);
   }
@@ -354,7 +362,7 @@ class CourseRequest {
 
   /// The [verify] method...
   bool verify() {
-    if (null == userInformation) {
+    if (null == platoUser) {
       throw new UserException (
         'No user information has been provided to submit the course request.'
       );
@@ -398,11 +406,11 @@ class CourseRequest {
   /// The [toJson] method...
   Object toJson() {
     return {
-      'userInfo': _userInformation,
+      'userInfo': _platoUser,
       'sections': sections,
       'crossListings': crossListings,
       'requestedSections': _buildRequestedSections(),
-      'context': _userInformation.isLtiSession
+      'context': _platoUser.isLtiSession
     };
   }
 

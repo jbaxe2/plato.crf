@@ -19,7 +19,7 @@
 </style>
 
 <section>
-  <div *ngIf="userInformation.isLtiSession" class="lti-info">
+  <div *ngIf="platoUser.isLtiSession" class="lti-info">
     <p>
       You have been automatically logged into the request form.<br>
       Please proceed to <strong><em>Step 2: Courses Selection</em></strong>.
@@ -27,13 +27,13 @@
   </div>
 
   <div>
-    <span><strong>Plato username:</strong>&nbsp; {{userInformation.username}}</span><br>
+    <span><strong>Plato username:</strong>&nbsp; {{platoUser.username}}</span><br>
     <span><strong>Plato password:</strong>&nbsp; *********</span><br>
   </div>
 
   <div>
-    <span><strong>First name:</strong>&nbsp; {{userInformation.firstName}}</span><br>
-    <span><strong>Last name:</strong>&nbsp; {{userInformation.lastName}}</span><br>
-    <span><strong>E-mail address:</strong>&nbsp; {{userInformation.email}}</span>
+    <span><strong>First name:</strong>&nbsp; {{platoUser.firstName}}</span><br>
+    <span><strong>Last name:</strong>&nbsp; {{platoUser.lastName}}</span><br>
+    <span><strong>E-mail address:</strong>&nbsp; {{platoUser.email}}</span>
   </div>
 </section>
