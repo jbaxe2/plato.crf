@@ -6,6 +6,7 @@ import 'package:plato_angular/src/cross_listings/cross_listing_exception.dart';
 import 'package:plato_angular/src/enrollments/enrollment.dart';
 import 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
 import 'package:plato_angular/src/sections/section.dart';
+import 'package:plato_angular/src/user/plato_user.dart';
 
 export 'package:plato_angular/src/course_request/course_request.dart';
 export 'package:plato_angular/src/cross_listings/cross_listing.dart';
@@ -13,8 +14,13 @@ export 'package:plato_angular/src/cross_listings/cross_listing_exception.dart';
 export 'package:plato_angular/src/enrollments/enrollment.dart';
 export 'package:plato_angular/src/previous_content/previous_content_mapping.dart';
 export 'package:plato_angular/src/sections/section.dart';
+export 'package:plato_angular/src/user/plato_user.dart';
 
 var courseRequest = new CourseRequest();
+
+var platoUser = new PlatoUser (
+  'username', 'password', 'first', 'last', 'email@domain.com', 'A12345678`'
+);
 
 List<Section> sections = createSomeSections();
 List<Enrollment> enrollments = createSomeEnrollments();

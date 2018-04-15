@@ -45,6 +45,13 @@ class CourseRequest {
     previousContents = new List<PreviousContentMapping>();
   }
 
+  /// The [clearAll] method...
+  bool clearAll() {
+    _platoUser = null;
+
+    return removeAllSections();
+  }
+
   /// The [setPlatoUser] method...
   void setPlatoUser (PlatoUser thePlatoUser) {
     if (null != platoUser) {

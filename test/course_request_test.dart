@@ -13,6 +13,8 @@ void main() {
     () {
       testAddAllSections();
       testClearAllSections();
+      testClearAll();
+      testSetUserAndAddSections();
       testAddNewCrossListing();
       testAddTwoSectionsToCrossListing();
       testAddOneSectionToTwoCrossListings();
@@ -36,7 +38,6 @@ void testAddAllSections() {
     courseRequest.removeAllSections();
   });
 }
-
 
 /// The [testClearAllSections] function...
 void testClearAllSections() {
@@ -63,6 +64,52 @@ void testClearAllSections() {
        (0 == courseRequest.previousContents.length)),
       true
     );
+  });
+}
+
+/// The [testClearAll] method...
+void testClearAll() {
+  test ('Create a full request and clear it.', () {
+    firstCrossListing
+      ..addSection (sections.first)
+      ..addSection (sections[1]);
+
+    secondCrossListing
+      ..addSection (sections[2])
+      ..addSection (sections[3]);
+
+    courseRequest
+      ..setPlatoUser (platoUser)
+      ..addSections (createSomeSections())
+      ..addCrossListing (firstCrossListing)
+      ..addCrossListing (secondCrossListing)
+      ..addPreviousContentMapping (firstPreviousContent)
+      ..addPreviousContentMapping (lastPreviousContent);
+
+    assert (courseRequest.submittable);
+
+    courseRequest.clearAll();
+
+    expect (
+      ((null == courseRequest.platoUser) &&
+       (0 == courseRequest.sections.length) &&
+       (0 == courseRequest.crossListings.length) &&
+       (0 == courseRequest.previousContents.length)),
+      true
+    );
+  });
+}
+
+/// The [testSetUserAndAddSections] function...
+void testSetUserAndAddSections() {
+  test ('Set the user and add some sections to the request.', () {
+    courseRequest
+      ..setPlatoUser (platoUser)
+      ..addSections (createSomeSections());
+
+    expect (courseRequest.submittable, true);
+
+    courseRequest.clearAll();
   });
 }
 
