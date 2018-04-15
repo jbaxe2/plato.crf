@@ -14,10 +14,14 @@ class MockCoursesClient extends AbstractMockClient {
   /// The [get] method...
   @override
   Future<Response> get (dynamic mockUri, {headers: const {}}) async {
-    return new Future.value (
-      new MockResponse()
-        ..body = JSON.encode ({'courses': _mockCourses()})
-    );
+    var mockResponse = new MockResponse();
+
+    bool validMockUri =
+      mockUri.toString().contains ('CAIS') && mockUri.toString().contains ('2018fall');
+
+    mockResponse.body = JSON.encode ({'courses': (validMockUri ? _mockCourses() : [])});
+
+    return new Future.value (mockResponse);
   }
 
   /// The [_mockCourses] method...

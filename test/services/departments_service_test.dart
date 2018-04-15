@@ -24,7 +24,8 @@ void main() {
 /// The [testTwoDepartmentsServiceReferencesAreSame] function...
 void testTwoDepartmentsServiceReferencesAreSame() {
   test (
-    'Confirm that two department service instance references are same object.', () {
+    'Confirm that two departments service instance references are the same object.',
+    () {
       var deptsService1 = new DepartmentsService (_http);
       var deptsService2 = new DepartmentsService (_http);
 

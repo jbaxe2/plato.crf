@@ -24,7 +24,8 @@ void main() {
 /// The [testTwoTermsServiceReferencesAreSame] function...
 void testTwoTermsServiceReferencesAreSame() {
   test (
-    'Confirm that two terms service instance references are same object.', () {
+    'Confirm that two terms service instance references are the same object.',
+    () {
       var termsService1 = new TermsService (_http);
       var termsService2 = new TermsService (_http);
 

@@ -39,7 +39,7 @@ class CoursesService {
   }
 
   /// The [setDepartmentId] method...
-  Future setDepartmentId (String departmentId) async {
+  void setDepartmentId (String departmentId) {
     if (departmentId == _departmentId) {
       return;
     }
@@ -47,12 +47,12 @@ class CoursesService {
     _departmentId = departmentId;
 
     if (null != _termId) {
-      retrieveCourses();
+      _retrieveCourses();
     }
   }
 
   /// The [setTermId] method...
-  Future setTermId (String termId) async {
+  void setTermId (String termId) {
     if (termId == _termId) {
       return;
     }
@@ -60,12 +60,12 @@ class CoursesService {
     _termId = termId;
 
     if (null != _departmentId) {
-      retrieveCourses();
+      _retrieveCourses();
     }
   }
 
-  /// The [retrieveCourses] method...
-  Future retrieveCourses() async {
+  /// The [_retrieveCourses] method...
+  Future _retrieveCourses() async {
     try {
       final Response coursesResponse = await _http.get (
         '$_COURSES_URI?dept=$_departmentId&term=$_termId'
@@ -78,7 +78,7 @@ class CoursesService {
         ..clear()
         ..addAll (_courseFactory.createAll (rawCourses));
     } catch (_) {
-      throw new CourseException ('Unable to retrieve the courses list.');
+      throw new CourseException ('Unable to retrieve the courses list: ${_.toString()}.');
     }
   }
 }

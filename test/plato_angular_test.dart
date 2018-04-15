@@ -7,6 +7,7 @@ import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
 
+import 'services/courses_service_test.dart' as courses_service;
 import 'services/departments_service_test.dart' as departments_service;
 import 'services/terms_service_test.dart' as terms_service;
 
@@ -23,4 +24,5 @@ void main() {
 
   departments_service.main();
   terms_service.main();
+  courses_service.main();
 }

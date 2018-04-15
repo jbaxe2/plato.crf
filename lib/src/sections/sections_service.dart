@@ -47,7 +47,7 @@ class SectionsService {
     _courseId = courseId;
 
     if (null != _termId) {
-      retrieveSections();
+      _retrieveSections();
     }
   }
 
@@ -60,12 +60,12 @@ class SectionsService {
     _termId = termId;
 
     if (null != _courseId) {
-      retrieveSections();
+      _retrieveSections();
     }
   }
 
-  /// The [retrieveSections] method...
-  Future retrieveSections() async {
+  /// The [_retrieveSections] method...
+  Future _retrieveSections() async {
     try {
       final Response sectionsResponse = await _http.get (
         '$_SECTIONS_URI?course=$_courseId&term=$_termId'
