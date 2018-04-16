@@ -55,6 +55,8 @@ class PlatoUserService {
 
     authStreamController = new StreamController<bool>.broadcast();
     _userFactory = new UserFactory();
+
+    _courseRequest = new CourseRequest();
   }
 
   /// The [retrieveSession] method...
@@ -134,11 +136,7 @@ class PlatoUserService {
       throw new UserException ('Unable to retrieve the user information.');
     }
 
+    _courseRequest.setPlatoUser (platoUser);
     authStreamController.add (true);
-
-    _setPlatoUser();
   }
-
-  /// The [_setPlatoUser] method...
-  void _setPlatoUser() => _courseRequest.setPlatoUser (platoUser);
 }

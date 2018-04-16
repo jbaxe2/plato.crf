@@ -13,6 +13,8 @@ import '../_application/submission_response/submission_response_component.dart';
 import '../archives/course/archive_course_component.dart';
 import '../archives/resource/archive_resource_component.dart';
 
+import '../course_request/course_request.dart';
+
 import '../cross_listings/cross_listings_component.dart';
 
 import '../previous_content/previous_content_component.dart';
@@ -40,15 +42,19 @@ import 'course_request_service.dart';
     DirectionsComponent, ErrorComponent, ProgressComponent,
     ReviewRequestComponent, SubmissionResponseComponent, SessionCleanupComponent
   ],
-  providers: const [materialProviders, CourseRequestService],
+  providers: const [materialProviders, CourseRequestService]
 )
 class CourseRequestComponent {
   bool get submittable => _crfService.submittable;
 
   final CourseRequestService _crfService;
 
+  CourseRequest courseRequest;
+
   /// The [CourseRequestComponent] constructor...
-  CourseRequestComponent (this._crfService);
+  CourseRequestComponent (this._crfService) {
+    courseRequest = new CourseRequest();
+  }
 
   /// The [reviewCourseRequest] method...
   void reviewCourseRequest() => _crfService.reviewCourseRequest();

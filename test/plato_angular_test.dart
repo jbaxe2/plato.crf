@@ -9,6 +9,7 @@ import 'package:test/test.dart';
 
 import 'services/courses_service_test.dart' as courses_service;
 import 'services/departments_service_test.dart' as departments_service;
+import 'services/previous_content_service_test.dart' as previous_content_service;
 import 'services/terms_service_test.dart' as terms_service;
 
 import 'course_request_test.dart' as course_request;
@@ -25,4 +26,5 @@ void main() {
   departments_service.main();
   terms_service.main();
   courses_service.main();
+  previous_content_service.main();
 }

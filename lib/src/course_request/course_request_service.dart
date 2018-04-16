@@ -23,8 +23,6 @@ const String _SUBMISSION_URI = '/plato/submit/crf';
 class CourseRequestService {
   CourseRequest _courseRequest;
 
-  final Client _http;
-
   bool get submittable => _courseRequest.submittable;
 
   StreamController<CourseRequest> _requestController;
@@ -36,6 +34,8 @@ class CourseRequestService {
   StreamController<SubmissionResponse> get responseController => _responseController;
 
   CourseFactory _courseFactory;
+
+  final Client _http;
 
   static CourseRequestService _instance;
 
