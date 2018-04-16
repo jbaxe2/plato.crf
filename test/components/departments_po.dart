@@ -14,9 +14,26 @@ class DepartmentsPO {
   Future<List<Department>> departments;
 
   /// The [DepartmentsPO] constructor...
-  DepartmentsPO();
+  DepartmentsPO() {
+    () async => (departments = _deptsFromSelectItems());
+  }
 
-  Department _deptsFromSelectItems (String code) {
-    return new Department ('', '');
+  /// The [_deptsFromSelectItems] method...
+  Future<List<Department>> _deptsFromSelectItems() async {
+    var depts = new List<Department>();
+
+    await Future.forEach (_departments, (PageLoaderElement deptEl) async {
+      String deptText = (await deptEl.visibleText).trim();
+      List<String> deptTextParts = deptText.split (' ');
+
+      var department = new Department (
+        deptTextParts.first.substring (1, (deptTextParts.first.length - 1)),
+        deptTextParts.sublist (1).join (' ')
+      );
+
+      depts.add (department);
+    });
+
+    return depts;
   }
 }

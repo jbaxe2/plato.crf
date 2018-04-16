@@ -14,26 +14,35 @@ import '../services/mock_client/mock_departments_client.dart';
 
 import 'departments_po.dart';
 
+NgTestFixture<DepartmentsComponent> deptsFixture;
+DepartmentsPO deptsPo;
+
 /// The [main] function...
 void main() {
-  NgTestFixture<DepartmentsComponent> deptsFixture;
-  DepartmentsPO deptsPo;
-
-  var deptsTestBed = new NgTestBed<DepartmentsComponent>().addProviders (
-    [provide (Client, useClass: MockDepartmentsClient), DepartmentsService]
-  );
+  final deptsTestBed = new NgTestBed<DepartmentsComponent>().addProviders ([
+    provide (Client, useClass: MockDepartmentsClient),
+    DepartmentsService
+  ]);
 
   setUp (() async {
     deptsFixture = await deptsTestBed.create();
-    deptsPo = await deptsFixture.resolvePageObject (DepartmentsPO);
+    //deptsPo = await deptsFixture.resolvePageObject (DepartmentsPO);
   });
 
   tearDown (disposeAnyRunningTest);
 
-  testDepartmentsComponent (deptsPo);
+  group (
+    'Departments component:', () {
+      testDepartmentsComponent();
+    }
+  );
 }
 
 /// The [testDepartmentsComponent] function...
-void testDepartmentsComponent (DepartmentsPO deptsPo) {
-  ;
+void testDepartmentsComponent() {
+  test (
+    'Departments in the component are loaded successfully.', () async {
+      expect ((0 < (await deptsPo.departments).length), true);
+    }
+  );
 }
