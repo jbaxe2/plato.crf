@@ -13,7 +13,7 @@ var _http = new MockTermsClient();
 /// The [main] function...
 void main() {
   group (
-    'Terms service: ',
+    'Terms service:',
     () {
       testTwoTermsServiceReferencesAreSame();
       testRetrieveTerms();

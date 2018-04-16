@@ -13,7 +13,7 @@ var _http = new MockDepartmentsClient();
 /// The [main] function...
 void main() {
   group (
-    'Departments service: ',
+    'Departments service:',
     () {
       testTwoDepartmentsServiceReferencesAreSame();
       testRetrieveDepartments();

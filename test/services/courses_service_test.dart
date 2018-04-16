@@ -15,7 +15,7 @@ var _http = new MockCoursesClient();
 /// The [main] function...
 void main() {
   group (
-    'Courses service: ',
+    'Courses service:',
     () {
       testTwoCoursesServiceReferencesAreSame();
       testRetrieveCourses();

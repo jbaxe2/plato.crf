@@ -245,6 +245,12 @@ class CourseRequest {
 
   /// The [addPreviousContentMapping] method...
   void addPreviousContentMapping (PreviousContentMapping aPreviousContent) {
+    if (null == _platoUser) {
+      throw new PreviousContentException (
+        'Cannot add previous content when the user has not yet authenticated.'
+      );
+    }
+
     if (previousContents.any (
       (PreviousContentMapping previousContent) =>
         (previousContent.section == aPreviousContent.section)

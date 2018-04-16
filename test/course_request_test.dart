@@ -9,7 +9,7 @@ import 'dummy_objects.dart';
 /// The [main] function...
 void main() {
   group (
-    'Course Request: ',
+    'Course Request:',
     () {
       testAddAllSections();
       testClearAllSections();
@@ -51,6 +51,7 @@ void testClearAllSections() {
       ..addSection (sections[3]);
 
     courseRequest
+      ..setPlatoUser (platoUser)
       ..addSections (createSomeSections())
       ..addCrossListing (firstCrossListing)
       ..addCrossListing (secondCrossListing)
@@ -64,6 +65,8 @@ void testClearAllSections() {
        (0 == courseRequest.previousContents.length)),
       true
     );
+
+    courseRequest.clearAll();
   });
 }
 
@@ -177,12 +180,13 @@ void testAddOneSectionToTwoCrossListings() {
 void testAddFirstPreviousContent() {
   test ('Add the first previous content to request.', () {
     courseRequest
+      ..setPlatoUser (platoUser)
       ..addSections (createSomeSections())
       ..addPreviousContentMapping (firstPreviousContent);
 
     expect ((0 < courseRequest.previousContents.length), true);
 
-    courseRequest.removeAllSections();
+    courseRequest.clearAll();
   });
 }
 
@@ -193,6 +197,7 @@ void testOverwriteFirstSectionPrevContentViaCl() {
       'the previous content of the other section in the set.',
     () {
       courseRequest
+        ..setPlatoUser (platoUser)
         ..addSections (createSomeSections())
         ..addPreviousContentMapping (firstPreviousContent)
         ..setPreviousContentEnrollment (firstPreviousContent, enrollments[2]);
@@ -202,7 +207,7 @@ void testOverwriteFirstSectionPrevContentViaCl() {
         true
       );
 
-      courseRequest.removeAllSections();
+      courseRequest.clearAll();
     }
   );
 }
@@ -219,6 +224,7 @@ void testRemovePreviousContentForClSection() {
         ..addSection (sections[1]);
 
       courseRequest
+        ..setPlatoUser (platoUser)
         ..previousContents.clear()
         ..crossListings.clear()
         ..addSections (createSomeSections())
@@ -235,7 +241,7 @@ void testRemovePreviousContentForClSection() {
 
       expect (result, true);
 
-      courseRequest.removeAllSections();
+      courseRequest.clearAll();
     }
   );
 }
@@ -261,6 +267,7 @@ void testAddPcToSectionInFirstClSet() {
         ..addCrossListing (secondCrossListing);
 
       courseRequest
+        ..setPlatoUser (platoUser)
         ..previousContents.clear()
         ..addPreviousContentMapping (firstPreviousContent)
         ..addPreviousContentMapping (lastPreviousContent);
@@ -276,7 +283,7 @@ void testAddPcToSectionInFirstClSet() {
 
       expect (result, true);
 
-      courseRequest.removeAllSections();
+      courseRequest.clearAll();
     }
   );
 }
@@ -302,6 +309,7 @@ void testRemovePcFromFirstClSet() {
         ..addCrossListing (secondCrossListing);
 
       courseRequest
+        ..setPlatoUser (platoUser)
         ..previousContents.clear()
         ..addPreviousContentMapping (firstPreviousContent)
         ..addPreviousContentMapping (lastPreviousContent)
@@ -315,7 +323,7 @@ void testRemovePcFromFirstClSet() {
 
       expect (result, true);
 
-      courseRequest.removeAllSections();
+      courseRequest.clearAll();
     }
   );
 }
@@ -328,6 +336,7 @@ void testAddPcSectionToClSet() {
       'have the same previous content.',
     () {
       courseRequest
+        ..setPlatoUser (platoUser)
         ..addSections (createSomeSections())
         ..previousContents.clear()
         ..crossListings.clear()
@@ -343,7 +352,7 @@ void testAddPcSectionToClSet() {
 
       expect ((firstPreviousContent.enrollment == secondPrevContent.enrollment), true);
 
-      courseRequest.removeAllSections();
+      courseRequest.clearAll();
     }
   );
 }
