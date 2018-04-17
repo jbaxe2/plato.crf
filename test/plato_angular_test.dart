@@ -2,7 +2,6 @@
 @TestOn('browser')
 library plato.angular.tests;
 
-import 'package:angular/angular.dart';
 import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
@@ -18,17 +17,16 @@ import 'course_request_test.dart' as course_request;
 import 'cross_listing_test.dart' as cross_listing;
 
 /// The [main] function...
-@AngularEntrypoint()
 void main() {
   tearDown (disposeAnyRunningTest);
 
-  testModels();
+  testDomain();
   testServices();
   testComponents();
 }
 
-/// The [testModels] function...
-void testModels() {
+/// The [testDomain] function...
+void testDomain() {
   course_request.main();
   cross_listing.main();
 }

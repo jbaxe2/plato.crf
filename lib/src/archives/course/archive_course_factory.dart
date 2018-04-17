@@ -63,7 +63,7 @@ class ArchiveCourseFactory implements PlatoFactory<ArchiveCourse> {
         title = rawArchiveItem[itemKey];
 
         if (1 < rawArchiveItem.keys.length) {
-          rawArchiveItem.forEach ((String subKey, dynamic subItems) {
+          rawArchiveItem.forEach ((dynamic subKey, dynamic subItems) {
             if (subItems is Map) {
               subArchiveItems.addAll (_buildArchiveItems (subItems));
             }

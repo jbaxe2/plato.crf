@@ -7,6 +7,8 @@ import 'package:angular_test/angular_test.dart';
 import 'package:http/http.dart' show Client;
 import 'package:test/test.dart';
 
+import 'package:plato_angular/src/courses/courses_service.dart';
+
 import 'package:plato_angular/src/departments/departments_component.dart';
 import 'package:plato_angular/src/departments/departments_service.dart';
 
@@ -21,7 +23,7 @@ DepartmentsPO deptsPo;
 void main() {
   final deptsTestBed = new NgTestBed<DepartmentsComponent>().addProviders ([
     provide (Client, useClass: MockDepartmentsClient),
-    DepartmentsService
+    DepartmentsService, CoursesService
   ]);
 
   setUp (() async {
