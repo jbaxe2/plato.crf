@@ -1,6 +1,7 @@
 library plato.angular;
 
 import 'dart:async' show runZoned;
+import 'dart:html' show window;
 
 import 'package:angular/angular.dart';
 
@@ -16,5 +17,7 @@ void main() {
     bootstrapStatic (CourseRequestComponent, [
       provide (Client, useFactory: () => new BrowserClient(), deps: [])
     ]);
-  }, onError: () {});
+  }, onError: (e) {
+    window.console.log ('Uncaught error:\n${e.toString()}');
+  });
 }
