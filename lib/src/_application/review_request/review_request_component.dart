@@ -15,7 +15,7 @@ import '../progress/progress_service.dart';
   selector: 'review-request',
   templateUrl: 'review_request_component.html',
   styleUrls: const ['review_request_component.scss.css'],
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [CourseRequestService, ProgressService]
 )
 class ReviewRequestComponent implements OnInit {

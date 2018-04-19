@@ -16,7 +16,7 @@ import 'archive_item.dart';
   selector: 'archive-item',
   templateUrl: 'archive_item_component.html',
   styleUrls: const ['archive_item_component.scss.css'],
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [materialProviders, BrowseArchiveService, ProgressService]
 )
 class ArchiveItemComponent implements OnInit, RendersValue<ArchiveItem> {

@@ -12,7 +12,7 @@ import 'courses_service.dart';
 @Component(
   selector: 'courses',
   templateUrl: 'courses_component.html',
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [CoursesService, SectionsService],
 )
 class CoursesComponent implements OnInit {

@@ -9,7 +9,7 @@ import 'progress_service.dart';
 @Component(
   selector: 'plato-progress',
   templateUrl: 'progress_component.html',
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [materialProviders, ProgressService]
 )
 class ProgressComponent implements OnInit {

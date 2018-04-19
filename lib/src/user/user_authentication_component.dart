@@ -18,7 +18,7 @@ import 'plato_user_service.dart';
   selector: 'user-authentication',
   templateUrl: 'user_authentication_component.html',
   styleUrls: const ['user_authentication_component.scss.css'],
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [
     PlatoUserService, EnrollmentsService,
     RetrieveArchivesService, ProgressService

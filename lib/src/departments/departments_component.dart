@@ -14,7 +14,7 @@ import 'departments_service.dart';
 @Component(
   selector: 'departments',
   templateUrl: 'departments_component.html',
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [DepartmentsService, CoursesService],
 )
 class DepartmentsComponent implements OnInit {

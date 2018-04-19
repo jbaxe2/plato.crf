@@ -12,7 +12,7 @@ import 'user_authentication_component.dart';
   selector: 'user',
   templateUrl: 'user_component.html',
   directives: const [
-    CORE_DIRECTIVES, materialDirectives,
+    coreDirectives, materialDirectives,
     UserAuthenticationComponent, PlatoUserComponent
   ],
   providers: const [PlatoUserService]

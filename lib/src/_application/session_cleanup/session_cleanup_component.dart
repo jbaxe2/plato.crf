@@ -13,7 +13,7 @@ const String _CLEANUP_URI = '/plato/cleanup/session';
 @Component(
   selector: 'session-cleanup',
   templateUrl: 'session_cleanup_component.html',
-  directives: const [CORE_DIRECTIVES]
+  directives: const [coreDirectives]
 )
 class SessionCleanupComponent implements OnInit {
   final Client _http;

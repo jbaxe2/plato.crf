@@ -15,7 +15,7 @@ import '../selection/sections_selection_component.dart';
   selector: 'requesting-sections',
   templateUrl: 'requesting_sections_component.html',
   directives: const [
-    CORE_DIRECTIVES, materialDirectives,
+    coreDirectives, materialDirectives,
     DepartmentsComponent, TermsComponent, CoursesComponent,
     SectionsSelectionComponent
   ],

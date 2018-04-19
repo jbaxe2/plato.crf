@@ -24,7 +24,7 @@ import 'previous_content_service.dart';
   selector: 'previous-content',
   templateUrl: 'previous_content_component.html',
   styleUrls: const ['previous_content_component.scss.css'],
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [
     PreviousContentService, EnrollmentsService, RetrieveArchivesService,
     PullArchiveService, BrowseArchiveService, ProgressService

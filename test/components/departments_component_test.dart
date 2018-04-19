@@ -16,13 +16,20 @@ import '../services/mock_client/mock_departments_client.dart';
 
 import 'departments_po.dart';
 
+// ignore: uri_has_not_been_generated
+import 'departments_component_test.template.dart' as dct;
+
 NgTestFixture<DepartmentsComponent> deptsFixture;
 DepartmentsPO deptsPo;
 
+var mockDeptsClient = new MockDepartmentsClient();
+
 /// The [main] function...
 void main() {
+  dct.initReflector();
+
   final deptsTestBed = new NgTestBed<DepartmentsComponent>().addProviders ([
-    provide (Client, useClass: MockDepartmentsClient),
+    provide (Client, useValue: mockDeptsClient),
     DepartmentsService, CoursesService
   ]);
 

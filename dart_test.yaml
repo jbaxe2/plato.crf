@@ -1,6 +1,6 @@
 # Plato Angular tests configuration
 
-platforms: [content-shell, chrome]
+platforms: [firefox]
 
 test_on: 'browser'
 

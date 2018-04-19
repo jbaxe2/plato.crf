@@ -12,7 +12,7 @@ import '../sections_service.dart';
 @Component(
   selector: 'sections-selection',
   templateUrl: 'sections_selection_component.html',
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [SectionsService, RequestedSectionsService]
 )
 class SectionsSelectionComponent implements OnInit {

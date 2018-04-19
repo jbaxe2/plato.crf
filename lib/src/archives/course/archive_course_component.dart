@@ -16,7 +16,7 @@ import 'archive_course.dart';
 @Component(
   selector: 'archive-course',
   templateUrl: 'archive_course_component.html',
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [materialProviders, BrowseArchiveService]
 )
 class ArchiveCourseComponent implements OnInit {

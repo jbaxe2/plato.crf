@@ -13,7 +13,7 @@ import 'requested_sections_service.dart';
   selector: 'requested-sections',
   templateUrl: 'requested_sections_component.html',
   directives: const [
-    CORE_DIRECTIVES, materialDirectives,
+    coreDirectives, materialDirectives,
     RequestedSectionComponent
   ],
   providers: const [RequestedSectionsService]

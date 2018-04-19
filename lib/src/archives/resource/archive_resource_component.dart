@@ -11,7 +11,7 @@ import 'archive_resource.dart';
 @Component(
   selector: 'archive-resource',
   templateUrl: 'archive_resource_component.html',
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [materialProviders, BrowseArchiveService]
 )
 class ArchiveResourceComponent implements OnInit {

@@ -18,7 +18,7 @@ import 'requested_sections_service.dart';
   selector: 'requested-section',
   templateUrl: 'requested_section_component.html',
   styleUrls: const ['requested_section_component.scss.css'],
-  directives: const [CORE_DIRECTIVES, materialDirectives],
+  directives: const [coreDirectives, materialDirectives],
   providers: const [
     RequestedSectionsService, CrossListingService, PreviousContentService
   ],
