@@ -1,7 +1,7 @@
 library plato.angular.tests.mock.client.terms;
 
 import 'dart:async' show Future;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'abstract_mock_client.dart';
 import 'mock_response.dart';
@@ -16,7 +16,7 @@ class MockTermsClient extends AbstractMockClient {
   Future<Response> get (dynamic mockUri, {headers: const {}}) async {
     return new Future.value (
       new MockResponse()
-        ..body = JSON.encode ({'terms': _mockTerms()})
+        ..body = json.encode ({'terms': _mockTerms()})
     );
   }
 

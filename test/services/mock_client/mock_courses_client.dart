@@ -1,7 +1,7 @@
 library plato.angular.tests.mock.client.courses;
 
 import 'dart:async' show Future;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'abstract_mock_client.dart';
 import 'mock_response.dart';
@@ -19,7 +19,7 @@ class MockCoursesClient extends AbstractMockClient {
     bool validMockUri =
       mockUri.toString().contains ('CAIS') && mockUri.toString().contains ('2018fall');
 
-    mockResponse.body = JSON.encode ({'courses': (validMockUri ? _mockCourses() : [])});
+    mockResponse.body = json.encode ({'courses': (validMockUri ? _mockCourses() : [])});
 
     return new Future.value (mockResponse);
   }

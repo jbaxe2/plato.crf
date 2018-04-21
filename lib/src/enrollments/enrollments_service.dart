@@ -1,7 +1,7 @@
 library plato.angular.services.enrollments;
 
 import 'dart:async' show Future;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'package:http/http.dart' show Client, Response;
 
@@ -40,7 +40,7 @@ class EnrollmentsService {
       final Response enrollmentsResponse = await _http.get (_ENROLLMENTS_URI);
 
       List<Map<String, String>> rawEnrollments =
-        (JSON.decode (enrollmentsResponse.body) as Map)['enrollments'];
+        (json.decode (enrollmentsResponse.body) as Map)['enrollments'];
 
       enrollments
         ..clear()

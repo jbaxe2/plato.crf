@@ -1,7 +1,7 @@
 library plato.angular.services.archive.retrieve;
 
 import 'dart:async' show Future, StreamController;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'package:angular/core.dart';
 
@@ -44,7 +44,7 @@ class RetrieveArchivesService {
       final Response archivesResponse = await _http.get (_RETRIEVE_URI);
 
       List<Map<String, String>> rawArchives =
-        (JSON.decode (archivesResponse.body))['archives'];
+        (json.decode (archivesResponse.body))['archives'];
 
       archiveEnrollments
         ..clear()

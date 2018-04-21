@@ -1,4 +1,3 @@
-@Tags(const ['aot'])
 @TestOn('browser')
 library plato.angular.tests.course_request;
 

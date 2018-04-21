@@ -1,5 +1,6 @@
 library plato.angular.tests.models.dummy;
 
+/// Silence analyzer: [CrossListingException]
 import 'package:plato_angular/src/course_request/course_request.dart';
 import 'package:plato_angular/src/cross_listings/cross_listing.dart';
 import 'package:plato_angular/src/cross_listings/cross_listing_exception.dart';

@@ -1,7 +1,7 @@
 library plato.angular.services.user.plato;
 
 import 'dart:async' show Future, StreamController;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'package:angular/core.dart';
 
@@ -65,7 +65,7 @@ class PlatoUserService {
       final Response sessionResponse = await _http.get (_SESSION_URI);
 
       final Map<String, dynamic> rawSession =
-        (JSON.decode (sessionResponse.body) as Map)['session'];
+        (json.decode (sessionResponse.body) as Map)['session'];
 
       if ((rawSession.containsKey ('plato.session.exists')) &&
           (rawSession.containsKey ('learn.user.authenticated'))) {
@@ -98,7 +98,7 @@ class PlatoUserService {
         body: {'username': theUsername, 'password': thePassword}
       );
 
-      final Map<String, dynamic> rawAuth = JSON.decode (authResponse.body) as Map;
+      final Map<String, dynamic> rawAuth = json.decode (authResponse.body) as Map;
 
       if (true == rawAuth['learn.user.authenticated']) {
         _isAuthenticated = true;
@@ -125,7 +125,7 @@ class PlatoUserService {
       final Response userResponse = await _http.get (_USER_URI);
 
       final Map<String, String> rawUser =
-        (JSON.decode (userResponse.body) as Map)['user'];
+        (json.decode (userResponse.body) as Map)['user'];
 
       _username = rawUser['learn.user.username'];
 

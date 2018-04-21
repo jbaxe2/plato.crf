@@ -1,7 +1,7 @@
 library plato.angular.services.terms;
 
 import 'dart:async' show Future;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'package:angular/core.dart';
 
@@ -40,7 +40,7 @@ class TermsService {
       final Response termsResponse = await _http.get (_TERMS_URI);
 
       List<Map<String, String>> rawTerms =
-        (JSON.decode (termsResponse.body) as Map)['terms'];
+        (json.decode (termsResponse.body) as Map)['terms'];
 
       terms
         ..clear()

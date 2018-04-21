@@ -1,7 +1,7 @@
 library plato.angular.services.departments;
 
 import 'dart:async' show Future;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'package:angular/core.dart';
 
@@ -40,7 +40,7 @@ class DepartmentsService {
       final Response deptsResponse = await _http.get (_DEPTS_URI);
 
       List<Map<String, String>> rawDepts =
-        (JSON.decode (deptsResponse.body) as Map)['departments'];
+        (json.decode (deptsResponse.body) as Map)['departments'];
 
       departments
         ..clear()

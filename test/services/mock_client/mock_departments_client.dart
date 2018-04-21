@@ -1,7 +1,7 @@
 library plato.angular.tests.mock.client.departments;
 
 import 'dart:async' show Future;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'abstract_mock_client.dart';
 import 'mock_response.dart';
@@ -16,7 +16,7 @@ class MockDepartmentsClient extends AbstractMockClient {
   Future<Response> get (dynamic mockUri, {headers: const {}}) async {
     return new Future.value (
       new MockResponse()
-        ..body = JSON.encode ({'departments': _mockDepartments()})
+        ..body = json.encode ({'departments': _mockDepartments()})
     );
   }
 

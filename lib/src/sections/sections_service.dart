@@ -1,7 +1,7 @@
 library plato.angular.services.sections;
 
 import 'dart:async' show Future;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'package:angular/core.dart';
 
@@ -72,7 +72,7 @@ class SectionsService {
       );
 
       List<Map<String, String>> rawSections =
-        (JSON.decode (sectionsResponse.body) as Map)['sections'];
+        (json.decode (sectionsResponse.body) as Map)['sections'];
 
       sections
         ..clear()

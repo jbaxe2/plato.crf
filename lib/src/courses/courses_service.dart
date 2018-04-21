@@ -1,7 +1,7 @@
 library plato.angular.services.courses;
 
 import 'dart:async' show Future;
-import 'dart:convert' show JSON;
+import 'dart:convert' show json;
 
 import 'package:angular/core.dart';
 
@@ -72,7 +72,7 @@ class CoursesService {
       );
 
       List<Map<String, String>> rawCourses =
-        (JSON.decode (coursesResponse.body) as Map)['courses'];
+        (json.decode (coursesResponse.body) as Map)['courses'];
 
       courses
         ..clear()
