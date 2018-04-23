@@ -8,7 +8,7 @@ timeout: 'none'
 
 reporter: expanded
 
-filename: '*_test.dart'
+filename: 'plato_angular_test.dart'
 
 paths:
 - test/
