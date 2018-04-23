@@ -6,9 +6,6 @@ test_on: 'browser'
 
 timeout: 'none'
 
-tags:
-  aot:
-
 reporter: expanded
 
 filename: '*_test.dart'

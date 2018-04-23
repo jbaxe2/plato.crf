@@ -5,7 +5,7 @@ import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
 
-import 'components/departments_component_test.dart' as depts_component;
+//import 'components/departments_component_test.dart' as depts_component;
 
 import 'services/courses_service_test.dart' as courses_service;
 import 'services/departments_service_test.dart' as departments_service;
@@ -45,5 +45,5 @@ void testServices() {
 
 /// The [testComponents] function...
 void testComponents() {
-  depts_component.main();
+  //depts_component.main();
 }
