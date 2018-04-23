@@ -18,7 +18,7 @@ import 'main.template.dart' as cr_main;
 @GenerateInjector(
   const [const Provider (Client, useClass: BrowserClient)]
 )
-final InjectorFactory clientInjector = cr_main.injector$Injector;
+final InjectorFactory clientInjector = cr_main.clientInjector$Injector;
 
 /// The [main] function...
 void main() {

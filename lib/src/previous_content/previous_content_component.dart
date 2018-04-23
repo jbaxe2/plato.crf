@@ -23,7 +23,7 @@ import 'previous_content_service.dart';
 @Component(
   selector: 'previous-content',
   templateUrl: 'previous_content_component.html',
-  styleUrls: const ['previous_content_component.scss.css'],
+  styleUrls: const ['previous_content_component.css'],
   directives: const [coreDirectives, materialDirectives],
   providers: const [
     PreviousContentService, EnrollmentsService, RetrieveArchivesService,

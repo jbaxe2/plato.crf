@@ -16,21 +16,26 @@ import '../services/mock_client/mock_departments_client.dart';
 import 'departments_po.dart';
 
 // ignore: uri_has_not_been_generated
+import 'package:plato_angular/src/departments/departments_component.template.dart' as dc;
+
+// ignore: uri_has_not_been_generated
 import 'departments_component_test.template.dart' as dct;
 
 NgTestFixture<DepartmentsComponent> deptsFixture;
 DepartmentsPO deptsPo;
 
-var mockDeptsClient = new MockDepartmentsClient();
+@GenerateInjector([
+  const ClassProvider (Client, useClass: MockDepartmentsClient),
+  const ClassProvider (DepartmentsService),
+  const ClassProvider (CoursesService)
+])
+final deptsInjector = dct.rootInjector$Injector;
 
 /// The [main] function...
 void main() {
-  dct.initReflector();
-
-  final deptsTestBed = new NgTestBed<DepartmentsComponent>().addProviders ([
-    provide (Client, useValue: mockDeptsClient),
-    DepartmentsService, CoursesService
-  ]);
+  final deptsTestBed = NgTestBed.forComponent<DepartmentsComponent> (
+    dc.DepartmentsComponentNgFactory, rootInjector: deptsInjector
+  );
 
   setUp (() async {
     deptsFixture = await deptsTestBed.create();

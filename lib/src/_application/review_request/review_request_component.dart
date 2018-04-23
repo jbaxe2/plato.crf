@@ -14,7 +14,7 @@ import '../progress/progress_service.dart';
 @Component(
   selector: 'review-request',
   templateUrl: 'review_request_component.html',
-  styleUrls: const ['review_request_component.scss.css'],
+  styleUrls: const ['review_request_component.css'],
   directives: const [coreDirectives, materialDirectives],
   providers: const [CourseRequestService, ProgressService]
 )

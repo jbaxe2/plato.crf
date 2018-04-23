@@ -15,7 +15,7 @@ import 'archive_item.dart';
 @Component(
   selector: 'archive-item',
   templateUrl: 'archive_item_component.html',
-  styleUrls: const ['archive_item_component.scss.css'],
+  styleUrls: const ['archive_item_component.css'],
   directives: const [coreDirectives, materialDirectives],
   providers: const [materialProviders, BrowseArchiveService, ProgressService]
 )
