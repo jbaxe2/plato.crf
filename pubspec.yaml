@@ -8,20 +8,16 @@ environment:
   sdk: '>=2.0.0-dev.46.0 <2.0.0'
 
 dependencies:
-  angular: ^5.0.0-alpha+10
-  angular_components: ^0.9.0-alpha+10
+  angular: ^5.0.0-alpha+11
+  angular_components: ^0.9.0-alpha+11
   http: ^0.11.3+16
 
 dev_dependencies:
-  angular_test: ^2.0.0-alpha+8
-  build_runner: ^0.8.3
+  angular_test: ^2.0.0-alpha+9
+  build_runner: ^0.8.4
   build_test: ^0.10.2+2
-  build_web_compilers: ^0.3.7+1
+  build_web_compilers: ^0.3.7+3
   mockito: ^2.2.2
   pageloader: ^2.2.6
   sass_builder: ^1.2.0
   test: ^0.12.35
-
-#web:
-#  compiler:
-#    debug: dartdevc
