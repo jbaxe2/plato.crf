@@ -2,11 +2,15 @@ library plato.angular.components.archive;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:angular_components/model/ui/has_factory.dart';
 
 import '../item/archive_item.dart';
 import '../item/archive_item_component.dart';
 import '../item/archive_item_node.dart';
 import '../item/archive_item_options.dart';
+
+// ignore: uri_has_not_been_generated
+import '../item/archive_item_component.template.dart' as aic;
 
 import '../browse_archive_service.dart';
 
@@ -32,7 +36,8 @@ class ArchiveCourseComponent implements OnInit {
 
   ArchiveItemOptions archiveOptions;
 
-  final ComponentRenderer archiveRenderer = (_) => ArchiveItemComponent;
+  final FactoryRenderer<ArchiveItemComponent, ArchiveItem> archiveRenderer =
+    aic.ArchiveItemComponentNgFactory;
 
   final BrowseArchiveService _browseArchiveService;
 

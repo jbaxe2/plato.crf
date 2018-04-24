@@ -32,7 +32,7 @@
     <div *ngIf="archiveItems.isNotEmpty" class="archive-tree-container">
       <material-tree
           [options]="archiveOptions"
-          [componentRenderer]="archiveRenderer"
+          [factoryRenderer]="archiveRenderer"
           [expandFirst]="true">
       </material-tree>
     </div>
