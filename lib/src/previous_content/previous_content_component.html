@@ -53,9 +53,7 @@
     <div *ngIf="enrollments.isNotEmpty" id="enrollments-container">
       <material-radio-group [(ngModel)]="selected">
         <span *ngFor="let enrollment of enrollments">
-          <material-radio
-              [value]="enrollment"
-              (trigger)="selected = enrollment">
+          <material-radio [value]="enrollment">
             [{{enrollment.courseId}}] {{enrollment.courseName}}
           </material-radio>
           <span *ngIf="enrollment.isArchive">
