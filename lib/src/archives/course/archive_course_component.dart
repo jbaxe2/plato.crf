@@ -16,12 +16,17 @@ import '../browse_archive_service.dart';
 
 import 'archive_course.dart';
 
+@Injectable()
+ComponentFactory getArchiveItemComponentFactory() => aic.ArchiveItemComponentNgFactory;
+
 /// The [ArchiveCourseComponent] class...
 @Component(
   selector: 'archive-course',
   templateUrl: 'archive_course_component.html',
   directives: const [coreDirectives, materialDirectives],
-  providers: const [materialProviders, BrowseArchiveService]
+  providers: const [
+    materialProviders, BrowseArchiveService
+  ]
 )
 class ArchiveCourseComponent implements OnInit {
   bool isVisible;
@@ -36,8 +41,7 @@ class ArchiveCourseComponent implements OnInit {
 
   ArchiveItemOptions archiveOptions;
 
-  final FactoryRenderer<ArchiveItemComponent, ArchiveItem> archiveRenderer =
-    aic.ArchiveItemComponentNgFactory;
+  final FactoryRenderer archiveRenderer = aic.ArchiveItemComponentNgFactory;
 
   final BrowseArchiveService _browseArchiveService;
 

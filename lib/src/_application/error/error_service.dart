@@ -4,7 +4,7 @@ import 'dart:async' show StreamController;
 
 import 'package:angular/core.dart';
 
-import 'package:plato_angular/src/_application/error/plato_exception.dart';
+import 'plato_exception.dart';
 
 /// The [ErrorService] class...
 @Injectable()
