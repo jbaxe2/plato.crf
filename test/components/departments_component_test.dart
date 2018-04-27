@@ -29,7 +29,7 @@ DepartmentsPO deptsPo;
   const ClassProvider (DepartmentsService),
   const ClassProvider (CoursesService)
 ])
-final deptsInjector = dct.rootInjector$Injector;
+final deptsInjector = dct.deptsInjector$Injector;
 
 /// The [main] function...
 void main() {

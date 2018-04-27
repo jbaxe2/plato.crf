@@ -1,15 +1,14 @@
 # Files and directories created by pub
 .dart_tool
-.idea
 .packages
 .pub/
 build/
 deploy/
-# Remove the following pattern if you wish to check in your lock file
 pubspec.lock
 
 # Directory created by dartdoc
 doc/api/
 
-plato.angular.iml
-plato-angular.iml
+# IntelliJ files
+.idea
+*.iml
