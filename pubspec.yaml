@@ -1,6 +1,6 @@
 name: plato_angular
 description: The Plato Course Request Form, written in AngularDart.
-version: 1.0.20180426
+version: 1.0.20180427
 
 author: Joseph B. Axenroth
 
@@ -14,7 +14,7 @@ dependencies:
 
 dev_dependencies:
   angular_test: ^2.0.0-alpha+9
-  build_runner: ^0.8.4
+  build_runner: ^0.8.6
   build_test: ^0.10.2+2
   build_web_compilers: ^0.3.7+3
   mockito: ^2.2.2

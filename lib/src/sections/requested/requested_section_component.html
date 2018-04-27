@@ -41,12 +41,12 @@
     [expanded]="true"
     [showSaveCancel]="false">
   <div>
-    <p><strong>Title:</strong> <span>{{section.title}}</span></p>
-    <p><strong>CRN:</strong> <span>{{section.crn}}</span></p>
-    <p><strong>Faculty:</strong> <span>{{section.faculty}}</span></p>
-    <p><strong>Place:</strong> <span>{{section.place}}</span></p>
-    <p><strong>Time:</strong> <span>{{section.time}}</span></p>
-    <p><strong>Term:</strong> <span>{{section.termId}}</span></p>
+    <p><strong>Title: &nbsp;</strong> <span>{{section.title}}</span></p>
+    <p><strong>CRN: &nbsp;</strong> <span>{{section.crn}}</span></p>
+    <p><strong>Faculty: &nbsp;</strong> <span>{{section.faculty}}</span></p>
+    <p><strong>Place: &nbsp;</strong> <span>{{section.place}}</span></p>
+    <p><strong>Time: &nbsp;</strong> <span>{{section.time}}</span></p>
+    <p><strong>Term: &nbsp;</strong> <span>{{section.termId}}</span></p>
   </div>
 
   <div *ngIf="hasExtraInfo">
@@ -95,7 +95,7 @@
 
       <material-list>
         <material-list-item *ngFor="let clSection of crossListing.sections">
-          {{clSection.sectionId}}
+          {{clSection.sectionId}} [{{clSection.termId}}]
         </material-list-item>
 
         <material-list-item *ngIf="1 == crossListing.sections.length">

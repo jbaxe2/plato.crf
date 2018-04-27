@@ -4,6 +4,8 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:angular_components/model/ui/has_factory.dart';
 
+import '../../_application/progress/progress_service.dart';
+
 import '../item/archive_item.dart';
 import '../item/archive_item_component.dart';
 import '../item/archive_item_node.dart';
@@ -17,7 +19,9 @@ import '../browse_archive_service.dart';
 import 'archive_course.dart';
 
 @Injectable()
-ComponentFactory getArchiveItemComponentFactory() => aic.ArchiveItemComponentNgFactory;
+ComponentFactory<ArchiveItemComponent> getArchiveItemComponentFactory (
+  ArchiveItem item
+) => aic.ArchiveItemComponentNgFactory;
 
 /// The [ArchiveCourseComponent] class...
 @Component(
@@ -25,10 +29,14 @@ ComponentFactory getArchiveItemComponentFactory() => aic.ArchiveItemComponentNgF
   templateUrl: 'archive_course_component.html',
   directives: const [coreDirectives, materialDirectives],
   providers: const [
-    materialProviders, BrowseArchiveService
+    materialProviders, BrowseArchiveService,
+    const FactoryProvider (
+      ArchiveItem, getArchiveItemComponentFactory,
+      deps: const [BrowseArchiveService, ProgressService]
+    )
   ]
 )
-class ArchiveCourseComponent implements OnInit {
+class ArchiveCourseComponent implements OnInit, AfterViewInit {
   bool isVisible;
 
   ArchiveCourse _archiveCourse;
@@ -41,7 +49,8 @@ class ArchiveCourseComponent implements OnInit {
 
   ArchiveItemOptions archiveOptions;
 
-  final FactoryRenderer archiveRenderer = aic.ArchiveItemComponentNgFactory;
+  final FactoryRenderer<ArchiveItemComponent, ArchiveItem> archiveRenderer =
+    getArchiveItemComponentFactory;
 
   final BrowseArchiveService _browseArchiveService;
 
@@ -53,7 +62,11 @@ class ArchiveCourseComponent implements OnInit {
   void ngOnInit() {
     isVisible = false;
     archiveItems = new List<ArchiveItemNode>();
+  }
 
+  /// The [ngAfterViewInit] method...
+  @override
+  void ngAfterViewInit() {
     _browseArchiveService.archiveCourseController.stream.listen (
       (ArchiveCourse archiveCourse) => _setUpTreeForArchive (archiveCourse)
     );
