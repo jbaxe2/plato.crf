@@ -3,6 +3,6 @@ targets:
     builders:
       build_web_compilers|entrypoint:
         generate_for:
-          - test/plato_angular_test.dart
+          - test/plato_crf_test.dart
         options:
           compiler: dart2js
