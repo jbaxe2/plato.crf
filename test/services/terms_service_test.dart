@@ -3,7 +3,7 @@ library plato.angular.tests.services.terms;
 
 import 'package:test/test.dart';
 
-import 'package:plato_angular/src/terms/terms_service.dart';
+import 'package:plato_crf/src/terms/terms_service.dart';
 
 import 'mock_client/mock_terms_client.dart';
 

@@ -4,7 +4,7 @@ import 'dart:async' show Future;
 
 import 'package:pageloader/objects.dart';
 
-import 'package:plato_angular/src/departments/department.dart';
+import 'package:plato_crf/src/departments/department.dart';
 
 /// The [DepartmentsPO] class...
 class DepartmentsPO {

@@ -3,7 +3,7 @@ library plato.angular.tests.services.departments;
 
 import 'package:test/test.dart';
 
-import 'package:plato_angular/src/departments/departments_service.dart';
+import 'package:plato_crf/src/departments/departments_service.dart';
 
 import 'mock_client/mock_departments_client.dart';
 

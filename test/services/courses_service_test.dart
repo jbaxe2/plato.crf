@@ -5,7 +5,7 @@ import 'dart:async' show Future;
 
 import 'package:test/test.dart';
 
-import 'package:plato_angular/src/courses/courses_service.dart';
+import 'package:plato_crf/src/courses/courses_service.dart';
 
 import 'mock_client/mock_courses_client.dart';
 

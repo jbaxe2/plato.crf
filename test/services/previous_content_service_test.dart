@@ -3,8 +3,8 @@ library plato.angular.tests.services.previous_content;
 
 import 'package:test/test.dart';
 
-import 'package:plato_angular/src/previous_content/previous_content_service.dart';
-import 'package:plato_angular/src/previous_content/previous_content_exception.dart';
+import 'package:plato_crf/src/previous_content/previous_content_service.dart';
+import 'package:plato_crf/src/previous_content/previous_content_exception.dart';
 
 import '../dummy_objects.dart';
 
