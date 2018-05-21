@@ -5,4 +5,4 @@ targets:
         generate_for:
           - test/plato_crf_test.dart
         options:
-          compiler: dart2js
+          compiler: dartdevc

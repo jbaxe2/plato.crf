@@ -7,13 +7,13 @@ import 'package:test/test.dart';
 
 //import 'components/departments_component_test.dart';
 
-import 'services/courses_service_tester.dart';
-import 'services/departments_service_tester.dart';
-import 'services/previous_content_service_tester.dart';
-import 'services/terms_service_tester.dart';
+import 'services/courses_service_test.dart';
+import 'services/departments_service_test.dart';
+import 'services/previous_content_service_test.dart';
+import 'services/terms_service_test.dart';
 
-import 'course_request_tester.dart';
-import 'cross_listing_tester.dart';
+import 'course_request_test.dart';
+import 'cross_listing_test.dart';
 
 import 'testable.dart';
 
