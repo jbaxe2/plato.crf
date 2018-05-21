@@ -1,4 +1,4 @@
-library plato.angular.components.application.response;
+library plato.crf.components.application.response;
 
 import 'dart:html' show window;
 

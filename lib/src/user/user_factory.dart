@@ -1,4 +1,4 @@
-library plato.angular.factory.user;
+library plato.crf.factory.user;
 
 import '../_application/factory/plato_factory.dart';
 

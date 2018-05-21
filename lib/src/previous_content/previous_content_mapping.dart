@@ -1,4 +1,4 @@
-library plato.angular.models.previous_content;
+library plato.crf.models.previous_content;
 
 import '../enrollments/enrollment.dart';
 

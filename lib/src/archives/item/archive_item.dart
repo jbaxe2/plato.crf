@@ -1,4 +1,4 @@
-library plato.angular.models.archive.item;
+library plato.crf.models.archive.item;
 
 /// The [ArchiveItem] class...
 class ArchiveItem {

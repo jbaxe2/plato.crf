@@ -1,4 +1,4 @@
-library plato.angular.factory.term;
+library plato.crf.factory.term;
 
 import '../_application/factory/plato_factory.dart';
 

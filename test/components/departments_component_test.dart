@@ -1,5 +1,5 @@
 @TestOn('browser')
-library plato.angular.tests.components.departments;
+library plato.crf.tests.components.departments;
 
 import 'package:angular/core.dart';
 import 'package:angular_test/angular_test.dart';

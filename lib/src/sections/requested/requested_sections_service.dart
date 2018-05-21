@@ -1,4 +1,4 @@
-library plato.angular.services.sections.requested;
+library plato.crf.services.sections.requested;
 
 import 'package:angular/core.dart';
 

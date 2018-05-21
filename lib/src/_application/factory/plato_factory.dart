@@ -1,4 +1,4 @@
-library plato.angular.factory.plato;
+library plato.crf.factory.plato;
 
 /// The [PlatoFactory] abstract class...
 abstract class PlatoFactory<T> {

@@ -1,4 +1,4 @@
-library plato.angular.exceptions.cross_listing;
+library plato.crf.exceptions.cross_listing;
 
 import '../_application/error/plato_exception.dart';
 

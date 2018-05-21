@@ -1,4 +1,4 @@
-library plato.angular.services.previous_content;
+library plato.crf.services.previous_content;
 
 import 'dart:async' show StreamController;
 

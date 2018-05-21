@@ -1,4 +1,4 @@
-library plato.angular.models.section;
+library plato.crf.models.section;
 
 import 'section_exception.dart';
 

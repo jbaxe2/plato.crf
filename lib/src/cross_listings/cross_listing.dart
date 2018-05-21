@@ -1,4 +1,4 @@
-library plato.angular.models.cross_listing;
+library plato.crf.models.cross_listing;
 
 import '../sections/section.dart';
 

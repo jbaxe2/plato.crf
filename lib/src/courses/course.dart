@@ -1,4 +1,4 @@
-library plato.angular.models.course;
+library plato.crf.models.course;
 
 /// The [Course] class...
 class Course {

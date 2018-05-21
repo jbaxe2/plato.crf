@@ -1,4 +1,4 @@
-library plato.angular.factory.course;
+library plato.crf.factory.course;
 
 import '../_application/factory/plato_factory.dart';
 

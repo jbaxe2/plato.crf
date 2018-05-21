@@ -1,4 +1,4 @@
-library plato.angular.components.cross_listings;
+library plato.crf.components.cross_listings;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

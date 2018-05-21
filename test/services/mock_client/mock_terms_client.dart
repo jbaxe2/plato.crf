@@ -1,4 +1,4 @@
-library plato.angular.tests.mock.client.terms;
+library plato.crf.tests.mock.client.terms;
 
 import 'dart:async' show Future;
 import 'dart:convert' show json;

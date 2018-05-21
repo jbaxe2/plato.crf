@@ -1,4 +1,4 @@
-library plato.angular.components.application.progress;
+library plato.crf.components.application.progress;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

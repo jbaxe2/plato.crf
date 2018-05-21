@@ -1,4 +1,4 @@
-library plato.angular.services.courses;
+library plato.crf.services.courses;
 
 import 'dart:async' show Future;
 import 'dart:convert' show json;

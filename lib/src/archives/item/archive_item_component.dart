@@ -1,4 +1,4 @@
-library plato.angular.components.archive.item;
+library plato.crf.components.archive.item;
 
 import 'dart:async' show Future;
 

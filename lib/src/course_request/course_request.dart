@@ -1,4 +1,4 @@
-library plato.angular.models.course_request;
+library plato.crf.models.course_request;
 
 import '../cross_listings/cross_listing.dart';
 import '../cross_listings/cross_listing_exception.dart';

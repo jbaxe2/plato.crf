@@ -1,4 +1,4 @@
-library plato.angular.components.user;
+library plato.crf.components.user;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

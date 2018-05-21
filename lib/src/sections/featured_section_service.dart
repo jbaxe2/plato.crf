@@ -1,4 +1,4 @@
-library plato.angular.services.sections.featured;
+library plato.crf.services.sections.featured;
 
 import 'dart:async' show StreamController;
 

@@ -1,4 +1,4 @@
-library plato.angular.tests.components.po.departments;
+library plato.crf.tests.components.po.departments;
 
 import 'dart:async' show Future;
 

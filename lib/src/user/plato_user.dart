@@ -1,4 +1,4 @@
-library plato.angular.models.user.plato;
+library plato.crf.models.user.plato;
 
 /// The [PlatoUser] class...
 class PlatoUser {

@@ -1,4 +1,4 @@
-library plato.angular.models.archive.item.node;
+library plato.crf.models.archive.item.node;
 
 import 'package:angular_components/angular_components.dart';
 

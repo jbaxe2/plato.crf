@@ -1,4 +1,4 @@
-library plato.angular.exceptions.previous_content;
+library plato.crf.exceptions.previous_content;
 
 import '../_application/error/plato_exception.dart';
 

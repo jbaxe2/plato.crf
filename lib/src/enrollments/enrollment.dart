@@ -1,4 +1,4 @@
-library plato.angular.models.learn.enrollment;
+library plato.crf.models.learn.enrollment;
 
 import 'enrollment_exception.dart';
 

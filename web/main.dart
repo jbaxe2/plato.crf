@@ -1,4 +1,4 @@
-library plato.angular;
+library plato.crf;
 
 import 'dart:async' show runZoned;
 import 'dart:html' show window;

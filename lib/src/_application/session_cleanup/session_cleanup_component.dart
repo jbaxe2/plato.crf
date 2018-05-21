@@ -1,4 +1,4 @@
-library plato.angular.components.cleanup.session;
+library plato.crf.components.cleanup.session;
 
 import 'dart:async' show Future;
 import 'dart:html' show window;

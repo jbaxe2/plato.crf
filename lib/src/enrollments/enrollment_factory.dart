@@ -1,4 +1,4 @@
-library plato.angular.factory.enrollment;
+library plato.crf.factory.enrollment;
 
 import '../_application/factory/plato_factory.dart';
 

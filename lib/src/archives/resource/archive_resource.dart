@@ -1,4 +1,4 @@
-library plato.angular.models.archive.resource;
+library plato.crf.models.archive.resource;
 
 /// The [ArchiveResource] class...
 class ArchiveResource {

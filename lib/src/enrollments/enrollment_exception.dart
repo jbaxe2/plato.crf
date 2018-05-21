@@ -1,4 +1,4 @@
-library plato.angular.exceptions.enrollments;
+library plato.crf.exceptions.enrollments;
 
 import '../_application/error/plato_exception.dart';
 

@@ -1,4 +1,4 @@
-library plato.angular.models.department;
+library plato.crf.models.department;
 
 /// The [Department] class...
 class Department {

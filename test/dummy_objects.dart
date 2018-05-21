@@ -1,4 +1,4 @@
-library plato.angular.tests.models.dummy;
+library plato.crf.tests.models.dummy;
 
 /// Silence analyzer: [CrossListingException]
 import 'package:plato_crf/src/course_request/course_request.dart';

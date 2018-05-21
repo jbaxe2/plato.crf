@@ -1,4 +1,4 @@
-library plato.angular.services.archive.retrieve;
+library plato.crf.services.archive.retrieve;
 
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json;

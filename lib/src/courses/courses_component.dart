@@ -1,4 +1,4 @@
-library plato.angular.components.course.courses;
+library plato.crf.components.course.courses;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

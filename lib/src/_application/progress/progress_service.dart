@@ -1,4 +1,4 @@
-library plato.angular.services.progress;
+library plato.crf.services.progress;
 
 import 'dart:async' show StreamController;
 

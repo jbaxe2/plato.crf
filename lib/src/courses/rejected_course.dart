@@ -1,4 +1,4 @@
-library plato.angular.models.course.rejected;
+library plato.crf.models.course.rejected;
 
 import 'course.dart';
 

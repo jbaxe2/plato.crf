@@ -1,4 +1,4 @@
-library plato.angular.components.section.info;
+library plato.crf.components.section.info;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

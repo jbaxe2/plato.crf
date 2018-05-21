@@ -1,4 +1,4 @@
-# Plato Angular tests configuration
+# Plato Course Request Form tests configuration
 
 platforms: [firefox]
 
@@ -8,7 +8,7 @@ timeout: 'none'
 
 reporter: expanded
 
-filename: 'plato_angular_test.dart'
+filename: 'plato_crf_test.dart'
 
 paths:
 - test/

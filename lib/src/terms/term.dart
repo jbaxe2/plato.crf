@@ -1,4 +1,4 @@
-library plato.angular.models.term;
+library plato.crf.models.term;
 
 /// The [Term] class...
 class Term {

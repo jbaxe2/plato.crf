@@ -1,4 +1,4 @@
-library plato.angular.models.submission_response;
+library plato.crf.models.submission_response;
 
 import '../../courses/rejected_course.dart';
 

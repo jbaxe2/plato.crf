@@ -1,4 +1,4 @@
-library plato.angular.services.departments;
+library plato.crf.services.departments;
 
 import 'dart:async' show Future;
 import 'dart:convert' show json;

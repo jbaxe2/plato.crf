@@ -1,4 +1,4 @@
-library plato.angular.components.application.error;
+library plato.crf.components.application.error;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

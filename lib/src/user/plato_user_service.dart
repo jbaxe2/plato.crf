@@ -1,4 +1,4 @@
-library plato.angular.services.user.plato;
+library plato.crf.services.user.plato;
 
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json;

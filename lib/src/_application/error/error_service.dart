@@ -1,4 +1,4 @@
-library plato.angular.services.application.error;
+library plato.crf.services.application.error;
 
 import 'dart:async' show StreamController;
 

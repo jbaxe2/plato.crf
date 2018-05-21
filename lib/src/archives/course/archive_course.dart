@@ -1,4 +1,4 @@
-library plato.angular.models.archive.course;
+library plato.crf.models.archive.course;
 
 import '../../courses/course.dart';
 

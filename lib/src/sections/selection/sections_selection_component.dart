@@ -1,4 +1,4 @@
-library plato.angular.components.sections.selection;
+library plato.crf.components.sections.selection;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

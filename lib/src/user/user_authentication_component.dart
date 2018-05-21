@@ -1,4 +1,4 @@
-library plato.angular.components.user.authentication;
+library plato.crf.components.user.authentication;
 
 import 'dart:async' show Future;
 

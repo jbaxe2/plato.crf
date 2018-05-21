@@ -1,4 +1,4 @@
-library plato.angular.components.sections.requesting;
+library plato.crf.components.sections.requesting;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

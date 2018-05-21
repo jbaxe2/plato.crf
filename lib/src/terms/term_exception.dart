@@ -1,4 +1,4 @@
-library plato.angular.exceptions.term;
+library plato.crf.exceptions.term;
 
 import '../_application/error/plato_exception.dart';
 
