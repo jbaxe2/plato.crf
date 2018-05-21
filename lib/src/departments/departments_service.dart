@@ -46,7 +46,7 @@ class DepartmentsService {
         ..clear()
         ..addAll (_departmentFactory.createAll (rawDepts));
     } catch (_) {
-      throw new DepartmentException ('Unable to retrieve the departments list.');
+      throw new DepartmentException ('Unable to retrieve the departments list.\n${_.toString()}');
     }
   }
 }
