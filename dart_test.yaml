@@ -1,6 +1,6 @@
 # Plato Course Request Form tests configuration
 
-platforms: [firefox]
+platforms: [chrome]
 
 test_on: 'browser'
 
