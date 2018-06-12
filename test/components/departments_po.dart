@@ -2,14 +2,18 @@ library plato.crf.tests.components.po.departments;
 
 import 'dart:async' show Future;
 
-import 'package:pageloader/objects.dart';
+import 'package:pageloader/pageloader.dart';
 
 import 'package:plato_crf/src/departments/department.dart';
 
+// ignore: uri_has_not_been_generated
+part 'departments_po.g.dart';
+
 /// The [DepartmentsPO] class...
-class DepartmentsPO {
+@PageObject()
+abstract class DepartmentsPO {
   @ByTagName('material-select-item')
-  List<PageLoaderElement> _departments;
+  List<PageLoaderElement> get _departments;
 
   Future<List<Department>> departments;
 
@@ -17,6 +21,10 @@ class DepartmentsPO {
   DepartmentsPO() {
     () async => (departments = _deptsFromSelectItems());
   }
+
+  /// The [DepartmentsPO] factory constructor...
+  // ignore: redirect_to_non_class
+  factory DepartmentsPO.create (PageLoaderElement context) = $DepartmentsPo.create;
 
   /// The [_deptsFromSelectItems] method...
   Future<List<Department>> _deptsFromSelectItems() async {
