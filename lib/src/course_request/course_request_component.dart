@@ -32,7 +32,7 @@ import 'course_request_service.dart';
   templateUrl: 'course_request_component.html',
   styleUrls: const [
     'package:angular_components/app_layout/layout.scss.css',
-    'course_request_component.css'
+    'course_request_component.scss'
   ],
   directives: const [
     MaterialPersistentDrawerDirective, MaterialTabPanelComponent,

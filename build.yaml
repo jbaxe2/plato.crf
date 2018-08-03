@@ -1,11 +1,12 @@
 targets:
   $default:
     builders:
-      sass_builder|sass_builder:
-        options:
-          build_extensions:
-            .scss: [".scss.css"]
-          ouputStyle: compressed
+      #sass_builder|sass_builder:
+      #  generate_for: ["*.scss"]
+      #  options:
+      #    build_extensions:
+      #      .scss: [".scss.css"]
+      #    ouputStyle: compressed
       build_web_compilers|entrypoint:
         generate_for:
           - web/main.dart
