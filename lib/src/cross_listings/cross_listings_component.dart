@@ -13,7 +13,12 @@ import 'cross_listing_service.dart';
 @Component(
   selector: 'cross-listings',
   templateUrl: 'cross_listings_component.html',
-  directives: const [coreDirectives, materialDirectives, CrossListingComponent],
+  styleUrls: const ['cross_listings_component.scss.css'],
+  directives: const [
+    ModalComponent, MaterialDialogComponent, MaterialButtonComponent,
+    MaterialIconComponent, NgIf, NgFor,
+    CrossListingComponent
+  ],
   providers: const [CrossListingService]
 )
 class CrossListingsComponent implements OnInit {

@@ -1,7 +1,6 @@
 library plato.crf.components.user;
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/angular_components.dart';
 
 import 'plato_user_component.dart';
 import 'plato_user_service.dart';
@@ -12,7 +11,7 @@ import 'user_authentication_component.dart';
   selector: 'user',
   templateUrl: 'user_component.html',
   directives: const [
-    coreDirectives, materialDirectives,
+    NgIf,
     UserAuthenticationComponent, PlatoUserComponent
   ],
   providers: const [PlatoUserService]

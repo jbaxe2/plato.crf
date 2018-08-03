@@ -12,7 +12,10 @@ import 'courses_service.dart';
 @Component(
   selector: 'courses',
   templateUrl: 'courses_component.html',
-  directives: const [coreDirectives, materialDirectives],
+  styleUrls: const ['courses_component.scss.css'],
+  directives: const [
+    MaterialDropdownSelectComponent, MaterialSelectItemComponent, NgFor
+  ],
   providers: const [CoursesService, SectionsService],
 )
 class CoursesComponent implements OnInit {

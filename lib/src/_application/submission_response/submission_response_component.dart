@@ -15,7 +15,11 @@ import 'submission_response.dart';
 @Component(
   selector: 'submission-response',
   templateUrl: 'submission_response_component.html',
-  directives: const [coreDirectives, materialDirectives],
+  styleUrls: const ['submission_response_component.scss.css'],
+  directives: const [
+    ModalComponent, MaterialDialogComponent, MaterialButtonComponent,
+    NgIf, NgFor
+  ],
   providers: const [CourseRequestService]
 )
 class SubmissionResponseComponent implements OnInit {

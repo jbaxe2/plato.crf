@@ -27,9 +27,13 @@ ComponentFactory<ArchiveItemComponent> getArchiveItemComponentFactory (
 @Component(
   selector: 'archive-course',
   templateUrl: 'archive_course_component.html',
-  directives: const [coreDirectives, materialDirectives],
+  styleUrls: const ['archive_course_component.scss.css'],
+  directives: const [
+    ModalComponent, MaterialDialogComponent, MaterialTreeComponent,
+    MaterialButtonComponent, NgIf
+  ],
   providers: const [
-    materialProviders, BrowseArchiveService,
+    BrowseArchiveService,
     const FactoryProvider (
       ArchiveItem, getArchiveItemComponentFactory,
       deps: const [BrowseArchiveService, ProgressService]

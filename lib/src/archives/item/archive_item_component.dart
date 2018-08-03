@@ -16,8 +16,8 @@ import 'archive_item.dart';
   selector: 'archive-item',
   templateUrl: 'archive_item_component.html',
   styleUrls: const ['archive_item_component.css'],
-  directives: const [coreDirectives, materialDirectives],
-  providers: const [materialProviders, BrowseArchiveService, ProgressService]
+  directives: const [NgIf],
+  providers: const [BrowseArchiveService, ProgressService]
 )
 class ArchiveItemComponent implements OnInit, RendersValue<ArchiveItem> {
   @override

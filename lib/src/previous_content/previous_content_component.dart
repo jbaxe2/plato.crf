@@ -23,8 +23,11 @@ import 'previous_content_service.dart';
 @Component(
   selector: 'previous-content',
   templateUrl: 'previous_content_component.html',
-  styleUrls: const ['previous_content_component.css'],
-  directives: const [coreDirectives, materialDirectives],
+  styleUrls: const ['previous_content_component.scss.css'],
+  directives: const [
+    ModalComponent, MaterialDialogComponent, MaterialRadioGroupComponent,
+    MaterialRadioComponent, MaterialButtonComponent, NgIf, NgFor, NgModel
+  ],
   providers: const [
     PreviousContentService, EnrollmentsService, RetrieveArchivesService,
     PullArchiveService, BrowseArchiveService, ProgressService

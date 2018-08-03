@@ -18,7 +18,11 @@ import 'requested_sections_service.dart';
   selector: 'requested-section',
   templateUrl: 'requested_section_component.html',
   styleUrls: const ['requested_section_component.css'],
-  directives: const [coreDirectives, materialDirectives],
+  directives: const [
+    MaterialExpansionPanel, MaterialButtonComponent, MaterialIconComponent,
+    MaterialTooltipDirective, MaterialListComponent, MaterialListItemComponent,
+    NgIf, NgFor
+  ],
   providers: const [
     RequestedSectionsService, CrossListingService, PreviousContentService
   ],

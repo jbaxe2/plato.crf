@@ -1,0 +1,15 @@
+p {
+  font-weight: bold;
+}
+
+div[footer] {
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+material-button {
+  background-color: #a44 !important;
+  color: white !important;
+  font-weight: bold !important;
+}

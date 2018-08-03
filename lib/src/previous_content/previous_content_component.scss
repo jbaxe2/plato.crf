@@ -1,6 +1,43 @@
 @import 'package:angular_components/css/material/material';
 @import 'package:angular_components/material_radio/mixins';
 
-@include material-radio-theme(
+@include material-radio-color(
   $primary-color: #062c43
 );
+
+::ng-deep .mat-radio-inner-circle {
+  background-color: #062c43;
+}
+
+::ng-deep .mat-radio-checked .mat-radio-outer-circle {
+  border-color: #062c43;
+}
+
+p {
+  font-size: medium;
+}
+
+a {
+  font-weight: bold;
+  color: #062c43;
+  text-decoration: underline;
+}
+
+material-button {
+  background-color: #718198 !important;
+}
+
+material-button.error {
+  background-color: #a44 !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+#enrollments-container {
+  display: flex;
+  flex: initial;
+  flex-direction: column;
+  margin-bottom: 8px;
+  max-height: 300px;
+  overflow-y: scroll !important;
+}

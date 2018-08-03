@@ -10,7 +10,8 @@ import 'plato_user_service.dart';
 @Component(
   selector: 'plato-user',
   templateUrl: 'plato_user_component.html',
-  directives: const [coreDirectives, materialDirectives],
+  styleUrls: const ['plato_user_component.scss.css'],
+  directives: const [NgIf],
   providers: const [PlatoUserService]
 )
 class PlatoUserComponent implements OnInit {

@@ -1,0 +1,19 @@
+::ng-deep material-progress .progress-container.indeterminate {
+  background-color: #718198 !important;
+}
+
+::ng-deep material-progress .progress-container.indeterminate > .secondary-progress {
+  background-color: #062c43 !important;
+}
+
+::ng-deep material-progress .active-progress {
+  background-color: #062c43 !important;
+}
+
+::ng-deep material-progress .secondary-progress {
+  background-color: #718198 !important;
+}
+
+.spin {
+  animation: fill-unfill-rotate 4s infinite both;
+}

@@ -8,3 +8,38 @@
 .extra-info-panel {
   @include expansionpanel-background-color(#eee);
 }
+
+:host ::ng-deep header {
+  background-color: #718198;
+  border: 1px solid #062c43;
+  font-weight: bold;
+}
+
+::ng-deep div[toolbelt] {
+  background-color: #bbb;
+  padding-right: 16px;
+  text-align: right;
+}
+
+material-list {
+  margin: 0;
+  padding: 0;
+}
+
+material-list-item {
+  background-color: #eee;
+}
+
+material-button {
+  background-color: #bbb !important;
+}
+
+.extra-info-panel {
+  background-color: #eee;
+  padding: 0;
+}
+
+.remove-icon {
+  background-color: #eee !important;
+  float: right;
+}

@@ -1,0 +1,18 @@
+.submission-response-container {
+  margin-bottom: 8px;
+  padding: 0 8px 0 0;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.rejected-courses-container {
+  background-color: #ddd;
+  border-top: 2px dashed #062c43;
+  padding: 8px;
+}
+
+.rejected-courses-container p {
+  background-color: #eee;
+  border: 1px dotted #718198;
+  padding: 8px;
+}

@@ -16,7 +16,10 @@ import 'terms_service.dart';
 @Component(
   selector: 'terms',
   templateUrl: 'terms_component.html',
-  directives: const [coreDirectives, materialDirectives],
+  styleUrls: const ['terms_component.scss.css'],
+  directives: const [
+    MaterialDropdownSelectComponent, MaterialSelectItemComponent, NgFor
+  ],
   providers: const [TermsService, CoursesService, SectionsService],
 )
 class TermsComponent implements OnInit {

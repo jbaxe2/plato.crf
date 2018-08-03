@@ -35,14 +35,15 @@ import 'course_request_service.dart';
     'course_request_component.css'
   ],
   directives: const [
-    coreDirectives, materialDirectives,
+    MaterialPersistentDrawerDirective, MaterialTabPanelComponent,
+    MaterialTabComponent, MaterialButtonComponent, NgIf,
     UserComponent, RequestingSectionsComponent, RequestedSectionsComponent,
     CrossListingsComponent, PreviousContentComponent,
     ArchiveCourseComponent, ArchiveResourceComponent,
     DirectionsComponent, ErrorComponent, ProgressComponent,
     ReviewRequestComponent, SubmissionResponseComponent, SessionCleanupComponent
   ],
-  providers: const [materialProviders, CourseRequestService]
+  providers: const [CourseRequestService]
 )
 class CourseRequestComponent {
   bool get submittable => _crfService.submittable;

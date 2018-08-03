@@ -12,7 +12,10 @@ import '../sections_service.dart';
 @Component(
   selector: 'sections-selection',
   templateUrl: 'sections_selection_component.html',
-  directives: const [coreDirectives, materialDirectives],
+  styleUrls: const ['sections_selection_component.scss.css'],
+  directives: const [
+    MaterialCheckboxComponent, MaterialButtonComponent, NgIf, NgFor
+  ],
   providers: const [SectionsService, RequestedSectionsService]
 )
 class SectionsSelectionComponent implements OnInit {
