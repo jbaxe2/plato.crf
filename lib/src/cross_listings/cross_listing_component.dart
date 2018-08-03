@@ -14,7 +14,7 @@ import 'cross_listing_service.dart';
   templateUrl: 'cross_listing_component.html',
   styleUrls: const [
     'package:angular_components/app_layout/layout.scss.css',
-    'cross_listing_component.scss.css'
+    'cross_listing_component.css'
   ],
   directives: const [
     MaterialExpansionPanel, MaterialListComponent, MaterialListItemComponent,

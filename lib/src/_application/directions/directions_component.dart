@@ -7,7 +7,7 @@ import 'package:angular_components/angular_components.dart';
 @Component(
   selector: 'directions',
   templateUrl: 'directions_component.html',
-  styleUrls: const ['directions_component.scss.css'],
+  styleUrls: const ['directions_component.css'],
   directives: const [MaterialExpansionPanel]
 )
 class DirectionsComponent {

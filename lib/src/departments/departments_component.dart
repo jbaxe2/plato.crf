@@ -14,7 +14,7 @@ import 'departments_service.dart';
 @Component(
   selector: 'departments',
   templateUrl: 'departments_component.html',
-  styleUrls: const ['departments_component.scss.css'],
+  styleUrls: const ['departments_component.css'],
   directives: const [
     MaterialDropdownSelectComponent, MaterialSelectItemComponent, NgFor
   ],

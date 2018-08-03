@@ -13,7 +13,7 @@ import 'cross_listing_service.dart';
 @Component(
   selector: 'cross-listings',
   templateUrl: 'cross_listings_component.html',
-  styleUrls: const ['cross_listings_component.scss.css'],
+  styleUrls: const ['cross_listings_component.css'],
   directives: const [
     ModalComponent, MaterialDialogComponent, MaterialButtonComponent,
     MaterialIconComponent, NgIf, NgFor,

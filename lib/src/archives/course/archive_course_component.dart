@@ -20,14 +20,14 @@ import 'archive_course.dart';
 
 @Injectable()
 ComponentFactory<ArchiveItemComponent> getArchiveItemComponentFactory (
-  ArchiveItem item
+  ArchiveItem archiveItem
 ) => aic.ArchiveItemComponentNgFactory;
 
 /// The [ArchiveCourseComponent] class...
 @Component(
   selector: 'archive-course',
   templateUrl: 'archive_course_component.html',
-  styleUrls: const ['archive_course_component.scss.css'],
+  styleUrls: const ['archive_course_component.css'],
   directives: const [
     ModalComponent, MaterialDialogComponent, MaterialTreeComponent,
     MaterialButtonComponent, NgIf
@@ -35,8 +35,8 @@ ComponentFactory<ArchiveItemComponent> getArchiveItemComponentFactory (
   providers: const [
     BrowseArchiveService,
     const FactoryProvider (
-      ArchiveItem, getArchiveItemComponentFactory,
-      deps: const [BrowseArchiveService, ProgressService]
+      ArchiveItemComponent, getArchiveItemComponentFactory,
+      deps: const [ArchiveItem]
     )
   ]
 )

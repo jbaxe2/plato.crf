@@ -12,7 +12,7 @@ import '../sections_service.dart';
 @Component(
   selector: 'sections-selection',
   templateUrl: 'sections_selection_component.html',
-  styleUrls: const ['sections_selection_component.scss.css'],
+  styleUrls: const ['sections_selection_component.css'],
   directives: const [
     MaterialCheckboxComponent, MaterialButtonComponent, NgIf, NgFor
   ],

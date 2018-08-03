@@ -5,7 +5,7 @@ import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
 
-import 'components/departments_component_test.dart';
+//import 'components/departments_component_test.dart';
 
 import 'services/courses_service_test.dart';
 import 'services/departments_service_test.dart';
@@ -51,6 +51,6 @@ class PlatoCourseRequestFormTester implements Testable {
 
   /// The [_testComponents] method...
   void _testComponents() {
-    (new DepartmentsComponentTester()).run();
+    //(new DepartmentsComponentTester()).run();
   }
 }

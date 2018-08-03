@@ -11,7 +11,7 @@ import 'archive_resource.dart';
 @Component(
   selector: 'archive-resource',
   templateUrl: 'archive_resource_component.html',
-  styleUrls: const ['archive_resource_component.scss.css'],
+  styleUrls: const ['archive_resource_component.css'],
   directives: const [
     ModalComponent, MaterialDialogComponent, MaterialButtonComponent, NgIf
   ],

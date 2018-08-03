@@ -12,7 +12,7 @@ import 'requested_sections_service.dart';
 @Component(
   selector: 'requested-sections',
   templateUrl: 'requested_sections_component.html',
-  styleUrls: const ['requested_sections_component.scss.css'],
+  styleUrls: const ['requested_sections_component.css'],
   directives: const [
     MaterialExpansionPanel, MaterialIconComponent, NgIf, NgFor,
     RequestedSectionComponent

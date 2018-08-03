@@ -12,7 +12,7 @@ import 'courses_service.dart';
 @Component(
   selector: 'courses',
   templateUrl: 'courses_component.html',
-  styleUrls: const ['courses_component.scss.css'],
+  styleUrls: const ['courses_component.css'],
   directives: const [
     MaterialDropdownSelectComponent, MaterialSelectItemComponent, NgFor
   ],

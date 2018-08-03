@@ -10,7 +10,7 @@ import 'plato_exception.dart';
 @Component(
   selector: 'plato-error',
   templateUrl: 'error_component.html',
-  styleUrls: const ['error_component.scss.css'],
+  styleUrls: const ['error_component.css'],
   directives: const [
     ModalComponent, MaterialDialogComponent, MaterialIconComponent,
     MaterialButtonComponent

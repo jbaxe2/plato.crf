@@ -16,7 +16,7 @@ import 'main.template.dart' as cr_main;
 
 /// Generate the [BrowserClient] injector...
 @GenerateInjector(
-  const [const Provider (Client, useClass: BrowserClient)]
+  const [const ClassProvider (Client, useClass: BrowserClient)]
 )
 final InjectorFactory clientInjector = cr_main.clientInjector$Injector;
 

@@ -1,7 +1,6 @@
 library plato.crf.components.user.plato;
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/angular_components.dart';
 
 import 'plato_user.dart';
 import 'plato_user_service.dart';
@@ -10,7 +9,7 @@ import 'plato_user_service.dart';
 @Component(
   selector: 'plato-user',
   templateUrl: 'plato_user_component.html',
-  styleUrls: const ['plato_user_component.scss.css'],
+  styleUrls: const ['plato_user_component.css'],
   directives: const [NgIf],
   providers: const [PlatoUserService]
 )

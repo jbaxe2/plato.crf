@@ -15,7 +15,7 @@ import 'submission_response.dart';
 @Component(
   selector: 'submission-response',
   templateUrl: 'submission_response_component.html',
-  styleUrls: const ['submission_response_component.scss.css'],
+  styleUrls: const ['submission_response_component.css'],
   directives: const [
     ModalComponent, MaterialDialogComponent, MaterialButtonComponent,
     NgIf, NgFor

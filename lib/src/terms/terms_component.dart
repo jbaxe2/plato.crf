@@ -16,7 +16,7 @@ import 'terms_service.dart';
 @Component(
   selector: 'terms',
   templateUrl: 'terms_component.html',
-  styleUrls: const ['terms_component.scss.css'],
+  styleUrls: const ['terms_component.css'],
   directives: const [
     MaterialDropdownSelectComponent, MaterialSelectItemComponent, NgFor
   ],
