@@ -1,7 +1,7 @@
 library plato.crf.services.archive.browse;
 
 import 'dart:async' show Future, StreamController;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart';
 
@@ -52,7 +52,8 @@ class BrowseArchiveService {
         '$_BROWSE_URI?archiveId=$archiveId&resourceId=$resourceId'
       );
 
-      Map<String, dynamic> rawArchiveInfo = json.decode (archiveResponse.body);
+      Map<String, dynamic> rawArchiveInfo =
+        json.decode (utf8.decode (archiveResponse.bodyBytes));
 
       if (!(rawArchiveInfo.containsKey ('courseId') &&
             rawArchiveInfo.containsKey ('courseTitle'))) {

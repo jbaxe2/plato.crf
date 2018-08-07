@@ -1,7 +1,7 @@
 library plato.crf.services.archive.retrieve;
 
 import 'dart:async' show Future, StreamController;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart';
 
@@ -44,7 +44,7 @@ class RetrieveArchivesService {
       final Response archivesResponse = await _http.get (_RETRIEVE_URI);
 
       List<Map<String, String>> rawArchives =
-        (json.decode (archivesResponse.body))['archives'];
+        (json.decode (utf8.decode (archivesResponse.bodyBytes)))['archives'];
 
       archiveEnrollments
         ..clear()
@@ -57,7 +57,7 @@ class RetrieveArchivesService {
       );
     } catch (_) {
       throw new ArchiveException (
-          'Unable to retrieve the list of archived course enrollments.'
+        'Unable to retrieve the list of archived course enrollments.'
       );
     }
   }

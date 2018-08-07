@@ -1,7 +1,7 @@
 library plato.crf.services.user.plato;
 
 import 'dart:async' show Future, StreamController;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart';
 
@@ -55,7 +55,6 @@ class PlatoUserService {
 
     authStreamController = new StreamController<bool>.broadcast();
     _userFactory = new UserFactory();
-
     _courseRequest = new CourseRequest();
   }
 
@@ -65,7 +64,7 @@ class PlatoUserService {
       final Response sessionResponse = await _http.get (_SESSION_URI);
 
       final Map<String, dynamic> rawSession =
-        (json.decode (sessionResponse.body) as Map)['session'];
+        (json.decode (utf8.decode (sessionResponse.bodyBytes)) as Map)['session'];
 
       if ((rawSession.containsKey ('plato.session.exists')) &&
           (rawSession.containsKey ('learn.user.authenticated'))) {
@@ -98,7 +97,8 @@ class PlatoUserService {
         body: {'username': theUsername, 'password': thePassword}
       );
 
-      final Map<String, dynamic> rawAuth = json.decode (authResponse.body) as Map;
+      final Map<String, dynamic> rawAuth =
+        json.decode (utf8.decode (authResponse.bodyBytes)) as Map;
 
       if (true == rawAuth['learn.user.authenticated']) {
         _isAuthenticated = true;
@@ -125,7 +125,7 @@ class PlatoUserService {
       final Response userResponse = await _http.get (_USER_URI);
 
       final Map<String, String> rawUser =
-        (json.decode (userResponse.body) as Map)['user'];
+        (json.decode (utf8.decode (userResponse.bodyBytes)) as Map)['user'];
 
       _username = rawUser['learn.user.username'];
 

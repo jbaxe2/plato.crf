@@ -1,7 +1,7 @@
 library plato.crf.services.departments;
 
 import 'dart:async' show Future;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart';
 
@@ -18,7 +18,7 @@ const String _DEPTS_URI = '/plato/retrieve/departments';
 class DepartmentsService {
   List<Department> departments;
 
-  DepartmentFactory _departmentFactory;
+  final DepartmentFactory _departmentFactory = new DepartmentFactory();
 
   final Client _http;
 
@@ -31,7 +31,6 @@ class DepartmentsService {
   /// The [DepartmentsService] private constructor...
   DepartmentsService._ (this._http) {
     departments = new List<Department>();
-    _departmentFactory = new DepartmentFactory();
   }
 
   /// The [retrieveDepartments] method...
@@ -40,7 +39,7 @@ class DepartmentsService {
       final Response deptsResponse = await _http.get (_DEPTS_URI);
 
       List<Map<String, String>> rawDepts =
-        (json.decode (deptsResponse.body) as Map)['departments'];
+        (json.decode (utf8.decode (deptsResponse.bodyBytes)) as Map)['departments'];
 
       departments
         ..clear()

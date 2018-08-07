@@ -2,6 +2,7 @@ library plato.crf.components.course_request;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:angular_components/laminate/popup/module.dart';
 
 import '../_application/directions/directions_component.dart';
 import '../_application/error/error_component.dart';
@@ -43,7 +44,7 @@ import 'course_request_service.dart';
     DirectionsComponent, ErrorComponent, ProgressComponent,
     ReviewRequestComponent, SubmissionResponseComponent, SessionCleanupComponent
   ],
-  providers: const [CourseRequestService]
+  providers: const [popupBindings, CourseRequestService]
 )
 class CourseRequestComponent {
   bool get submittable => _crfService.submittable;

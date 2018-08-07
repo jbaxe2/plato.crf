@@ -1,7 +1,7 @@
 library plato.crf.services.terms;
 
 import 'dart:async' show Future;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart';
 
@@ -18,7 +18,7 @@ const String _TERMS_URI = '/plato/retrieve/terms';
 class TermsService {
   List<Term> terms;
 
-  TermFactory _termFactory;
+  final TermFactory _termFactory = new TermFactory();
 
   final Client _http;
 
@@ -31,7 +31,6 @@ class TermsService {
   /// The [TermsService] private constructor...
   TermsService._ (this._http) {
     terms = new List<Term>();
-    _termFactory = new TermFactory();
   }
 
   /// The [retrieveTerms] method...
@@ -40,7 +39,7 @@ class TermsService {
       final Response termsResponse = await _http.get (_TERMS_URI);
 
       List<Map<String, String>> rawTerms =
-        (json.decode (termsResponse.body) as Map)['terms'];
+        (json.decode (utf8.decode (termsResponse.bodyBytes)) as Map)['terms'];
 
       terms
         ..clear()

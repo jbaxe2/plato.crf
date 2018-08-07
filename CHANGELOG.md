@@ -1,4 +1,9 @@
-# Changelog
+# Plato Course Request Form Changelog
+
+## 1.0.20180807+1
+- Resolved some new Angular and Dart 2.0 issues.
+  - Enacted workaround for service issues where the HTTP Client could not access
+  the response body, as per: https://github.com/dart-lang/http/issues/180. 
 
 ## 1.0.20180807
 - Updated Dart SDK to 2.0.0.

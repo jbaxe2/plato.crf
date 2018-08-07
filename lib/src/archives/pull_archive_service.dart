@@ -1,7 +1,7 @@
 library plato.crf.services.archive.pull;
 
 import 'dart:async' show Future;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart';
 
@@ -32,7 +32,8 @@ class PullArchiveService {
         '$_PULL_URI?archiveId=$archiveId&archiveTerm=$termId'
       );
 
-      String pulledArchive = json.decode (archiveResponse.body)['pulled'];
+      String pulledArchive =
+        json.decode (utf8.decode (archiveResponse.bodyBytes))['pulled'];
 
       if (pulledArchive != archiveId) {
         throw pulledArchive;

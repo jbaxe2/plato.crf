@@ -1,7 +1,7 @@
 library plato.crf.services.courses;
 
 import 'dart:async' show Future;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart';
 
@@ -72,7 +72,7 @@ class CoursesService {
       );
 
       List<Map<String, String>> rawCourses =
-        (json.decode (coursesResponse.body) as Map)['courses'];
+        (json.decode (utf8.decode (coursesResponse.bodyBytes)) as Map)['courses'];
 
       courses
         ..clear()

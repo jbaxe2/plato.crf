@@ -1,7 +1,7 @@
 library plato.crf.services.course_request;
 
 import 'dart:async' show Future, StreamController;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart';
 
@@ -75,7 +75,9 @@ class CourseRequestService {
         _SUBMISSION_URI, body: json.encode (_courseRequest.toJson())
       );
 
-      _parseSubmissionResponse (json.decode (crfResponse.body));
+      _parseSubmissionResponse (
+        json.decode (utf8.decode (crfResponse.bodyBytes))
+      );
     } catch (e) {
       if (e is PlatoException) {
         rethrow;

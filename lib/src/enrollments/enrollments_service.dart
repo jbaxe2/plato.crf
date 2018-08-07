@@ -1,7 +1,7 @@
 library plato.crf.services.enrollments;
 
 import 'dart:async' show Future;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:http/http.dart' show Client, Response;
 
@@ -40,7 +40,7 @@ class EnrollmentsService {
       final Response enrollmentsResponse = await _http.get (_ENROLLMENTS_URI);
 
       List<Map<String, String>> rawEnrollments =
-        (json.decode (enrollmentsResponse.body) as Map)['enrollments'];
+        (json.decode (utf8.decode (enrollmentsResponse.bodyBytes)) as Map)['enrollments'];
 
       enrollments
         ..clear()
