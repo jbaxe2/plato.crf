@@ -11,6 +11,7 @@ class UserFactory implements PlatoFactory<PlatoUser> {
   UserFactory();
 
   /// The [create] method...
+  @override
   PlatoUser create (
     Map<String, dynamic> rawUser,
     [String username, String password, bool isLtiSession = false]
@@ -34,6 +35,7 @@ class UserFactory implements PlatoFactory<PlatoUser> {
   }
 
   /// The [createAll] method...
+  @override
   List<PlatoUser> createAll (Iterable<Map<String, dynamic>> rawUsers) {
     throw new UserException (
       'Unable to create multiple instances of a single user.'

@@ -4,8 +4,6 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:angular_components/model/ui/has_factory.dart';
 
-import '../../_application/progress/progress_service.dart';
-
 import '../item/archive_item.dart';
 import '../item/archive_item_component.dart';
 import '../item/archive_item_node.dart';

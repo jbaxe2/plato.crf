@@ -50,9 +50,8 @@ class CrossListingService extends FeaturedSectionService {
   }
 
   /// The [revokeSection] method...
-  void revokeSection() {
-    //sectionStreamer.add (null);
-  }
+  @override
+  void revokeSection() {}
 
   /// The [addCrossListings] method...
   void addCrossListings (List<CrossListing> crossListings) =>

@@ -59,6 +59,7 @@ class Enrollment implements Comparable {
   }
 
   /// The [compareTo] method...
+  @override
   int compareTo (dynamic other) {
     if (!(other is Enrollment)) {
       throw new EnrollmentException ('Cannot compare an enrollment to some other type.');

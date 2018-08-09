@@ -18,7 +18,9 @@ import 'cross_listing_service.dart';
   ],
   directives: const [
     MaterialExpansionPanel, MaterialListComponent, MaterialListItemComponent,
-    MaterialButtonComponent, MaterialIconComponent, MaterialTooltipDirective,
+    MaterialButtonComponent, MaterialIconComponent,
+    MaterialInkTooltipComponent, MaterialTooltipDirective,
+    MaterialTooltipSourceDirective, MaterialTooltipTargetDirective,
     NgIf, NgFor
   ],
   providers: const [CrossListingService]

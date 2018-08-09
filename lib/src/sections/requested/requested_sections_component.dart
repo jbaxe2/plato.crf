@@ -30,5 +30,6 @@ class RequestedSectionsComponent implements OnInit {
   }
 
   /// The [ngOnInit] method...
+  @override
   void ngOnInit() => (sections = _reqSectionsService.requestedSections);
 }

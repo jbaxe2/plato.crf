@@ -17,8 +17,14 @@ import 'cross_listing_test.dart';
 
 import 'testable.dart';
 
+import 'plato_crf_test.template.dart' as pct;
+
 /// The [main] function...
-void main() => (new PlatoCourseRequestFormTester()).run();
+void main() {
+  pct.initReflector();
+
+  (new PlatoCourseRequestFormTester()).run();
+}
 
 /// The [PlatoCourseRequestFormTester] class...
 class PlatoCourseRequestFormTester implements Testable {

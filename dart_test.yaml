@@ -4,11 +4,11 @@ platforms: [chrome]
 
 test_on: 'browser'
 
-timeout: 'none'
-
-reporter: expanded
+paths:
+- test/
 
 filename: 'plato_crf_test.dart'
 
-paths:
-- test/
+reporter: expanded
+
+timeout: 'none'

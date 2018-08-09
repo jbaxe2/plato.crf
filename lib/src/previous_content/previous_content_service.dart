@@ -40,6 +40,7 @@ class PreviousContentService extends FeaturedSectionService {
   }
 
   /// The [revokeSection] method...
+  @override
   void revokeSection() {}
 
   /// The [createPreviousContent] method...

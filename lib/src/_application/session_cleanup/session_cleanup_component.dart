@@ -24,6 +24,7 @@ class SessionCleanupComponent implements OnInit {
   SessionCleanupComponent (this._http);
 
   /// The [ngOnInit] method...
+  @override
   Future ngOnInit() async {
     _sentCleanupSignal = false;
 
