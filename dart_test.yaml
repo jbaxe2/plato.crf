@@ -2,7 +2,7 @@
 
 platforms: [chrome]
 
-test_on: 'browser'
+test_on: browser
 
 paths:
 - test/

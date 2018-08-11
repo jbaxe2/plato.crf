@@ -1,6 +1,6 @@
 name: plato_crf
 description: The Plato Course Request Form, written in AngularDart.
-version: 1.0.20180809
+version: 1.0.20180810
 
 author: Joseph B. Axenroth
 
@@ -14,9 +14,9 @@ dependencies:
 
 dev_dependencies:
   angular_test: ^2.0.0
-  build_runner: ^0.10.0
+  build_runner: ^0.10.1
   build_test: ^0.10.3+1
-  build_web_compilers: ^0.4.1
+  build_web_compilers: ^0.4.2+1
   mockito: ^3.0.0
   pageloader: ^3.0.0
   sass_builder: ^2.1.1

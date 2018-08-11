@@ -17,6 +17,7 @@ import 'cross_listing_test.dart';
 
 import 'testable.dart';
 
+// ignore: uri_has_not_been_generated
 import 'plato_crf_test.template.dart' as pct;
 
 /// The [main] function...
