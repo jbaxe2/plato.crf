@@ -1,5 +1,11 @@
 # Plato Course Request Form Changelog
 
+## 1.0.20180811
+- Resolved issues when building for testing purposes (regular build had worked
+fine already).
+- Start of resolving test issues that broke from changes to Dart 2.0 and/or
+Angular.
+
 ## 1.0.20180809
 - Resolved a tooltip directive import issue.
 - Minor improvements.

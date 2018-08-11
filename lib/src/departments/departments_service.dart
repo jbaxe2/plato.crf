@@ -18,7 +18,7 @@ const String _DEPTS_URI = '/plato/retrieve/departments';
 class DepartmentsService {
   List<Department> departments;
 
-  final DepartmentFactory _departmentFactory = new DepartmentFactory();
+  static final DepartmentFactory _departmentFactory = new DepartmentFactory();
 
   final Client _http;
 
@@ -45,7 +45,7 @@ class DepartmentsService {
         ..clear()
         ..addAll (_departmentFactory.createAll (rawDepts));
     } catch (_) {
-      throw new DepartmentException ('Unable to retrieve the departments list.\n${_.toString()}');
+      throw new DepartmentException ('Unable to retrieve the departments list.');
     }
   }
 }

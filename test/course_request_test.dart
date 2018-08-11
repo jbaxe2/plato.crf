@@ -7,6 +7,9 @@ import 'dummy_objects.dart';
 
 import 'testable.dart';
 
+/// The [main] function...
+void main() => (new CourseRequestTester()).run();
+
 /// The [CourseRequestTester] class...
 class CourseRequestTester implements Testable {
   /// The [CourseRequestTester] constructor...

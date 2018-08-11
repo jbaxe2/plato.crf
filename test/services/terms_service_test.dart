@@ -11,6 +11,9 @@ import 'mock_client/mock_terms_client.dart';
 
 var _http = new MockTermsClient();
 
+/// The [main] function...
+void main() => (new TermsServiceTester()).run();
+
 /// The [TermsServiceTester] class...
 class TermsServiceTester implements Testable {
   /// The [TermsServiceTester] constructor...

@@ -11,6 +11,9 @@ import 'mock_client/mock_departments_client.dart';
 
 var _http = new MockDepartmentsClient();
 
+/// The [main] function...
+void main() => (new DepartmentsServiceTester()).run();
+
 /// The [DepartmentsServiceTester] class...
 class DepartmentsServiceTester implements Testable {
   /// The [DepartmentsServiceTester] constructor...

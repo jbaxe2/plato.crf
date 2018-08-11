@@ -16,13 +16,16 @@ import '../services/mock_client/mock_departments_client.dart';
 
 import '../testable.dart';
 
-import 'departments_po.dart';
+import 'departments_po.dart.bck';
 
 // ignore: uri_has_not_been_generated
 import 'package:plato_crf/src/departments/departments_component.template.dart' as dc;
 
 // ignore: uri_has_not_been_generated
 import 'departments_component_test.template.dart' as dct;
+
+/// The [main] function...
+void main() => (new DepartmentsComponentTester()).run();
 
 @GenerateInjector([
   const ClassProvider (Client, useClass: MockDepartmentsClient),

@@ -13,7 +13,7 @@ class CourseFactory implements PlatoFactory<Course> {
 
   /// The [create] method...
   @override
-  Course create (Map<String, dynamic> rawCourse) {
+  Course create (Map<String, String> rawCourse) {
     if (!(rawCourse.containsKey ('courseId') &&
           rawCourse.containsKey ('title'))) {
       throw new CourseException();
@@ -24,7 +24,7 @@ class CourseFactory implements PlatoFactory<Course> {
 
   /// The [createAll] method...
   @override
-  List<Course> createAll (Iterable<Map<String, dynamic>> rawCourses) {
+  List<Course> createAll (Iterable<Map<String, String>> rawCourses) {
     var courses = new List<Course>();
 
     try {
@@ -39,18 +39,18 @@ class CourseFactory implements PlatoFactory<Course> {
   }
 
   /// The [createRejectedCourse] method...
-  RejectedCourse createRejectedCourse (Map<String, dynamic> rawRejectedCourse) {
+  RejectedCourse createRejectedCourse (Map<String, String> rawRejectedCourse) {
     return (create (rawRejectedCourse) as RejectedCourse);
   }
 
   /// The [createRejectedCourses] method...
   List<RejectedCourse> createRejectedCourses (
-    Iterable<Map<String, dynamic>> rawRejectedCourses
+    Iterable<Map<String, String>> rawRejectedCourses
   ) {
     var rejectedCourses = new List<RejectedCourse>();
 
     try {
-      rawRejectedCourses.forEach ((Map<String, dynamic> rawRejectedCourse) {
+      rawRejectedCourses.forEach ((Map<String, String> rawRejectedCourse) {
         rejectedCourses.add (createRejectedCourse (rawRejectedCourse));
       });
     } catch (_) {

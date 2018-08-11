@@ -10,6 +10,9 @@ import '../testable.dart';
 
 import '../dummy_objects.dart';
 
+/// The [main] function...
+void main() => (new PreviousContentServiceTester()).run();
+
 /// The [PreviousContentServiceTester] class...
 class PreviousContentServiceTester implements Testable {
   /// The [PreviousContentServiceTester] constructor...

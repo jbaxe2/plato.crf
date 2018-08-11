@@ -1,8 +1,8 @@
 # Plato Course Request Form tests configuration
 
-platforms: [chrome]
+test_on: 'browser'
 
-test_on: browser
+platforms: [chrome]
 
 paths:
 - test/

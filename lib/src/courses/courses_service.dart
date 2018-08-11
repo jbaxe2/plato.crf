@@ -22,7 +22,7 @@ class CoursesService {
 
   List<Course> courses;
 
-  CourseFactory _courseFactory;
+  static final CourseFactory _courseFactory = new CourseFactory();
 
   final Client _http;
 
@@ -35,7 +35,6 @@ class CoursesService {
   /// The [CoursesService] private constructor...
   CoursesService._ (this._http) {
     courses = new List<Course>();
-    _courseFactory = new CourseFactory();
   }
 
   /// The [setDepartmentId] method...
@@ -71,8 +70,9 @@ class CoursesService {
         '$_COURSES_URI?dept=$_departmentId&term=$_termId'
       );
 
-      List<Map<String, String>> rawCourses =
-        (json.decode (utf8.decode (coursesResponse.bodyBytes)) as Map)['courses'];
+      String decodedResponse = utf8.decode (coursesResponse.bodyBytes);
+      Map<String, List> jsonCourses = (json.decode (decodedResponse) as Map).cast();
+      List<Map<String, String>> rawCourses = jsonCourses['courses'].cast();
 
       courses
         ..clear()

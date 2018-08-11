@@ -13,6 +13,9 @@ import 'mock_client/mock_courses_client.dart';
 
 var _http = new MockCoursesClient();
 
+/// The [main] function...
+void main() => (new CoursesServiceTester()).run();
+
 /// The [CoursesServiceTester] class...
 class CoursesServiceTester implements Testable {
   /// The [CoursesServiceTester] constructor...
