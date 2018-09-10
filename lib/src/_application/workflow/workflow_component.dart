@@ -5,6 +5,9 @@ import 'dart:html' show Event;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
+import '../../sections/requesting/requesting_sections_component.dart';
+import '../../user/user_component.dart';
+
 import 'workflow_service.dart';
 
 /// The [WorkflowComponent] class...
@@ -14,6 +17,7 @@ import 'workflow_service.dart';
   styleUrls: ['workflow_component.css'],
   directives: [
     MaterialButtonComponent, MaterialStepperComponent, StepDirective,
+    RequestingSectionsComponent, UserComponent,
     NgIf
   ],
   providers: [WorkflowService]

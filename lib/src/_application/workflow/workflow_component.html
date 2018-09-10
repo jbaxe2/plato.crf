@@ -1,22 +1,32 @@
 <material-stepper #workflowStepper>
   <template step name="Authentication" [hideButtons]="true">
-    <user></user>
+    <div class="step-container">
+      <user></user>
+    </div>
   </template>
 
   <template step name="Courses Selection" [hideButtons]="true">
-    <requesting-sections></requesting-sections>
+    <div class="step-container">
+      <requesting-sections></requesting-sections>
+    </div>
   </template>
 
-  <template step name="Cross-listing" [hidebuttons]="true">
-    <div>Here will be controls to cross-list courses.</div>
+  <template step name="Cross-listing" [hideButtons]="true">
+    <div class="step-container">
+      Here will be controls to cross-list courses.
+    </div>
   </template>
 
-  <template step name="Previous Content" [hidebuttons]="true">
-    <div>Here will be controls to add previous content to courses.</div>
+  <template step name="Previous Content" [hideButtons]="true">
+    <div class="step-container">
+      Here will be controls to add previous content to courses.
+    </div>
   </template>
 
-  <template step name="Review and Submit" [hidebuttons]="true">
-    <div>Review of course request info and form submission.</div>
+  <template step name="Review and Submit" [hideButtons]="true">
+    <div class="step-container">
+      Review of course request info and form submission.
+    </div>
   </template>
 </material-stepper>
 

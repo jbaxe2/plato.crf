@@ -1,0 +1,22 @@
+@import 'package:angular_components/css/material/material';
+@import 'package:angular_components/material_stepper/mixins';
+@import 'package:angular_components/material_yes_no_buttons/mixins';
+
+@include material-stepper-theme(
+  $step-color: #062c43, $button-color: #718198
+);
+
+material-stepper {}
+
+material-button {
+  background-color: #718198 !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+div.step-container {
+  background-color: #eee;
+  margin: 8px 8px 8px 4px;
+  border: 2px solid #062c43;
+  padding: 23px;
+}

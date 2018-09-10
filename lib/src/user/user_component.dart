@@ -2,6 +2,8 @@ library plato.crf.components.user;
 
 import 'package:angular/angular.dart';
 
+import '../_application/workflow/workflow_service.dart';
+
 import 'plato_user_component.dart';
 import 'plato_user_service.dart';
 import 'user_authentication_component.dart';
@@ -11,10 +13,10 @@ import 'user_authentication_component.dart';
   selector: 'user',
   templateUrl: 'user_component.html',
   directives: const [
-    NgIf,
-    UserAuthenticationComponent, PlatoUserComponent
+    UserAuthenticationComponent, PlatoUserComponent,
+    NgIf
   ],
-  providers: const [PlatoUserService]
+  providers: const [PlatoUserService, WorkflowService]
 )
 class UserComponent implements OnInit {
   bool _isAuthenticated;
@@ -23,8 +25,10 @@ class UserComponent implements OnInit {
 
   final PlatoUserService _platoUserService;
 
+  final WorkflowService _workflowService;
+
   /// The [UserComponent] constructor...
-  UserComponent (this._platoUserService) {
+  UserComponent (this._platoUserService, this._workflowService) {
     _isAuthenticated = false;
   }
 
@@ -33,8 +37,10 @@ class UserComponent implements OnInit {
   void ngOnInit() {
     _isAuthenticated = _platoUserService.isAuthenticated;
 
-    _platoUserService.authStreamController.stream.listen (
-      (bool authReceived) => (_isAuthenticated = authReceived)
-    );
+    _platoUserService.authStreamController.stream.listen ((bool authReceived) {
+      if ((_isAuthenticated = authReceived)) {
+        _workflowService.markUserAuthenticated();
+      };
+    });
   }
 }
