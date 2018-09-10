@@ -1,0 +1,34 @@
+<material-stepper #workflowStepper>
+  <template step name="Authentication" [hideButtons]="true">
+    <user></user>
+  </template>
+
+  <template step name="Courses Selection" [hideButtons]="true">
+    <requesting-sections></requesting-sections>
+  </template>
+
+  <template step name="Cross-listing" [hidebuttons]="true">
+    <div>Here will be controls to cross-list courses.</div>
+  </template>
+
+  <template step name="Previous Content" [hidebuttons]="true">
+    <div>Here will be controls to add previous content to courses.</div>
+  </template>
+
+  <template step name="Review and Submit" [hidebuttons]="true">
+    <div>Review of course request info and form submission.</div>
+  </template>
+</material-stepper>
+
+<material-button
+    id="stepper-back-button" raised buttonDecorator
+    *ngIf="workflowStepper.activeStepIndex != 0"
+    (trigger)="goBackInWorkflow($event)">
+  Go to Previous Step
+</material-button>
+
+<material-button
+    id="stepper-button" raised buttonDecorator
+    *ngIf="canStep" (trigger)="progressInWorkflow($event)">
+  Continue
+</material-button>

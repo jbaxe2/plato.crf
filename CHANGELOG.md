@@ -1,5 +1,9 @@
 # Plato Course Request Form Changelog
 
+## 1.0.20180910
+- Start of transitioning the UI to provide an easier workflow experience for
+faculty requesting their courses.
+
 ## 1.0.20180811
 - Resolved issues when building for testing purposes (regular build had worked
 fine already).
