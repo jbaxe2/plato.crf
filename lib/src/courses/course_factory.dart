@@ -1,5 +1,7 @@
 library plato.crf.factory.course;
 
+import 'dart:html' show window;
+
 import '../_application/factory/plato_factory.dart';
 
 import 'course.dart';
@@ -13,7 +15,8 @@ class CourseFactory implements PlatoFactory<Course> {
 
   /// The [create] method...
   @override
-  Course create (Map<String, String> rawCourse) {
+  Course create (covariant Map<String, dynamic> rawCourse) {
+    window.console.debug (rawCourse);
     if (!(rawCourse.containsKey ('courseId') &&
           rawCourse.containsKey ('title'))) {
       throw new CourseException();
@@ -24,14 +27,16 @@ class CourseFactory implements PlatoFactory<Course> {
 
   /// The [createAll] method...
   @override
-  List<Course> createAll (Iterable<Map<String, String>> rawCourses) {
+  List<Course> createAll (covariant Iterable<Map<String, dynamic>> rawCourses) {
     var courses = new List<Course>();
 
+    window.console.debug (rawCourses);
     try {
       rawCourses.forEach (
-        (Map<String, dynamic> rawCourse) => courses.add (create (rawCourse))
+        (Map rawCourse) => courses.add (create (rawCourse.cast()))
       );
     } catch (_) {
+      window.console.log (_.toString());
       rethrow;
     }
 

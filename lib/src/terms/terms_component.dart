@@ -44,9 +44,13 @@ class TermsComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   Future ngOnInit() async {
-    await termsService.retrieveTerms();
+    try {
+      if (termsService.terms.isEmpty) {
+        await termsService.retrieveTerms();
+      }
 
-    terms = termsService.terms;
+      terms = termsService.terms;
+    } catch (_) {}
   }
 
   /// The [onTermSelected] method...
