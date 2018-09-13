@@ -1,5 +1,8 @@
 <div *ngIf="sections.isNotEmpty">
-  <span>Please select one or more sections.</span><br>
+  <span>
+    Please select one or more sections.  Then click the button below the
+    sections to add the ones you selected to your request.
+  </span><br>
 
   <material-checkbox
       *ngFor="let section of sections"

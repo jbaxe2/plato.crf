@@ -1,5 +1,11 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20180913
+- With new UI scheme, updated the versioning number.
+
+## 1.0.20180913
+- Resolved the courses typing issue.
+
 ## 1.0.20180912
 - Continuing transitioning of UI.
 - Resolving typing issues.

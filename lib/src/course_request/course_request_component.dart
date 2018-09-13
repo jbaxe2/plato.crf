@@ -23,7 +23,7 @@ import '../course_request/course_request.dart';
 
 //import '../previous_content/previous_content_component.dart';
 
-//import '../sections/requested/requested_sections_component.dart';
+import '../sections/requested/requested_sections_component.dart';
 //import '../sections/requesting/requesting_sections_component.dart';
 
 //import '../user/user_component.dart';
@@ -43,8 +43,8 @@ import 'course_request_service.dart';
     MaterialTabComponent, MaterialButtonComponent,
 
     DirectionsComponent, ErrorComponent, ProgressComponent,
-    SubmissionResponseComponent, SessionCleanupComponent,
-    WorkflowComponent,
+    RequestedSectionsComponent, SubmissionResponseComponent,
+    SessionCleanupComponent, WorkflowComponent,
 
     NgIf
 

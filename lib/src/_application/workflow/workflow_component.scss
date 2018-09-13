@@ -6,7 +6,9 @@
   $step-color: #062c43, $button-color: #718198
 );
 
-material-stepper {}
+material-stepper {
+  margin-top: 8px;
+}
 
 material-button {
   background-color: #718198 !important;

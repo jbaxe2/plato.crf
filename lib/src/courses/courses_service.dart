@@ -71,14 +71,14 @@ class CoursesService {
       );
 
       String decodedResponse = utf8.decode (coursesResponse.bodyBytes);
-      Map<String, List> jsonCourses = (json.decode (decodedResponse) as Map).cast();
-      List<Map<String, String>> rawCourses = jsonCourses['courses'].cast();
+      Map<String, List> jsonCourses = (json.decode (decodedResponse) as Map);
+      List<Map<String, String>> rawCourses = jsonCourses['courses'];
 
       courses
         ..clear()
         ..addAll (_courseFactory.createAll (rawCourses));
     } catch (_) {
-      throw new CourseException ('Unable to retrieve the courses list: ${_.toString()}.');
+      throw new CourseException ('Unable to retrieve the courses list.');
     }
   }
 }
