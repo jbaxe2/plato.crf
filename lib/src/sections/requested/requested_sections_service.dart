@@ -1,5 +1,7 @@
 library plato.crf.services.sections.requested;
 
+import 'dart:async' show Stream, StreamController;
+
 import 'package:angular/core.dart';
 
 import '../../course_request/course_request.dart';
@@ -12,6 +14,11 @@ class RequestedSectionsService {
   List<Section> requestedSections;
 
   CourseRequest _courseRequest;
+
+  static final StreamController<bool> _haveSectionsController =
+    new StreamController<bool>.broadcast();
+
+  Stream<bool> get haveSectionsListener => _haveSectionsController.stream;
 
   static RequestedSectionsService _instance;
 
@@ -30,11 +37,19 @@ class RequestedSectionsService {
     sections.sort();
 
     _courseRequest.addSections (sections);
+    _checkHaveSections();
   }
 
-  /// The [addSection] method...
-  void addSection (Section section) => _courseRequest.addSection (section);
-
   /// The [removeSection] method...
-  bool removeSection (Section section) => _courseRequest.removeSection (section);
+  bool removeSection (Section section) {
+    bool removed = _courseRequest.removeSection (section);
+    _checkHaveSections();
+
+    return removed;
+  }
+
+  /// The [_checkHaveSections] method...
+  void _checkHaveSections() {
+    _haveSectionsController.add (requestedSections.isNotEmpty);
+  }
 }
