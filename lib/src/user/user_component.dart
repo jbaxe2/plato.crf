@@ -35,12 +35,19 @@ class UserComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
-    _isAuthenticated = _platoUserService.isAuthenticated;
+    _markIfAuthenticated (_isAuthenticated = _platoUserService.isAuthenticated);
 
-    _platoUserService.authStreamController.stream.listen ((bool authReceived) {
-      if ((_isAuthenticated = authReceived)) {
-        _workflowService.markUserAuthenticated();
-      };
-    });
+    _platoUserService.authStreamController.stream.listen (_markIfAuthenticated);
+    _workflowService.sectionsResetStream.listen (_markAuthenticated);
   }
+
+  /// The [_markIfAuthenticated] method...
+  void _markIfAuthenticated (bool authReceived) {
+    if ((_isAuthenticated = authReceived)) {
+      _markAuthenticated (authReceived);
+    }
+  }
+
+  /// The [_markAuthenticated] method...
+  void _markAuthenticated (_) => _workflowService.markUserAuthenticated();
 }

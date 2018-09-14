@@ -1,10 +1,12 @@
 library plato.crf.components.workflow;
 
-import 'dart:html' show Event;
+import 'dart:async' show Future;
+import 'dart:html' show Event, window;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
+import '../../cross_listings/cross_listings_component.dart';
 import '../../sections/requesting/requesting_sections_component.dart';
 import '../../user/user_component.dart';
 
@@ -17,7 +19,7 @@ import 'workflow_service.dart';
   styleUrls: ['workflow_component.css'],
   directives: [
     MaterialButtonComponent, MaterialStepperComponent, StepDirective,
-    RequestingSectionsComponent, UserComponent,
+    CrossListingsComponent, RequestingSectionsComponent, UserComponent,
     NgIf
   ],
   providers: [WorkflowService]
@@ -40,9 +42,9 @@ class WorkflowComponent implements AfterViewInit {
   /// The [ngAfterViewInit] method...
   @override
   void ngAfterViewInit() {
-    _workflowService.workflowStream.listen (
-      (bool stepMarked) => _canStep = stepMarked
-    );
+    _workflowService
+      ..workflowStream.listen ((bool stepMarked) => _canStep = stepMarked)
+      ..sectionsResetStream.listen ((_) async => await resetToSectionSelection());
   }
 
   /// The [progressInWorkflow] method...
@@ -60,4 +62,7 @@ class WorkflowComponent implements AfterViewInit {
     stepper.stepBackward (event, stepper.steps[stepper.activeStepIndex - 1]);
     _canStep = true;
   }
+
+  /// The [resetToSectionSelection] method...
+  Future<bool> resetToSectionSelection() async => await stepper.jumpStep (1);
 }

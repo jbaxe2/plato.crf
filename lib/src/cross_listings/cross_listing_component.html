@@ -1,3 +1,4 @@
+<!--
 <material-expansionpanel
     name="Sections contained in cross-listing set #{{setNumber}}"
     class="dense"
@@ -48,3 +49,22 @@
     </material-button>
   </div>
 </material-expansionpanel>
+-->
+
+<section>
+  <p id="cross-listing-header">Cross-listing set #{{setNumber}}</p>
+
+  <material-button
+      *ngIf="sections.isEmpty" raised (trigger)="modifyCrossListingSections()">
+    <material-icon icon="device_hub"></material-icon> &nbsp;
+
+    <span *ngIf="sections.isEmpty">Add sections to the cross-listing set</span>
+    <span *ngIf="sections.isNotEmpty">Modify sections in the cross-listing set</span>
+  </material-button>
+
+  <material-list *ngIf="sections.isNotEmpty">
+    <material-list-item *ngFor="let section of sections">
+      [{{section.sectionId}}] {{section.title}}
+    </material-list-item>
+  </material-list>
+</section>

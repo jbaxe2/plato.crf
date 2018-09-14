@@ -3,6 +3,8 @@ library plato.crf.components.cross_listings;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
+import '../_application/workflow/workflow_service.dart';
+
 import '../sections/section.dart';
 
 import 'cross_listing.dart';
@@ -30,8 +32,10 @@ class CrossListingsComponent implements OnInit {
 
   final CrossListingService _crossListingService;
 
+  final WorkflowService _workflowService;
+
   /// The [CrossListingsComponent] constructor...
-  CrossListingsComponent (this._crossListingService);
+  CrossListingsComponent (this._crossListingService, this._workflowService);
 
   /// The [ngOnInit] method...
   @override
@@ -49,6 +53,8 @@ class CrossListingsComponent implements OnInit {
         isVisible = true;
       }
     );
+
+    _workflowService.markCrossListingsHandled();
   }
 
   /// The [createNewCrossListingSet] method...

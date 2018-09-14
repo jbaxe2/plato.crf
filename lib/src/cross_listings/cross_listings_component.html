@@ -1,3 +1,4 @@
+<!--
 <modal [visible]="isVisible">
   <material-dialog headered>
     <div header>
@@ -27,3 +28,31 @@
     </div>
   </material-dialog>
 </modal>
+-->
+
+<p>
+  <strong>
+    Here you can cross-list groups of sections you are requesting so they can
+    share a single course shell on Plato.  <em>(Note that this step is not
+    necessary, and should only be done under the guidance of CIT.  Please
+    contact CIT if you have questions about cross-listing.)</em>
+  </strong><br><br>
+  Click the <strong>Continue</strong> button to skip this step, or when you have
+  established your cross-listed courses.
+</p>
+
+<p *ngIf="crossListings.isEmpty">
+  [<em>There are currently no cross-listing sets.</em>]
+</p>
+
+<cross-listing
+    class="cross-listing"
+    *ngFor="let crossListing of crossListings; let i=index"
+    [crossListing]="crossListing"
+    [invokerSection]="invokerSection"
+    [setNumber]="i+1">
+</cross-listing>
+
+<material-button raised (trigger)="createNewCrossListingSet()">
+  <material-icon icon="add_box"></material-icon> &nbsp; Add new cross-listing set
+</material-button>

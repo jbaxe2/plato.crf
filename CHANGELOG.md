@@ -1,5 +1,13 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20180914
+- Completed course selection workflow component.
+- Started cross-listing workflow component.
+- Minor updates on verbiage to users for directions on using the application.
+- Removing all sections from the request now results in the user sent back to
+the step for adding sections.
+- Tightened consistency in behavior of the workflow.
+
 ## 1.1.20180913
 - With new UI scheme, updated the versioning number.
 

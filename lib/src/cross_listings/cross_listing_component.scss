@@ -5,9 +5,16 @@
   font-weight: bold;
 }
 
-material-expansionpanel {
-  margin: 8px;
-  padding: 0;
+//material-expansionpanel {
+//  margin: 8px;
+//  padding: 0;
+//}
+
+section {
+  background-color: white;
+  margin: 8px 8px 8px 0;
+  border: 2px dashed #062c43;
+  padding: 0 0 15px 0;
 }
 
 material-list {
@@ -22,12 +29,21 @@ material-list-item {
 
 material-button {
   background-color: #bbb !important;
+  margin: 15px;
 }
 
-div[toolbelt] {
+#cross-listing-header {
+  background-color: #718198;
+  margin: 1px;
   padding: 8px;
+  font-weight: bold;
+  font-size: 1em;
 }
 
-.dense {
-  //@include expansionpanel-dense-theme;
-}
+//div[toolbelt] {
+//  padding: 8px;
+//}
+
+//.dense {
+//  @include expansionpanel-dense-theme;
+//}

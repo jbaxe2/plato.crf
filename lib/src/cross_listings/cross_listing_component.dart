@@ -62,6 +62,11 @@ class CrossListingComponent implements OnInit {
     } catch (_) {}
   }
 
+  /// The [modifyCrossListingSections] method...
+  void modifyCrossListingSections() {
+    ;
+  }
+
   /// The [removeCrossListing] method...
   bool removeCrossListing() {
     try {

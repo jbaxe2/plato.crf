@@ -49,7 +49,7 @@ class RequestedSectionsComponent implements OnInit {
     if (haveSections) {
       _workflowService.markCoursesSelected();
     } else {
-      _workflowService.markWorkflowProgressed();
+      _workflowService.markSectionsReset();
     }
   }
 }

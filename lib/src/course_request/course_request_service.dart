@@ -53,6 +53,9 @@ class CourseRequestService {
     _courseFactory = new CourseFactory();
   }
 
+  /// The [haveCourses] method...
+  bool haveCourses() => _courseRequest.sections.isNotEmpty;
+
   /// The [reviewCourseRequest] method...
   void reviewCourseRequest() {
     if (!submittable) {

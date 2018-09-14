@@ -1,4 +1,4 @@
-<material-stepper #workflowStepper>
+<material-stepper legalJumps="backwards" #workflowStepper>
   <template step name="Authentication" [hideButtons]="true">
     <div class="step-container">
       <user></user>
@@ -13,7 +13,7 @@
 
   <template step name="Cross-listing" [hideButtons]="true">
     <div class="step-container">
-      Here will be controls to cross-list courses.
+      <cross-listings></cross-listings>
     </div>
   </template>
 
