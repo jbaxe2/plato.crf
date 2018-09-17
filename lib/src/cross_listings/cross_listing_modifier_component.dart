@@ -8,6 +8,7 @@ import '../course_request/course_request_service.dart';
 import '../sections/section.dart';
 
 import 'cross_listing.dart';
+import 'cross_listing_exception.dart';
 import 'cross_listing_service.dart';
 
 /// The [CrossListingModifierComponent] class...
@@ -68,20 +69,27 @@ class CrossListingModifierComponent implements OnInit {
 
   /// The [modifyCrossListingSet] method...
   void modifyCrossListingSet() {
-    _selectedSections.forEach ((Section section) {
-      _crossListingService.addSectionToCrossListing (section, crossListing);
-    });
+    try {
+      if (1 == _selectedSections.length) {
+        throw new CrossListingException (
+          'Cannot confirm a cross-listing set with only one section.'
+        );
+      }
 
-    List<Section> removedSections = crossListing.sections.where (
-      (Section section) => !_selectedSections.contains (section)
-    );
+      _selectedSections.forEach ((Section section) {
+        _crossListingService.addSectionToCrossListing (section, crossListing);
+      });
 
-    removedSections.forEach ((Section section) {
-      _crossListingService.removeSectionFromCrossListing (section, crossListing);
-    });
+      List<Section> removedSections = crossListing.sections.where (
+        (Section section) => !_selectedSections.contains (section)
+      );
 
-    _crossListingService.confirmCrossListings();
-    _selectedSections.clear();
+      removedSections.forEach ((Section section) {
+        _crossListingService.removeSectionFromCrossListing (section, crossListing);
+      });
+
+      _crossListingService.confirmCrossListings();
+    } catch (_) {}
 
     isVisible = false;
   }

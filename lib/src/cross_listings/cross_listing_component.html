@@ -52,8 +52,8 @@
 -->
 
 <section>
-  <p id="cross-listing-header">
-    Cross-listing set #{{setNumber}}
+  <header class="cl-header">
+    <span>Cross-listing set #{{setNumber}}</span>
 
     <material-button
         icon class="remove-cl-button" tooltipTarget #removeCl="tooltipTarget"
@@ -63,7 +63,7 @@
         Remove cross-listing set #{{setNumber}}.
       </material-tooltip-text>
     </material-button>
-  </p>
+  </header>
 
   <material-list *ngIf="sections.isNotEmpty">
     <material-list-item *ngFor="let section of sections">

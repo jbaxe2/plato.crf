@@ -2,6 +2,8 @@
 
 ## 1.1.20180917
 - Continuation of cross-listing workflow.
+- Various refactoring to better streamline UI.
+- Minor revisions and updates to verbiage.
 
 ## 1.1.20180914
 - Completed course selection workflow component.

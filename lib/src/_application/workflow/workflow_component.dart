@@ -64,5 +64,11 @@ class WorkflowComponent implements AfterViewInit {
   }
 
   /// The [resetToSectionSelection] method...
-  Future<bool> resetToSectionSelection() async => await stepper.jumpStep (1);
+  Future<bool> resetToSectionSelection() async {
+    bool jumped = await stepper.jumpStep (1);
+
+    _workflowService.markWorkflowProgressed();
+
+    return jumped;
+  }
 }

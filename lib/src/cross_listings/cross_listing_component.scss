@@ -17,6 +17,10 @@ section {
   padding: 0 0 15px 0;
 }
 
+.cl-header {
+  margin-top: 15px;
+}
+
 material-list {
   margin: 0;
   padding: 0 4px 0 4px;
@@ -39,12 +43,8 @@ cross-listing-modifier {
 .remove-cl-button {
   background-color: #718198 !important;
   float: right !important;
+  top: -15px;
   margin: 0;
-}
-
-.remove-icon {
-  //background-color: #718198 !important;
-  float: right !important;
 }
 
 #cross-listing-header {

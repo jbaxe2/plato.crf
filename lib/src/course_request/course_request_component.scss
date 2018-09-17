@@ -17,15 +17,22 @@
   font-weight: bold !important;
 }
 
-material-drawer {
+//material-drawer {
+#requested-sections-div {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  float: right;
   background-color: #ddd !important;
   border-left: 1px solid #062c43;
   border-bottom: 1px solid #062c43;
   width: 424px !important;
+  height: auto !important;
   overflow-y: visible !important;
 }
 
-material-content {
+//material-content {
+#application {
   display: flex !important;
   flex: max-content;
   flex-direction: column;
@@ -33,7 +40,7 @@ material-content {
   position: absolute !important;
   top: 0;
   left: 0;
-  margin: 4px 428px 4px 4px !important;
+  margin: 4px 432px 4px 4px !important;
 }
 
 header {
