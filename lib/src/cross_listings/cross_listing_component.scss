@@ -13,7 +13,7 @@
 section {
   background-color: white;
   margin: 8px 8px 8px 0;
-  border: 2px dashed #062c43;
+  border: 1px dashed #718198;
   padding: 0 0 15px 0;
 }
 
@@ -24,18 +24,34 @@ material-list {
 
 material-list-item {
   margin: 0;
-  padding: 0;
+  padding: 8px;
 }
 
 material-button {
   background-color: #bbb !important;
-  margin: 15px;
+  margin: 15px 15px 4px 15px !important;
+}
+
+cross-listing-modifier {
+  width: 300px;
+}
+
+.remove-cl-button {
+  background-color: #718198 !important;
+  float: right !important;
+  margin: 0;
+}
+
+.remove-icon {
+  //background-color: #718198 !important;
+  float: right !important;
 }
 
 #cross-listing-header {
   background-color: #718198;
   margin: 1px;
-  padding: 8px;
+  padding: 8px 8px 8px 15px;
+  height: 42px;
   font-weight: bold;
   font-size: 1em;
 }

@@ -1,0 +1,29 @@
+<modal [visible]="isVisible">
+  <material-dialog headered>
+    <div header>
+      <h3>Combine sections in a cross-listing set...</h3>
+    </div>
+
+    <div *ngIf="requestedSections.isNotEmpty" id="cross-listing-modifier">
+      <p>
+        Please select <strong>only</strong> those sections that you would like
+        to share a <strong>single</strong> Plato shell.
+      </p>
+
+      <material-checkbox
+          *ngFor="let section of requestedSections"
+          id="section-{{section.sectionId}}-checkbox"
+          (change)="handleCrossListingSection(section, $event)"
+          themeColor="#062c43"
+          [disabled]="sectionInOtherCrossListing(section)">
+        <strong>[{{section.sectionId}}]</strong> &nbsp; {{section.title}}
+      </material-checkbox>
+
+      <div toolbelt>
+        <material-button raised (trigger)="modifyCrossListingSet()">
+          Confirm selected sections for cross-listing set
+        </material-button>
+      </div>
+    </div>
+  </material-dialog>
+</modal>

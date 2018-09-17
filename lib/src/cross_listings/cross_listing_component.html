@@ -52,19 +52,34 @@
 -->
 
 <section>
-  <p id="cross-listing-header">Cross-listing set #{{setNumber}}</p>
+  <p id="cross-listing-header">
+    Cross-listing set #{{setNumber}}
 
-  <material-button
-      *ngIf="sections.isEmpty" raised (trigger)="modifyCrossListingSections()">
+    <material-button
+        icon class="remove-cl-button" tooltipTarget #removeCl="tooltipTarget"
+        (trigger)="removeCrossListing()">
+      <material-icon baseline icon="highlight_off" class="remove-icon"></material-icon>
+      <material-tooltip-text [for]="removeCl">
+        Remove cross-listing set #{{setNumber}}.
+      </material-tooltip-text>
+    </material-button>
+  </p>
+
+  <material-list *ngIf="sections.isNotEmpty">
+    <material-list-item *ngFor="let section of sections">
+      <strong>[{{section.sectionId}}]</strong> &nbsp; {{section.title}}
+    </material-list-item>
+  </material-list>
+
+  <material-button raised (trigger)="modifyCrossListingSections()">
     <material-icon icon="device_hub"></material-icon> &nbsp;
 
     <span *ngIf="sections.isEmpty">Add sections to the cross-listing set</span>
     <span *ngIf="sections.isNotEmpty">Modify sections in the cross-listing set</span>
   </material-button>
-
-  <material-list *ngIf="sections.isNotEmpty">
-    <material-list-item *ngFor="let section of sections">
-      [{{section.sectionId}}] {{section.title}}
-    </material-list-item>
-  </material-list>
 </section>
+
+<cross-listing-modifier
+    #crossListingModifier
+    [crossListing]="crossListing">
+</cross-listing-modifier>

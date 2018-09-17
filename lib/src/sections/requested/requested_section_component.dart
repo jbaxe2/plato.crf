@@ -37,7 +37,7 @@ class RequestedSectionComponent implements OnInit {
 
   CrossListing get crossListing => _crossListing;
 
-  bool get hasCrossListing => (null != _crossListing);
+  bool get hasCrossListing => (null != _crossListing) && _crossListing.hasSections;
 
   PreviousContentMapping _previousContent;
 

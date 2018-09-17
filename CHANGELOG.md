@@ -1,5 +1,8 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20180917
+- Continuation of cross-listing workflow.
+
 ## 1.1.20180914
 - Completed course selection workflow component.
 - Started cross-listing workflow component.

@@ -6,6 +6,7 @@ import 'package:angular_components/angular_components.dart';
 import '../sections/section.dart';
 
 import 'cross_listing.dart';
+import 'cross_listing_modifier_component.dart';
 import 'cross_listing_service.dart';
 
 /// The [CrossListingComponent] class...
@@ -21,6 +22,7 @@ import 'cross_listing_service.dart';
     MaterialButtonComponent, MaterialIconComponent,
     MaterialInkTooltipComponent, MaterialTooltipDirective,
     MaterialTooltipSourceDirective, MaterialTooltipTargetDirective,
+    CrossListingModifierComponent,
     NgIf, NgFor
   ],
   providers: const [CrossListingService]
@@ -36,6 +38,9 @@ class CrossListingComponent implements OnInit {
 
   @Input()
   int setNumber;
+
+  @ViewChild("crossListingModifier")
+  CrossListingModifierComponent crossListingModifier;
 
   bool get hasInvokerSection => crossListing.contains (invokerSection);
 
@@ -64,7 +69,7 @@ class CrossListingComponent implements OnInit {
 
   /// The [modifyCrossListingSections] method...
   void modifyCrossListingSections() {
-    ;
+    crossListingModifier.isVisible = true;
   }
 
   /// The [removeCrossListing] method...

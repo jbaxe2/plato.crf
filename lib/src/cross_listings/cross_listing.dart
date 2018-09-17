@@ -8,6 +8,8 @@ class CrossListing {
 
   bool get isValid => (1 < sections.length);
 
+  bool get hasSections => sections.isNotEmpty;
+
   /// The [CrossListing] constructor...
   CrossListing() {
     sections = new List<Section>();

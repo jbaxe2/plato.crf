@@ -13,6 +13,8 @@ import '../_application/submission_response/submission_response.dart';
 import '../courses/course_factory.dart';
 import '../courses/rejected_course.dart';
 
+import '../sections/section.dart';
+
 import 'course_request_exception.dart';
 import 'course_request.dart';
 
@@ -22,6 +24,9 @@ const String _SUBMISSION_URI = '/plato/submit/crf';
 @Injectable()
 class CourseRequestService {
   CourseRequest _courseRequest;
+
+  List<Section> get requestedSections =>
+    new List<Section>.from (_courseRequest.sections);
 
   bool get submittable => _courseRequest.submittable;
 
@@ -55,6 +60,14 @@ class CourseRequestService {
 
   /// The [haveCourses] method...
   bool haveCourses() => _courseRequest.sections.isNotEmpty;
+
+  /// The [sectionHasCrossListing] method...
+  bool sectionHasCrossListing (Section section) =>
+    (null != _courseRequest.getCrossListingForSection (section));
+
+  /// The [sectionHasPreviousContent] method...
+  bool sectionHasPreviousContent (Section section) =>
+    (null != _courseRequest.getPreviousContentForSection (section));
 
   /// The [reviewCourseRequest] method...
   void reviewCourseRequest() {
