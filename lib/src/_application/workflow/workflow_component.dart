@@ -7,6 +7,7 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
 import '../../cross_listings/cross_listings_component.dart';
+import '../../previous_content/previous_content_component.dart';
 import '../../sections/requesting/requesting_sections_component.dart';
 import '../../user/user_component.dart';
 
@@ -19,7 +20,8 @@ import 'workflow_service.dart';
   styleUrls: ['workflow_component.css'],
   directives: [
     MaterialButtonComponent, MaterialStepperComponent, StepDirective,
-    CrossListingsComponent, RequestingSectionsComponent, UserComponent,
+    CrossListingsComponent, PreviousContentComponent,
+    RequestingSectionsComponent, UserComponent,
     NgIf
   ],
   providers: [WorkflowService]

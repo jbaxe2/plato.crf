@@ -1,14 +1,9 @@
 @import 'package:angular_components/css/material/material';
-@import 'package:angular_components/material_tab/mixins';
-
-@include tab-strip-color('material-content', #062c43, #718198);
-@include tab-strip-selected-tab-color('material-content', #062c43);
 
 :host {
   display: flex;
   flex: initial;
   height: 97%;
-  font-family: Roboto, Helvetica, Arial, sans-serif !important;
 }
 
 ::ng-deep material-button {
@@ -17,7 +12,6 @@
   font-weight: bold !important;
 }
 
-//material-drawer {
 #requested-sections-div {
   position: absolute !important;
   top: 0;
@@ -31,7 +25,6 @@
   overflow-y: visible !important;
 }
 
-//material-content {
 #application {
   display: flex !important;
   flex: max-content;
@@ -52,17 +45,4 @@ header {
 
 h2 {
   padding-left: 15px;
-}
-
-material-tab-panel {
-  margin: 4px;
-  width: 600px !important;
-}
-
-material-tab {
-  color: #062c43;
-}
-
-.controls {
-  margin: 16px;
 }

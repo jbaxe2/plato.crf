@@ -2,7 +2,7 @@
 @import 'package:angular_components/material_expansionpanel/mixins';
 
 .dense {
-  @include expansionpanel-dense-theme();
+  @include expansionpanel-dense-theme;
 }
 
 .extra-info-panel {

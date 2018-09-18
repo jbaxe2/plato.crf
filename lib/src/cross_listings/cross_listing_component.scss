@@ -1,24 +1,11 @@
+@import 'package:angular_components/css/material/material';
+@import 'package:angular_components/material_expansionpanel/mixins';
+
 :host ::ng-deep header {
   background-color: #718198;
   border: 1px solid #062c43;
   padding: 8px;
   font-weight: bold;
-}
-
-//material-expansionpanel {
-//  margin: 8px;
-//  padding: 0;
-//}
-
-section {
-  background-color: white;
-  margin: 8px 8px 8px 0;
-  border: 1px dashed #718198;
-  padding: 0 0 15px 0;
-}
-
-.cl-header {
-  margin-top: 15px;
 }
 
 material-list {
@@ -28,38 +15,25 @@ material-list {
 
 material-list-item {
   margin: 0;
-  padding: 8px;
+  padding: 0;
 }
 
 material-button {
   background-color: #bbb !important;
-  margin: 15px 15px 4px 15px !important;
+}
+
+.footer-buttons {
+  background-color: #eee !important;
 }
 
 cross-listing-modifier {
   width: 300px;
 }
 
-.remove-cl-button {
-  background-color: #718198 !important;
-  float: right !important;
-  top: -15px;
-  margin: 0;
+.dense {
+  @include expansionpanel-dense-theme;
 }
 
-#cross-listing-header {
-  background-color: #718198;
-  margin: 1px;
-  padding: 8px 8px 8px 15px;
-  height: 42px;
-  font-weight: bold;
-  font-size: 1em;
+#cross-listing-footer {
+  padding-right: 15px;
 }
-
-//div[toolbelt] {
-//  padding: 8px;
-//}
-
-//.dense {
-//  @include expansionpanel-dense-theme;
-//}

@@ -1,5 +1,9 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20180918
+- Continuation of cross-listing workflow.
+- Start of removing old code that was commented out during UI transition.
+
 ## 1.1.20180917
 - Continuation of cross-listing workflow.
 - Various refactoring to better streamline UI.
