@@ -1,18 +1,18 @@
 @import 'package:angular_components/css/material/material';
 @import 'package:angular_components/material_expansionpanel/mixins';
 
-//:host ::ng-deep header {
-//  background-color: #718198 !important;
-//  border: 1px solid #062c43 !important;
-//  font-weight: bold !important;
-//}
+:host ::ng-deep header {
+  background-color: #718198 !important;
+  border: 1px solid #062c43 !important;
+  font-weight: bold !important;
+}
 
 strong {
   color: #062c43;
 }
 
 material-list {
-  margin-bottom: 8px;
+  margin: 8px 0 8px 0;
   border-top: 2px dashed #062c43;
   padding: 8px 0 0 0;
 }
@@ -28,5 +28,5 @@ material-list {
 
 .request-info-panel {
   @include expansionpanel-background-color(#ddd);
-  @include expansionpanel-header-text-color(#062c43);
+  //@include expansionpanel-header-text-color(#062c43);
 }

@@ -79,14 +79,18 @@ class CourseRequestService {
   bool sectionHasPreviousContent (Section section) =>
     (null != _courseRequest.getPreviousContentForSection (section));
 
-  /// The [previousContentIdForSection] method...
-  String previousContentIdForSection (Section section) {
-    PreviousContentMapping previousContent = previousContents.firstWhere (
-      (PreviousContentMapping prevContent) => (prevContent.section == section)
-    );
-
-    return previousContent.enrollment.courseId;
+  /// The [getPreviousContentForSection] method...
+  PreviousContentMapping getPreviousContentForSection (Section section) {
+    try {
+      return previousContents.firstWhere (
+        (PreviousContentMapping prevContent) => (prevContent.section == section)
+      );
+    } catch (_) { return null; }
   }
+
+  /// The [previousContentIdForSection] method...
+  String previousContentIdForSection (Section section) =>
+    getPreviousContentForSection (section)?.enrollment?.courseId;
 
   /// The [reviewCourseRequest] method...
   void reviewCourseRequest() {

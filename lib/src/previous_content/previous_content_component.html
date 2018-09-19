@@ -1,8 +1,8 @@
 <p>
   <strong>
     Here you can select previous content for the sections (or cross-listing
-    sets) that you are requesting.  <em>(Note that this is not necessary.
-    The WSU institutional template will be used if no previous content is
+    sets) that you are requesting.  <em>(Note that this step is not required;
+    the WSU institutional template will be used if no previous content is
     selected.)</em>
   </strong><br><br>
   Click the <strong>Continue</strong> button to skip this step, or after you
@@ -26,9 +26,24 @@
           raised
           (trigger)="selectPreviousContent(crossListing.sections.first)">
         <material-icon icon="library_books"></material-icon> &nbsp;
-          Select previous content
-        </material-button>
-      </span>
+
+        <span *ngIf="!sectionHasPreviousContent(crossListing.sections.first)">
+          Select
+        </span>
+        <span *ngIf="sectionHasPreviousContent(crossListing.sections.first)">
+          Change
+        </span>
+        &nbsp;previous content
+      </material-button> &nbsp;
+
+      <material-button
+          raised
+          *ngIf="sectionHasPreviousContent(crossListing.sections.first)"
+          (trigger)="removePreviousContent(crossListing.sections.first)">
+        <material-icon icon="highlight_off"></material-icon> &nbsp;
+        Remove content
+      </material-button>
+    </span>
   </material-list-item>
 </material-list>
 
@@ -47,9 +62,24 @@
       <span class="add-previous-content">
         <material-button raised (trigger)="selectPreviousContent(section)">
           <material-icon icon="library_books"></material-icon> &nbsp;
-            Select previous content
-          </material-button>
-        </span>
+
+          <span *ngIf="!sectionHasPreviousContent(section)">
+            Select
+          </span>
+          <span *ngIf="sectionHasPreviousContent(section)">
+            Change
+          </span>
+          &nbsp;previous content
+        </material-button>&nbsp;
+
+        <material-button
+            raised
+            *ngIf="sectionHasPreviousContent(section)"
+            (trigger)="removePreviousContent(section)">
+          <material-icon icon="highlight_off"></material-icon> &nbsp;
+          Remove content
+        </material-button>
+      </span>
     </material-list-item>
   </template>
 </material-list>

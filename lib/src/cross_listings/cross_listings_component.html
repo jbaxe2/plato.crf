@@ -1,41 +1,12 @@
-<!--
-<modal [visible]="isVisible">
-  <material-dialog headered>
-    <div header>
-      <h3>Cross-list with other requested sections...</h3>
-    </div>
-
-    <span>
-      <material-button class="icon-button" icon (trigger)="createNewCrossListingSet()">
-        <material-icon icon="add_box" baseline></material-icon>
-      </material-button>
-      (Click the '+' to add a new cross-listing set)
-    </span>
-
-    <p *ngIf="crossListings.isEmpty"><em>There are currently no cross-listing sets.</em></p>
-
-    <cross-listing
-        *ngFor="let crossListing of crossListings; let i=index"
-        [crossListing]="crossListing"
-        [invokerSection]="invokerSection"
-        [setNumber]="i+1">
-    </cross-listing>
-
-    <div footer>
-      <material-button raised (trigger)="confirmCrossListings()">
-        Confirm current cross-listing information
-      </material-button>
-    </div>
-  </material-dialog>
-</modal>
--->
-
 <p>
   <strong>
     Here you can cross-list groups of sections you are requesting so they can
     share a single course shell on Plato.  <em>(Note that this step is NOT
     necessary, and should ONLY be done under the guidance of CIT.  Please
-    contact CIT if you have questions about cross-listing.)</em>
+    contact CIT if you have questions about cross-listing.)</em><br><br>
+    Click the button to add a new cross-listing set, then add those sections to
+    the set that you would like to share a single shell on Plato.  Repeat as
+    needed.
   </strong><br><br>
   Click the <strong>Continue</strong> button to skip this step, or after you have
   established your cross-listed courses.

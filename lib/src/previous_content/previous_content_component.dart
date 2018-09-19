@@ -34,8 +34,6 @@ import 'previous_content_service.dart';
 class PreviousContentComponent implements AfterViewInit {
   List<CrossListing> crossListings;
 
-  List<PreviousContentMapping> previousContents;
-
   List<Section> sections;
 
   final CourseRequestService _courseRequestService;
@@ -49,7 +47,6 @@ class PreviousContentComponent implements AfterViewInit {
     this._courseRequestService, this._previousContentService, this._workflowService
   ) {
     crossListings = new List<CrossListing>();
-    previousContents = new List<PreviousContentMapping>();
     sections = new List<Section>();
   }
 
@@ -60,10 +57,6 @@ class PreviousContentComponent implements AfterViewInit {
 
     if (crossListings.isEmpty) {
       crossListings = _courseRequestService.crossListings;
-    }
-
-    if (previousContents.isEmpty) {
-      previousContents = _courseRequestService.previousContents;
     }
 
     if (sections.isEmpty) {
@@ -86,4 +79,11 @@ class PreviousContentComponent implements AfterViewInit {
   /// The [selectPreviousContent] method...
   void selectPreviousContent (Section section) =>
     _previousContentService.invokeForSection (section);
+
+  /// The [removePreviousContent] method...
+  void removePreviousContent (Section section) {
+    _previousContentService.removePreviousContent (
+      _courseRequestService.getPreviousContentForSection (section)
+    );
+  }
 }

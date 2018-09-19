@@ -1,11 +1,9 @@
-<h3>Review and submit the course request...</h3>
+<div *ngIf="null != courseRequest">
+  <p>
+    Please review your request information.  If it looks correct, click the
+    <strong>Submit Course Request</strong> button down below.
+  </p>
 
-<p>
-  Please review your request information.  If it looks correct, click the
-  <strong>Submit Course Request</strong> button down below.
-</p>
-
-<div *ngIf="null != courseRequest" class="request-review-container">
   <material-expansionpanel
       name="Submitting request for:"
       [expanded]="true"
@@ -32,7 +30,7 @@
       name="Requested sections:"
       [expanded]="true"
       [showSaveCancel]="false"
-      class="request-info-panel dense">
+      class="request-info-panel">
     <material-list>
       <material-list-item *ngFor="let section of courseRequest.sections">
         [{{section.sectionId}}] {{section.title}}
@@ -45,7 +43,7 @@
       name="Cross-listing information:"
       [expanded]="true"
       [showSaveCancel]="false"
-      class="request-info-panel dense">
+      class="request-info-panel">
     <material-list
         *ngFor="let crossListing of courseRequest.crossListings; let i=index">
       <strong style="margin-left: 8px;">Cross-listing set #{{i+1}} contains:</strong><br>
@@ -61,7 +59,7 @@
       name="Previous content information:"
       [expanded]="true"
       [showSaveCancel]="false"
-      class="request-info-panel dense">
+      class="request-info-panel">
     <material-list>
       <material-list-item
           *ngFor="let previousContent of courseRequest.previousContents">
@@ -70,9 +68,7 @@
       </material-list-item>
     </material-list>
   </material-expansionpanel>
-</div>
 
-<div footer>
   <material-button raised (trigger)="submitCourseRequest()">
     Submit Course Request
   </material-button>
