@@ -1,1 +1,57 @@
-<p>Here will be controls to add previous content to courses.</p>
+<p>
+  <strong>
+    Here you can select previous content for the sections (or cross-listing
+    sets) that you are requesting.  <em>(Note that this is not necessary.
+    The WSU institutional template will be used if no previous content is
+    selected.)</em>
+  </strong><br><br>
+  Click the <strong>Continue</strong> button to skip this step, or after you
+  have selected previous content for the sections you're requesting.
+</p>
+
+<material-list *ngIf="crossListings.isNotEmpty">
+  <material-list-item *ngFor="let crossListing of crossListings">
+    <p>
+      <strong>Cross-listing shell:</strong> &nbsp;
+      {{crossListing | crossListingPipe}}
+
+      <span *ngIf="sectionHasPreviousContent(crossListing.sections.first)">
+        <br><strong>Previous content:</strong>
+        {{getPreviousContentIdForSection(crossListing.sections.first)}}
+      </span>
+    </p>
+
+    <span class="add-previous-content">
+      <material-button
+          raised
+          (trigger)="selectPreviousContent(crossListing.sections.first)">
+        <material-icon icon="library_books"></material-icon> &nbsp;
+          Select previous content
+        </material-button>
+      </span>
+  </material-list-item>
+</material-list>
+
+<material-list *ngIf="sections.isNotEmpty">
+  <template ngFor let-section [ngForOf]="sections">
+    <material-list-item *ngIf="!sectionHasCrossListing(section)">
+      <p>
+        <strong>Requested section:</strong> {{section.sectionId}}
+
+        <span *ngIf="sectionHasPreviousContent(section)">
+          <br><strong>Previous content:</strong> &nbsp;
+          {{getPreviousContentIdForSection(section)}}
+        </span>
+      </p>
+
+      <span class="add-previous-content">
+        <material-button raised (trigger)="selectPreviousContent(section)">
+          <material-icon icon="library_books"></material-icon> &nbsp;
+            Select previous content
+          </material-button>
+        </span>
+    </material-list-item>
+  </template>
+</material-list>
+
+<previous-content-selection></previous-content-selection>

@@ -23,7 +23,7 @@ import 'previous_content_service.dart';
 @Component(
   selector: 'previous-content-selection',
   templateUrl: 'previous_content_selection_component.html',
-  styleUrls: const ['previous_content_component.css'],
+  styleUrls: const ['previous_content_selection_component.css'],
   directives: const [
     ModalComponent, MaterialDialogComponent, MaterialRadioGroupComponent,
     MaterialRadioComponent, MaterialButtonComponent, NgIf, NgFor, NgModel

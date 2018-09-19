@@ -22,7 +22,7 @@ import '../progress/progress_service.dart';
   ],
   providers: const [CourseRequestService, ProgressService]
 )
-class ReviewRequestComponent implements OnInit {
+class ReviewRequestComponent implements AfterViewInit {
   bool isVisible;
 
   CourseRequest courseRequest;
@@ -34,9 +34,9 @@ class ReviewRequestComponent implements OnInit {
   /// The [ReviewRequestComponent] constructor...
   ReviewRequestComponent (this._courseRequestService, this._progressService);
 
-  /// The [ngOnInit] method...
+  /// The [ngAfterViewInit] method...
   @override
-  void ngOnInit() {
+  void ngAfterViewInit() {
     isVisible = false;
 
     _courseRequestService.requestController.stream.listen (
@@ -45,6 +45,8 @@ class ReviewRequestComponent implements OnInit {
         isVisible = true;
       }
     );
+
+    _courseRequestService.reviewCourseRequest();
   }
 
   /// The [submitCourseRequest] method...
@@ -52,7 +54,7 @@ class ReviewRequestComponent implements OnInit {
     _progressService.invoke ('Submitting the course request.');
 
     try {
-      await _courseRequestService.submitCourseRequest();
+      //await _courseRequestService.submitCourseRequest();
     } catch (_) {}
 
     _progressService.revoke();

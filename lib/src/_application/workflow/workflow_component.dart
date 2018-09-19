@@ -11,6 +11,8 @@ import '../../previous_content/previous_content_component.dart';
 import '../../sections/requesting/requesting_sections_component.dart';
 import '../../user/user_component.dart';
 
+import '../review_request/review_request_component.dart';
+
 import 'workflow_service.dart';
 
 /// The [WorkflowComponent] class...
@@ -21,7 +23,7 @@ import 'workflow_service.dart';
   directives: [
     MaterialButtonComponent, MaterialStepperComponent, StepDirective,
     CrossListingsComponent, PreviousContentComponent,
-    RequestingSectionsComponent, UserComponent,
+    RequestingSectionsComponent, ReviewRequestComponent, UserComponent,
     NgIf
   ],
   providers: [WorkflowService]

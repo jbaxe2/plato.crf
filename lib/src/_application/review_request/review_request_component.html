@@ -1,84 +1,79 @@
-<modal [visible]="isVisible">
-  <material-dialog headered>
-    <div header>
-      <h3>Review and submit the course request...</h3>
-    </div>
+<h3>Review and submit the course request...</h3>
 
-    <div *ngIf="null != courseRequest" class="request-review-container">
-      <material-expansionpanel
-          name="Submitting request for:"
-          [expanded]="true"
-          [showSaveCancel]="false"
-          class="request-info-panel dense">
-        <p>
-          <span>
-            <strong>Plato Username:</strong>&nbsp;
-            {{courseRequest.platoUser.username}}
-          </span><br>
-          <span>
-            <strong>Name:</strong>&nbsp;
-            {{courseRequest.platoUser.firstName}}
-            {{courseRequest.platoUser.lastName}}
-          </span><br>
-          <span>
-            <strong>E-mail:</strong>&nbsp;
-            {{courseRequest.platoUser.email}}
-          </span>
-        </p>
-      </material-expansionpanel>
+<p>
+  Please review your request information.  If it looks correct, click the
+  <strong>Submit Course Request</strong> button down below.
+</p>
 
-      <material-expansionpanel
-          name="Requested sections:"
-          [expanded]="true"
-          [showSaveCancel]="false"
-          class="request-info-panel dense">
-        <material-list>
-          <material-list-item *ngFor="let section of courseRequest.sections">
-            [{{section.sectionId}}] {{section.title}}
-          </material-list-item><br>
-        </material-list>
-      </material-expansionpanel>
+<div *ngIf="null != courseRequest" class="request-review-container">
+  <material-expansionpanel
+      name="Submitting request for:"
+      [expanded]="true"
+      [showSaveCancel]="false"
+      class="request-info-panel">
+    <p>
+      <span>
+        <strong>Plato Username:</strong>&nbsp;
+        {{courseRequest.platoUser.username}}
+      </span><br>
+      <span>
+        <strong>Name:</strong>&nbsp;
+        {{courseRequest.platoUser.firstName}}
+        {{courseRequest.platoUser.lastName}}
+      </span><br>
+      <span>
+        <strong>E-mail:</strong>&nbsp;
+        {{courseRequest.platoUser.email}}
+      </span>
+    </p>
+  </material-expansionpanel>
 
-      <material-expansionpanel
-          *ngIf="!courseRequest.crossListings.isEmpty"
-          name="Cross-listing information:"
-          [expanded]="true"
-          [showSaveCancel]="false"
-          class="request-info-panel dense">
-        <material-list
-            *ngFor="let crossListing of courseRequest.crossListings; let i=index">
-          <strong style="margin-left: 8px;">Cross-listing set #{{i+1}} contains:</strong><br>
+  <material-expansionpanel
+      name="Requested sections:"
+      [expanded]="true"
+      [showSaveCancel]="false"
+      class="request-info-panel dense">
+    <material-list>
+      <material-list-item *ngFor="let section of courseRequest.sections">
+        [{{section.sectionId}}] {{section.title}}
+      </material-list-item><br>
+    </material-list>
+  </material-expansionpanel>
 
-          <material-list-item *ngFor="let section of crossListing.sections">
-            [{{section.sectionId}}] {{section.title}}
-          </material-list-item>
-        </material-list>
-      </material-expansionpanel>
+  <material-expansionpanel
+      *ngIf="!courseRequest.crossListings.isEmpty"
+      name="Cross-listing information:"
+      [expanded]="true"
+      [showSaveCancel]="false"
+      class="request-info-panel dense">
+    <material-list
+        *ngFor="let crossListing of courseRequest.crossListings; let i=index">
+      <strong style="margin-left: 8px;">Cross-listing set #{{i+1}} contains:</strong><br>
 
-      <material-expansionpanel
-          *ngIf="!courseRequest.previousContents.isEmpty"
-          name="Previous content information:"
-          [expanded]="true"
-          [showSaveCancel]="false"
-          class="request-info-panel dense">
-        <material-list>
-          <material-list-item
-              *ngFor="let previousContent of courseRequest.previousContents">
-            {{previousContent.section.sectionId}} &#8612;
-            {{previousContent.enrollment.courseId}}
-          </material-list-item>
-        </material-list>
-      </material-expansionpanel>
-    </div>
+      <material-list-item *ngFor="let section of crossListing.sections">
+        [{{section.sectionId}}] {{section.title}}
+      </material-list-item>
+    </material-list>
+  </material-expansionpanel>
 
-    <div footer>
-      <material-button raised (trigger)="submitCourseRequest()">
-        Submit Course Request
-      </material-button>
+  <material-expansionpanel
+      *ngIf="!courseRequest.previousContents.isEmpty"
+      name="Previous content information:"
+      [expanded]="true"
+      [showSaveCancel]="false"
+      class="request-info-panel dense">
+    <material-list>
+      <material-list-item
+          *ngFor="let previousContent of courseRequest.previousContents">
+        {{previousContent.section.sectionId}} &#8612;
+        {{previousContent.enrollment.courseId}}
+      </material-list-item>
+    </material-list>
+  </material-expansionpanel>
+</div>
 
-      <material-button raised (trigger)="isVisible = false">
-        Edit Information
-      </material-button>
-    </div>
-  </material-dialog>
-</modal>
+<div footer>
+  <material-button raised (trigger)="submitCourseRequest()">
+    Submit Course Request
+  </material-button>
+</div>

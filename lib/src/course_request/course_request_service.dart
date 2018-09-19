@@ -13,6 +13,10 @@ import '../_application/submission_response/submission_response.dart';
 import '../courses/course_factory.dart';
 import '../courses/rejected_course.dart';
 
+import '../cross_listings/cross_listing.dart';
+
+import '../previous_content/previous_content_mapping.dart';
+
 import '../sections/section.dart';
 
 import 'course_request_exception.dart';
@@ -24,6 +28,12 @@ const String _SUBMISSION_URI = '/plato/submit/crf';
 @Injectable()
 class CourseRequestService {
   CourseRequest _courseRequest;
+
+  List<CrossListing> get crossListings =>
+    new List<CrossListing>.from (_courseRequest.crossListings);
+
+  List<PreviousContentMapping> get previousContents =>
+    new List<PreviousContentMapping>.from (_courseRequest.previousContents);
 
   List<Section> get requestedSections =>
     new List<Section>.from (_courseRequest.sections);
@@ -68,6 +78,15 @@ class CourseRequestService {
   /// The [sectionHasPreviousContent] method...
   bool sectionHasPreviousContent (Section section) =>
     (null != _courseRequest.getPreviousContentForSection (section));
+
+  /// The [previousContentIdForSection] method...
+  String previousContentIdForSection (Section section) {
+    PreviousContentMapping previousContent = previousContents.firstWhere (
+      (PreviousContentMapping prevContent) => (prevContent.section == section)
+    );
+
+    return previousContent.enrollment.courseId;
+  }
 
   /// The [reviewCourseRequest] method...
   void reviewCourseRequest() {

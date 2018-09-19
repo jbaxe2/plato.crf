@@ -1,0 +1,19 @@
+material-list {
+  background-color: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+material-list-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  margin: 8px;
+  border-top: 2px dashed #062c43;
+}
+
+.add-previous-content {
+  float: right;
+  border-left: 1px solid #062c43;
+  padding-left: 8px;
+}
