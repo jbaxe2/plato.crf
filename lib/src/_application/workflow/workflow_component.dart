@@ -21,7 +21,8 @@ import 'workflow_service.dart';
   templateUrl: 'workflow_component.html',
   styleUrls: ['workflow_component.css'],
   directives: [
-    MaterialButtonComponent, MaterialStepperComponent, StepDirective,
+    MaterialButtonComponent, MaterialIconComponent, MaterialStepperComponent,
+    StepDirective,
     CrossListingsComponent, PreviousContentComponent,
     RequestingSectionsComponent, ReviewRequestComponent, UserComponent,
     NgIf

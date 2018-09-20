@@ -12,8 +12,11 @@ material-list-item {
   border-top: 2px dashed #062c43;
 }
 
+material-list-item:hover {
+  background-color: #ddd;
+}
+
 .add-previous-content {
-  float: right;
   border-left: 1px solid #062c43;
   padding-left: 8px;
 }

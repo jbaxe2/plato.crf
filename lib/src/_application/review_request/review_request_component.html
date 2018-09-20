@@ -5,11 +5,13 @@
   </p>
 
   <material-expansionpanel
-      name="Submitting request for:"
+      name="User Information"
       [expanded]="true"
       [showSaveCancel]="false"
+      [hideExpandedHeader]="true"
       class="request-info-panel">
     <p>
+      <strong>Submitting request for:</strong><br><br>
       <span>
         <strong>Plato Username:</strong>&nbsp;
         {{courseRequest.platoUser.username}}
@@ -27,10 +29,12 @@
   </material-expansionpanel>
 
   <material-expansionpanel
-      name="Requested sections:"
+      name="Requesting Sections"
       [expanded]="true"
       [showSaveCancel]="false"
+      [hideExpandedHeader]="true"
       class="request-info-panel">
+    <p><strong>Requesting sections:</strong></p>
     <material-list>
       <material-list-item *ngFor="let section of courseRequest.sections">
         [{{section.sectionId}}] {{section.title}}
@@ -40,10 +44,12 @@
 
   <material-expansionpanel
       *ngIf="!courseRequest.crossListings.isEmpty"
-      name="Cross-listing information:"
+      name="Cross-listing Information"
       [expanded]="true"
       [showSaveCancel]="false"
+      [hideExpandedHeader]="true"
       class="request-info-panel">
+    <p><strong>Cross-listing information:</strong></p>
     <material-list
         *ngFor="let crossListing of courseRequest.crossListings; let i=index">
       <strong style="margin-left: 8px;">Cross-listing set #{{i+1}} contains:</strong><br>
@@ -56,10 +62,12 @@
 
   <material-expansionpanel
       *ngIf="!courseRequest.previousContents.isEmpty"
-      name="Previous content information:"
+      name="Previous Content Information"
       [expanded]="true"
       [showSaveCancel]="false"
+      [hideExpandedHeader]="true"
       class="request-info-panel">
+    <p><strong>Previous content information:</strong></p>
     <material-list>
       <material-list-item
           *ngFor="let previousContent of courseRequest.previousContents">
@@ -70,6 +78,7 @@
   </material-expansionpanel>
 
   <material-button raised (trigger)="submitCourseRequest()">
+    <material-icon icon="open_in_browser"></material-icon> &nbsp;
     Submit Course Request
   </material-button>
 </div>

@@ -16,8 +16,8 @@ import '../progress/progress_service.dart';
   templateUrl: 'review_request_component.html',
   styleUrls: const ['review_request_component.css'],
   directives: const [
-    ModalComponent, MaterialDialogComponent, MaterialExpansionPanel,
-    MaterialListComponent, MaterialListItemComponent, MaterialButtonComponent,
+    MaterialButtonComponent, MaterialExpansionPanel, MaterialIconComponent,
+    MaterialListComponent, MaterialListItemComponent,
     NgIf, NgFor
   ],
   providers: const [CourseRequestService, ProgressService]

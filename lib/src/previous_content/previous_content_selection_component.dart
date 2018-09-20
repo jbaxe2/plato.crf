@@ -25,8 +25,9 @@ import 'previous_content_service.dart';
   templateUrl: 'previous_content_selection_component.html',
   styleUrls: const ['previous_content_selection_component.css'],
   directives: const [
-    ModalComponent, MaterialDialogComponent, MaterialRadioGroupComponent,
-    MaterialRadioComponent, MaterialButtonComponent, NgIf, NgFor, NgModel
+    ModalComponent, MaterialDialogComponent, MaterialIconComponent,
+    MaterialRadioGroupComponent, MaterialRadioComponent, MaterialButtonComponent,
+    NgIf, NgFor, NgModel
   ],
   providers: const [
     PreviousContentService, EnrollmentsService, RetrieveArchivesService,
