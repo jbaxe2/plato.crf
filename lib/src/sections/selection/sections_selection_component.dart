@@ -14,7 +14,8 @@ import '../sections_service.dart';
   templateUrl: 'sections_selection_component.html',
   styleUrls: const ['sections_selection_component.css'],
   directives: const [
-    MaterialCheckboxComponent, MaterialButtonComponent, NgIf, NgFor
+    MaterialCheckboxComponent, MaterialButtonComponent, MaterialIconComponent,
+    NgIf, NgFor
   ],
   providers: const [SectionsService, RequestedSectionsService]
 )

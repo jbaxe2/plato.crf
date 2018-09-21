@@ -1,5 +1,9 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20180920
+- Various changes to UI, including adding/changing icons, container styling,
+and other similar changes.
+
 ## 1.1.20180919
 - Continuation of previous content workflow.
 - Added course request review workflow.
