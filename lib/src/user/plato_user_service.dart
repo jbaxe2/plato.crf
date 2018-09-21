@@ -3,8 +3,6 @@ library plato.crf.services.user.plato;
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart';
-
 import 'package:http/http.dart' show Client, Response;
 
 import '../course_request/course_request.dart';
@@ -17,7 +15,6 @@ const String _LEARN_AUTH_URI = '/plato/authenticate/learn';
 const String _SESSION_URI = '/plato/retrieve/session';
 const String _USER_URI = '/plato/retrieve/user';
 
-@Injectable()
 /// The [PlatoUserService] class...
 class PlatoUserService {
   PlatoUser platoUser;
@@ -59,7 +56,7 @@ class PlatoUserService {
   }
 
   /// The [retrieveSession] method...
-  Future retrieveSession() async {
+  Future<void> retrieveSession() async {
     try {
       final Response sessionResponse = await _http.get (_SESSION_URI);
 
@@ -79,7 +76,7 @@ class PlatoUserService {
   }
 
   /// The [authenticateLearn] method...
-  Future authenticateLearn (String theUsername, String thePassword) async {
+  Future<void> authenticateLearn (String theUsername, String thePassword) async {
     if (isAuthenticated) {
       throw new UserException (
         'Authentication has already completed; cannot authenticate again.'
@@ -114,7 +111,7 @@ class PlatoUserService {
   }
 
   /// The [retrieveUser] method...
-  Future retrieveUser() async {
+  Future<void> retrieveUser() async {
     if (!_isAuthenticated) {
       throw new UserException (
         'Authentication must happen before retrieving user information.'

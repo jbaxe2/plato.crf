@@ -3,8 +3,6 @@ library plato.crf.services.departments;
 import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart';
-
 import 'package:http/http.dart' show Client, Response;
 
 import 'department.dart';
@@ -14,7 +12,6 @@ import 'department_factory.dart';
 const String _DEPTS_URI = '/plato/retrieve/departments';
 
 /// The [DepartmentsService] class...
-@Injectable()
 class DepartmentsService {
   List<Department> departments;
 

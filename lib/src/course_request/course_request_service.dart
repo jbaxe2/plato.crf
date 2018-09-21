@@ -3,8 +3,6 @@ library plato.crf.services.course_request;
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart';
-
 import 'package:http/http.dart' show Client, Response;
 
 import '../_application/error/plato_exception.dart';
@@ -25,7 +23,6 @@ import 'course_request.dart';
 const String _SUBMISSION_URI = '/plato/submit/crf';
 
 /// The [CourseRequestService] class...
-@Injectable()
 class CourseRequestService {
   CourseRequest _courseRequest;
 
@@ -102,19 +99,13 @@ class CourseRequestService {
   }
 
   /// The [submitCourseRequest] method...
-  Future submitCourseRequest() async {
+  Future<void> submitCourseRequest() async {
     try {
       _courseRequest.verify();
     } catch (_) { rethrow; }
 
     try {
-      final Response crfResponse = await _http.post (
-        _SUBMISSION_URI, body: json.encode (_courseRequest.toJson())
-      );
-
-      _parseSubmissionResponse (
-        json.decode (utf8.decode (crfResponse.bodyBytes))
-      );
+      await _submitRequest();
     } catch (e) {
       if (e is PlatoException) {
         rethrow;
@@ -124,6 +115,17 @@ class CourseRequestService {
         'An error has occurred while attempting to submit the course request.'
       );
     }
+  }
+
+  /// The [_submitRequest] method...
+  Future<void> _submitRequest() async {/*
+    final Response crfResponse = await _http.post (
+      _SUBMISSION_URI, body: json.encode (_courseRequest.toJson())
+    );
+
+    _parseSubmissionResponse (
+      json.decode (utf8.decode (crfResponse.bodyBytes))
+    );*/
   }
 
   /// The [_parseSubmissionResponse] method...

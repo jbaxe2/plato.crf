@@ -2,8 +2,6 @@ library plato.crf.services.previous_content;
 
 import 'dart:async' show StreamController;
 
-import 'package:angular/core.dart';
-
 import '../course_request/course_request.dart';
 
 import '../enrollments/enrollment.dart';
@@ -15,7 +13,6 @@ import 'previous_content_exception.dart';
 import 'previous_content_mapping.dart';
 
 /// The [PreviousContentService] class...
-@Injectable()
 class PreviousContentService extends FeaturedSectionService {
   List<PreviousContentMapping> previousContents;
 

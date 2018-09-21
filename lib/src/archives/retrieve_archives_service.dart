@@ -3,8 +3,6 @@ library plato.crf.services.archive.retrieve;
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart';
-
 import 'package:http/http.dart' show Client, Response;
 
 import '../enrollments/enrollment.dart';
@@ -15,7 +13,6 @@ import 'archive_exception.dart';
 const String _RETRIEVE_URI = '/plato/retrieve/archives';
 
 /// The [RetrieveArchivesService] class...
-@Injectable()
 class RetrieveArchivesService {
   List<Enrollment> archiveEnrollments;
 

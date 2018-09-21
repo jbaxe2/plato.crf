@@ -1,7 +1,7 @@
 library plato.crf.components.workflow;
 
 import 'dart:async' show Future;
-import 'dart:html' show Event, window;
+import 'dart:html' show Event;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';

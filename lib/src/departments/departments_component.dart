@@ -39,7 +39,7 @@ class DepartmentsComponent implements OnInit {
 
   /// The [ngOnInit] method...
   @override
-  Future ngOnInit() async {
+  Future<void> ngOnInit() async {
     try {
       if (deptsService.departments.isEmpty) {
         await deptsService.retrieveDepartments();

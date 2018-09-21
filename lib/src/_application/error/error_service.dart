@@ -2,12 +2,9 @@ library plato.crf.services.application.error;
 
 import 'dart:async' show StreamController;
 
-import 'package:angular/core.dart';
-
 import 'plato_exception.dart';
 
 /// The [ErrorService] class...
-@Injectable()
 class ErrorService {
   StreamController<PlatoException> errorStreamController;
 

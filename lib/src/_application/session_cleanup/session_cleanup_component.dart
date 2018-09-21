@@ -12,8 +12,7 @@ const String _CLEANUP_URI = '/plato/cleanup/session';
 /// The [SessionCleanupComponent] class...
 @Component(
   selector: 'session-cleanup',
-  templateUrl: 'session_cleanup_component.html',
-  directives: const [coreDirectives]
+  template: ''
 )
 class SessionCleanupComponent implements OnInit {
   final Client _http;
@@ -25,7 +24,7 @@ class SessionCleanupComponent implements OnInit {
 
   /// The [ngOnInit] method...
   @override
-  Future ngOnInit() async {
+  Future<void> ngOnInit() async {
     _sentCleanupSignal = false;
 
     window.onBeforeUnload.listen ((_) async => await _sendCleanup());
@@ -38,7 +37,7 @@ class SessionCleanupComponent implements OnInit {
   }
 
   /// The [_sendCleanup] method...
-  Future _sendCleanup() async {
+  Future<void> _sendCleanup() async {
     await _http.get (_CLEANUP_URI);
 
     _sentCleanupSignal = true;

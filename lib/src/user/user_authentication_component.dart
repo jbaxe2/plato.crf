@@ -39,11 +39,14 @@ class UserAuthenticationComponent implements OnInit {
   /// The [UserAuthenticationComponent] constructor...
   UserAuthenticationComponent (
     this._platoUserService, this._enrollmentsService, this._progressService
-  );
+  ) {
+    username = '';
+    password = '';
+  }
 
   /// The [ngOnInit] method...
   @override
-  Future ngOnInit() async {
+  Future<void> ngOnInit() async {
     try {
       _progressService.invoke (
         'Determining launch context and session information.'
@@ -60,7 +63,7 @@ class UserAuthenticationComponent implements OnInit {
   }
 
   /// The [authenticateLearn] method...
-  Future authenticateLearn() async {
+  Future<void> authenticateLearn() async {
     if (username.isEmpty || password.isEmpty) {
       return;
     }
@@ -76,7 +79,7 @@ class UserAuthenticationComponent implements OnInit {
   }
 
   /// The [_retrieveUserAndEnrollments] method...
-  Future _retrieveUserAndEnrollments() async {
+  Future<void> _retrieveUserAndEnrollments() async {
     _progressService.invoke ('Retrieving the user information.');
     await _platoUserService.retrieveUser();
 

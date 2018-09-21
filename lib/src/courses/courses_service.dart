@@ -3,8 +3,6 @@ library plato.crf.services.courses;
 import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart';
-
 import 'package:http/http.dart' show Client, Response;
 
 import 'course.dart';
@@ -14,7 +12,6 @@ import 'course_factory.dart';
 const String _COURSES_URI = '/plato/retrieve/courses';
 
 /// The [CoursesService] class...
-@Injectable()
 class CoursesService {
   String _departmentId;
 
@@ -64,7 +61,7 @@ class CoursesService {
   }
 
   /// The [_retrieveCourses] method...
-  Future _retrieveCourses() async {
+  Future<void> _retrieveCourses() async {
     try {
       final Response coursesResponse = await _http.get (
         '$_COURSES_URI?dept=$_departmentId&term=$_termId'

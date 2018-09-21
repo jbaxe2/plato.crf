@@ -5,8 +5,6 @@ import 'dart:convert' show json, utf8;
 
 import 'package:http/http.dart' show Client, Response;
 
-import 'package:angular/core.dart';
-
 import 'enrollment.dart';
 import 'enrollment_exception.dart';
 import 'enrollment_factory.dart';
@@ -14,7 +12,6 @@ import 'enrollment_factory.dart';
 const String _ENROLLMENTS_URI = '/plato/retrieve/enrollments/instructor';
 
 /// The [EnrollmentsService] class...
-@Injectable()
 class EnrollmentsService {
   List<Enrollment> enrollments;
 
@@ -35,7 +32,7 @@ class EnrollmentsService {
   }
 
   /// The [retrieveEnrollments] method...
-  Future retrieveEnrollments() async {
+  Future<void> retrieveEnrollments() async {
     try {
       final Response enrollmentsResponse = await _http.get (_ENROLLMENTS_URI);
 

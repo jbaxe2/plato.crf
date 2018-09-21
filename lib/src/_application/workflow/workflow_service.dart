@@ -2,10 +2,7 @@ library plato.crf.services.workflow;
 
 import 'dart:async' show Stream, StreamController;
 
-import 'package:angular/angular.dart' show Injectable;
-
 /// The [WorkflowService] class...
-@Injectable()
 class WorkflowService {
   static StreamController<bool> _workflowController =
     new StreamController<bool>.broadcast();

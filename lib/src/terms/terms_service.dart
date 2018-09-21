@@ -3,8 +3,6 @@ library plato.crf.services.terms;
 import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart';
-
 import 'package:http/http.dart' show Client, Response;
 
 import 'term.dart';
@@ -14,7 +12,6 @@ import 'term_factory.dart';
 const String _TERMS_URI = '/plato/retrieve/terms';
 
 /// The [TermsService] class...
-@Injectable()
 class TermsService {
   List<Term> terms;
 
@@ -34,7 +31,7 @@ class TermsService {
   }
 
   /// The [retrieveTerms] method...
-  Future retrieveTerms() async {
+  Future<void> retrieveTerms() async {
     try {
       final Response termsResponse = await _http.get (_TERMS_URI);
 

@@ -6,7 +6,6 @@ import 'package:angular_components/model/ui/has_factory.dart';
 
 import '../item/archive_item.dart';
 import '../item/archive_item_component.dart';
-import '../item/archive_item_node.dart';
 import '../item/archive_item_options.dart';
 
 // ignore: uri_has_not_been_generated
@@ -38,7 +37,7 @@ ComponentFactory<ArchiveItemComponent> getArchiveItemComponentFactory (
     )
   ]
 )
-class ArchiveCourseComponent implements OnInit, AfterViewInit {
+class ArchiveCourseComponent implements OnInit {
   bool isVisible;
 
   ArchiveCourse _archiveCourse;
@@ -57,18 +56,14 @@ class ArchiveCourseComponent implements OnInit, AfterViewInit {
   final BrowseArchiveService _browseArchiveService;
 
   /// The [ArchiveCourseComponent] constructor...
-  ArchiveCourseComponent (this._browseArchiveService);
+  ArchiveCourseComponent (this._browseArchiveService) {
+    isVisible = false;
+    archiveItems = new List<ArchiveItem>();
+  }
 
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
-    isVisible = false;
-    archiveItems = new List<ArchiveItemNode>();
-  }
-
-  /// The [ngAfterViewInit] method...
-  @override
-  void ngAfterViewInit() {
     _browseArchiveService.archiveCourseController.stream.listen (
       (ArchiveCourse archiveCourse) => _setUpTreeForArchive (archiveCourse)
     );

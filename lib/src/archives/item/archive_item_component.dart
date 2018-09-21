@@ -39,7 +39,7 @@ class ArchiveItemComponent implements OnInit, RendersValue<ArchiveItem> {
   }
 
   /// The [previewResource] method...
-  Future previewResource() async {
+  Future<void> previewResource() async {
     _progressService.invoke ('Loading the resource (${value.title}).');
 
     try {

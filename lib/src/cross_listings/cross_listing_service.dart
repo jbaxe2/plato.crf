@@ -2,9 +2,6 @@ library plato.crf.services.cross_listing;
 
 import 'dart:async' show StreamController;
 
-import 'package:angular/angular.dart';
-import 'package:angular/core.dart';
-
 import '../course_request/course_request.dart';
 
 import '../sections/featured_section_service.dart';
@@ -14,7 +11,6 @@ import 'cross_listing.dart';
 import 'cross_listing_exception.dart';
 
 /// The [CrossListingService] class...
-@Injectable()
 class CrossListingService extends FeaturedSectionService {
   List<CrossListing> crossListings;
 

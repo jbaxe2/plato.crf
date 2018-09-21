@@ -25,12 +25,13 @@ class ErrorComponent implements OnInit {
   final ErrorService _errorService;
 
   /// The [ErrorComponent] constructor...
-  ErrorComponent (this._errorService);
+  ErrorComponent (this._errorService) {
+    error = 'No errors have occurred.';
+  }
 
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
-    error = 'No errors have occurred.';
     showError = _errorService.errorRaised;
 
     _errorService.errorStreamController.stream.listen (

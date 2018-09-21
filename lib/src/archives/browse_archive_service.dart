@@ -3,8 +3,6 @@ library plato.crf.services.archive.browse;
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart';
-
 import 'package:http/http.dart' show Client, Response;
 
 import './course/archive_course.dart';
@@ -19,7 +17,6 @@ import 'archive_exception.dart';
 const String _BROWSE_URI = '/plato/browse/archive';
 
 /// The [BrowseArchiveService] class...
-@Injectable()
 class BrowseArchiveService {
   StreamController<ArchiveCourse> archiveCourseController;
 

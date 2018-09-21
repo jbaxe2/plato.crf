@@ -3,8 +3,6 @@ library plato.crf.services.sections;
 import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart';
-
 import 'package:http/http.dart' show Client, Response;
 
 import 'section.dart';
@@ -14,7 +12,6 @@ import 'section_factory.dart';
 const String _SECTIONS_URI = '/plato/retrieve/sections';
 
 /// The [SectionsService] class...
-@Injectable()
 class SectionsService {
   String _courseId;
 
@@ -39,7 +36,7 @@ class SectionsService {
   }
 
   /// The [setCourseId] method...
-  Future setCourseId (String courseId) async {
+  Future<void> setCourseId (String courseId) async {
     if (courseId == _courseId) {
       return;
     }
@@ -52,7 +49,7 @@ class SectionsService {
   }
 
   /// The [setTermId] method...
-  Future setTermId (String termId) async {
+  Future<void> setTermId (String termId) async {
     if (termId == _termId) {
       return;
     }
@@ -65,7 +62,7 @@ class SectionsService {
   }
 
   /// The [_retrieveSections] method...
-  Future _retrieveSections() async {
+  Future<void> _retrieveSections() async {
     try {
       final Response sectionsResponse = await _http.get (
         '$_SECTIONS_URI?course=$_courseId&term=$_termId'

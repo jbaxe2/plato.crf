@@ -2,14 +2,11 @@ library plato.crf.services.sections.requested;
 
 import 'dart:async' show Stream, StreamController;
 
-import 'package:angular/core.dart';
-
 import '../../course_request/course_request.dart';
 
 import '../section.dart';
 
 /// The [RequestedSectionsService] class...
-@Injectable()
 class RequestedSectionsService {
   List<Section> requestedSections;
 
