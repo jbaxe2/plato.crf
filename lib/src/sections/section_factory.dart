@@ -12,7 +12,7 @@ class SectionFactory implements PlatoFactory<Section> {
 
   /// The [create] method...
   @override
-  Section create (Map<String, dynamic> rawSection) {
+  Section create (covariant Map<String, dynamic> rawSection) {
     if (!(rawSection.containsKey ('crsno') &&
           rawSection.containsKey ('term') &&
           rawSection.containsKey ('title') &&
@@ -38,7 +38,7 @@ class SectionFactory implements PlatoFactory<Section> {
 
   /// The [createAll] method...
   @override
-  List<Section> createAll (Iterable<Map<String, dynamic>> rawSections) {
+  List<Section> createAll (covariant Iterable<Map<String, dynamic>> rawSections) {
     var sections = new List<Section>();
 
     rawSections.forEach (

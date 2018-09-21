@@ -38,12 +38,12 @@ class TermsService {
     try {
       final Response termsResponse = await _http.get (_TERMS_URI);
 
-      List<Map<String, String>> rawTerms =
+      List rawTerms =
         (json.decode (utf8.decode (termsResponse.bodyBytes)) as Map)['terms'];
 
       terms
         ..clear()
-        ..addAll (_termFactory.createAll (rawTerms));
+        ..addAll (_termFactory.createAll (rawTerms.cast()));
     } catch (_) {
       throw new TermException ('Unable to retrieve the list of terms.');
     }

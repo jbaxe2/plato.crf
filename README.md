@@ -1,9 +1,5 @@
 # The Plato Course Request Form client, written in AngularDart.
 
-In preparation for *Dart 2.0*, the *Plato Course Request Form*
-was re-written using AngularDart (instead of keeping with
-PolymerDart, which has not been updated, and uses reflection).
-
 This client application allows faculty at Westfield State University
 to request course shells for use on Plato (Blackboard Learn).
   
@@ -29,4 +25,12 @@ Features currently include:
   * Currently does not support preview of discussions, tests,
    grade center, users, groups, etc.
 
-The client is still a current work-in-progress, but is now *1.0*.
+The client is still a current work-in-progress, but is now *1.1*.
+
+TODO:
+* The Plato Archived Courses Viewer is currently being developed as
+ a different project.  Once completed, this will take the place of
+ the simplified archive viewer for this application.
+* More tests must be written, including component tests.
+* This application went through *major* interface changes with the
+ transition from 1.0 to 1.1, and resulting code should be refactored.

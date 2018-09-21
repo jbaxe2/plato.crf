@@ -71,12 +71,12 @@ class SectionsService {
         '$_SECTIONS_URI?course=$_courseId&term=$_termId'
       );
 
-      List<Map<String, String>> rawSections =
+      List rawSections =
         (json.decode (utf8.decode (sectionsResponse.bodyBytes)) as Map)['sections'];
 
       sections
         ..clear()
-        ..addAll (_sectionFactory.createAll (rawSections))
+        ..addAll (_sectionFactory.createAll (rawSections.cast()))
         ..sort();
     } catch (_) {
       throw new SectionException (

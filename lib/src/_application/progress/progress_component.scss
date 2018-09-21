@@ -17,3 +17,7 @@
 .spin {
   animation: fill-unfill-rotate 4s infinite both;
 }
+
+#progress-modal {
+  z-index: 9001;
+}

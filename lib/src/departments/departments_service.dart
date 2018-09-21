@@ -38,12 +38,12 @@ class DepartmentsService {
     try {
       final Response deptsResponse = await _http.get (_DEPTS_URI);
 
-      List<Map<String, String>> rawDepts =
+      List rawDepts =
         (json.decode (utf8.decode (deptsResponse.bodyBytes)) as Map)['departments'];
 
       departments
         ..clear()
-        ..addAll (_departmentFactory.createAll (rawDepts));
+        ..addAll (_departmentFactory.createAll (rawDepts.cast()));
     } catch (_) {
       throw new DepartmentException ('Unable to retrieve the departments list.');
     }

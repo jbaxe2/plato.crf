@@ -2,7 +2,6 @@ library plato.crf.components.course_request;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
-import 'package:angular_components/laminate/popup/module.dart';
 import 'package:angular_components/utils/browser/dom_service/angular_2.dart';
 import 'package:angular_components/utils/angular/scroll_host/angular_2.dart';
 

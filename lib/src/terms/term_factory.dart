@@ -12,7 +12,7 @@ class TermFactory implements PlatoFactory<Term> {
 
   /// The [create] method...
   @override
-  Term create (Map<String, dynamic> rawTerm) {
+  Term create (covariant Map<String, dynamic> rawTerm) {
     if (!(rawTerm.containsKey ('id') &&
           rawTerm.containsKey ('description'))) {
       throw new TermException (
@@ -25,7 +25,7 @@ class TermFactory implements PlatoFactory<Term> {
 
   /// The [createAll] method...
   @override
-  List<Term> createAll (Iterable<Map<String, dynamic>> rawTerms) {
+  List<Term> createAll (covariant Iterable<Map<String, dynamic>> rawTerms) {
     var terms = new List<Term>();
 
     try {

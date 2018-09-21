@@ -7,8 +7,6 @@ import 'package:angular_components/angular_components.dart';
 
 import '../_application/progress/progress_service.dart';
 
-import '../archives/retrieve_archives_service.dart';
-
 import '../enrollments/enrollments_service.dart';
 
 import 'plato_user_service.dart';
@@ -22,8 +20,7 @@ import 'plato_user_service.dart';
     materialInputDirectives, MaterialButtonComponent, MaterialIconComponent
   ],
   providers: const [
-    PlatoUserService, EnrollmentsService,
-    RetrieveArchivesService, ProgressService
+    PlatoUserService, EnrollmentsService, ProgressService
   ]
 )
 class UserAuthenticationComponent implements OnInit {
@@ -37,14 +34,11 @@ class UserAuthenticationComponent implements OnInit {
 
   final EnrollmentsService _enrollmentsService;
 
-  final RetrieveArchivesService _retrieveArchivesService;
-
   final ProgressService _progressService;
 
   /// The [UserAuthenticationComponent] constructor...
   UserAuthenticationComponent (
-    this._platoUserService, this._enrollmentsService,
-    this._retrieveArchivesService, this._progressService
+    this._platoUserService, this._enrollmentsService, this._progressService
   );
 
   /// The [ngOnInit] method...
@@ -58,7 +52,7 @@ class UserAuthenticationComponent implements OnInit {
       await _platoUserService.retrieveSession();
 
       if (_platoUserService.isAuthenticated && _platoUserService.isLtiSession) {
-        await _retrieveUserEnrollmentsAndArchives();
+        await _retrieveUserAndEnrollments();
       }
     } catch (_) {}
 
@@ -75,21 +69,18 @@ class UserAuthenticationComponent implements OnInit {
       _progressService.invoke ('Attempting to verify Plato credentials.');
       await _platoUserService.authenticateLearn (username, password);
 
-      await _retrieveUserEnrollmentsAndArchives();
+      await _retrieveUserAndEnrollments();
     } catch (_) {}
 
     _progressService.revoke();
   }
 
-  /// The [_retrieveUserEnrollmentsAndArchives] method...
-  Future _retrieveUserEnrollmentsAndArchives() async {
+  /// The [_retrieveUserAndEnrollments] method...
+  Future _retrieveUserAndEnrollments() async {
     _progressService.invoke ('Retrieving the user information.');
     await _platoUserService.retrieveUser();
 
     _progressService.invoke ('Retrieving the instructor enrollments.');
     await _enrollmentsService.retrieveEnrollments();
-
-    _progressService.invoke ('Determining if there are any archived enrollments.');
-    await _retrieveArchivesService.retrieveArchives();
   }
 }

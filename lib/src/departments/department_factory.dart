@@ -12,7 +12,7 @@ class DepartmentFactory implements PlatoFactory<Department> {
 
   /// The [create] method...
   @override
-  Department create (Map<String, dynamic> rawDepartment) {
+  Department create (covariant Map<String, dynamic> rawDepartment) {
     if (!(rawDepartment.containsKey ('code') &&
           rawDepartment.containsKey ('description'))) {
       throw new DepartmentException (
@@ -25,7 +25,7 @@ class DepartmentFactory implements PlatoFactory<Department> {
 
   /// The [createAll] method...
   @override
-  List<Department> createAll (Iterable<Map<String, dynamic>> rawDepartments) {
+  List<Department> createAll (covariant Iterable<Map<String, dynamic>> rawDepartments) {
     var departments = new List<Department>();
 
     try {

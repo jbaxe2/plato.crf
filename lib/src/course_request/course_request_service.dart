@@ -29,14 +29,12 @@ const String _SUBMISSION_URI = '/plato/submit/crf';
 class CourseRequestService {
   CourseRequest _courseRequest;
 
-  List<CrossListing> get crossListings =>
-    new List<CrossListing>.from (_courseRequest.crossListings);
+  List<CrossListing> get crossListings => _courseRequest.crossListings;
 
   List<PreviousContentMapping> get previousContents =>
-    new List<PreviousContentMapping>.from (_courseRequest.previousContents);
+    _courseRequest.previousContents;
 
-  List<Section> get requestedSections =>
-    new List<Section>.from (_courseRequest.sections);
+  List<Section> get requestedSections => _courseRequest.sections;
 
   bool get submittable => _courseRequest.submittable;
 

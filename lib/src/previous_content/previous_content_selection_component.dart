@@ -43,6 +43,8 @@ class PreviousContentSelectionComponent implements OnInit {
 
   Enrollment selected;
 
+  static bool _checkedForArchives = false;
+
   final PreviousContentService _previousContentService;
 
   final EnrollmentsService _enrollmentsService;
@@ -63,7 +65,7 @@ class PreviousContentSelectionComponent implements OnInit {
 
   /// The [ngOnInit] method...
   @override
-  void ngOnInit() {
+  Future<void> ngOnInit() async {
     enrollments = _enrollmentsService.enrollments;
     isVisible = false;
 
@@ -77,10 +79,14 @@ class PreviousContentSelectionComponent implements OnInit {
     _retrieveArchivesService.archiveStreamController.stream.listen (
       (Enrollment archiveEnrollment) => enrollments.add (archiveEnrollment)
     );
+
+    if (!_checkedForArchives) {
+      await _retrieveArchiveEnrollments();
+    }
   }
 
   /// The [browseArchive] method...
-  Future browseArchive (String archiveId) async {
+  Future<void> browseArchive (String archiveId) async {
     try {
       String termId = (archiveId.split ('_')).last;
 
@@ -118,5 +124,17 @@ class PreviousContentSelectionComponent implements OnInit {
     } catch (_) {}
 
     isVisible = false;
+  }
+
+  /// The [_retrieveArchiveEnrollments] method...
+  Future<void> _retrieveArchiveEnrollments() async {
+    _progressService.invoke ('Determining if there are any archived enrollments.');
+
+    try {
+      await _retrieveArchivesService.retrieveArchives();
+      _checkedForArchives = true;
+    } catch (_) {}
+
+    _progressService.revoke();
   }
 }

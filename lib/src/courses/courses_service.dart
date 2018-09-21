@@ -71,12 +71,11 @@ class CoursesService {
       );
 
       String decodedResponse = utf8.decode (coursesResponse.bodyBytes);
-      Map<String, List> jsonCourses = (json.decode (decodedResponse) as Map);
-      List<Map<String, String>> rawCourses = jsonCourses['courses'];
+      List rawCourses = (json.decode (decodedResponse) as Map)['courses'];
 
       courses
         ..clear()
-        ..addAll (_courseFactory.createAll (rawCourses));
+        ..addAll (_courseFactory.createAll (rawCourses.cast()));
     } catch (_) {
       throw new CourseException ('Unable to retrieve the courses list.');
     }

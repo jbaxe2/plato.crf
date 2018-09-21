@@ -33,6 +33,10 @@ material-button.error {
   font-weight: bold !important;
 }
 
+#content-selection-modal {
+  z-index: 8000;
+}
+
 #enrollments-container {
   display: flex;
   flex: initial;

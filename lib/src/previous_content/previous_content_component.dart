@@ -5,13 +5,15 @@ import 'package:angular_components/angular_components.dart';
 
 import '../_application/workflow/workflow_service.dart';
 
+import '../archives/course/archive_course_component.dart';
+import '../archives/resource/archive_resource_component.dart';
+
 import '../cross_listings/cross_listing.dart';
 import '../cross_listings/cross_listing_pipe.dart';
 
 import '../course_request/course_request_service.dart';
 import '../sections/section.dart';
 
-import 'previous_content_mapping.dart';
 import 'previous_content_selection_component.dart';
 import 'previous_content_service.dart';
 
@@ -23,6 +25,7 @@ import 'previous_content_service.dart';
   directives: const [
     MaterialButtonComponent, MaterialIconComponent,
     MaterialListComponent, MaterialListItemComponent,
+    ArchiveCourseComponent, ArchiveResourceComponent,
     PreviousContentSelectionComponent,
     NgFor, NgIf
   ],

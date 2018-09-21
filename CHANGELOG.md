@@ -1,5 +1,10 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20180921
+- Re-established the simplified preview of archived courses.
+- Start of resolving behavioral bugs to 'finalize' 1.1.
+- Current tests (created before 1.1) all pass again.
+
 ## 1.1.20180920
 - Various changes to UI, including adding/changing icons, container styling,
 and other similar changes.
