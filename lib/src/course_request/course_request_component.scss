@@ -1,9 +1,8 @@
-@import 'package:angular_components/css/material/material';
-
 :host {
   display: flex;
-  flex: initial;
-  height: 97%;
+  flex: none;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 ::ng-deep material-button {
@@ -13,16 +12,11 @@
 }
 
 #requested-sections-div {
-  position: absolute !important;
-  top: 0;
-  right: 0;
-  float: right;
   background-color: #ddd !important;
-  border-left: 1px solid #062c43;
-  border-bottom: 1px solid #062c43;
+  margin-left: 4px;
+  border: 1px solid #062c43;
   width: 424px !important;
   height: auto !important;
-  overflow-y: visible !important;
 }
 
 #application {
@@ -30,10 +24,6 @@
   flex: max-content;
   flex-direction: column;
   justify-content: flex-start !important;
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  margin: 4px 432px 4px 4px !important;
 }
 
 header {

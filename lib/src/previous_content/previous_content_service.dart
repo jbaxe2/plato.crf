@@ -70,6 +70,10 @@ class PreviousContentService extends FeaturedSectionService {
     _courseRequest.setPreviousContentEnrollment (previousContent, enrollment);
   }
 
+  /// The [getPreviousContentForSection] method...
+  PreviousContentMapping getPreviousContentForSection (Section section) =>
+    _courseRequest.getPreviousContentForSection (section);
+
   /// The [confirmPreviousContents] method...
   void confirmPreviousContents() {
     if (previousContents.any (

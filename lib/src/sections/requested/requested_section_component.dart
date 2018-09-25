@@ -107,13 +107,13 @@ class RequestedSectionComponent implements OnInit {
 
   /// The [_updateCrossListingInfo] method...
   void _updateCrossListingInfo (CrossListing theCrossListing) {
-    if (null == theCrossListing) {
-      _crossListing = null;
-
+    if (crossListing == theCrossListing) {
       return;
     }
 
-    if (theCrossListing == crossListing) {
+    if (null == theCrossListing) {
+      _crossListing = null;
+
       return;
     }
 
@@ -131,19 +131,21 @@ class RequestedSectionComponent implements OnInit {
 
   /// The [_updatePreviousContentInfo] method...
   void _updatePreviousContentInfo (PreviousContentMapping thePreviousContent) {
+    if (previousContent == thePreviousContent) {
+      return;
+    }
+
     if (null == thePreviousContent) {
       _previousContent = null;
 
       return;
     }
 
-    if (thePreviousContent == previousContent) {
-      return;
-    }
-
     if (thePreviousContent.section == section) {
       _previousContent = thePreviousContent;
       _confirmFeaturedOptions();
+    } else {
+      _previousContent = _previousContentService.getPreviousContentForSection (section);
     }
   }
 }

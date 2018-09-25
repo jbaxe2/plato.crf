@@ -118,14 +118,14 @@ class CourseRequestService {
   }
 
   /// The [_submitRequest] method...
-  Future<void> _submitRequest() async {/*
+  Future<void> _submitRequest() async {
     final Response crfResponse = await _http.post (
       _SUBMISSION_URI, body: json.encode (_courseRequest.toJson())
     );
 
     _parseSubmissionResponse (
       json.decode (utf8.decode (crfResponse.bodyBytes))
-    );*/
+    );
   }
 
   /// The [_parseSubmissionResponse] method...

@@ -71,6 +71,10 @@ class CrossListingService extends FeaturedSectionService {
     } catch (_) { rethrow; }
   }
 
+  /// The [getCrossListingForSection] method...
+  CrossListing getCrossListingForSection (Section section) =>
+    _courseRequest.getCrossListingForSection (section);
+
   /// The [confirmCrossListings] method...
   void confirmCrossListings() {
     if (

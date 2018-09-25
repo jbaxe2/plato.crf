@@ -15,9 +15,7 @@ p {
 
 .requested-sections-header {
   background-color: #718198;
-  position: relative;
-  margin: 8px 8px 0 8px;
-  border: 1px solid #062c43;
+  padding: 8px;
   color: white;
   font-weight: bold;
   text-align: center;
@@ -25,13 +23,6 @@ p {
 
 .meta-panels {
   margin: 0 8px 0 8px;
-}
-
-#legend-note {
-  display: block;
-  margin-top: 8px;
-  border-top: 1px dashed #718198;
-  padding-top: 8px;
 }
 
 #requested-sections-div {
