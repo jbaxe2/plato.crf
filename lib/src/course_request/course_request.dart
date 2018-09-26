@@ -423,7 +423,7 @@ class CourseRequest {
       'sections': sections,
       'crossListings': crossListings,
       'requestedSections': _buildRequestedSections(),
-      'context': _platoUser.isLtiSession
+      'context': _platoUser.isLtiSession ? 'lti' : 'normal'
     };
   }
 

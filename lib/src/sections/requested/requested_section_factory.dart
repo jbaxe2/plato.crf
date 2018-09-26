@@ -41,7 +41,7 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
 
   /// The [create] method...
   @override
-  RequestedSection create (Map<String, dynamic> rawRequestedSection) {
+  RequestedSection create (covariant Map<String, dynamic> rawRequestedSection) {
     if (!(rawRequestedSection.containsKey ('section') &&
           rawRequestedSection.containsKey ('crossListing') &&
           rawRequestedSection.containsKey ('previousContent'))) {
@@ -79,7 +79,9 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
 
   /// The [createAll] method...
   @override
-  List<RequestedSection> createAll (Iterable<Map<String, dynamic>> rawRequestedSections) {
+  List<RequestedSection> createAll (
+    covariant Iterable<Map<String, dynamic>> rawRequestedSections
+  ) {
     var requestedSections = new List<RequestedSection>();
 
     try {
