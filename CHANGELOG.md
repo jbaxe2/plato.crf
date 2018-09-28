@@ -1,10 +1,17 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20180928
+- Updated dependencies (disabled pageloader dev dependency due to constraint
+issues with build).
+- Resolved bug where removing course from a cross-listing set while on the
+previous content step was not reflected in previous content UI.
+
 ## 1.1.20180925
 - Resolved layout issues to make application more mobile-friendly.
-- Resolved an issue where removing previous content from a cross-listed requested
-section did not remove it from the other sections in the cross-listing set (just
-in the requested sections interface; it was correctly removed from the request).
+- Resolved an issue where removing previous content from a cross-listed
+requested section did not remove it from the other sections in the cross-listing
+set (just in the requested sections interface; it was correctly removed from the
+request).
 - Discovered a new behavioral bug:
   - If a section is removed from a cross-listing set while on the previous
   content step, this action should be reflected in the previous content UI.

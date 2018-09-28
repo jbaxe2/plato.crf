@@ -31,7 +31,8 @@ import 'previous_content_service.dart';
   ],
   providers: const [
     PreviousContentService, EnrollmentsService, RetrieveArchivesService,
-    PullArchiveService, BrowseArchiveService, ProgressService
+    PullArchiveService, BrowseArchiveService, ProgressService,
+    overlayBindings
   ]
 )
 class PreviousContentSelectionComponent implements OnInit {

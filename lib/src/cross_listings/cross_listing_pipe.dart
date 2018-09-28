@@ -7,7 +7,7 @@ import '../sections/section.dart';
 import 'cross_listing.dart';
 
 /// The [CrossListingPipe] class...
-@Pipe('crossListingPipe')
+@Pipe('crossListingPipe', pure: false)
 class CrossListingPipe implements PipeTransform {
   /// The [transform] method...
   String transform (CrossListing crossListing) {

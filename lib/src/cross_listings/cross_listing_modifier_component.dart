@@ -20,7 +20,7 @@ import 'cross_listing_service.dart';
     ModalComponent, MaterialDialogComponent, MaterialCheckboxComponent,
     MaterialButtonComponent, MaterialIconComponent, NgFor, NgIf
   ],
-  providers: const [CourseRequestService, CrossListingService]
+  providers: const [CourseRequestService, CrossListingService, overlayBindings]
 )
 class CrossListingModifierComponent implements OnInit {
   bool isVisible;
@@ -53,6 +53,10 @@ class CrossListingModifierComponent implements OnInit {
   /// The [sectionHasCrossListing] method...
   bool sectionHasCrossListing (Section section) =>
     _courseRequestService.sectionHasCrossListing (section);
+
+  /// The [sectionInCrossListing] method...
+  bool sectionInCrossListing (Section section) =>
+    sectionHasCrossListing (section) && crossListing.contains (section);
 
   /// The [sectionInOtherCrossListing] method...
   bool sectionInOtherCrossListing (Section section) =>

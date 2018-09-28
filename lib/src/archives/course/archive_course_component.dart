@@ -34,7 +34,8 @@ ComponentFactory<ArchiveItemComponent> getArchiveItemComponentFactory (
     const FactoryProvider (
       ArchiveItemComponent, getArchiveItemComponentFactory,
       deps: const [ArchiveItem]
-    )
+    ),
+    overlayBindings
   ]
 )
 class ArchiveCourseComponent implements OnInit {

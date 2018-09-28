@@ -63,12 +63,4 @@ class CrossListingsComponent implements OnInit {
       _crossListingService.createCrossListingSet();
     } catch (_) {}
   }
-
-  /// The [confirmCrossListings] method...
-  void confirmCrossListings() {
-    try {
-      _crossListingService.confirmCrossListings();
-      isVisible = false;
-    } catch (_) {}
-  }
 }

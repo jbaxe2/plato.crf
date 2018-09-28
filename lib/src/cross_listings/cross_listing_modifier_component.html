@@ -16,6 +16,7 @@
           id="section-{{section.sectionId}}-checkbox"
           (change)="handleCrossListingSection(section, $event)"
           themeColor="#062c43"
+          [checked]="sectionInCrossListing(section)"
           [disabled]="sectionInOtherCrossListing(section)">
         <strong>[{{section.sectionId}}]</strong> &nbsp; {{section.title}}
       </material-checkbox>

@@ -11,10 +11,10 @@ import 'progress_service.dart';
   templateUrl: 'progress_component.html',
   styleUrls: const ['progress_component.css'],
   directives: const [
-    ModalComponent, MaterialDialogComponent, MaterialIconComponent,
-    MaterialProgressComponent
+    AutoFocusDirective, ModalComponent, MaterialDialogComponent,
+    MaterialIconComponent, MaterialProgressComponent
   ],
-  providers: const [ProgressService]
+  providers: const [ProgressService, overlayBindings]
 )
 class ProgressComponent implements OnInit {
   bool isVisible;
