@@ -15,7 +15,7 @@ import 'archive_resource.dart';
   directives: const [
     ModalComponent, MaterialDialogComponent, MaterialButtonComponent, NgIf
   ],
-  providers: const [BrowseArchiveService]
+  providers: const [BrowseArchiveService, popupBindings]
 )
 class ArchiveResourceComponent implements OnInit {
   ArchiveResource resource;

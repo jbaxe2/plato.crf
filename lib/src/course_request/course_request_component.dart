@@ -28,7 +28,7 @@ import 'course_request_service.dart';
     NgIf
   ],
   providers: const [
-    materialProviders, domServiceBinding, scrollHostProviders,
+    materialProviders, domServiceBinding, scrollHostProviders, popupBindings,
     CourseRequestService
   ]
 )

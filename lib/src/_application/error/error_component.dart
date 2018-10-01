@@ -15,7 +15,7 @@ import 'plato_exception.dart';
     AutoFocusDirective, ModalComponent, MaterialDialogComponent,
     MaterialIconComponent, MaterialButtonComponent
   ],
-  providers: const [ErrorService, overlayBindings]
+  providers: const [ErrorService, popupBindings]
 )
 class ErrorComponent implements OnInit {
   String error;

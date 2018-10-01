@@ -14,7 +14,7 @@ import 'progress_service.dart';
     AutoFocusDirective, ModalComponent, MaterialDialogComponent,
     MaterialIconComponent, MaterialProgressComponent
   ],
-  providers: const [ProgressService, overlayBindings]
+  providers: const [ProgressService, popupBindings]
 )
 class ProgressComponent implements OnInit {
   bool isVisible;

@@ -1,5 +1,8 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20181001
+- Work towards resolving remaining bugs.
+
 ## 1.1.20180928
 - Updated dependencies (disabled pageloader dev dependency due to constraint
 issues with build).
