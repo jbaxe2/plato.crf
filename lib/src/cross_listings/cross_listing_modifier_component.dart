@@ -3,6 +3,8 @@ library plato.crf.components.cross_listing.modifier;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
+import '../_application/workflow/workflow_service.dart';
+
 import '../course_request/course_request_service.dart';
 
 import '../sections/section.dart';
@@ -20,7 +22,10 @@ import 'cross_listing_service.dart';
     ModalComponent, MaterialDialogComponent, MaterialCheckboxComponent,
     MaterialButtonComponent, MaterialIconComponent, NgFor, NgIf
   ],
-  providers: const [CourseRequestService, CrossListingService, overlayBindings]
+  providers: const [
+    CourseRequestService, CrossListingService, WorkflowService,
+    overlayBindings
+  ]
 )
 class CrossListingModifierComponent implements OnInit {
   bool isVisible;
@@ -36,9 +41,11 @@ class CrossListingModifierComponent implements OnInit {
 
   final CrossListingService _crossListingService;
 
+  final WorkflowService _workflowService;
+
   /// The [CrossListingModifierComponent] constructor...
   CrossListingModifierComponent (
-    this._courseRequestService, this._crossListingService
+    this._courseRequestService, this._crossListingService, this._workflowService
   ) {
     isVisible = false;
 
@@ -63,9 +70,11 @@ class CrossListingModifierComponent implements OnInit {
     sectionHasCrossListing (section) && !crossListing.contains (section);
 
   /// The [handleCrossListingSection] method...
-  void handleCrossListingSection (Section section, bool checked) {
-    if (checked && !_selectedSections.contains (section)) {
-      _selectedSections.add (section);
+  void handleCrossListingSection (Section section, dynamic checked) {
+    if ('true' == checked) {
+      if (!_selectedSections.contains (section)) {
+        _selectedSections.add (section);
+      }
     } else {
       _selectedSections.remove (section);
     }
@@ -84,17 +93,31 @@ class CrossListingModifierComponent implements OnInit {
         _crossListingService.addSectionToCrossListing (section, crossListing);
       });
 
-      List<Section> removedSections = crossListing.sections.where (
-        (Section section) => !_selectedSections.contains (section)
-      );
-
-      removedSections.forEach ((Section section) {
-        _crossListingService.removeSectionFromCrossListing (section, crossListing);
-      });
-
+      _handleRemovedSections();
       _crossListingService.confirmCrossListings();
+      _checkCrossListingConditions();
     } catch (_) {}
 
     isVisible = false;
+  }
+
+  /// The [_handleRemovedSections] method...
+  void _handleRemovedSections() {
+    List<Section> removedSections = crossListing.sections.where (
+      (Section section) => !_selectedSections.contains (section)
+    );
+
+    removedSections.forEach ((Section section) {
+      _crossListingService.removeSectionFromCrossListing (section, crossListing);
+    });
+  }
+
+  /// The [_checkCrossListingConditions] method...
+  void _checkCrossListingConditions() {
+    if (_crossListingService.verifyCrossListings()) {
+      _workflowService.markCrossListingsHandled();
+    } else {
+      _workflowService.markPreventWorkflowProgress();
+    }
   }
 }

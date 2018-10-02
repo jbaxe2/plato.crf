@@ -28,8 +28,6 @@ class CrossListingsComponent implements OnInit {
 
   Section invokerSection;
 
-  bool isVisible;
-
   final CrossListingService _crossListingService;
 
   final WorkflowService _workflowService;
@@ -39,9 +37,8 @@ class CrossListingsComponent implements OnInit {
 
   /// The [ngOnInit] method...
   @override
-  void ngOnInit ()  {
+  void ngOnInit()  {
     crossListings = _crossListingService.crossListings;
-    isVisible = false;
 
     _crossListingService.sectionsStreamer.stream.listen (
       (Section section) {
@@ -50,7 +47,8 @@ class CrossListingsComponent implements OnInit {
         );
 
         invokerSection = section;
-        isVisible = true;
+
+        _checkCrossListingConditions();
       }
     );
 
@@ -62,5 +60,14 @@ class CrossListingsComponent implements OnInit {
     try {
       _crossListingService.createCrossListingSet();
     } catch (_) {}
+  }
+
+  /// The [_checkCrossListingConditions] method...
+  void _checkCrossListingConditions() {
+    if (_crossListingService.verifyCrossListings()) {
+      _workflowService.markCrossListingsHandled();
+    } else {
+      _workflowService.markPreventWorkflowProgress();
+    }
   }
 }

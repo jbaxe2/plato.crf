@@ -55,7 +55,7 @@ class WorkflowComponent implements AfterViewInit {
   /// The [progressInWorkflow] method...
   void progressInWorkflow (Event event) {
     stepper.stepForward (event, stepper.steps[stepper.activeStepIndex + 1]);
-    _workflowService.markWorkflowProgressed();
+    _workflowService.markPreventWorkflowProgress();
   }
 
   /// The [goBackInWorkflow] method...
@@ -72,7 +72,7 @@ class WorkflowComponent implements AfterViewInit {
   Future<bool> resetToSectionSelection() async {
     bool jumped = await stepper.jumpStep (1);
 
-    _workflowService.markWorkflowProgressed();
+    _workflowService.markPreventWorkflowProgress();
 
     return jumped;
   }

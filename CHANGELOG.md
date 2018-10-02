@@ -1,5 +1,8 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20181002
+- Tightened workflow controls and behavior for cross-listing sets.
+
 ## 1.1.20181001
 - Work towards resolving remaining bugs.
 
