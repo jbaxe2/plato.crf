@@ -27,7 +27,7 @@ import 'cross_listing_service.dart';
     overlayBindings
   ]
 )
-class CrossListingModifierComponent implements OnInit {
+class CrossListingModifierComponent implements OnInit, AfterViewInit {
   bool isVisible;
 
   @Input()
@@ -36,6 +36,8 @@ class CrossListingModifierComponent implements OnInit {
   List<Section> requestedSections;
 
   List<Section> _selectedSections;
+
+  List<Section> _deselectedSections;
 
   final CourseRequestService _courseRequestService;
 
@@ -51,11 +53,23 @@ class CrossListingModifierComponent implements OnInit {
 
     requestedSections = new List<Section>();
     _selectedSections = new List<Section>();
+    _deselectedSections = new List<Section>();
   }
 
   /// The [ngOnInit] method...
   @override
   void ngOnInit() => (requestedSections = _courseRequestService.requestedSections);
+
+  /// The [ngAfterViewInit] method...
+  @override
+  void ngAfterViewInit() {
+    requestedSections.forEach ((Section requestedSection) {
+      if (sectionInCrossListing (requestedSection) &&
+          !_selectedSections.contains (requestedSection)) {
+        _selectedSections.add (requestedSection);
+      }
+    });
+  }
 
   /// The [sectionHasCrossListing] method...
   bool sectionHasCrossListing (Section section) =>
@@ -74,9 +88,14 @@ class CrossListingModifierComponent implements OnInit {
     if ('true' == checked) {
       if (!_selectedSections.contains (section)) {
         _selectedSections.add (section);
+        _deselectedSections.remove (section);
       }
     } else {
       _selectedSections.remove (section);
+
+      if (!_deselectedSections.contains (section)) {
+        _deselectedSections.add (section);
+      }
     }
   }
 
@@ -89,11 +108,12 @@ class CrossListingModifierComponent implements OnInit {
         );
       }
 
+      _handleRemovedSections();
+
       _selectedSections.forEach ((Section section) {
         _crossListingService.addSectionToCrossListing (section, crossListing);
       });
 
-      _handleRemovedSections();
       _crossListingService.confirmCrossListings();
       _checkCrossListingConditions();
     } catch (_) {}
@@ -103,12 +123,10 @@ class CrossListingModifierComponent implements OnInit {
 
   /// The [_handleRemovedSections] method...
   void _handleRemovedSections() {
-    List<Section> removedSections = crossListing.sections.where (
-      (Section section) => !_selectedSections.contains (section)
-    );
-
-    removedSections.forEach ((Section section) {
-      _crossListingService.removeSectionFromCrossListing (section, crossListing);
+    _deselectedSections.forEach ((Section section) {
+      try {
+        _crossListingService.removeSectionFromCrossListing (section, crossListing);
+      } catch (_) {}
     });
   }
 
