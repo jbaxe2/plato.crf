@@ -1,5 +1,8 @@
 # Plato Course Request Form Changelog
 
+## 1.1.20181029
+- Updated dependency constraints.
+
 ## 1.1.20181003
 - Resolved cross-listing UI bugs.
 
