@@ -16,7 +16,7 @@ import '../services/mock_client/mock_departments_client.dart';
 
 import '../testable.dart';
 
-import 'departments_po.dart.bck';
+import 'departments_po.dart';
 
 // ignore: uri_has_not_been_generated
 import 'package:plato_crf/src/departments/departments_component.template.dart' as dc;

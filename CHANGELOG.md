@@ -1,5 +1,10 @@
 # Plato Course Request Form Changelog
 
+# 1.1.20190103
+- Start of transitioning authentication model to use 3-legged OAuth.
+- Updated Dart SDK lower constraint to 2.1.0.
+- Updated dependency constraints.
+
 ## 1.1.20181029
 - Updated dependency constraints.
 
