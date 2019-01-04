@@ -6,22 +6,22 @@ import '../_application/workflow/workflow_service.dart';
 
 import 'plato_user_component.dart';
 import 'plato_user_service.dart';
-import 'user_authentication_component.dart';
+import 'user_authorization_component.dart';
 
 /// The [UserComponent] class...
 @Component(
   selector: 'user',
   templateUrl: 'user_component.html',
   directives: const [
-    UserAuthenticationComponent, PlatoUserComponent,
+    UserAuthorizationComponent, PlatoUserComponent,
     NgIf
   ],
   providers: const [PlatoUserService, WorkflowService]
 )
 class UserComponent implements OnInit {
-  bool _isAuthenticated;
+  bool _isAuthorized;
 
-  bool get isAuthenticated => _isAuthenticated;
+  bool get isAuthorized => _isAuthorized;
 
   final PlatoUserService _platoUserService;
 
@@ -29,25 +29,25 @@ class UserComponent implements OnInit {
 
   /// The [UserComponent] constructor...
   UserComponent (this._platoUserService, this._workflowService) {
-    _isAuthenticated = false;
+    _isAuthorized = false;
   }
 
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
-    _markIfAuthenticated (_isAuthenticated = _platoUserService.isAuthenticated);
+    _markIfAuthorized (_isAuthorized = _platoUserService.isAuthorized);
 
-    _platoUserService.authStreamController.stream.listen (_markIfAuthenticated);
-    _workflowService.sectionsResetStream.listen (_markAuthenticated);
+    _platoUserService.authStreamController.stream.listen (_markIfAuthorized);
+    _workflowService.sectionsResetStream.listen (_markAuthorized);
   }
 
-  /// The [_markIfAuthenticated] method...
-  void _markIfAuthenticated (bool authReceived) {
-    if ((_isAuthenticated = authReceived)) {
-      _markAuthenticated (authReceived);
+  /// The [_markIfAuthorized] method...
+  void _markIfAuthorized (bool authReceived) {
+    if ((_isAuthorized = authReceived)) {
+      _markAuthorized (authReceived);
     }
   }
 
-  /// The [_markAuthenticated] method...
-  void _markAuthenticated (_) => _workflowService.markUserAuthenticated();
+  /// The [_markAuthorized] method...
+  void _markAuthorized (_) => _workflowService.markUserAuthorized();
 }

@@ -1,4 +1,4 @@
-library plato.crf.components.user.authentication;
+library plato.crf.components.user.authorization;
 
 import 'dart:async' show Future;
 
@@ -11,11 +11,11 @@ import '../enrollments/enrollments_service.dart';
 
 import 'plato_user_service.dart';
 
-/// The [UserAuthenticationComponent] class...
+/// The [UserAuthorizationComponent] class...
 @Component (
-  selector: 'user-authentication',
-  templateUrl: 'user_authentication_component.html',
-  styleUrls: const ['user_authentication_component.css'],
+  selector: 'user-authorization',
+  templateUrl: 'user_authorization_component.html',
+  styleUrls: const ['user_authorization_component.css'],
   directives: const [
     materialInputDirectives, MaterialButtonComponent, MaterialIconComponent
   ],
@@ -23,12 +23,12 @@ import 'plato_user_service.dart';
     PlatoUserService, EnrollmentsService, ProgressService
   ]
 )
-class UserAuthenticationComponent implements OnInit {
+class UserAuthorizationComponent implements OnInit {
   String username;
 
   String password;
 
-  bool get isAuthenticated => _platoUserService.isAuthenticated;
+  bool get isAuthorized => _platoUserService.isAuthorized;
 
   final PlatoUserService _platoUserService;
 
@@ -36,8 +36,8 @@ class UserAuthenticationComponent implements OnInit {
 
   final ProgressService _progressService;
 
-  /// The [UserAuthenticationComponent] constructor...
-  UserAuthenticationComponent (
+  /// The [UserAuthorizationComponent] constructor...
+  UserAuthorizationComponent (
     this._platoUserService, this._enrollmentsService, this._progressService
   ) {
     username = '';
@@ -54,7 +54,8 @@ class UserAuthenticationComponent implements OnInit {
 
       await _platoUserService.retrieveSession();
 
-      if (_platoUserService.isAuthenticated && _platoUserService.isLtiSession) {
+      if ((_platoUserService.isAuthorized && _platoUserService.isLtiSession) ||
+          await _platoUserService.authorizeUser()) {
         await _retrieveUserAndEnrollments();
       }
     } catch (_) {}
@@ -62,17 +63,12 @@ class UserAuthenticationComponent implements OnInit {
     _progressService.revoke();
   }
 
-  /// The [authenticateLearn] method...
-  Future<void> authenticateLearn() async {
-    if (username.isEmpty || password.isEmpty) {
-      return;
-    }
-
+  /// The [authorize] method...
+  Future<void> authorize() async {
     try {
-      _progressService.invoke ('Attempting to verify Plato credentials.');
-      await _platoUserService.authenticateLearn (username, password);
+      _progressService.invoke ('Attempting to authorize Plato credentials.');
 
-      await _retrieveUserAndEnrollments();
+      await _platoUserService.authorizeApplication();
     } catch (_) {}
 
     _progressService.revoke();

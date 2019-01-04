@@ -1,12 +1,12 @@
 <modal [visible]="isVisible" id="content-selection-modal">
   <material-dialog headered>
     <div header>
-      <h3 *ngIf="enrollments.isEmpty">Please authenticate first...</h3>
+      <h3 *ngIf="enrollments.isEmpty">Please authorize first...</h3>
       <h3 *ngIf="enrollments.isNotEmpty">Select previous content to copy...</h3>
     </div>
 
     <p *ngIf="enrollments.isEmpty">
-      Please authenticate with Plato <strong>(Step 1: Authentication)</strong>.
+      Please authorize with Plato <strong>(Step 1: Authorization)</strong>.
       <br><br>Doing so will allow you to select a current or previous<br>Plato
       enrollment to use as previous content for<br>a requested section.
     </p>

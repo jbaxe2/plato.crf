@@ -2,6 +2,7 @@ library plato.crf.services.user.plato;
 
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json, utf8;
+import 'dart:html' show window;
 
 import 'package:http/http.dart' show Client, Response;
 
@@ -14,6 +15,12 @@ import 'user_factory.dart';
 const String _LEARN_AUTH_URI = '/plato/authenticate/learn';
 const String _SESSION_URI = '/plato/retrieve/session';
 const String _USER_URI = '/plato/retrieve/user';
+
+final String _REST_AUTH_URI =
+  'https://bbl.westfield.ma.edu/learn/api/public/v1/oauth2/authorizationcode'
+  '?redirect_uri=${Uri.encodeFull ('http://dev.local/plato-crf/')}'
+  '&client_id=f36e3a35-e275-4090-b2e4-f7590038dec2'
+  '&response_type=code&scope=read';
 
 /// The [PlatoUserService] class...
 class PlatoUserService {
@@ -29,9 +36,9 @@ class PlatoUserService {
 
   bool get isLtiSession => _isLtiSession;
 
-  bool _isAuthenticated;
+  bool _isAuthorized;
 
-  bool get isAuthenticated => _isAuthenticated;
+  bool get isAuthorized => _isAuthorized;
 
   StreamController<bool> authStreamController;
 
@@ -48,7 +55,7 @@ class PlatoUserService {
   /// The [PlatoUserService] private constructor...
   PlatoUserService._ (this._http) {
     _isLtiSession = false;
-    _isAuthenticated = false;
+    _isAuthorized = false;
 
     authStreamController = new StreamController<bool>.broadcast();
     _userFactory = new UserFactory();
@@ -67,7 +74,7 @@ class PlatoUserService {
           (rawSession.containsKey ('learn.user.authenticated'))) {
         if ('true' == rawSession['learn.user.authenticated']) {
           _isLtiSession = true;
-          _isAuthenticated = true;
+          _isAuthorized = true;
         }
       }
     } catch (_) {
@@ -75,46 +82,56 @@ class PlatoUserService {
     }
   }
 
-  /// The [authenticateLearn] method...
-  Future<void> authenticateLearn (String theUsername, String thePassword) async {
-    if (isAuthenticated) {
-      throw new UserException (
-        'Authentication has already completed; cannot authenticate again.'
-      );
-    }
-
-    if (theUsername.isEmpty || thePassword.isEmpty) {
-      return;
+  /// The [authorizeApplication] method...
+  Future<void> authorizeApplication() async {
+    if (isAuthorized) {
+      throw new UserException ('Authorization has already completed.');
     }
 
     try {
-      final Response authResponse = await _http.post (
-        _LEARN_AUTH_URI,
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: {'username': theUsername, 'password': thePassword}
-      );
-
-      final Map<String, dynamic> rawAuth =
-        json.decode (utf8.decode (authResponse.bodyBytes)) as Map;
-
-      if (true == rawAuth['learn.user.authenticated']) {
-        _isAuthenticated = true;
-
-        _username = theUsername;
-        _password = thePassword;
-      } else {
-        throw theUsername;
-      }
+      window.location.replace (_REST_AUTH_URI);
     } catch (_) {
-      throw new UserException ('Authentication for the Plato user has failed.');
+      throw new UserException ('Authorization for the Plato user has failed.');
     }
+  }
+
+  /// The [authorizeUser] method...
+  Future<bool> authorizeUser() async {
+    var location = Uri.parse (window.location.href);
+
+    if (location.queryParameters.containsKey ('code')) {
+      try {
+        final Response rawAuthResponse = await _http.post (
+          Uri.parse (_LEARN_AUTH_URI),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: {'authCode': location.queryParameters['code']}
+        );
+
+        final Map<String, dynamic> authResponse =
+          json.decode (utf8.decode (rawAuthResponse.bodyBytes)) as Map;
+
+        if (true == authResponse['learn.user.authenticated']) {
+          _isAuthorized = true;
+        } else {
+          throw authResponse;
+        }
+      } catch (_) {
+        throw new UserException (
+          'Establishing user context via authorization has failed.'
+        );
+      }
+
+      return true;
+    }
+
+    return false;
   }
 
   /// The [retrieveUser] method...
   Future<void> retrieveUser() async {
-    if (!_isAuthenticated) {
+    if (!_isAuthorized) {
       throw new UserException (
-        'Authentication must happen before retrieving user information.'
+        'Authorization must happen before retrieving user information.'
       );
     }
 

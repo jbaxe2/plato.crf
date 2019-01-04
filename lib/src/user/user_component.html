@@ -1,14 +1,13 @@
 <div>
-  <p *ngIf="!isAuthenticated"><strong>
-    Before we can request courses, first we need to know who you are.  Please
-    authenticate below using your Plato username and password.
+  <p *ngIf="!isAuthorized"><strong>
+    Before we can request courses, first we need to know who you are.
   </strong></p>
 
-  <p *ngIf="isAuthenticated">
+  <p *ngIf="isAuthorized">
     Please click the <strong>Continue</strong> button below to proceed with the
     request.
   </p>
 
-  <user-authentication *ngIf="!isAuthenticated"></user-authentication>
-  <plato-user *ngIf="isAuthenticated"></plato-user>
+  <user-authorization *ngIf="!isAuthorized"></user-authorization>
+  <plato-user *ngIf="isAuthorized"></plato-user>
 </div>
