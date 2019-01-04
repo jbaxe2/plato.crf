@@ -18,7 +18,7 @@ const String _USER_URI = '/plato/retrieve/user';
 
 final String _REST_AUTH_URI =
   'https://bbl.westfield.ma.edu/learn/api/public/v1/oauth2/authorizationcode'
-  '?redirect_uri=${Uri.encodeFull ('http://dev.local/plato-crf/')}'
+  '?redirect_uri=${Uri.encodeFull (window.location.href)}'
   '&client_id=f36e3a35-e275-4090-b2e4-f7590038dec2'
   '&response_type=code&scope=read';
 

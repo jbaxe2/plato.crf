@@ -247,7 +247,7 @@ class CourseRequest {
   void addPreviousContentMapping (PreviousContentMapping aPreviousContent) {
     if (null == _platoUser) {
       throw new PreviousContentException (
-        'Cannot add previous content when the user has not yet authenticated.'
+        'Cannot add previous content when the user has not yet authorized.'
       );
     }
 
