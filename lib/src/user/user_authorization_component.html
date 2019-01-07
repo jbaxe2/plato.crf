@@ -2,14 +2,12 @@
   <p>
     Click the button below to authorize the Plato Course Request Form to create
     courses on your behalf.<br><br>
-    You will be redirected to the Plato login page, and are required to log into
-    Plato (if you're not logged in already).  Then you will be asked to allow
-    authorization for the application (this only needs to be done once).<br><br>
-    Once you have authenticated and provided authorization, you will be brought
-    back here to continue the course request.
+    Authorization may require logging into Plato (upon redirect) and clicking
+    'Allow' on the next page (this happens only once).  After, you will be
+    brought back here to continue with your course request.
   </p><br>
 
   <material-button raised [disabled]="isAuthorized" (trigger)="authorize()">
-    <material-icon icon="fingerprint"></material-icon> &nbsp; Authorize for Course Request
+    <material-icon icon="how_to_reg"></material-icon> &nbsp; Authorize for Course Request
   </material-button>
 </div>
