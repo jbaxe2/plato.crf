@@ -30,8 +30,6 @@ class PlatoUserService {
 
   String _username;
 
-  String _password;
-
   bool _isLtiSession;
 
   bool get isLtiSession => _isLtiSession;
@@ -143,9 +141,7 @@ class PlatoUserService {
 
       _username = rawUser['learn.user.username'];
 
-      platoUser = _userFactory.create (
-        rawUser, _username, _password, _isLtiSession
-      );
+      platoUser = _userFactory.create (rawUser, _username, _isLtiSession);
     } catch (_) {
       throw new UserException ('Unable to retrieve the user information.');
     }

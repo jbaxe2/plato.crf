@@ -20,7 +20,7 @@ export 'package:plato_crf/src/user/plato_user.dart';
 var courseRequest = new CourseRequest();
 
 var platoUser = new PlatoUser (
-  'username', 'password', 'first', 'last', 'email@domain.com', 'A12345678`'
+  'username', 'first', 'last', 'email@domain.com', 'A12345678`'
 );
 
 List<Section> sections = createSomeSections();

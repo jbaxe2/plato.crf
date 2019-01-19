@@ -1,5 +1,8 @@
 # Plato Course Request Form Changelog
 
+## 1.2.20190119
+- Removed remnants from old authentication scheme.
+
 ## 1.2.20190107
 - Minor tweaking of language for user authorization component.
 
