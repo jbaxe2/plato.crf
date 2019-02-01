@@ -15,22 +15,20 @@ Features currently include:
 * Requesting courses.
 * Creating cross-listing sets that courses may be added to.
 * Selecting previous content for each requested course, including
- archived course content.
+archived course content.
   * For cross-listed courses, previous content applies to the
-   parent shell, not the children.
+  parent shell, not the children.
 * Previewing archived courses in a simplified view.
   * The preview displays the content areas for the course.
   * Content areas' content can be drilled down, folder by folder.
   * Linked files in the simplified view may be downloaded.
   * Currently does not support preview of discussions, tests,
-   grade center, users, groups, etc.
+  grade center, users, groups, etc.
 
-The client is still a current work-in-progress, but is now *1.1*.
+The client is still a current work-in-progress, but is now *1.2*.
 
 TODO:
 * The Plato Archived Courses Viewer is currently being developed as
- a different project.  Once completed, this will take the place of
- the simplified archive viewer for this application.
+a different project.  Once completed, this will take the place of the
+simplified archive viewer for this application, and will be removed.
 * More tests must be written, including component tests.
-* This application went through *major* interface changes with the
- transition from 1.0 to 1.1, and resulting code should be refactored.

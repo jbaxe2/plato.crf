@@ -1,5 +1,9 @@
 # Plato Course Request Form Changelog
 
+## 1.2.20190201
+- Updated README.
+- Updated dependency constraints.
+
 ## 1.2.20190107
 - Minor tweaking of language for user authorization component.
 
