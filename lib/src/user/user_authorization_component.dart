@@ -24,10 +24,6 @@ import 'plato_user_service.dart';
   ]
 )
 class UserAuthorizationComponent implements OnInit {
-  String username;
-
-  String password;
-
   bool get isAuthorized => _platoUserService.isAuthorized;
 
   final PlatoUserService _platoUserService;
@@ -39,10 +35,7 @@ class UserAuthorizationComponent implements OnInit {
   /// The [UserAuthorizationComponent] constructor...
   UserAuthorizationComponent (
     this._platoUserService, this._enrollmentsService, this._progressService
-  ) {
-    username = '';
-    password = '';
-  }
+  );
 
   /// The [ngOnInit] method...
   @override

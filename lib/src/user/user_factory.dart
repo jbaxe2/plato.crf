@@ -13,8 +13,7 @@ class UserFactory implements PlatoFactory<PlatoUser> {
   /// The [create] method...
   @override
   PlatoUser create (
-    Map<String, dynamic> rawUser,
-    [String username, String password, bool isLtiSession = false]
+    Map<String, dynamic> rawUser, [String username, bool isLtiSession = false]
   ) {
     if (!(rawUser.containsKey ('learn.user.username') &&
           rawUser.containsKey ('learn.user.firstName') &&
@@ -27,7 +26,7 @@ class UserFactory implements PlatoFactory<PlatoUser> {
     }
 
     return new PlatoUser (
-      username, password,
+      username,
       rawUser['learn.user.firstName'], rawUser['learn.user.lastName'],
       rawUser['learn.user.email'], rawUser['banner.user.cwid'],
       isLtiSession
