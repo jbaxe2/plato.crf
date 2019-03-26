@@ -10,6 +10,8 @@ import 'package:test/test.dart';
 import 'package:plato_crf/src/courses/courses_service.dart';
 
 import 'package:plato_crf/src/departments/departments_component.dart';
+import 'package:plato_crf/src/departments/departments_component.template.dart' as dc;
+
 import 'package:plato_crf/src/departments/departments_service.dart';
 
 import '../services/mock_client/mock_departments_client.dart';
@@ -18,10 +20,6 @@ import '../testable.dart';
 
 import 'departments_po.dart';
 
-// ignore: uri_has_not_been_generated
-import 'package:plato_crf/src/departments/departments_component.template.dart' as dc;
-
-// ignore: uri_has_not_been_generated
 import 'departments_component_test.template.dart' as dct;
 
 /// The [main] function...
@@ -46,6 +44,8 @@ class DepartmentsComponentTester implements Testable {
   /// The [run] method...
   @override
   void run() {
+    dct.initReflector();
+
     _init();
 
     group (
@@ -77,6 +77,8 @@ class DepartmentsComponentTester implements Testable {
   void _testDepartmentsComponent() {
     test (
       'Departments in the component are loaded successfully.', () async {
+        await deptsPo.initDeptsPO();
+
         expect ((0 < (await deptsPo.departments).length), true);
       }
     );

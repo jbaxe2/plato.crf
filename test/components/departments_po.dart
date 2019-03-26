@@ -18,13 +18,16 @@ abstract class DepartmentsPO {
   Future<List<Department>> departments;
 
   /// The [DepartmentsPO] constructor...
-  DepartmentsPO() {
-    () async => (departments = _deptsFromSelectItems());
-  }
+  DepartmentsPO();
 
   /// The [DepartmentsPO] factory constructor...
   // ignore: redirect_to_non_class
   factory DepartmentsPO.create (PageLoaderElement context) = $DepartmentsPo.create;
+
+  /// The [initDeptsPO] method...
+  Future<void> initDeptsPO() async {
+    departments = _deptsFromSelectItems();
+  }
 
   /// The [_deptsFromSelectItems] method...
   Future<List<Department>> _deptsFromSelectItems() async {
