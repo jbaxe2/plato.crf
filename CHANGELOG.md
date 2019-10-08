@@ -1,5 +1,9 @@
 # Plato Course Request Form Changelog
 
+## 1.3.20191008
+- Start of removing course archive viewing capabilities, pushing to the course
+archives viewing application instead.
+
 ## 1.2.20190913
 - Updated Dart SDK and dependency constraints.
 

@@ -1,6 +1,7 @@
 library plato.crf.components.previous_content.selection;
 
 import 'dart:async' show Future;
+import 'dart:html' show window;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
@@ -8,8 +9,6 @@ import 'package:angular_components/angular_components.dart';
 import '../_application/progress/progress_service.dart';
 
 import '../archives/retrieve_archives_service.dart';
-import '../archives/pull_archive_service.dart';
-import '../archives/browse_archive_service.dart';
 
 import '../enrollments/enrollment.dart';
 import '../enrollments/enrollments_service.dart';
@@ -31,7 +30,7 @@ import 'previous_content_service.dart';
   ],
   providers: const [
     PreviousContentService, EnrollmentsService, RetrieveArchivesService,
-    PullArchiveService, BrowseArchiveService, ProgressService,
+    ProgressService,
     popupBindings
   ]
 )
@@ -44,6 +43,8 @@ class PreviousContentSelectionComponent implements OnInit {
 
   Enrollment selected;
 
+  String get archivesUri => _calculateArchivesUri();
+
   static bool _checkedForArchives = false;
 
   final PreviousContentService _previousContentService;
@@ -52,16 +53,12 @@ class PreviousContentSelectionComponent implements OnInit {
 
   final RetrieveArchivesService _retrieveArchivesService;
 
-  final PullArchiveService _pullArchiveService;
-
-  final BrowseArchiveService _browseArchiveService;
-
   final ProgressService _progressService;
 
   /// The [PreviousContentSelectionComponent] constructor...
   PreviousContentSelectionComponent (
-    this._previousContentService, this._enrollmentsService, this._retrieveArchivesService,
-    this._browseArchiveService, this._pullArchiveService, this._progressService
+    this._previousContentService, this._enrollmentsService,
+    this._retrieveArchivesService, this._progressService
   );
 
   /// The [ngOnInit] method...
@@ -86,21 +83,6 @@ class PreviousContentSelectionComponent implements OnInit {
     }
   }
 
-  /// The [browseArchive] method...
-  Future<void> browseArchive (String archiveId) async {
-    try {
-      String termId = (archiveId.split ('_')).last;
-
-      _progressService.invoke ('Pulling the archive for browsing.');
-      await _pullArchiveService.pullArchive (archiveId, termId);
-
-      _progressService.invoke ('Processing course archive information.');
-      await _browseArchiveService.browseArchive (archiveId);
-    } catch (_) {}
-
-    _progressService.revoke();
-  }
-
   /// The [confirmPreviousContent] method...
   void confirmPreviousContent() {
     PreviousContentMapping previousContent;
@@ -108,7 +90,8 @@ class PreviousContentSelectionComponent implements OnInit {
     try {
       previousContent =
         _previousContentService.previousContents.firstWhere (
-          (PreviousContentMapping prevContent) => (prevContent.section == invokerSection)
+          (PreviousContentMapping prevContent) =>
+            (prevContent.section == invokerSection)
         );
     } catch (_) {}
 
@@ -137,5 +120,14 @@ class PreviousContentSelectionComponent implements OnInit {
     } catch (_) {}
 
     _progressService.revoke();
+  }
+
+  /**
+   * The [_calculateArchivesUri] method...
+   */
+  String _calculateArchivesUri() {
+    Uri uriLocation = Uri.parse (window.location.toString());
+
+    return '/plato-archives?code=${uriLocation.queryParameters['code']}';
   }
 }
