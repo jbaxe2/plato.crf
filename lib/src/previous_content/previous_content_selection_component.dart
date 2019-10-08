@@ -122,9 +122,7 @@ class PreviousContentSelectionComponent implements OnInit {
     _progressService.revoke();
   }
 
-  /**
-   * The [_calculateArchivesUri] method...
-   */
+  /// The [_calculateArchivesUri] method...
   String _calculateArchivesUri() {
     Uri uriLocation = Uri.parse (window.location.toString());
 
