@@ -43,8 +43,6 @@ class PreviousContentSelectionComponent implements OnInit {
 
   Enrollment selected;
 
-  String get archivesUri => _calculateArchivesUri();
-
   static bool _checkedForArchives = false;
 
   final PreviousContentService _previousContentService;
@@ -122,10 +120,11 @@ class PreviousContentSelectionComponent implements OnInit {
     _progressService.revoke();
   }
 
-  /// The [_calculateArchivesUri] method...
-  String _calculateArchivesUri() {
+  /// The [calculateArchivesUri] method...
+  String calculateArchivesUri (Enrollment enrollment) {
     Uri uriLocation = Uri.parse (window.location.toString());
 
-    return '/plato-archives?code=${uriLocation.queryParameters['code']}';
+    return '/plato-archives?code=${uriLocation.queryParameters['code']}#'
+      'crf_browse=${enrollment.courseId}';
   }
 }

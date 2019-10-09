@@ -1,5 +1,9 @@
 # Plato Course Request Form Changelog
 
+## 1.3.20191009
+- More work on pushing archive viewing to the corresponding application.
+- Updated dependency constraints.
+
 ## 1.3.20191008
 - Start of removing course archive viewing capabilities, pushing to the course
 archives viewing application instead.
