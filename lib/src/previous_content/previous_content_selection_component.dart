@@ -1,7 +1,6 @@
 library plato.crf.components.previous_content.selection;
 
 import 'dart:async' show Future;
-import 'dart:html' show window;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
@@ -121,10 +120,6 @@ class PreviousContentSelectionComponent implements OnInit {
   }
 
   /// The [calculateArchivesUri] method...
-  String calculateArchivesUri (Enrollment enrollment) {
-    Uri uriLocation = Uri.parse (window.location.toString());
-
-    return '/plato-archives?code=${uriLocation.queryParameters['code']}#'
-      'crf_browse=${enrollment.courseId}';
-  }
+  String calculateArchivesUri (Enrollment enrollment) =>
+    '/archives?crf_browse=${enrollment.courseId}';
 }
