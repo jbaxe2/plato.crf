@@ -1,21 +1,21 @@
 library plato.crf.tests.models.dummy;
 
 /// Silence analyzer: [CrossListingException]
-import 'package:plato_crf/src/course_request/course_request.dart';
-import 'package:plato_crf/src/cross_listings/cross_listing.dart';
-import 'package:plato_crf/src/cross_listings/cross_listing_exception.dart';
-import 'package:plato_crf/src/enrollments/enrollment.dart';
-import 'package:plato_crf/src/previous_content/previous_content_mapping.dart';
-import 'package:plato_crf/src/sections/section.dart';
-import 'package:plato_crf/src/user/plato_user.dart';
+import 'package:plato.crf/src/course_request/course_request.dart';
+import 'package:plato.crf/src/cross_listings/cross_listing.dart';
+import 'package:plato.crf/src/cross_listings/cross_listing_exception.dart';
+import 'package:plato.crf/src/enrollments/enrollment.dart';
+import 'package:plato.crf/src/previous_content/previous_content_mapping.dart';
+import 'package:plato.crf/src/sections/section.dart';
+import 'package:plato.crf/src/user/plato_user.dart';
 
-export 'package:plato_crf/src/course_request/course_request.dart';
-export 'package:plato_crf/src/cross_listings/cross_listing.dart';
-export 'package:plato_crf/src/cross_listings/cross_listing_exception.dart';
-export 'package:plato_crf/src/enrollments/enrollment.dart';
-export 'package:plato_crf/src/previous_content/previous_content_mapping.dart';
-export 'package:plato_crf/src/sections/section.dart';
-export 'package:plato_crf/src/user/plato_user.dart';
+export 'package:plato.crf/src/course_request/course_request.dart';
+export 'package:plato.crf/src/cross_listings/cross_listing.dart';
+export 'package:plato.crf/src/cross_listings/cross_listing_exception.dart';
+export 'package:plato.crf/src/enrollments/enrollment.dart';
+export 'package:plato.crf/src/previous_content/previous_content_mapping.dart';
+export 'package:plato.crf/src/sections/section.dart';
+export 'package:plato.crf/src/user/plato_user.dart';
 
 var courseRequest = new CourseRequest();
 

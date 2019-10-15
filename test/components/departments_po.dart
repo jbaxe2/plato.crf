@@ -4,7 +4,7 @@ import 'dart:async' show Future;
 
 import 'package:pageloader/pageloader.dart';
 
-import 'package:plato_crf/src/departments/department.dart';
+import 'package:plato.crf/src/departments/department.dart';
 
 // ignore: uri_has_not_been_generated
 part 'departments_po.g.dart';

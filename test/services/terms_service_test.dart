@@ -3,7 +3,7 @@ library plato.crf.tests.services.terms;
 
 import 'package:test/test.dart';
 
-import 'package:plato_crf/src/terms/terms_service.dart';
+import 'package:plato.crf/src/terms/terms_service.dart';
 
 import '../testable.dart';
 

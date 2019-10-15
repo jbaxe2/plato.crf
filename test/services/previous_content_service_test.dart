@@ -3,8 +3,8 @@ library plato.crf.tests.services.previous_content;
 
 import 'package:test/test.dart';
 
-import 'package:plato_crf/src/previous_content/previous_content_service.dart';
-import 'package:plato_crf/src/previous_content/previous_content_exception.dart';
+import 'package:plato.crf/src/previous_content/previous_content_service.dart';
+import 'package:plato.crf/src/previous_content/previous_content_exception.dart';
 
 import '../testable.dart';
 

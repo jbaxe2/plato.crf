@@ -3,7 +3,7 @@ library plato.crf.tests.services.departments;
 
 import 'package:test/test.dart';
 
-import 'package:plato_crf/src/departments/departments_service.dart';
+import 'package:plato.crf/src/departments/departments_service.dart';
 
 import '../testable.dart';
 

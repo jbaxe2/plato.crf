@@ -71,8 +71,12 @@ class PlatoUserService {
       if ((rawSession.containsKey ('plato.session.exists')) &&
           (rawSession.containsKey ('learn.user.authenticated'))) {
         if ('true' == rawSession['learn.user.authenticated']) {
-          _isLtiSession = true;
           _isAuthorized = true;
+
+          if ((rawSession.containsKey ('plato.lti.session')) &&
+              ('true' == rawSession['plato.lti.session'])) {
+            _isLtiSession = true;
+          }
         }
       }
     } catch (_) {

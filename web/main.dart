@@ -9,7 +9,7 @@ import 'package:http/http.dart' show Client;
 import 'package:http/browser_client.dart' show BrowserClient;
 
 // ignore: uri_has_not_been_generated
-import 'package:plato_crf/src/course_request/course_request_component.template.dart' as cr;
+import 'package:plato.crf/src/course_request/course_request_component.template.dart' as cr;
 
 // ignore: uri_has_not_been_generated
 import 'main.template.dart' as cr_main;
