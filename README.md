@@ -6,8 +6,8 @@ to request course shells for use on Plato (Blackboard Learn).
 Successful submission of the request results in real-time creation of
 the faculty member's requested Blackboard courses (although archived
 content must currently be manually loaded in, due to lack of API by
-Blackboard, for which such courses will be created but instructors
-denied access until the content has been loaded in).
+Blackboard, for which such courses will be created [but instructors
+denied access] until the content has been loaded in).
  
 Features currently include:
 * Being context-aware for LTI-based launches.
@@ -18,17 +18,10 @@ Features currently include:
 archived course content.
   * For cross-listed courses, previous content applies to the
   parent shell, not the children.
-* Previewing archived courses in a simplified view.
-  * The preview displays the content areas for the course.
-  * Content areas' content can be drilled down, folder by folder.
-  * Linked files in the simplified view may be downloaded.
-  * Currently does not support preview of discussions, tests,
-  grade center, users, groups, etc.
+  * Archived courses can be reviewed via a link which launches the
+  archived courses viewer, directly reviewing that particular archive.
 
-The client is still a current work-in-progress, but is now *1.2*.
+The client is still a current work-in-progress, but is now *1.3*.
 
 TODO:
-* The Plato Archived Courses Viewer is currently being developed as
-a different project.  Once completed, this will take the place of the
-simplified archive viewer for this application, and will be removed.
 * More tests must be written, including component tests.
