@@ -30,13 +30,13 @@ class PlatoUserService {
 
   String _username;
 
-  bool _isLtiSession;
-
-  bool get isLtiSession => _isLtiSession;
-
   bool _isAuthorized;
 
   bool get isAuthorized => _isAuthorized;
+
+  bool _isLtiSession;
+
+  bool get isLtiSession => _isLtiSession;
 
   StreamController<bool> authStreamController;
 
@@ -52,8 +52,8 @@ class PlatoUserService {
 
   /// The [PlatoUserService] private constructor...
   PlatoUserService._ (this._http) {
-    _isLtiSession = false;
     _isAuthorized = false;
+    _isLtiSession = false;
 
     authStreamController = new StreamController<bool>.broadcast();
     _userFactory = new UserFactory();
@@ -65,7 +65,7 @@ class PlatoUserService {
     try {
       final Response sessionResponse = await _http.get (_SESSION_URI);
 
-      final Map<String, dynamic> rawSession =
+      final Map<String, String> rawSession =
         (json.decode (utf8.decode (sessionResponse.bodyBytes)) as Map)['session'];
 
       if ((rawSession.containsKey ('plato.session.exists')) &&
@@ -85,9 +85,9 @@ class PlatoUserService {
   }
 
   /// The [authorizeApplication] method...
-  Future<void> authorizeApplication() async {
+  void authorizeApplication() async {
     if (isAuthorized) {
-      throw new UserException ('Authorization has already completed.');
+      return;
     }
 
     try {
@@ -99,6 +99,10 @@ class PlatoUserService {
 
   /// The [authorizeUser] method...
   Future<bool> authorizeUser() async {
+    if (isAuthorized) {
+      return true;
+    }
+
     var location = Uri.parse (window.location.href);
 
     if (location.queryParameters.containsKey ('code')) {
@@ -131,7 +135,7 @@ class PlatoUserService {
 
   /// The [retrieveUser] method...
   Future<void> retrieveUser() async {
-    if (!_isAuthorized) {
+    if (!isAuthorized) {
       throw new UserException (
         'Authorization must happen before retrieving user information.'
       );

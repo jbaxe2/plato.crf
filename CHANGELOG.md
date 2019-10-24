@@ -1,5 +1,9 @@
 # Plato Course Request Form Changelog
 
+## 1.3.20191024
+- Work on resolving LTI-based launch issues.
+- Updated dependency constraints.
+
 ## 1.3.20191015
 - Work to stabilize concurrent use of course request with archives viewer.
 

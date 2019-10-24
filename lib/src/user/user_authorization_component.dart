@@ -46,8 +46,9 @@ class UserAuthorizationComponent implements OnInit {
       );
 
       await _platoUserService.retrieveSession();
+      await _platoUserService.authorizeUser();
 
-      if (await _platoUserService.authorizeUser()) {
+      if (_platoUserService.isAuthorized) {
         await _retrieveUserAndEnrollments();
       }
     } catch (_) {}
@@ -61,7 +62,7 @@ class UserAuthorizationComponent implements OnInit {
       _progressService.invoke ('Attempting to authorize Plato credentials.');
 
       if (!_platoUserService.isAuthorized) {
-        await _platoUserService.authorizeApplication();
+        _platoUserService.authorizeApplication();
       }
 
       await _retrieveUserAndEnrollments();
