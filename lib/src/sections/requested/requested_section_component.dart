@@ -17,17 +17,18 @@ import 'requested_sections_service.dart';
 @Component(
   selector: 'requested-section',
   templateUrl: 'requested_section_component.html',
-  styleUrls: const ['requested_section_component.css'],
-  directives: const [
+  styleUrls: ['requested_section_component.css'],
+  directives: [
     MaterialExpansionPanel, MaterialButtonComponent, MaterialIconComponent,
     MaterialInkTooltipComponent, MaterialTooltipDirective,
     MaterialTooltipSourceDirective, MaterialTooltipTargetDirective,
-    MaterialListComponent, MaterialListItemComponent, NgIf, NgFor
+    MaterialListComponent, MaterialListItemComponent,
+    NgIf, NgFor
   ],
-  providers: const [
+  providers: [
     RequestedSectionsService, CrossListingService, PreviousContentService
   ],
-  pipes: const [SlicePipe]
+  pipes: [SlicePipe]
 )
 class RequestedSectionComponent implements OnInit {
   @Input()

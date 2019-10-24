@@ -14,6 +14,8 @@
 ## 1.3.20191008
 - Start of removing course archive viewing capabilities, pushing to the course
 archives viewing application instead.
+- Updated minor version from 1.2 to 1.3 to indicate the level of change for the
+application.
 
 ## 1.2.20190913
 - Updated Dart SDK and dependency constraints.

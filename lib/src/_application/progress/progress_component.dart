@@ -9,12 +9,12 @@ import 'progress_service.dart';
 @Component(
   selector: 'plato-progress',
   templateUrl: 'progress_component.html',
-  styleUrls: const ['progress_component.css'],
-  directives: const [
+  styleUrls: ['progress_component.css'],
+  directives: [
     AutoFocusDirective, ModalComponent, MaterialDialogComponent,
     MaterialIconComponent, MaterialProgressComponent
   ],
-  providers: const [ProgressService, popupBindings]
+  providers: [ProgressService, popupBindings]
 )
 class ProgressComponent implements OnInit {
   bool isVisible;

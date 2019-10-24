@@ -16,11 +16,12 @@ import 'terms_service.dart';
 @Component(
   selector: 'terms',
   templateUrl: 'terms_component.html',
-  styleUrls: const ['terms_component.css'],
-  directives: const [
-    MaterialDropdownSelectComponent, MaterialSelectItemComponent, NgFor
+  styleUrls: ['terms_component.css'],
+  directives: [
+    MaterialDropdownSelectComponent, MaterialSelectItemComponent,
+    NgFor
   ],
-  providers: const [TermsService, CoursesService, SectionsService],
+  providers: [TermsService, CoursesService, SectionsService],
 )
 class TermsComponent implements OnInit {
   List<Term> terms;

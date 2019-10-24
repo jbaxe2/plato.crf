@@ -17,12 +17,13 @@ import 'cross_listing_service.dart';
 @Component(
   selector: 'cross-listing-modifier',
   templateUrl: 'cross_listing_modifier_component.html',
-  styleUrls: const ['cross_listing_modifier_component.css'],
-  directives: const [
+  styleUrls: ['cross_listing_modifier_component.css'],
+  directives: [
     ModalComponent, MaterialDialogComponent, MaterialCheckboxComponent,
-    MaterialButtonComponent, MaterialIconComponent, NgFor, NgIf
+    MaterialButtonComponent, MaterialIconComponent,
+    NgFor, NgIf
   ],
-  providers: const [
+  providers: [
     CourseRequestService, CrossListingService, WorkflowService,
     overlayBindings
   ]

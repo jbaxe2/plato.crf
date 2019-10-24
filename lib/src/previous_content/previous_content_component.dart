@@ -18,17 +18,17 @@ import 'previous_content_service.dart';
 @Component(
   selector: 'previous-content',
   templateUrl: 'previous_content_component.html',
-  styleUrls: const ['previous_content_component.css'],
-  directives: const [
+  styleUrls: ['previous_content_component.css'],
+  directives: [
     MaterialButtonComponent, MaterialIconComponent,
     MaterialListComponent, MaterialListItemComponent,
     PreviousContentSelectionComponent,
     NgFor, NgIf
   ],
-  providers: const [
+  providers: [
     CourseRequestService, PreviousContentService, WorkflowService
   ],
-  pipes: const [CrossListingPipe]
+  pipes: [CrossListingPipe]
 )
 class PreviousContentComponent implements AfterViewInit {
   List<CrossListing> crossListings;

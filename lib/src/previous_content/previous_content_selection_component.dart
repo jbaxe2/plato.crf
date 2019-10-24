@@ -21,13 +21,13 @@ import 'previous_content_service.dart';
 @Component(
   selector: 'previous-content-selection',
   templateUrl: 'previous_content_selection_component.html',
-  styleUrls: const ['previous_content_selection_component.css'],
-  directives: const [
+  styleUrls: ['previous_content_selection_component.css'],
+  directives: [
     ModalComponent, MaterialDialogComponent, MaterialIconComponent,
     MaterialRadioGroupComponent, MaterialRadioComponent, MaterialButtonComponent,
     NgIf, NgFor, NgModel
   ],
-  providers: const [
+  providers: [
     PreviousContentService, EnrollmentsService, RetrieveArchivesService,
     ProgressService,
     popupBindings

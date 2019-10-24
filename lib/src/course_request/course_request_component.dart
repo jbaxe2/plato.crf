@@ -19,15 +19,13 @@ import 'course_request_service.dart';
 @Component(
   selector: 'course-request',
   templateUrl: 'course_request_component.html',
-  styleUrls: const [
-    'course_request_component.css'
-  ],
-  directives: const [
+  styleUrls: ['course_request_component.css'],
+  directives: [
     ErrorComponent, ProgressComponent, RequestedSectionsComponent,
     SubmissionResponseComponent, SessionCleanupComponent, WorkflowComponent,
     NgIf
   ],
-  providers: const [
+  providers: [
     materialProviders, domServiceBinding, scrollHostProviders, popupBindings,
     CourseRequestService
   ]

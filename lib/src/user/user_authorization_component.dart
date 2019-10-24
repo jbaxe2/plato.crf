@@ -15,11 +15,11 @@ import 'plato_user_service.dart';
 @Component (
   selector: 'user-authorization',
   templateUrl: 'user_authorization_component.html',
-  styleUrls: const ['user_authorization_component.css'],
-  directives: const [
+  styleUrls: ['user_authorization_component.css'],
+  directives: [
     materialInputDirectives, MaterialButtonComponent, MaterialIconComponent
   ],
-  providers: const [
+  providers: [
     PlatoUserService, EnrollmentsService, ProgressService
   ]
 )
@@ -48,7 +48,7 @@ class UserAuthorizationComponent implements OnInit {
       await _platoUserService.retrieveSession();
       await _platoUserService.authorizeUser();
 
-      if (_platoUserService.isAuthorized) {
+      if (isAuthorized) {
         await _retrieveUserAndEnrollments();
       }
     } catch (_) {}
@@ -61,7 +61,7 @@ class UserAuthorizationComponent implements OnInit {
     try {
       _progressService.invoke ('Attempting to authorize Plato credentials.');
 
-      if (!_platoUserService.isAuthorized) {
+      if (!isAuthorized) {
         _platoUserService.authorizeApplication();
       }
 

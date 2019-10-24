@@ -14,13 +14,13 @@ import '../progress/progress_service.dart';
 @Component(
   selector: 'review-request',
   templateUrl: 'review_request_component.html',
-  styleUrls: const ['review_request_component.css'],
-  directives: const [
+  styleUrls: ['review_request_component.css'],
+  directives: [
     MaterialButtonComponent, MaterialExpansionPanel, MaterialIconComponent,
     MaterialListComponent, MaterialListItemComponent,
     NgIf, NgFor
   ],
-  providers: const [CourseRequestService, ProgressService]
+  providers: [CourseRequestService, ProgressService]
 )
 class ReviewRequestComponent implements OnInit {
   bool isVisible;

@@ -14,11 +14,12 @@ import 'departments_service.dart';
 @Component(
   selector: 'departments',
   templateUrl: 'departments_component.html',
-  styleUrls: const ['departments_component.css'],
-  directives: const [
-    MaterialDropdownSelectComponent, MaterialSelectItemComponent, NgFor
+  styleUrls: ['departments_component.css'],
+  directives: [
+    MaterialDropdownSelectComponent, MaterialSelectItemComponent,
+    NgFor
   ],
-  providers: const [DepartmentsService, CoursesService],
+  providers: [DepartmentsService, CoursesService],
 )
 class DepartmentsComponent implements OnInit {
   List<Department> departments;

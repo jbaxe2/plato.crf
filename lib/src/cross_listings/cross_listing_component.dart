@@ -15,11 +15,11 @@ import 'cross_listing_service.dart';
 @Component(
   selector: 'cross-listing',
   templateUrl: 'cross_listing_component.html',
-  styleUrls: const [
+  styleUrls: [
     'package:angular_components/app_layout/layout.scss.css',
     'cross_listing_component.css'
   ],
-  directives: const [
+  directives: [
     MaterialExpansionPanel, MaterialListComponent, MaterialListItemComponent,
     MaterialButtonComponent, MaterialIconComponent,
     MaterialInkTooltipComponent, MaterialTooltipDirective,
@@ -27,7 +27,7 @@ import 'cross_listing_service.dart';
     CrossListingModifierComponent,
     NgIf, NgFor
   ],
-  providers: const [CrossListingService, WorkflowService]
+  providers: [CrossListingService, WorkflowService]
 )
 class CrossListingComponent implements OnInit {
   @Input()

@@ -18,11 +18,11 @@ import '../selection/sections_selection_component.dart';
 @Component(
   selector: 'requesting-sections',
   templateUrl: 'requesting_sections_component.html',
-  directives: const [
+  directives: [
     DepartmentsComponent, TermsComponent, CoursesComponent,
     SectionsSelectionComponent
   ],
-  providers: const [CourseRequestService, WorkflowService]
+  providers: [CourseRequestService, WorkflowService]
 )
 class RequestingSectionsComponent implements OnInit {
   final CourseRequestService _courseRequestService;

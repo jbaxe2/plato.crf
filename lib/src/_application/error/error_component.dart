@@ -10,12 +10,12 @@ import 'plato_exception.dart';
 @Component(
   selector: 'plato-error',
   templateUrl: 'error_component.html',
-  styleUrls: const ['error_component.css'],
-  directives: const [
+  styleUrls: ['error_component.css'],
+  directives: [
     AutoFocusDirective, ModalComponent, MaterialDialogComponent,
     MaterialIconComponent, MaterialButtonComponent
   ],
-  providers: const [ErrorService, popupBindings]
+  providers: [ErrorService, popupBindings]
 )
 class ErrorComponent implements OnInit {
   String error;

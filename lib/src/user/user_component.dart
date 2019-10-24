@@ -12,11 +12,11 @@ import 'user_authorization_component.dart';
 @Component(
   selector: 'user',
   templateUrl: 'user_component.html',
-  directives: const [
+  directives: [
     UserAuthorizationComponent, PlatoUserComponent,
     NgIf
   ],
-  providers: const [PlatoUserService, WorkflowService]
+  providers: [PlatoUserService, WorkflowService]
 )
 class UserComponent implements OnInit {
   bool _isAuthorized;

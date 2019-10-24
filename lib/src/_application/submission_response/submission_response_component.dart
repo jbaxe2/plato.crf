@@ -15,12 +15,12 @@ import 'submission_response.dart';
 @Component(
   selector: 'submission-response',
   templateUrl: 'submission_response_component.html',
-  styleUrls: const ['submission_response_component.css'],
-  directives: const [
+  styleUrls: ['submission_response_component.css'],
+  directives: [
     ModalComponent, MaterialDialogComponent, MaterialButtonComponent,
     NgIf, NgFor
   ],
-  providers: const [CourseRequestService]
+  providers: [CourseRequestService]
 )
 class SubmissionResponseComponent implements OnInit {
   bool isVisible;
