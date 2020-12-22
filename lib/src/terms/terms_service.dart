@@ -15,7 +15,7 @@ const String _TERMS_URI = '/plato/retrieve/terms';
 class TermsService {
   List<Term> terms;
 
-  final TermFactory _termFactory = new TermFactory();
+  final TermFactory _termFactory = TermFactory();
 
   final Client _http;
 
@@ -23,17 +23,17 @@ class TermsService {
 
   /// The [TermsService] factory constructor...
   factory TermsService (Client http) =>
-    _instance ?? (_instance = new TermsService._ (http));
+    _instance ?? (_instance = TermsService._ (http));
 
   /// The [TermsService] private constructor...
   TermsService._ (this._http) {
-    terms = new List<Term>();
+    terms = <Term>[];
   }
 
   /// The [retrieveTerms] method...
   Future<void> retrieveTerms() async {
     try {
-      final Response termsResponse = await _http.get (_TERMS_URI);
+      final termsResponse = await _http.get (_TERMS_URI);
 
       List rawTerms =
         (json.decode (utf8.decode (termsResponse.bodyBytes)) as Map)['terms'];
@@ -42,7 +42,7 @@ class TermsService {
         ..clear()
         ..addAll (_termFactory.createAll (rawTerms.cast()));
     } catch (_) {
-      throw new TermException ('Unable to retrieve the list of terms.');
+      throw TermException ('Unable to retrieve the list of terms.');
     }
   }
 }

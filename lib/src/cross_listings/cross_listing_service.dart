@@ -22,21 +22,21 @@ class CrossListingService extends FeaturedSectionService {
 
   /// The [CrossListingService] factory constructor...
   factory CrossListingService() =>
-    _instance ?? (_instance = new CrossListingService._());
+    _instance ?? (_instance = CrossListingService._());
 
   /// The [CrossListingService] private constructor...
   CrossListingService._() {
-    _courseRequest = new CourseRequest();
+    _courseRequest = CourseRequest();
 
     crossListings = _courseRequest.crossListings;
-    crossListingStreamer = new StreamController<CrossListing>.broadcast();
+    crossListingStreamer = StreamController<CrossListing>.broadcast();
 
     init();
   }
 
   /// The [createCrossListingSet] method...
   CrossListing createCrossListingSet() {
-    var crossListing = new CrossListing();
+    var crossListing = CrossListing();
 
     try {
       _courseRequest.addCrossListing (crossListing);
@@ -89,7 +89,7 @@ class CrossListingService extends FeaturedSectionService {
     if (
       crossListings.any ((CrossListing crossListing) => crossListing.sections.isEmpty)
     ) {
-      throw new CrossListingException (
+      throw CrossListingException (
         'Cannot confirm cross-listings when one or more sets is empty.'
       );
     }

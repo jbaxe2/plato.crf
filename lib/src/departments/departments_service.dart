@@ -15,7 +15,7 @@ const String _DEPTS_URI = '/plato/retrieve/departments';
 class DepartmentsService {
   List<Department> departments;
 
-  static final DepartmentFactory _departmentFactory = new DepartmentFactory();
+  static final DepartmentFactory _departmentFactory = DepartmentFactory();
 
   final Client _http;
 
@@ -23,17 +23,17 @@ class DepartmentsService {
 
   /// The [DepartmentsService] factory constructor...
   factory DepartmentsService (Client http) =>
-    _instance ?? (_instance = new DepartmentsService._ (http));
+    _instance ?? (_instance = DepartmentsService._ (http));
 
   /// The [DepartmentsService] private constructor...
   DepartmentsService._ (this._http) {
-    departments = new List<Department>();
+    departments = <Department>[];
   }
 
   /// The [retrieveDepartments] method...
   Future retrieveDepartments() async {
     try {
-      final Response deptsResponse = await _http.get (_DEPTS_URI);
+      final deptsResponse = await _http.get (_DEPTS_URI);
 
       List rawDepts =
         (json.decode (utf8.decode (deptsResponse.bodyBytes)) as Map)['departments'];
@@ -42,7 +42,7 @@ class DepartmentsService {
         ..clear()
         ..addAll (_departmentFactory.createAll (rawDepts.cast()));
     } catch (_) {
-      throw new DepartmentException ('Unable to retrieve the departments list.');
+      throw DepartmentException ('Unable to retrieve the departments list.');
     }
   }
 }

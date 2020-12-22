@@ -10,11 +10,11 @@ class ProgressService {
 
   /// The [ProgressService] factory constructor...
   factory ProgressService() =>
-    _instance ?? (_instance = new ProgressService._());
+    _instance ?? (_instance = ProgressService._());
 
   /// The [ProgressService] private constructor...
   ProgressService._() {
-    messageStreamController = new StreamController<String>.broadcast();
+    messageStreamController = StreamController<String>.broadcast();
   }
 
   /// The [invoke] method...

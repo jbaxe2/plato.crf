@@ -26,7 +26,7 @@ class Section implements Comparable {
 
   /// The [isDay] method...
   bool isDay() {
-    String digitStr = sectionId.substring (
+    var digitStr = sectionId.substring (
       (sectionId.length - 3), (sectionId.length - 2)
     );
 
@@ -68,7 +68,7 @@ class Section implements Comparable {
   /// The [hashCode] getter...
   @override
   int get hashCode {
-    int result = 3;
+    var result = 3;
 
     result = 7 * result + ((null == sectionId) ? 0 : sectionId.hashCode);
     result = 7 * result + ((null == termId) ? 0 : termId.hashCode);
@@ -82,9 +82,10 @@ class Section implements Comparable {
   }
 
   /// The [compareTo] method...
+  @override
   int compareTo (dynamic other) {
     if (!(other is Section)) {
-      throw new SectionException ('Cannot compare a section to some other type.');
+      throw SectionException ('Cannot compare a section to some other type.');
     }
 
     return sectionId.compareTo (other.sectionId);

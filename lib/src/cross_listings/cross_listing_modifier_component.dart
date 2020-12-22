@@ -52,9 +52,9 @@ class CrossListingModifierComponent implements OnInit, AfterViewInit {
   ) {
     isVisible = false;
 
-    requestedSections = new List<Section>();
-    _selectedSections = new List<Section>();
-    _deselectedSections = new List<Section>();
+    requestedSections = <Section>[];
+    _selectedSections = <Section>[];
+    _deselectedSections = <Section>[];
   }
 
   /// The [ngOnInit] method...
@@ -104,7 +104,7 @@ class CrossListingModifierComponent implements OnInit, AfterViewInit {
   void modifyCrossListingSet() {
     try {
       if (1 == _selectedSections.length) {
-        throw new CrossListingException (
+        throw CrossListingException (
           'Cannot confirm a cross-listing set with only one section.'
         );
       }

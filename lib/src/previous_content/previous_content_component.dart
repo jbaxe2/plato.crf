@@ -45,8 +45,8 @@ class PreviousContentComponent implements AfterViewInit {
   PreviousContentComponent (
     this._courseRequestService, this._previousContentService, this._workflowService
   ) {
-    crossListings = new List<CrossListing>();
-    sections = new List<Section>();
+    crossListings = <CrossListing>[];
+    sections = <Section>[];
   }
 
   /// The [ngAfterViewInit] method...

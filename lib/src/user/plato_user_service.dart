@@ -48,22 +48,22 @@ class PlatoUserService {
 
   /// The [PlatoUserService] factory constructor...
   factory PlatoUserService (Client http) =>
-    _instance ?? (_instance = new PlatoUserService._ (http));
+    _instance ?? (_instance = PlatoUserService._ (http));
 
   /// The [PlatoUserService] private constructor...
   PlatoUserService._ (this._http) {
     _isAuthorized = false;
     _isLtiSession = false;
 
-    authStreamController = new StreamController<bool>.broadcast();
-    _userFactory = new UserFactory();
-    _courseRequest = new CourseRequest();
+    authStreamController = StreamController<bool>.broadcast();
+    _userFactory = UserFactory();
+    _courseRequest = CourseRequest();
   }
 
   /// The [retrieveSession] method...
   Future<void> retrieveSession() async {
     try {
-      final Response sessionResponse = await _http.get (_SESSION_URI);
+      final sessionResponse = await _http.get (_SESSION_URI);
 
       final Map<String, String> rawSession =
         (json.decode (utf8.decode (sessionResponse.bodyBytes)) as Map)['session'];
@@ -80,7 +80,7 @@ class PlatoUserService {
         }
       }
     } catch (_) {
-      throw new UserException ('Unable to determine if a user session exists.');
+      throw UserException ('Unable to determine if a user session exists.');
     }
   }
 
@@ -93,7 +93,7 @@ class PlatoUserService {
     try {
       window.location.replace (_REST_AUTH_URI);
     } catch (_) {
-      throw new UserException ('Authorization for the Plato user has failed.');
+      throw UserException ('Authorization for the Plato user has failed.');
     }
   }
 
@@ -107,7 +107,7 @@ class PlatoUserService {
 
     if (location.queryParameters.containsKey ('code')) {
       try {
-        final Response rawAuthResponse = await _http.post (
+        final rawAuthResponse = await _http.post (
           Uri.parse (_LEARN_AUTH_URI),
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           body: {'authCode': location.queryParameters['code']}
@@ -122,7 +122,7 @@ class PlatoUserService {
           throw authResponse;
         }
       } catch (_) {
-        throw new UserException (
+        throw UserException (
           'Establishing user context via authorization has failed.'
         );
       }
@@ -136,13 +136,13 @@ class PlatoUserService {
   /// The [retrieveUser] method...
   Future<void> retrieveUser() async {
     if (!isAuthorized) {
-      throw new UserException (
+      throw UserException (
         'Authorization must happen before retrieving user information.'
       );
     }
 
     try {
-      final Response userResponse = await _http.get (_USER_URI);
+      final userResponse = await _http.get (_USER_URI);
 
       final Map<String, String> rawUser =
         (json.decode (utf8.decode (userResponse.bodyBytes)) as Map)['user'];
@@ -151,7 +151,7 @@ class PlatoUserService {
 
       platoUser = _userFactory.create (rawUser, _username, _isLtiSession);
     } catch (_) {
-      throw new UserException ('Unable to retrieve the user information.');
+      throw UserException ('Unable to retrieve the user information.');
     }
 
     _courseRequest.setPlatoUser (platoUser);

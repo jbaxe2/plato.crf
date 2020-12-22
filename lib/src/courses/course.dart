@@ -25,7 +25,7 @@ class Course {
   /// The [hashCode] getter...
   @override
   int get hashCode {
-    int result = 3;
+    var result = 3;
 
     result = 7 * result + ((null == id) ? 0 : id.hashCode);
     result = 7 * result + ((null == title) ? 0 : title.hashCode);

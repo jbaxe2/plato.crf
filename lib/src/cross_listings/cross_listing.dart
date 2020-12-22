@@ -12,7 +12,7 @@ class CrossListing {
 
   /// The [CrossListing] constructor...
   CrossListing() {
-    sections = new List<Section>();
+    sections = <Section>[];
   }
 
   /// The [isCrossListableWith] method...
@@ -76,7 +76,7 @@ class CrossListing {
   /// The [hashCode] getter...
   @override
   int get hashCode {
-    int result = 3;
+    var result = 3;
 
     sections.forEach (
       (Section section) => (result = 7 * result + section.hashCode)

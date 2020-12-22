@@ -27,12 +27,12 @@ class SectionsService {
 
   /// The [SectionsService] factory constructor...
   factory SectionsService (Client http) =>
-    _instance ?? (_instance = new SectionsService._ (http));
+    _instance ?? (_instance = SectionsService._ (http));
 
   /// The [SectionsService] private constructor...
   SectionsService._ (this._http) {
-    sections = new List<Section>();
-    _sectionFactory = new SectionFactory();
+    sections = <Section>[];
+    _sectionFactory = SectionFactory();
   }
 
   /// The [setCourseId] method...
@@ -44,7 +44,7 @@ class SectionsService {
     _courseId = courseId;
 
     if (null != _termId) {
-      _retrieveSections();
+      await _retrieveSections();
     }
   }
 
@@ -57,14 +57,14 @@ class SectionsService {
     _termId = termId;
 
     if (null != _courseId) {
-      _retrieveSections();
+      await _retrieveSections();
     }
   }
 
   /// The [_retrieveSections] method...
   Future<void> _retrieveSections() async {
     try {
-      final Response sectionsResponse = await _http.get (
+      final sectionsResponse = await _http.get (
         '$_SECTIONS_URI?course=$_courseId&term=$_termId'
       );
 
@@ -76,7 +76,7 @@ class SectionsService {
         ..addAll (_sectionFactory.createAll (rawSections.cast()))
         ..sort();
     } catch (_) {
-      throw new SectionException (
+      throw SectionException (
         'Retrieving the sections information resulted in an error.'
       );
     }

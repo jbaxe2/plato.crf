@@ -11,7 +11,7 @@ import 'cross_listing.dart';
 class CrossListingPipe implements PipeTransform {
   /// The [transform] method...
   String transform (CrossListing crossListing) {
-    String sectionIds = '';
+    var sectionIds = '';
 
     crossListing.sections.forEach ((Section section) {
       if (sectionIds.isNotEmpty) {

@@ -13,7 +13,7 @@ class RequestedSectionsService {
   CourseRequest _courseRequest;
 
   static final StreamController<bool> _haveSectionsController =
-    new StreamController<bool>.broadcast();
+    StreamController<bool>.broadcast();
 
   Stream<bool> get haveSectionsListener => _haveSectionsController.stream;
 
@@ -21,11 +21,11 @@ class RequestedSectionsService {
 
   /// The [RequestedSectionsService] factory constructor...
   factory RequestedSectionsService() =>
-    _instance ?? (_instance = new RequestedSectionsService._());
+    _instance ?? (_instance = RequestedSectionsService._());
 
   /// The [RequestedSectionsService] private constructor...
   RequestedSectionsService._() {
-    _courseRequest = new CourseRequest();
+    _courseRequest = CourseRequest();
     requestedSections = _courseRequest.sections;
   }
 
@@ -39,7 +39,7 @@ class RequestedSectionsService {
 
   /// The [removeSection] method...
   bool removeSection (Section section) {
-    bool removed = _courseRequest.removeSection (section);
+    var removed = _courseRequest.removeSection (section);
     _checkHaveSections();
 
     return removed;

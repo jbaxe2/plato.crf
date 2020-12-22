@@ -18,18 +18,18 @@ class EnrollmentFactory implements PlatoFactory<Enrollment> {
           rawEnrollment.containsKey ('learn.course.name') &&
           rawEnrollment.containsKey ('learn.membership.role') &&
           rawEnrollment.containsKey ('learn.membership.available'))) {
-      throw new EnrollmentException (
+      throw EnrollmentException (
         'The provided enrollment was not formatted correctly.'
       );
     }
 
     if ('Instructor' != rawEnrollment['learn.membership.role']) {
-      throw new EnrollmentException (
+      throw EnrollmentException (
         'The provided enrollment was not for an instructor membership.'
       );
     }
 
-    return new Enrollment (
+    return Enrollment (
       rawEnrollment['learn.user.username'], rawEnrollment['learn.course.id'],
       rawEnrollment['learn.course.name'], rawEnrollment['learn.membership.role'],
       rawEnrollment['learn.membership.available'],
@@ -42,7 +42,7 @@ class EnrollmentFactory implements PlatoFactory<Enrollment> {
   List<Enrollment> createAll (
     Iterable<Map<String, dynamic>> rawEnrollments, [bool asArchives = false]
   ) {
-    var enrollments = new List<Enrollment>();
+    var enrollments = <Enrollment>[];
 
     try {
       rawEnrollments.forEach ((Map<String, dynamic> rawEnrollment) {

@@ -13,11 +13,11 @@ class ErrorService {
   static ErrorService _instance;
 
   /// The [ErrorService] factory constructor...
-  factory ErrorService() => _instance ?? (_instance = new ErrorService._());
+  factory ErrorService() => _instance ?? (_instance = ErrorService._());
 
   /// The [ErrorService] private constructor...
   ErrorService._() {
-    errorStreamController = new StreamController<PlatoException>.broadcast();
+    errorStreamController = StreamController<PlatoException>.broadcast();
     errorRaised = false;
   }
 

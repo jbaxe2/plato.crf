@@ -41,7 +41,7 @@ class CrossListingComponent implements OnInit {
   @Input()
   int setNumber;
 
-  @ViewChild("crossListingModifier")
+  @ViewChild('crossListingModifier')
   CrossListingModifierComponent crossListingModifier;
 
   bool get hasInvokerSection => crossListing.contains (invokerSection);

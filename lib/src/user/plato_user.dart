@@ -23,7 +23,7 @@ class PlatoUser {
     String username, String firstName, String lastName,
     String email, String cwid, [bool isLtiSession = false]
   ) {
-    return _instance ?? (_instance = new PlatoUser._ (
+    return _instance ?? (_instance = PlatoUser._ (
       username, firstName, lastName, email, cwid, isLtiSession
     ));
   }

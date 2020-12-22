@@ -32,7 +32,7 @@ class CoursesComponent implements OnInit {
 
   /// The [CoursesComponent] constructor...
   CoursesComponent (this.coursesService, this.sectionsService) {
-    courses = new List<Course>();
+    courses = <Course>[];
     selectorText = 'Select a course...';
   }
 

@@ -32,8 +32,8 @@ class SectionsSelectionComponent implements OnInit {
 
   /// The [SectionsSelectionComponent] constructor...
   SectionsSelectionComponent (this._sectionsService, this._reqSectionsService) {
-    sections = new List<Section>();
-    selectedSections = new List<Section>();
+    sections = <Section>[];
+    selectedSections = <Section>[];
   }
 
   /// The [ngOnInit] method...
@@ -51,7 +51,7 @@ class SectionsSelectionComponent implements OnInit {
 
   /// The [addSelectedSections] method...
   void addSelectedSections() {
-    var addableSections = new List<Section>();
+    var addableSections = <Section>[];
 
     selectedSections.forEach ((Section section) {
       if (sections.contains (section)) {

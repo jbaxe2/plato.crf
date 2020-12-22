@@ -10,7 +10,7 @@ class PlatoException implements Exception {
   PlatoException (
     [this.message = 'A Plato exception has occurred; details have not been specified.']
   ) {
-    (new ErrorService()).raiseError (this);
+    ErrorService().raiseError (this);
   }
 
   /// The [toString] method...

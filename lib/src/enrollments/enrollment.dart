@@ -19,7 +19,7 @@ class Enrollment implements Comparable {
   /// The [Enrollment] constructor...
   Enrollment (
     this.username, this.courseId, this.courseName, this.role, this.available,
-    {this.isArchive: false}
+    {this.isArchive = false}
   );
 
   /// The [==] operator...
@@ -46,7 +46,7 @@ class Enrollment implements Comparable {
   /// The [hashCode] getter...
   @override
   int get hashCode {
-    int result = 3;
+    var result = 3;
 
     result = 7 * result + ((null == username) ? 0 : username.hashCode);
     result = 7 * result + ((null == courseId) ? 0 : courseId.hashCode);
@@ -62,7 +62,7 @@ class Enrollment implements Comparable {
   @override
   int compareTo (dynamic other) {
     if (!(other is Enrollment)) {
-      throw new EnrollmentException ('Cannot compare an enrollment to some other type.');
+      throw EnrollmentException ('Cannot compare an enrollment to some other type.');
     }
 
     return courseId.compareTo (other.courseId);

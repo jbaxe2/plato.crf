@@ -15,18 +15,18 @@ class DepartmentFactory implements PlatoFactory<Department> {
   Department create (covariant Map<String, dynamic> rawDepartment) {
     if (!(rawDepartment.containsKey ('code') &&
           rawDepartment.containsKey ('description'))) {
-      throw new DepartmentException (
+      throw DepartmentException (
         'The provided department information was improperly formatted.'
       );
     }
 
-    return new Department (rawDepartment['code'], rawDepartment['description']);
+    return Department (rawDepartment['code'], rawDepartment['description']);
   }
 
   /// The [createAll] method...
   @override
   List<Department> createAll (covariant Iterable<Map<String, dynamic>> rawDepartments) {
-    var departments = new List<Department>();
+    var departments = <Department>[];
 
     try {
       rawDepartments.forEach ((Map<String, dynamic> rawDepartment) {

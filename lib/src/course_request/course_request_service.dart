@@ -51,16 +51,16 @@ class CourseRequestService {
 
   /// The [CourseRequestService] factory constructor...
   factory CourseRequestService (Client http) =>
-    _instance ?? (_instance = new CourseRequestService._ (http));
+    _instance ?? (_instance = CourseRequestService._ (http));
 
   /// The [CourseRequestService] private constructor...
   CourseRequestService._ (this._http) {
-    _courseRequest = new CourseRequest();
+    _courseRequest = CourseRequest();
 
-    _requestController = new StreamController<CourseRequest>.broadcast();
-    _responseController = new StreamController<SubmissionResponse>.broadcast();
+    _requestController = StreamController<CourseRequest>.broadcast();
+    _responseController = StreamController<SubmissionResponse>.broadcast();
 
-    _courseFactory = new CourseFactory();
+    _courseFactory = CourseFactory();
   }
 
   /// The [haveCourses] method...
@@ -90,7 +90,7 @@ class CourseRequestService {
   /// The [reviewCourseRequest] method...
   void reviewCourseRequest() {
     if (!submittable) {
-      throw new CourseRequestException (
+      throw CourseRequestException (
         'Unable to review and submit an incomplete course request.'
       );
     }
@@ -111,7 +111,7 @@ class CourseRequestService {
         rethrow;
       }
 
-      throw new CourseRequestException (
+      throw CourseRequestException (
         'An error has occurred while attempting to submit the course request.'
       );
     }
@@ -119,7 +119,7 @@ class CourseRequestService {
 
   /// The [_submitRequest] method...
   Future<void> _submitRequest() async {
-    final Response crfResponse = await _http.post (
+    final crfResponse = await _http.post (
       _SUBMISSION_URI, body: json.encode (_courseRequest.toJson())
     );
 
@@ -131,17 +131,17 @@ class CourseRequestService {
   /// The [_parseSubmissionResponse] method...
   void _parseSubmissionResponse (Map<String, dynamic> submissionResponse) {
     if (submissionResponse.containsKey ('error')) {
-      throw new CourseRequestException (submissionResponse['error']);
+      throw CourseRequestException (submissionResponse['error']);
     }
 
     if (!(submissionResponse.containsKey ('result') &&
           submissionResponse.containsKey ('rejectedCourses'))) {
-      throw new CourseRequestException (
+      throw CourseRequestException (
         'The received response from submitting the request resulted in error.'
       );
     }
 
-    var rejectedCourses = new List<RejectedCourse>();
+    var rejectedCourses = <RejectedCourse>[];
 
     try {
       if ((submissionResponse['result'] as String).contains ('partial')) {
@@ -153,14 +153,14 @@ class CourseRequestService {
         );
       }
     } catch (_) {
-      throw new CourseRequestException (
+      throw CourseRequestException (
         'Some courses were rejected, but the response from the server was '
         'improperly formatted.'
       );
     }
 
     _responseController.add (
-      new SubmissionResponse (
+      SubmissionResponse (
         ('success' == submissionResponse['result'] as String),
         rejectedCourses
       )

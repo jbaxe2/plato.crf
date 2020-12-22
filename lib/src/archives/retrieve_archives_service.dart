@@ -26,19 +26,19 @@ class RetrieveArchivesService {
 
   /// The [RetrieveArchivesService] factory constructor...
   factory RetrieveArchivesService (Client http) =>
-    _instance ?? (_instance = new RetrieveArchivesService._ (http));
+    _instance ?? (_instance = RetrieveArchivesService._ (http));
 
   /// The [RetrieveArchivesService] named constructor...
   RetrieveArchivesService._ (this._http) {
-    archiveEnrollments = new List<Enrollment>();
-    _enrollmentFactory = new EnrollmentFactory();
-    archiveStreamController = new StreamController<Enrollment>.broadcast();
+    archiveEnrollments = <Enrollment>[];
+    _enrollmentFactory = EnrollmentFactory();
+    archiveStreamController = StreamController<Enrollment>.broadcast();
   }
 
   /// The [retrieveArchives] method...
   Future retrieveArchives() async {
     try {
-      final Response archivesResponse = await _http.get (_RETRIEVE_URI);
+      final archivesResponse = await _http.get (_RETRIEVE_URI);
 
       List<Map<String, String>> rawArchives =
         (json.decode (utf8.decode (archivesResponse.bodyBytes)))['archives'];
@@ -53,7 +53,7 @@ class RetrieveArchivesService {
           archiveStreamController.add (archiveEnrollment)
       );
     } catch (_) {
-      throw new ArchiveException (
+      throw ArchiveException (
         'Unable to retrieve the list of archived course enrollments.'
       );
     }

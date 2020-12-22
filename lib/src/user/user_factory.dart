@@ -20,12 +20,12 @@ class UserFactory implements PlatoFactory<PlatoUser> {
           rawUser.containsKey ('learn.user.lastName') &&
           rawUser.containsKey ('learn.user.email') &&
           rawUser.containsKey ('banner.user.cwid'))) {
-      throw new UserException (
+      throw UserException (
         'The provided user information was not properly formatted.'
       );
     }
 
-    return new PlatoUser (
+    return PlatoUser (
       username,
       rawUser['learn.user.firstName'], rawUser['learn.user.lastName'],
       rawUser['learn.user.email'], rawUser['banner.user.cwid'],
@@ -36,7 +36,7 @@ class UserFactory implements PlatoFactory<PlatoUser> {
   /// The [createAll] method...
   @override
   List<PlatoUser> createAll (Iterable<Map<String, dynamic>> rawUsers) {
-    throw new UserException (
+    throw UserException (
       'Unable to create multiple instances of a single user.'
     );
   }

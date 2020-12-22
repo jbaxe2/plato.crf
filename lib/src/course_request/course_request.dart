@@ -36,13 +36,13 @@ class CourseRequest {
 
   /// The [CourseRequest] factory constructor...
   factory CourseRequest() =>
-    _instance ?? (_instance = new CourseRequest._());
+    _instance ?? (_instance = CourseRequest._());
 
   /// The [CourseRequest] private constructor...
   CourseRequest._() {
-    sections = new List<Section>();
-    crossListings = new List<CrossListing>();
-    previousContents = new List<PreviousContentMapping>();
+    sections = <Section>[];
+    crossListings = <CrossListing>[];
+    previousContents = <PreviousContentMapping>[];
   }
 
   /// The [clearAll] method...
@@ -55,7 +55,7 @@ class CourseRequest {
   /// The [setPlatoUser] method...
   void setPlatoUser (PlatoUser thePlatoUser) {
     if (null != platoUser) {
-      throw new UserException ('Cannot add the user information more than once.');
+      throw UserException ('Cannot add the user information more than once.');
     }
 
     _platoUser = thePlatoUser;
@@ -75,19 +75,19 @@ class CourseRequest {
   }
 
   /// The [removeAllSections] method...
-  bool removeAllSections() => removeSections (new List.from (sections));
+  bool removeAllSections() => removeSections (List.from (sections));
 
   /// The [removeSections] method...
   bool removeSections (List<Section> someSections) {
-    var removableSections = new List<Section>.from (someSections);
+    var removableSections = List<Section>.from (someSections);
 
     return removableSections.every ((Section aSection) => removeSection (aSection));
   }
 
   /// The [removeSection] method...
   bool removeSection (Section aSection) {
-    CrossListing crossListing = getCrossListingForSection (aSection);
-    PreviousContentMapping previousContent = getPreviousContentForSection (aSection);
+    var crossListing = getCrossListingForSection (aSection);
+    var previousContent = getPreviousContentForSection (aSection);
 
     if (null != crossListing) {
       removeSectionFromCrossListing (aSection, getCrossListingForSection (aSection));
@@ -116,7 +116,7 @@ class CourseRequest {
     if (
       crossListings.any ((CrossListing crossListing) => !crossListing.isValid)
     ) {
-      throw new CrossListingException (
+      throw CrossListingException (
         'Cannot add a new cross-listing set when a different set is not valid.'
       );
     }
@@ -125,7 +125,7 @@ class CourseRequest {
       crossListings.forEach ((CrossListing crossListing) {
         aCrossListing.sections.forEach ((Section section) {
           if (crossListing.contains (section)) {
-            throw new CrossListingException (
+            throw CrossListingException (
               'The provided cross-listing set contains a section that is '
               'already part of another cross-listing set.'
             );
@@ -155,7 +155,7 @@ class CourseRequest {
   /// The [removeCrossListing] method...
   bool removeCrossListing (CrossListing aCrossListing) {
     try {
-      var clSections = new List<Section>.from (aCrossListing.sections);
+      var clSections = List<Section>.from (aCrossListing.sections);
 
       clSections.forEach ((Section aSection) {
         removeSectionFromCrossListing (aSection, aCrossListing);
@@ -181,7 +181,7 @@ class CourseRequest {
 
   /// The [removeSectionFromCrossListing] method...
   bool removeSectionFromCrossListing (Section aSection, CrossListing aCrossListing) {
-    bool sectionRemoved = aCrossListing.removeSection (aSection);
+    var sectionRemoved = aCrossListing.removeSection (aSection);
     _normalizePcRemovedForClSection (aSection);
 
     if (aCrossListing.sections.isEmpty) {
@@ -194,14 +194,14 @@ class CourseRequest {
   /// The [_checkCrossListingConditions] method...
   bool _checkCrossListingConditions (Section aSection, CrossListing aCrossListing) {
     if (!crossListings.contains (aCrossListing)) {
-      throw new CrossListingException (
+      throw CrossListingException (
         'The specified cross-listing is not part of the request information.'
       );
     }
 
     crossListings.forEach ((CrossListing crossListing) {
       if (crossListing.contains (aSection) && (aCrossListing != crossListing)) {
-        throw new CrossListingException (
+        throw CrossListingException (
           'The specified section is part of a different cross-listing set.'
         );
       }
@@ -246,7 +246,7 @@ class CourseRequest {
   /// The [addPreviousContentMapping] method...
   void addPreviousContentMapping (PreviousContentMapping aPreviousContent) {
     if (null == _platoUser) {
-      throw new PreviousContentException (
+      throw PreviousContentException (
         'Cannot add previous content when the user has not yet authorized.'
       );
     }
@@ -255,7 +255,7 @@ class CourseRequest {
       (PreviousContentMapping previousContent) =>
         (previousContent.section == aPreviousContent.section)
     )) {
-      throw new PreviousContentException (
+      throw PreviousContentException (
         'Cannot add a previous content mapping for a section that already '
         'contains other previous content.'
       );
@@ -267,7 +267,7 @@ class CourseRequest {
 
   /// The [removePreviousContent] method...
   void removePreviousContent (PreviousContentMapping aPreviousContent) {
-    Section pcSection = aPreviousContent.section;
+    var pcSection = aPreviousContent.section;
 
     if (previousContents.remove (aPreviousContent)) {
       _normalizePcRemovedForClSection (pcSection);
@@ -279,13 +279,13 @@ class CourseRequest {
     PreviousContentMapping thePreviousContent, Enrollment enrollment
   ) {
     if (!previousContents.contains (thePreviousContent)) {
-      throw new PreviousContentException (
+      throw PreviousContentException (
         'The previous content specified is not attached to any requested section.'
       );
     }
 
     if (null == enrollment) {
-      throw new EnrollmentException (
+      throw EnrollmentException (
         'Setting a different enrollment for previous content requires '
         'a valid enrollment.'
       );
@@ -304,10 +304,10 @@ class CourseRequest {
 
   /// The [_normalizePcAddedForClSection] method...
   void _normalizePcAddedForClSection (Section aSection) {
-    CrossListing crossListing = getCrossListingForSection (aSection);
+    var crossListing = getCrossListingForSection (aSection);
 
     if ((null != crossListing) && (1 < crossListing.sections.length)) {
-      PreviousContentMapping previousContent = getPreviousContentForSection (aSection);
+      var previousContent = getPreviousContentForSection (aSection);
 
       if (null == previousContent) {
         _normalizeNullPcAdded (aSection, crossListing);
@@ -319,14 +319,14 @@ class CourseRequest {
 
   /// The [_normalizeNullPcAdded] method...
   void _normalizeNullPcAdded (Section aSection, CrossListing aCrossListing) {
-    PreviousContentMapping clPreviousContent = getPreviousContentForSection (
+    var clPreviousContent = getPreviousContentForSection (
       aCrossListing.sections.firstWhere (
         (Section clSection) => (clSection != aSection)
       )
     );
 
     if (null != clPreviousContent) {
-      var prevContent = new PreviousContentMapping (
+      var prevContent = PreviousContentMapping (
         aSection, clPreviousContent.enrollment
       );
 
@@ -343,11 +343,10 @@ class CourseRequest {
         return;
       }
 
-      PreviousContentMapping clPreviousContent =
-        getPreviousContentForSection (clSection);
+      var clPreviousContent = getPreviousContentForSection (clSection);
 
       if (null == clPreviousContent) {
-        var prevContent = new PreviousContentMapping (
+        var prevContent = PreviousContentMapping (
           clSection, aPreviousContent.enrollment
         );
 
@@ -364,7 +363,7 @@ class CourseRequest {
 
   /// The [_normalizePcRemovedForClSection] method...
   void _normalizePcRemovedForClSection (Section aSection) {
-    CrossListing crossListing = getCrossListingForSection (aSection);
+    var crossListing = getCrossListingForSection (aSection);
 
     if (null != crossListing) {
       crossListing.sections.forEach (
@@ -376,20 +375,20 @@ class CourseRequest {
   /// The [verify] method...
   bool verify() {
     if (null == platoUser) {
-      throw new UserException (
+      throw UserException (
         'No user information has been provided to submit the course request.'
       );
     }
 
     if (sections.isEmpty) {
-      throw new SectionException (
+      throw SectionException (
         'No sections have been selected for this course request.'
       );
     }
 
     crossListings.forEach ((CrossListing crossListing) {
       if (crossListing.sections.length < 2) {
-        throw new CrossListingException (
+        throw CrossListingException (
           'Cannot have a cross-listing set with only one section.'
         );
       }
@@ -397,7 +396,7 @@ class CourseRequest {
       if (!crossListing.sections.every (
         (Section section) => (sections.contains (section))
       )) {
-        throw new CrossListingException (
+        throw CrossListingException (
           'Cannot have a cross-listing set containing a section which is not '
             'part of the course request.'
         );
@@ -406,7 +405,7 @@ class CourseRequest {
 
     previousContents.forEach ((PreviousContentMapping previousContent) {
       if (!sections.contains (previousContent.section)) {
-        throw new PreviousContentException (
+        throw PreviousContentException (
           'Cannot have previous content specified for a section that is not part '
             'of the course request.'
         );
@@ -429,7 +428,7 @@ class CourseRequest {
 
   /// The [_buildRequestedSections] method...
   List<RequestedSection> _buildRequestedSections() {
-    var requestedSectionFactory = new RequestedSectionFactory()
+    var requestedSectionFactory = RequestedSectionFactory()
       ..setSections (sections)
       ..setCrossListings (crossListings)
       ..setPreviousContents (previousContents);

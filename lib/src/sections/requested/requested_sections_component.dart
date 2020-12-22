@@ -32,7 +32,7 @@ class RequestedSectionsComponent implements OnInit {
 
   /// The [RequestedSectionsComponent] constructor...
   RequestedSectionsComponent (this._reqSectionsService, this._workflowService) {
-    sections = new List<Section>();
+    sections = <Section>[];
   }
 
   /// The [ngOnInit] method...

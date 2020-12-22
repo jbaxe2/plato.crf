@@ -122,7 +122,7 @@ class RequestedSectionComponent implements OnInit {
       _crossListing = theCrossListing;
       _confirmFeaturedOptions();
     } else {
-      bool crossListingEmpty = _crossListing?.sections?.isEmpty;
+      var crossListingEmpty = _crossListing?.sections?.isEmpty;
 
       if ((theCrossListing == _crossListing) || crossListingEmpty) {
         _crossListing = null;

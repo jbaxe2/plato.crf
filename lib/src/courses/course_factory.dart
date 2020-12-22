@@ -16,16 +16,16 @@ class CourseFactory implements PlatoFactory<Course> {
   Course create (covariant Map<String, dynamic> rawCourse) {
     if (!(rawCourse.containsKey ('courseId') &&
           rawCourse.containsKey ('title'))) {
-      throw new CourseException();
+      throw CourseException();
     }
 
-    return new Course (rawCourse['courseId'], rawCourse['title']);
+    return Course (rawCourse['courseId'], rawCourse['title']);
   }
 
   /// The [createAll] method...
   @override
   List<Course> createAll (covariant Iterable<Map<String, dynamic>> rawCourses) {
-    var courses = new List<Course>();
+    var courses = <Course>[];
 
     try {
       rawCourses.forEach (
@@ -47,7 +47,7 @@ class CourseFactory implements PlatoFactory<Course> {
   List<RejectedCourse> createRejectedCourses (
     Iterable<Map<String, String>> rawRejectedCourses
   ) {
-    var rejectedCourses = new List<RejectedCourse>();
+    var rejectedCourses = <RejectedCourse>[];
 
     try {
       rawRejectedCourses.forEach ((Map<String, String> rawRejectedCourse) {

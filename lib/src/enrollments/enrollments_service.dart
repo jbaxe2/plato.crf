@@ -23,18 +23,18 @@ class EnrollmentsService {
 
   /// The [EnrollmentsService] factory constructor...
   factory EnrollmentsService (Client http) =>
-    _instance ?? (_instance = new EnrollmentsService._ (http));
+    _instance ?? (_instance = EnrollmentsService._ (http));
 
   /// The [EnrollmentsService] private constructor...
   EnrollmentsService._ (this._http) {
-    enrollments = new List<Enrollment>();
-    _enrollmentFactory = new EnrollmentFactory();
+    enrollments = <Enrollment>[];
+    _enrollmentFactory = EnrollmentFactory();
   }
 
   /// The [retrieveEnrollments] method...
   Future<void> retrieveEnrollments() async {
     try {
-      final Response enrollmentsResponse = await _http.get (_ENROLLMENTS_URI);
+      final enrollmentsResponse = await _http.get (_ENROLLMENTS_URI);
 
       List<Map<String, String>> rawEnrollments =
         (json.decode (utf8.decode (enrollmentsResponse.bodyBytes)) as Map)['enrollments'];
@@ -44,7 +44,7 @@ class EnrollmentsService {
         ..addAll (_enrollmentFactory.createAll (rawEnrollments))
         ..sort();
     } catch (_) {
-      throw new EnrollmentException (
+      throw EnrollmentException (
         'Unable to properly retrieve and parse the enrollments.'
       );
     }

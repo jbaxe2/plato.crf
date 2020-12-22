@@ -23,9 +23,9 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
 
   /// The [RequestedSectionFactory] constructor...
   RequestedSectionFactory() {
-    _sections = new List<Section>();
-    _crossListings = new List<CrossListing>();
-    _previousContents = new List<PreviousContentMapping>();
+    _sections = <Section>[];
+    _crossListings = <CrossListing>[];
+    _previousContents = <PreviousContentMapping>[];
   }
 
   /// The [setSections] method...
@@ -45,34 +45,34 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
     if (!(rawRequestedSection.containsKey ('section') &&
           rawRequestedSection.containsKey ('crossListing') &&
           rawRequestedSection.containsKey ('previousContent'))) {
-      throw new RequestedSectionException (
+      throw RequestedSectionException (
         'Information relating to the requested section was improperly formatted.'
       );
     }
 
-    Section section = rawRequestedSection['section'] as Section;
+    var section = rawRequestedSection['section'] as Section;
 
     if (!_sections.contains (section)) {
-      throw new RequestedSectionException (
+      throw RequestedSectionException (
         'The provided section is not part of the list of requested sections.'
       );
     }
 
     if ((null != rawRequestedSection['crossListing']) &&
         !_crossListings.contains (rawRequestedSection['crossListing'])) {
-      throw new CrossListingException (
+      throw CrossListingException (
         'The provided cross-listing is not part of the list of cross-listing sets.'
       );
     }
 
     if ((null != rawRequestedSection['previousContent']) &&
         !_previousContents.contains (rawRequestedSection['previousContent'])) {
-      throw new PreviousContentException (
+      throw PreviousContentException (
         'The provided previous content is not available to use for the requested section.'
       );
     }
 
-    return new RequestedSection (section)
+    return RequestedSection (section)
       ..setCrossListing (_getCrossListingForSection (section))
       ..setPreviousContent (_getPreviousContentForSection (section));
   }
@@ -82,7 +82,7 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
   List<RequestedSection> createAll (
     covariant Iterable<Map<String, dynamic>> rawRequestedSections
   ) {
-    var requestedSections = new List<RequestedSection>();
+    var requestedSections = <RequestedSection>[];
 
     try {
       rawRequestedSections.forEach ((Map<String, dynamic> rawRequestedSection) {
@@ -97,11 +97,11 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
 
   /// The [build] method...
   List<RequestedSection> build() {
-    var requestedSections = new List<RequestedSection>();
-    var rawRequestedSections = new List<Map<String, dynamic>>();
+    var requestedSections = <RequestedSection>[];
+    var rawRequestedSections = <Map<String, dynamic>>[];
 
     _sections.forEach ((Section section) {
-      Map<String, dynamic> rawRequestedSection = {
+      var rawRequestedSection = <String, dynamic>{
         'section': section,
         'crossListing': _getCrossListingForSection (section),
         'previousContent': _getPreviousContentForSection (section)
@@ -118,7 +118,7 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
     CrossListing crossListing;
 
     try {
-      if (0 < _crossListings.length) {
+      if (_crossListings.isNotEmpty) {
         crossListing = _crossListings.firstWhere (
           (CrossListing aCrossListing) => aCrossListing.contains (section)
         );
@@ -133,7 +133,7 @@ class RequestedSectionFactory implements PlatoFactory<RequestedSection> {
     PreviousContentMapping previousContent;
 
     try {
-      if (0 < _previousContents.length) {
+      if (_previousContents.isNotEmpty) {
         previousContent = _previousContents.firstWhere (
           (PreviousContentMapping aPreviousContent) =>
             (aPreviousContent.section == section)

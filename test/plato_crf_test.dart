@@ -5,8 +5,6 @@ import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
 
-import 'components/departments_component_test.dart' as departments_component;
-
 import 'services/courses_service_test.dart' as courses_service;
 import 'services/departments_service_test.dart' as departments_service;
 import 'services/previous_content_service_test.dart' as previous_content_service;
@@ -18,7 +16,7 @@ import 'cross_listing_test.dart' as cross_listing;
 import 'testable.dart';
 
 /// The [main] function...
-void main() => (new PlatoCourseRequestFormTester()).run();
+void main() => (PlatoCourseRequestFormTester()).run();
 
 /// The [PlatoCourseRequestFormTester] class...
 class PlatoCourseRequestFormTester implements Testable {
@@ -32,7 +30,6 @@ class PlatoCourseRequestFormTester implements Testable {
 
     _testDomain();
     _testServices();
-    _testComponents();
   }
 
   /// The [_testDomain] method...
@@ -47,10 +44,5 @@ class PlatoCourseRequestFormTester implements Testable {
     terms_service.main();
     courses_service.main();
     previous_content_service.main();
-  }
-
-  /// The [_testComponents] method...
-  void _testComponents() {
-    departments_component.main();
   }
 }

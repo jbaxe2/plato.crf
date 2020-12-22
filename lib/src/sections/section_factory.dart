@@ -19,7 +19,7 @@ class SectionFactory implements PlatoFactory<Section> {
           rawSection.containsKey ('facname') &&
           rawSection.containsKey ('mplace') &&
           rawSection.containsKey ('mtime'))) {
-      throw new SectionException (
+      throw SectionException (
         'The provided section information was not properly formatted.'
       );
     }
@@ -30,7 +30,7 @@ class SectionFactory implements PlatoFactory<Section> {
       faculty = 'Staff';
     }
 
-    return new Section (
+    return Section (
       rawSection['crsno'], rawSection['term'], rawSection['crsno'],
       rawSection['title'], faculty, rawSection['mplace'], rawSection['mtime']
     );
@@ -39,7 +39,7 @@ class SectionFactory implements PlatoFactory<Section> {
   /// The [createAll] method...
   @override
   List<Section> createAll (covariant Iterable<Map<String, dynamic>> rawSections) {
-    var sections = new List<Section>();
+    var sections = <Section>[];
 
     rawSections.forEach (
       (Map<String, dynamic> rawSection) => sections.add (create (rawSection))

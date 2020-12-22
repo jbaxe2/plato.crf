@@ -24,14 +24,14 @@ class PreviousContentService extends FeaturedSectionService {
 
   /// The [PreviousContentService] factory constructor...
   factory PreviousContentService() =>
-    _instance ?? (_instance = new PreviousContentService._());
+    _instance ?? (_instance = PreviousContentService._());
 
   /// The [PreviousContentService] private constructor...
   PreviousContentService._() {
-    _courseRequest = new CourseRequest();
+    _courseRequest = CourseRequest();
 
     previousContents = _courseRequest.previousContents;
-    previousContentStreamer = new StreamController<PreviousContentMapping>.broadcast();
+    previousContentStreamer = StreamController<PreviousContentMapping>.broadcast();
 
     init();
   }
@@ -42,7 +42,7 @@ class PreviousContentService extends FeaturedSectionService {
 
   /// The [createPreviousContent] method...
   PreviousContentMapping createPreviousContent (Section section, Enrollment enrollment) {
-    var previousContent = new PreviousContentMapping (section, enrollment);
+    var previousContent = PreviousContentMapping (section, enrollment);
 
     addPreviousContent (previousContent);
 
@@ -79,7 +79,7 @@ class PreviousContentService extends FeaturedSectionService {
     if (previousContents.any (
       (PreviousContentMapping previousContent) => (null == previousContent.enrollment)
     )) {
-      throw new PreviousContentException (
+      throw PreviousContentException (
         'Cannot confirm previous contents when no enrollment has been selected.'
       );
     }

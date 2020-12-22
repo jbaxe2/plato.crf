@@ -34,7 +34,7 @@ class DepartmentsComponent implements OnInit {
 
   /// The [DepartmentsComponent] constructor...
   DepartmentsComponent (this.deptsService, this.coursesService) {
-    departments = new List<Department>();
+    departments = <Department>[];
     selectorText = 'Select a department...';
   }
 

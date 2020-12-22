@@ -19,7 +19,7 @@ class CoursesService {
 
   List<Course> courses;
 
-  static final CourseFactory _courseFactory = new CourseFactory();
+  static final CourseFactory _courseFactory = CourseFactory();
 
   final Client _http;
 
@@ -27,11 +27,11 @@ class CoursesService {
 
   /// The [CoursesService] factory constructor...
   factory CoursesService (Client http) =>
-    _instance ?? (_instance = new CoursesService._ (http));
+    _instance ?? (_instance = CoursesService._ (http));
 
   /// The [CoursesService] private constructor...
   CoursesService._ (this._http) {
-    courses = new List<Course>();
+    courses = <Course>[];
   }
 
   /// The [setDepartmentId] method...
@@ -63,18 +63,18 @@ class CoursesService {
   /// The [_retrieveCourses] method...
   Future<void> _retrieveCourses() async {
     try {
-      final Response coursesResponse = await _http.get (
+      final coursesResponse = await _http.get (
         '$_COURSES_URI?dept=$_departmentId&term=$_termId'
       );
 
-      String decodedResponse = utf8.decode (coursesResponse.bodyBytes);
+      var decodedResponse = utf8.decode (coursesResponse.bodyBytes);
       List rawCourses = (json.decode (decodedResponse) as Map)['courses'];
 
       courses
         ..clear()
         ..addAll (_courseFactory.createAll (rawCourses.cast()));
     } catch (_) {
-      throw new CourseException ('Unable to retrieve the courses list.');
+      throw CourseException ('Unable to retrieve the courses list.');
     }
   }
 }

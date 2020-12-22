@@ -15,18 +15,18 @@ class TermFactory implements PlatoFactory<Term> {
   Term create (covariant Map<String, dynamic> rawTerm) {
     if (!(rawTerm.containsKey ('id') &&
           rawTerm.containsKey ('description'))) {
-      throw new TermException (
+      throw TermException (
         'The provided term information was improperly formatted.'
       );
     }
 
-    return new Term (rawTerm['id'], rawTerm['description']);
+    return Term (rawTerm['id'], rawTerm['description']);
   }
 
   /// The [createAll] method...
   @override
   List<Term> createAll (covariant Iterable<Map<String, dynamic>> rawTerms) {
-    var terms = new List<Term>();
+    var terms = <Term>[];
 
     try {
       rawTerms.forEach (

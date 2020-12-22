@@ -38,7 +38,7 @@ class SubmissionResponseComponent implements OnInit {
   @override
   void ngOnInit() {
     isVisible = false;
-    rejectedCourses = new List<RejectedCourse>();
+    rejectedCourses = <RejectedCourse>[];
 
     _courseRequestService.responseController.stream.listen (
       (SubmissionResponse theSubmissionResponse) {

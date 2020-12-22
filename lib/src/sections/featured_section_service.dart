@@ -15,9 +15,7 @@ abstract class FeaturedSectionService {
 
   /// The [init] method...
   void init() {
-    if (null == sectionsStreamer) {
-      sectionsStreamer = new StreamController<Section>.broadcast();
-    }
+    sectionsStreamer ??= StreamController<Section>.broadcast();
   }
 
   /// The [invokeForSection] method...
