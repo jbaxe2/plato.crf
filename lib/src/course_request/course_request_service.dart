@@ -3,7 +3,7 @@ library plato.crf.services.course_request;
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json, utf8;
 
-import 'package:http/http.dart' show Client, Response;
+import 'package:http/http.dart' show Client;
 
 import '../_application/error/plato_exception.dart';
 import '../_application/submission_response/submission_response.dart';

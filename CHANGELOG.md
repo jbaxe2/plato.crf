@@ -1,5 +1,8 @@
 # Plato Course Request Form Changelog
 
+## 1.3.20210127
+- Minor cleaning up of code.
+
 ## 1.3.20201222
 - Updated Dart SDK and dependency constraints.
 - Work to update codebase to conform to newer Dart standards.

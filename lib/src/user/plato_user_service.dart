@@ -4,7 +4,7 @@ import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json, utf8;
 import 'dart:html' show window;
 
-import 'package:http/http.dart' show Client, Response;
+import 'package:http/http.dart' show Client;
 
 import '../course_request/course_request.dart';
 

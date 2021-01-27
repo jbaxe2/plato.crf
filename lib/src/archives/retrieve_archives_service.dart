@@ -3,7 +3,7 @@ library plato.crf.services.archive.retrieve;
 import 'dart:async' show Future, StreamController;
 import 'dart:convert' show json, utf8;
 
-import 'package:http/http.dart' show Client, Response;
+import 'package:http/http.dart' show Client;
 
 import '../enrollments/enrollment.dart';
 import '../enrollments/enrollment_factory.dart';

@@ -3,7 +3,7 @@ library plato.crf.services.departments;
 import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
-import 'package:http/http.dart' show Client, Response;
+import 'package:http/http.dart' show Client;
 
 import 'department.dart';
 import 'department_exception.dart';

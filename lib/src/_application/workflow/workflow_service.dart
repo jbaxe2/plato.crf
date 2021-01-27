@@ -4,13 +4,13 @@ import 'dart:async' show Stream, StreamController;
 
 /// The [WorkflowService] class...
 class WorkflowService {
-  static StreamController<bool> _workflowController =
-    new StreamController<bool>.broadcast();
+  static final StreamController<bool> _workflowController =
+    StreamController<bool>.broadcast();
 
   Stream<bool> get workflowStream => _workflowController.stream;
 
-  static StreamController<bool> _sectionsResetController =
-    new StreamController<bool>.broadcast();
+  static final StreamController<bool> _sectionsResetController =
+    StreamController<bool>.broadcast();
 
   Stream<bool> get sectionsResetStream => _sectionsResetController.stream;
 
